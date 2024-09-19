@@ -1,0 +1,86 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<link rel="stylesheet" href="pico.css">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>BrickedUp</title>
+    <link rel="apple-touch-icon" sizes="180x180" href="favicons/apple-touch-icon.png">
+    <link rel="icon" type="image/png" sizes="32x32" href="favicons/favicon-32x32.png">
+    <link rel="icon" type="image/png" sizes="16x16" href="favicons/favicon-16x16.png">
+    <link rel="manifest" href="favicons/site.webmanifest">
+</head>
+
+<body>
+    <div style="display: flex; flex-wrap: wrap;">
+
+        <nav style="width: 5%; flex-direction: column; margin-right: 25px; background-color: rgb(93, 93, 93); border-color: transparent;">
+            <button class="nav-option" style="background-color: grey; border-color: transparent;">🌎</button>
+            <button class="nav-option" style="background-color: grey;border-color: transparent;">📖</button>
+            <button class="nav-option" style="background-color: grey;border-color: transparent;">🔎</button>
+            <button class="nav-option" style="background-color: grey;border-color: transparent;">📈</button>
+            <button class="nav-option" style="background-color: grey;border-color: transparent;">📅</button>
+            <button class="nav-option" style="background-color: grey;border-color: transparent;">❌</button>
+        </nav>
+
+        <div style="width: 90%;">
+            <div id="page-layout" style="display: grid; gap:50px">
+
+                <div class="Data" style="grid-row-start: 1; grid-row-end: 2; grid-column-start: 1; grid-column-end: 3;">
+                    <form action="">
+                        <label for="cars">Choose a LEGO theme:</label>
+                        <select name="theme" id="theme">
+                            <option value="Fortnite">Fortnite</option>
+                            <option value="Technic">Technic</option>
+                            <option value="City">City</option>
+                            <option value="Friends">Friends</option>
+                            <option value="Minecraft">Minecraft</select><option>
+                        </select>
+                        <br><br>
+                        <hr>
+                        <b>LEGO SET PRICES</b><br>
+
+                        <span style="display: inline-block; width: 40px;"></span>SET 48121 📈 $40 <br>
+                        <span style="display: inline-block; width: 40px;"></span>SET 48122 📉 $22 <br>
+                        <span style="display: inline-block; width: 40px;"></span>SET 48123 📈 $45<br>
+                        <span style="display: inline-block; width: 40px;"></span>SET 48124 📉 $65<br>
+                        <span style="display: inline-block; width: 40px;"></span>SET 48125 📈 $69<br>
+                        <span style="display: inline-block; width: 40px;"></span>SET 48126 📉 $43<br>
+
+                    </form>
+                </div>
+
+                <div class="Retiring"
+                    style="grid-row-start: 2; grid-row-end: 3; grid-column-start: 1; grid-column-end: 2;">
+                    <b>Retiring Sets:</b><br>
+                    <span style="display: inline-block; width: 40px;"></span>SET 48179 <br>
+                    <span style="display: inline-block; width: 40px;"></span>SET 48952 <br>
+                    <span style="display: inline-block; width: 40px;"></span>SET 48562 <br>
+
+                </div>
+
+                <div class="Graphs"
+                    style="grid-row-start: 1; grid-row-end: 2; grid-column-start: 3; grid-column-end: 4;">
+                    <b>LEGO Set Prices Over Time</b><br>
+                    <img src="Resources/image.png" width="900" height="600" alt="LEGO Set Prices Over Time">
+                </div>
+
+                <div class="Availability"
+                    style="grid-row-start: 2; grid-row-end: 3; grid-column-start: 3; grid-column-end: 4;">
+                    <b>Availability:</b><br>
+                    North America: <span style="color: red;">🔴 Low</span> <br>
+                    Latin America: <span style="color: chocolate;">❤️‍🩹Latinas💔</span><br>
+                    Europe: <span style="color: green;">🟢 High</span><br>
+                    Asia: <span style="color: yellow;">🟡 Medium</span><br>
+                    Australia: <span style="color: green;">🟢 High</span><br>
+
+                </div>
+            </div>
+        </div>
+    </div>
+
+</body>
+
+</html>
