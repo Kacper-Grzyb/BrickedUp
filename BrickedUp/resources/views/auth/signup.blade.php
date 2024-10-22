@@ -286,10 +286,10 @@
         </div>
 
         <div class="social-links">
+            <a href="#"><img class="lego" src="/img/lego.png" alt="facebook"></a>
             <a href="#"><img src="/img/facebook.png" alt="facebook"></a>
             <a href="#"><img src="/img/gmail.png" alt="facebook"></a>
             <a href="#"><img src="/img/twitter.png" alt="facebook"></a>
-            <a href="#"><img class="lego" src="/img/lego.png" alt="facebook"></a>
         </div>
 
     </section>

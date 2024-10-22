@@ -234,7 +234,7 @@
                 </form>
 
                 <!-- Sign up link -->
-                <p>Don't have a profile? <a href="#">Sign up</a></p>
+                <p>Don't have a profile? <a href="{{ url('/signup') }}">Sign up</a></p>
             </div>
         </div>
     </div>
