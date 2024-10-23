@@ -14,6 +14,6 @@ Route::get('/signup', function () {
     return view('auth/signup');
 });
 
-Route::get('/setdetails', function() {
+Route::get('/set-details', function() {
     return view('set-details');
 });

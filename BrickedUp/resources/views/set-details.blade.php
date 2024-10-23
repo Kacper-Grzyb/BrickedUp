@@ -6,6 +6,7 @@
     <title>Set Name Set Details</title>
 </head>
 <body>
+    {{-- All of the values inside the fields are placeholders for now --}}
     <div class="set-details-container">
         <div class="terminal-box set-details-text">
             <h2>Set Details</h2>
@@ -13,41 +14,49 @@
             <div class="set-details-list">
                 <div class="set-details-row">
                     <h3>Set Number</h3>
-                    <p>12345</p>
+                    <p>10123</p>
                 </div>
                 <div class="set-details-row">
                     <h3>Name</h3>
-                    <p>Placeholder</p>
+                    <p>Cloud City</p>
                 </div>
                 <div class="set-details-row">
                     <h3>Theme</h3>
-                    <p>Placeholder</p>
+                    <a href="google.com">Star Wars</a>
                 </div>
                 <div class="set-details-row">
                     <h3>Subtheme</h3>
-                    <p>Placeholder</p>
+                    <a href="google.com">Episode V</a>
                 </div>
                 <div class="set-details-row">
                     <h3>Year</h3>
-                    <p>1939</p>
+                    <a href="google.com">2003</a>
                 </div>
                 <div class="set-details-row">
                     <h3>Availability</h3>
-                    <p>Placeholder</p>
+                    <a href="google.com">Retired</a>
                 </div>
                 <div class="set-details-row">
                     <h3>Pieces</h3>
-                    <p>420</p>
+                    <p>698</p>
                 </div>
                 <div class="set-details-row">
                     <h3>Minifigures</h3>
-                    <p>69</p>
+                    <p>7</p>
                 </div>
             </div>
         </div>
 
         <div class="terminal-box set-details-media">
-            <h2>Set Images Carouselle</h2>
+            {{-- Maybe make this a bit nicer in the future, will do for now --}}
+            <div class="set-image-carouselle">
+                <img src="{{asset('images/placeholder_set_image1.jpg')}}" alt="placeholder lego set image">
+                <img src="{{asset('images/placeholder_set_image3.jpg')}}" alt="placeholder lego set image">
+                <img src="{{asset('images/placeholder_set_image1.jpg')}}" alt="placeholder lego set image">
+                <img src="{{asset('images/placeholder_set_image3.jpg')}}" alt="placeholder lego set image">
+                <img src="{{asset('images/placeholder_set_image1.jpg')}}" alt="placeholder lego set image">
+                <img src="{{asset('images/placeholder_set_image3.jpg')}}" alt="placeholder lego set image">
+            </div>
         </div>
 
     </div>
@@ -60,30 +69,30 @@
             <div class="set-details-list">
                 <div class="set-details-row">
                     <h3>Retail</h3>
-                    <p>$199.99</p>
+                    <p>$87.99</p>
                 </div>
 
                 <p>New / Sealed</p>
 
                 <div class="set-details-row">
                     <h3>Value</h3>
-                    <p>$1243.43</p>
+                    <p>$5953.95</p>
                 </div>
                 <div class="set-details-row">
                     <h3>Price Variation</h3>
-                    <p>$1092-$1542</p>
+                    <p>$4500-$6000</p>
                 </div>
                 <div class="set-details-row">
                     <h3>Growth</h3>
-                    <p>512.69%</p>
+                    <p style="color:rgb(62, 163, 65)">+6666.53%</p>
                 </div>
                 <div class="set-details-row">
                     <h3>Annual Growth</h3>
-                    <p>11.2%</p>
+                    <p style="color:rgb(62, 163, 65)">+15.77%</p>
                 </div>
                 <div class="set-details-row">
                     <h3>90 Day Change</h3>
-                    <p>-2.5%</p>
+                    <p style="color:rgb(255, 67, 61)">-1.32%</p>
                 </div>
                 <div class="set-details-row">
                     <h3>90 Day Sales Amount</h3>
@@ -94,85 +103,110 @@
 
         <div class="terminal-box set-details-media">
             <h2>Set Value Chart</h2>
+            <p>Insert Chart here</p>
         </div>
 
     </div>
 
-    <div class="set-details-container">
+    <div class="set-details-container" style="align-items: start">
 
-        <div class="set-details-grid">
-            <div class="terminal-box set-details-reviews">
-                <h2>User Reviews</h2>
-                <div class="set-details-reviews-star-header">
-                    <img src="{{asset('images/full_star.svg')}}" alt="">
-                    <img src="{{asset('images/full_star.svg')}}" alt="">
-                    <img src="{{asset('images/full_star.svg')}}" alt="">
-                    <img src="{{asset('images/full_star.svg')}}" alt="">
-                    <img src="{{asset('images/full_star.svg')}}" alt="">
-                    <p>4.9 / 5</p>
+        <div class="terminal-box set-details-reviews">
+            <h2>User Reviews</h2>
+            <div class="set-details-reviews-star-header">
+                <img src="{{asset('images/full_star.svg')}}" alt="">
+                <img src="{{asset('images/full_star.svg')}}" alt="">
+                <img src="{{asset('images/full_star.svg')}}" alt="">
+                <img src="{{asset('images/full_star.svg')}}" alt="">
+                <img src="{{asset('images/full_star.svg')}}" alt="">
+                <p>4.9 / 5</p>
+            </div>
+            <h6>28 reviews</h6>
+
+            <div class="set-details-list">
+                <div class="set-details-review">
+                    <header>
+                        <img src="{{ asset('images/lego-head-icon.png') }}" alt="User Profile Icon">
+                        <h5> Brickipedia </h5>
+                        <div class="set-details-review-stars">
+                            <img src="{{asset('images/full_star.svg')}}" alt="">
+                            <img src="{{asset('images/full_star.svg')}}" alt="">
+                            <img src="{{asset('images/full_star.svg')}}" alt="">
+                            <img src="{{asset('images/full_star.svg')}}" alt="">
+                            <img src="{{asset('images/empty_star.svg')}}" alt="">
+                        </div>
+                        <p> 4/5 </p>
+                    </header>
+                    <p>It was most notable for being the first appearance of a Lando  Calrissian Minifigure. This set is also the only set released so far  that features Lando in his most recognized clothing (the other being on  6210 Jabba's Sail Barge where he is in disguise).</p>
                 </div>
-                <h6>28 reviews</h6>
 
-                <div class="set-details-list">
-                    <div class="set-details-review">
-                        <header>
-                            <img src="{{ asset('images/lego-head-icon.png') }}" alt="User Profile Icon">
-                            <h5> Brickipedia </h5>
-                            <div class="set-details-review-stars">
-                                <img src="{{asset('images/full_star.svg')}}" alt="">
-                                <img src="{{asset('images/full_star.svg')}}" alt="">
-                                <img src="{{asset('images/full_star.svg')}}" alt="">
-                                <img src="{{asset('images/full_star.svg')}}" alt="">
-                                <img src="{{asset('images/empty_star.svg')}}" alt="">
-                            </div>
-                            <p> 4/5 </p>
-                        </header>
-                        <p>It was most notable for being the first appearance of a Lando  Calrissian Minifigure. This set is also the only set released so far  that features Lando in his most recognized clothing (the other being on  6210 Jabba's Sail Barge where he is in disguise).</p>
-                    </div>
+                <div class="set-details-review">
+                    <header>
+                        <img src="{{ asset('images/lego-head-icon.png') }}" alt="User Profile Icon">
+                        <h5> Brickipedia </h5>
+                        <div class="set-details-review-stars">
+                            <img src="{{asset('images/full_star.svg')}}" alt="">
+                            <img src="{{asset('images/full_star.svg')}}" alt="">
+                            <img src="{{asset('images/full_star.svg')}}" alt="">
+                            <img src="{{asset('images/full_star.svg')}}" alt="">
+                            <img src="{{asset('images/empty_star.svg')}}" alt="">
+                        </div>
+                        <p> 4/5 </p>
+                    </header>
+                    <p>It was most notable for being the first appearance of a Lando  Calrissian Minifigure. This set is also the only set released so far  that features Lando in his most recognized clothing (the other being on  6210 Jabba's Sail Barge where he is in disguise).</p>
+                </div>
 
-                    <div class="set-details-review">
-                        <header>
-                            <img src="{{ asset('images/lego-head-icon.png') }}" alt="User Profile Icon">
-                            <h5> Brickipedia </h5>
-                            <div class="set-details-review-stars">
-                                <img src="{{asset('images/full_star.svg')}}" alt="">
-                                <img src="{{asset('images/full_star.svg')}}" alt="">
-                                <img src="{{asset('images/full_star.svg')}}" alt="">
-                                <img src="{{asset('images/full_star.svg')}}" alt="">
-                                <img src="{{asset('images/empty_star.svg')}}" alt="">
-                            </div>
-                            <p> 4/5 </p>
-                        </header>
-                        <p>It was most notable for being the first appearance of a Lando  Calrissian Minifigure. This set is also the only set released so far  that features Lando in his most recognized clothing (the other being on  6210 Jabba's Sail Barge where he is in disguise).</p>
-                    </div>
-
-                    <div class="set-details-review">
-                        <header>
-                            <img src="{{ asset('images/lego-head-icon.png') }}" alt="User Profile Icon">
-                            <h5> Brickipedia </h5>
-                            <div class="set-details-review-stars">
-                                <img src="{{asset('images/full_star.svg')}}" alt="">
-                                <img src="{{asset('images/full_star.svg')}}" alt="">
-                                <img src="{{asset('images/full_star.svg')}}" alt="">
-                                <img src="{{asset('images/full_star.svg')}}" alt="">
-                                <img src="{{asset('images/empty_star.svg')}}" alt="">
-                            </div>
-                            <p> 4/5 </p>
-                        </header>
-                        <p>It was most notable for being the first appearance of a Lando  Calrissian Minifigure. This set is also the only set released so far  that features Lando in his most recognized clothing (the other being on  6210 Jabba's Sail Barge where he is in disguise).</p>
-                    </div>
+                <div class="set-details-review">
+                    <header>
+                        <img src="{{ asset('images/lego-head-icon.png') }}" alt="User Profile Icon">
+                        <h5> Brickipedia </h5>
+                        <div class="set-details-review-stars">
+                            <img src="{{asset('images/full_star.svg')}}" alt="">
+                            <img src="{{asset('images/full_star.svg')}}" alt="">
+                            <img src="{{asset('images/full_star.svg')}}" alt="">
+                            <img src="{{asset('images/full_star.svg')}}" alt="">
+                            <img src="{{asset('images/empty_star.svg')}}" alt="">
+                        </div>
+                        <p> 4/5 </p>
+                    </header>
+                    <p>It was most notable for being the first appearance of a Lando  Calrissian Minifigure. This set is also the only set released so far  that features Lando in his most recognized clothing (the other being on  6210 Jabba's Sail Barge where he is in disguise).</p>
                 </div>
             </div>
-        
+        </div>
+
+        <div class="set-details-subcontainer">
             <div class="terminal-box set-details-trends">
-                Sales Trends
+                <h2>Sales Trends</h2>
+                <p>Insert chart here</p>
             </div>
-        
+    
             <div class="terminal-box set-details-for-sale">
-                For Sale
+                <h2>For Sale</h2>
+
+                <div class="for-sale-record">
+                    <img src="{{asset('images/ebay.svg')}}" alt="platform-logo">
+                    <h5>Lorem ipsum dolor sit, amet consectetur adipisicing elit. Nisi, magnam!</h5>
+                    <p>EU</p>
+                    <p class="for-sale-price">€4839,99</p>
+                </div>
+
+                <div class="for-sale-record">
+                    <img src="{{asset('images/ebay.svg')}}" alt="platform-logo">
+                    <h5>Lorem ipsum dolor sit, amet consectetur adipisicing elit. Nisi, magnam!</h5>
+                    <p>EU</p>
+                    <p class="for-sale-price">€4839,99</p>
+                </div>
+
+                <div class="for-sale-record">
+                    <img src="{{asset('images/ebay.svg')}}" alt="platform-logo">
+                    <h5>Lorem ipsum dolor sit, amet consectetur adipisicing elit. Nisi, magnam!</h5>
+                    <p>EU</p>
+                    <p class="for-sale-price">€4839,99</p>
+                </div>
+
             </div>
-        
         </div>
+
     </div>
+
 </body>
 </html>
