@@ -17,3 +17,7 @@ Route::get('/signup', function () {
 Route::get('/set-details', function() {
     return view('set-details');
 });
+
+Route::get('/settings', function() {
+    return view('settings');
+});

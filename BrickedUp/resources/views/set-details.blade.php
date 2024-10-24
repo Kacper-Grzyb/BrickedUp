@@ -3,9 +3,12 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <link rel="stylesheet" href="{{ asset('css/app.css') }}">
-    <title>Set Name Set Details</title>
+    <title>(Set Name) Set Details</title>
 </head>
 <body>
+
+    {{-- Navbar goes here --}}
+
     {{-- All of the values inside the fields are placeholders for now --}}
     <div class="set-details-container">
         <div class="terminal-box set-details-text">
@@ -22,19 +25,19 @@
                 </div>
                 <div class="set-details-row">
                     <h3>Theme</h3>
-                    <a href="google.com">Star Wars</a>
+                    <a href="kawaszlugbombakupa">Star Wars</a>
                 </div>
                 <div class="set-details-row">
                     <h3>Subtheme</h3>
-                    <a href="google.com">Episode V</a>
+                    <a href="kawaszlugbombakupa">Episode V</a>
                 </div>
                 <div class="set-details-row">
                     <h3>Year</h3>
-                    <a href="google.com">2003</a>
+                    <a href="kawaszlugbombakupa">2003</a>
                 </div>
                 <div class="set-details-row">
                     <h3>Availability</h3>
-                    <a href="google.com">Retired</a>
+                    <a href="kawaszlugbombakupa">Retired</a>
                 </div>
                 <div class="set-details-row">
                     <h3>Pieces</h3>
