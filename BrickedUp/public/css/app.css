@@ -56,6 +56,14 @@ html {
     margin: 0;
 }
 
+.positive {
+    color: rgb(62, 163, 65);
+}
+
+.negative {
+    color:rgb(255, 67, 61);
+}
+
 .set-details-row h3 {
     margin: 0;
     color: rgb(173, 173, 173);

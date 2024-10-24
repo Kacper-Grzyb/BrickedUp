@@ -84,15 +84,15 @@
                 </div>
                 <div class="set-details-row">
                     <h3>Growth</h3>
-                    <p style="color:rgb(62, 163, 65)">+6666.53%</p>
+                    <p class="varying-amount">6666.53%</p>
                 </div>
                 <div class="set-details-row">
                     <h3>Annual Growth</h3>
-                    <p style="color:rgb(62, 163, 65)">+15.77%</p>
+                    <p class="varying-amount">15.77%</p>
                 </div>
                 <div class="set-details-row">
                     <h3>90 Day Change</h3>
-                    <p style="color:rgb(255, 67, 61)">-1.32%</p>
+                    <p class="varying-amount">-1.32%</p>
                 </div>
                 <div class="set-details-row">
                     <h3>90 Day Sales Amount</h3>
@@ -186,27 +186,45 @@
                     <img src="{{asset('images/ebay.svg')}}" alt="platform-logo">
                     <h5>Lorem ipsum dolor sit, amet consectetur adipisicing elit. Nisi, magnam!</h5>
                     <p>EU</p>
-                    <p class="for-sale-price">€4839,99</p>
+                    <p class="for-sale-price">$4839,99</p>
                 </div>
 
                 <div class="for-sale-record">
                     <img src="{{asset('images/ebay.svg')}}" alt="platform-logo">
                     <h5>Lorem ipsum dolor sit, amet consectetur adipisicing elit. Nisi, magnam!</h5>
                     <p>EU</p>
-                    <p class="for-sale-price">€4839,99</p>
+                    <p class="for-sale-price">$4839,99</p>
                 </div>
 
                 <div class="for-sale-record">
                     <img src="{{asset('images/ebay.svg')}}" alt="platform-logo">
                     <h5>Lorem ipsum dolor sit, amet consectetur adipisicing elit. Nisi, magnam!</h5>
                     <p>EU</p>
-                    <p class="for-sale-price">€4839,99</p>
+                    <p class="for-sale-price">$4839,99</p>
                 </div>
 
             </div>
         </div>
 
     </div>
+
+    <script>
+
+        document.addEventListener("DOMContentLoaded", function() {
+            const varyingAmountElements = document.querySelectorAll(".varying-amount") // Select all elements with the class 'varying-amount'
+
+            varyingAmountElements.forEach(element => {
+                const value = parseFloat(element.innerText);
+                if(value > 0) {
+                    element.classList.add("positive");
+                    element.innerText = "+" + element.innerText;
+                }
+                    
+                else if (value < 0) element.classList.add("negative");
+            });
+        });
+
+    </script>
 
 </body>
 </html>
