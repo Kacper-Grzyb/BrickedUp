@@ -42,26 +42,89 @@
                 <h3>Favourite Sets: </h3>
                 <p>Display favourite sets here...</p>
             </div>
-            <a href="kawaszlugbombakupa">Edit Favourite Sets ˅</a>
+            <div class="settings-dropdown">
+                <a href="">Edit Favourite Sets ˅</a>
+                <div class="settings-dropdown-content" id="favourite-sets">
+                    <div class="searchbar">
+                        <button>
+                            <img src="{{asset('images/search_icon.svg')}}" alt="search icon">
+                        </button>
+                        <input type="text" placeholder="Set number, name...">
+                    </div>
+                    <div class="settings-dropdown-row">
+                        <input type="checkbox" id="12345" name="12345" value="SetName">
+                        <label for="12345">Set Name</label>
+                    </div>
+                    <div class="settings-dropdown-row">
+                        <input type="checkbox" id="12345" name="12345" value="SetName">
+                        <label for="12345">Set Name</label>
+                    </div>
+                    <div class="settings-dropdown-row">
+                        <input type="checkbox" id="12345" name="12345" value="SetName">
+                        <label for="12345">Set Name</label>
+                    </div>
+                </div>
+            </div>
         </div>
         <div class="terminal-box">
             <div class="settings-row">
                 <h3>Favourite Themes: </h3>
                 <p>Display favourite themes here...</p>
             </div>
-            <a href="kawaszlugbombakupa">Edit Favourite Themes ˅</a>
+            <div class="settings-dropdown">
+                <a href="">Edit Favourite Themes ˅</a>
+                <div class="settings-dropdown-content" id="favourite-sets">
+                    <div class="searchbar">
+                        <button>
+                            <img src="{{asset('images/search_icon.svg')}}" alt="search icon">
+                        </button>
+                        <input type="text" placeholder="Theme name...">
+                    </div>
+                    <div class="settings-dropdown-row">
+                        <input type="checkbox" id="12345" name="12345" value="Theme">
+                        <label for="12345">Theme</label>
+                    </div>
+                    <div class="settings-dropdown-row">
+                        <input type="checkbox" id="12345" name="12345" value="Theme">
+                        <label for="12345">Theme</label>
+                    </div>
+                    <div class="settings-dropdown-row">
+                        <input type="checkbox" id="12345" name="12345" value="Theme">
+                        <label for="12345">Theme</label>
+                    </div>
+                </div>
+            </div>
         </div>
         <div class="terminal-box">
             <div class="settings-row">
                 <h3>Favourite Subthemes: </h3>
                 <p>Display favourite subthemes here...</p>
             </div>
-            <a href="kawaszlugbombakupa">Edit Favourite Subthemes ˅</a>
+            <div class="settings-dropdown">
+                <a href="">Edit Favourite Subthemes ˅</a>
+                <div class="settings-dropdown-content" id="favourite-sets">
+                    <div class="searchbar">
+                        <button>
+                            <img src="{{asset('images/search_icon.svg')}}" alt="search icon">
+                        </button>
+                        <input type="text" placeholder="Subtheme name...">
+                    </div>
+                    <div class="settings-dropdown-row">
+                        <input type="checkbox" id="12345" name="12345" value="Subtheme">
+                        <label for="12345">Subtheme</label>
+                    </div>
+                    <div class="settings-dropdown-row">
+                        <input type="checkbox" id="12345" name="12345" value="Subtheme">
+                        <label for="12345">Subtheme</label>
+                    </div>
+                    <div class="settings-dropdown-row">
+                        <input type="checkbox" id="12345" name="12345" value="Subtheme">
+                        <label for="12345">Subtheme</label>
+                    </div>
+                </div>
+            </div>
         </div>
 
     </div>
-
-{{-- Make the dropdown menu --}}
-
 </body>
 </html>
