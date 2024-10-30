@@ -2,7 +2,8 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Graphs</title>
+    <link rel="stylesheet" href="{{ asset('css/app.css') }}">
+    <title>Home</title>
 </head>
 <body>
 <body>
@@ -149,5 +150,45 @@
             
         </ul>
     </div>
+
+    <div class="terminal-box ">
+        <div class="top-ranked-sets-text">
+            <h2>Top Ranked Sets</h2>
+
+            <div class="set-details-list">
+                <div class="set-details-row">
+                    <h3>Set Number</h3>
+                    <p>10123</p>
+                </div>
+                <div class="set-details-row">
+                    <h3>Name</h3>
+                    <p>Cloud City</p>
+                </div>
+                <div class="set-details-row">
+                    <h3>Theme</h3>
+                    <a href="kawaszlugbombakupa">Star Wars</a>
+                </div>
+                <div class="set-details-row">
+                    <h3>Subtheme</h3>
+                    <a href="kawaszlugbombakupa">Episode V</a>
+                </div>
+                <div class="set-details-row">
+                    <h3>Year</h3>
+                    <a href="kawaszlugbombakupa">2003</a>
+                </div>
+                <div class="set-details-row">
+                    <h3>Availability</h3>
+                    <a href="kawaszlugbombakupa">Retired</a>
+                </div>
+                <div class="set-details-row">
+                    <h3>Pieces</h3>
+                    <p>698</p>
+                </div>
+                <div class="set-details-row">
+                    <h3>Minifigures</h3>
+                    <p>7</p>
+                </div>
+            </div>
+        </div>
 </body>
 </html>

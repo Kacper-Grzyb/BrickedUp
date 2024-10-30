@@ -21,3 +21,7 @@ Route::get('/set-details', function() {
 Route::get('/settings', function() {
     return view('settings');
 });
+
+Route::get('/home', function() {
+    return view('home');
+});
