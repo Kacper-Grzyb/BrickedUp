@@ -109,6 +109,20 @@
             text-decoration: underline;
         }
 
+        .signup-button {
+            color: white;
+            background-color: rgb(235, 144, 61);
+            padding: 10px 20px;
+            font-family: Inter;
+            border: none;
+            border-radius: 4px;
+            cursor: pointer;
+            font-size: 16px;
+        }
+
+        .signup-button:hover {
+            box-shadow: 0 0 20px rgba(235, 144, 61, 0.5);
+        }
     </style>
 </head>
 
@@ -125,7 +139,7 @@
             <a href="mailto:info@pornhub.com">Contact</a>
         </div>
         <a class="btn-signup" href="/signup">Sign Up</a>
-        
+
     </div>
 
     <div class="main-content">
