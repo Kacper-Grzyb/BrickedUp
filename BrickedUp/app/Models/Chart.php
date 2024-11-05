@@ -7,8 +7,8 @@ use Illuminate\Database\Eloquent\Model;
 
 class Chart extends Model
 {
-    public function setsSelectedForCharts() 
+    public function setSelectedForCharts() 
     {
-        return $this->belongsToMany(User::class, 'sets_selected_for_charts')->withPivot('chart_id');
+        return $this->hasMany(SetSelectedForChart::class);
     }
 }

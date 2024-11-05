@@ -14,6 +14,6 @@ class Subtheme extends Model
 
     public function favouriteSubtheme() 
     {
-        return $this->belongsToMany(User::class, 'favourite_subthemes');
+        return $this->hasMany(FavouriteSubtheme::class);
     }
 }

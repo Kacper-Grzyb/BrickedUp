@@ -14,7 +14,7 @@ class Set extends Model
 
     public function favouriteSet() 
     {
-        return $this->belongsToMany(User::class, 'favourite_sets');
+        return $this->hasMany(FavouriteSet::class);
     }
 
     public function theme() 
@@ -32,9 +32,9 @@ class Set extends Model
         return $this->belongsTo(Availability::class);
     }
 
-    public function setsSelectedForCharts() 
+    public function setSelectedForCharts() 
     {
-        return $this->belongsToMany(User::class, 'sets_selected_for_charts')->withPivot('user_id');
+        return $this->hasMany(SetSelectedForChart::class);
     }
 
     public function setLink() 

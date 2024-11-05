@@ -52,21 +52,21 @@ class User extends Authenticatable
 
     public function favouriteSet() 
     {
-        return $this->belongsToMany(Set::class, 'favourite_sets');
+        return $this->hasMany(FavouriteSet::class);
     }
 
     public function favouriteTheme() 
     {
-        return $this->belongsToMany(Theme::class, 'favourite_themes');
+        return $this->hasMany(FavouriteTheme::class);
     }
 
     public function favouriteSubtheme() 
     {
-        return $this->belongsToMany(Subtheme::class, 'favourite_subthemes');
+        return $this->hasMany(FavouriteSubtheme::class);
     }
 
-    public function setsSelectedForCharts() 
+    public function setSelectedForCharts() 
     {
-        return $this->belongsToMany(Chart::class, 'sets_selected_for_charts')->withPivot('chart_id');
+        return $this->hasMany(SetSelectedForChart::class);
     }
 }
