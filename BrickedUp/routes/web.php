@@ -21,3 +21,11 @@ Route::get('/set-details', function() {
 Route::get('/settings', function() {
     return view('settings');
 });
+
+Route::get('/', function () { 
+    return view('landing_page/landing');
+});
+
+Route::get('/features', function () { 
+    return view('landing_page/features');
+});
