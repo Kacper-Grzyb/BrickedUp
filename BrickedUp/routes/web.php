@@ -13,3 +13,11 @@ Route::get('/login', function () {
 Route::get('/signup', function () {
     return view('auth/signup');
 });
+
+Route::get('/', function () { 
+    return view('landing_page/landing');
+});
+
+Route::get('/features', function () { 
+    return view('landing_page/features');
+});
