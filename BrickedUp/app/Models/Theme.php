@@ -14,6 +14,6 @@ class Theme extends Model
 
     public function favouriteTheme() 
     {
-        return $this->belongsToMany(User::class);
+        return $this->belongsToMany(User::class, 'favourite_themes');
     }
 }

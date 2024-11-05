@@ -12,9 +12,13 @@ return new class extends Migration
     public function up(): void
     {
         Schema::create('sets_selected_for_charts', function (Blueprint $table) {
-            $table->foreignId('chart_id')->constrained()->onDelete('cascade');
-            $table->foreignId('user_id')->constrained()->onDelete('cascade');
-            $table->string('set_number', length: 6)->constrained()->onDelete('cascade');
+            // Define foreign keys
+            $table->foreign('chart_id')->references('id')->on('charts')->constrained()->onDelete('cascade');
+            $table->foreign('user_id')->references('id')->on('users')->constrained()->onDelete('cascade');
+            $table->string('set_number', length: 6)-references('set_number')->on('sets')->constrained()->onDelete('cascade');
+
+            // Set the primary key
+            $table->primary(['chart_id', 'user_id', 'set_number']);
         });
     }
 
