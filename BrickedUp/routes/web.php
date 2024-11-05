@@ -26,3 +26,7 @@ Route::get('/', function () {
 Route::get('/features', function () { 
     return view('landing_page/features');
 });
+
+Route::get('/home', function() {
+    return view('home');
+});
