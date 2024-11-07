@@ -13,3 +13,7 @@ Route::get('/login', function () {
 Route::get('/signup', function () {
     return view('auth/signup');
 });
+
+Route::get('/full-graph', function () {
+    return view('full-graph');
+});

@@ -1,0 +1,156 @@
+*, *::before, *::after {
+    box-sizing: border-box;
+  }
+  
+  html, body {
+    height: 100%;
+    margin: 0;
+    padding: 0;
+  }
+  
+  
+  body {
+    display: flex;
+    flex-direction: column;
+    font-family: Arial, sans-serif;
+    text-align: center;
+    background-color: #000;
+    color: #fff;
+  }
+  
+  h1 {
+    margin: 20px 0;
+  }
+  
+  h2{
+    text-align: center;
+  }
+  
+  #container {
+    display: flex;
+      flex-direction: row;
+      flex-wrap: wrap;
+      text-align: flex-start;
+      margin: 0 auto;
+      height: 100%;
+      width: 100%;
+  }
+  
+  #leftBlock {
+    flex: 1 1 300px;
+    margin: 10px;
+    text-align: left;    
+    overflow-y: auto;
+    max-height: 80vh;
+  }
+  
+  #chartWrapper {
+    flex: 2 1 600px;
+    min-width: 300px;
+    margin: 10px;
+  }
+  
+  #mountainChart {
+    position: relative;
+    flex: 1;
+    width: 100%;
+    min-height: 400px;
+    background-color: black;
+  }
+  
+  .placeholder-message {
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    color: #FFFFFF;
+    font-size: 18px;
+    text-align: center;
+  }
+  
+  .loading-spinner {
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    font-size: 18px;
+    color: #fff;
+    background-color: rgba(0, 0, 0, 0.7);
+    padding: 10px 20px;
+    border-radius: 4px;
+  }
+  
+  
+  #legend {
+    font-size: 16px;
+    margin-top: 10px;
+    text-align: center;
+  }
+  
+  .my-chartWrapper {
+    border: 1px solid white;
+    padding: 20px;
+    margin-right: 10px;
+    margin-top: 10px;
+    border-radius: 8px;
+    background-color: #111;
+  }
+  .my-mountainChart{
+    background-color: black;
+  }
+  
+  .search-container{
+    display: flex;
+    flex: 1;
+    margin-bottom: 5%;
+  }
+  
+  #search-input {
+    padding: 8px;
+    font-size: 16px;
+    border: 1px solid #ccc;
+    border-radius: 4px;
+    outline: none;
+    width: 100%;
+    background-color: #222;
+    color: white;
+  }
+  
+  
+  .my-form {
+    background-color: #000;
+    color: white;
+    padding: 20px;
+    border: 1px solid white;
+    border-radius: 8px;
+  }
+  
+  .option-container {
+    display: flex;
+    align-items: center;
+    border: 1px solid white;
+    padding: 10px;
+    margin-bottom: 10px;
+    border-radius: 4px;
+    transition: background-color 0.3s;
+  }
+  
+  .option-container:hover {
+    background-color: rgba(255, 255, 255, 0.1);
+  }
+  
+  .option-container input[type="checkbox"] {
+    margin-right: 15px;
+    transform: scale(1.2);
+    cursor: pointer;
+  }
+  
+  .option-details {
+    margin-left: 10px;
+  }
+  
+  .option-details a {
+    color: orange;
+    text-decoration: none;
+  }
+  
