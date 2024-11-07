@@ -16,7 +16,7 @@
                     <img src="{{asset('images/home_icon_highlighted.svg')}}" alt="home icon">
                 </li>
                 <li>
-                    <a href="/settings">
+                    <a href="/full-graph">
                         <img src="{{asset('images/chart_icon.svg')}}" alt="chart icon">
                     </a>
                 </li>
