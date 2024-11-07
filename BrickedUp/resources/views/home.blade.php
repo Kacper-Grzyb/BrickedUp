@@ -16,10 +16,14 @@
                     <img src="{{asset('images/home_icon_highlighted.svg')}}" alt="home icon">
                 </li>
                 <li>
-                    <img src="{{asset('images/chart_icon.svg')}}" alt="chart icon">
+                    <a href="/settings">
+                        <img src="{{asset('images/chart_icon.svg')}}" alt="chart icon">
+                    </a>
                 </li>
                 <li>
-                    <img src="{{asset('images/settings_icon.svg')}}" alt="settings icon">
+                    <a href="/settings">
+                        <img src="{{asset('images/settings_icon.svg')}}" alt="settings icon">
+                    </a>
                 </li>
                 <li>
                     <img src="{{asset('images/user_icon.svg')}}" alt="user icon">
