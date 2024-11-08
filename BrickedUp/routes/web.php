@@ -3,9 +3,6 @@
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\FileUploadController;
 
-Route::get('/', function () {
-    return view('welcome');
-});
 
 Route::get('/login', function () {
     return view('auth/login');
@@ -29,6 +26,10 @@ Route::get('/', function () {
 
 Route::get('/features', function () { 
     return view('landing_page/features');
+});
+
+Route::get('/home', function() {
+    return view('home');
 });
 
 Route::get('/upload-data', [FileUploadController::class, 'showUploadForm'])->name('form');
