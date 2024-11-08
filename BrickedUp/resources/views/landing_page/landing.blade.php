@@ -138,7 +138,7 @@
             <a href="#">Pricing</a>
             <a href="mailto:info@pornhub.com">Contact</a>
         </div>
-        <a class="btn-signup" href="/signup">Sign Up</a>
+        <a class="btn-signup" href="/home">Sign Up</a>
 
     </div>
 

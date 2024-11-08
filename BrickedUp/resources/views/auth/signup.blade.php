@@ -247,7 +247,6 @@
     }
 
 </style>
-
 <body>
 
     <section id="left-menu">
