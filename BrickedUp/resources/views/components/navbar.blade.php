@@ -11,7 +11,7 @@
         <ul class="navbar">
             <div> {{--This is in a div so that the allignment is correct--}}
                 <li>
-                    <a href="/settings">
+                    <a href="/home">
                         @if($currentPage === 'home')
                             <img src="{{asset('images/home_icon_highlighted.svg')}}" alt="home icon">
                         @else 
@@ -52,6 +52,7 @@
         </ul>
     
         <ul class="set-prices-sidescroller">
+            @include('components.sidescroller-box')
             @include('components.sidescroller-box')
             @include('components.sidescroller-box')
             @include('components.sidescroller-box')

@@ -7,7 +7,7 @@
 </head>
 <body>
     
-    @include('components.navbar')
+    @include('components.navbar', ['currentPage' => 'settings'])
 
     <h1>Settings</h1>
 

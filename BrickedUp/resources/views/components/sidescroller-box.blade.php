@@ -7,13 +7,15 @@
     <title>Sidescroller Box</title>
 </head>
 <body>
-    <li class="sidescroller-box">
-        <div class="sidescroller-box-status-green"></div>
-        <div class="sidescroller-box-content">
-            <img src="{{asset('images/lego_logo.svg')}}" alt="lego logo">
-            <h6>76453</h6>
-            <p>+1.37%</p>
-        </div>
-    </li>
+    <a href="/set-details" style="text-decoration: none; color: inherit;"> 
+        <li class="sidescroller-box">
+            <div class="sidescroller-box-status-green"></div>
+            <div class="sidescroller-box-content">
+                <img src="{{asset('images/lego_logo.svg')}}" alt="lego logo">
+                <h6>76453</h6>
+                <p>+1.37%</p>
+            </div>
+        </li>
+    </a>
 </body>
 </html>
