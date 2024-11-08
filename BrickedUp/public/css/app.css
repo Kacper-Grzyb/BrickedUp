@@ -476,7 +476,6 @@ HOME PAGE CONTENT START
     flex-direction: column;
     align-items: center;
     justify-content: flex-start;
-    flex: 10;
     padding: 0;
     height: auto;
     box-sizing: border-box;
@@ -491,10 +490,6 @@ HOME PAGE CONTENT START
     flex-direction: column;
 }
 
-.home-top-ranked-text
-{
-    flex: 6;
-}
 
 .home-top-ranked-row {
     display: flex;
@@ -589,6 +584,16 @@ th, td {
 }
 .row {
     border-top: 1px solid #333;
+}
+
+.home-container{
+    max-width: 690px;
+}
+
+.chartContainer {
+    width: 80%;
+    max-width: 700px;
+    margin: 20px auto;
 }
 
 /*

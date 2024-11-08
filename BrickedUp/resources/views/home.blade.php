@@ -3,6 +3,8 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <link rel="stylesheet" href="{{ asset('css/app.css') }}">
+    <link rel="stylesheet" href="{{ asset('css/full-graph.css') }}" />
+    <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
     <title>BrickedUp - Home</title>
 </head>
 <body>
@@ -14,10 +16,14 @@
                     <img src="{{asset('images/home_icon_highlighted.svg')}}" alt="home icon">
                 </li>
                 <li>
-                    <img src="{{asset('images/chart_icon.svg')}}" alt="chart icon">
+                    <a href="/full-graph">
+                        <img src="{{asset('images/chart_icon.svg')}}" alt="chart icon">
+                    </a>
                 </li>
                 <li>
-                    <img src="{{asset('images/settings_icon.svg')}}" alt="settings icon">
+                    <a href="/settings">
+                        <img src="{{asset('images/settings_icon.svg')}}" alt="settings icon">
+                    </a>
                 </li>
                 <li>
                     <img src="{{asset('images/user_icon.svg')}}" alt="user icon">
@@ -155,11 +161,81 @@
         
         <div class="home-top-ranked-subcontainer">
             
-            <div class="terminal-box home-chart">
-                <h2>Set Value Chart</h2>
-                <p>Insert Chart here</p>
+            <div class="terminal-box home-container">
+            <h1>Static LEGO Set Market Price Comparison</h1>
+                <div id="chartContainer">
+                    <canvas id="legoChart"></canvas>
+                </div>
+                
+                <script>
+                    //Static Sample Data, CHANGE AFTER DEMO
+                    const legoSetData = {
+                        labels: ["January", "February", "March", "April", "May", "June", "July"],
+                        datasets: [
+                            {
+                                label: "City Police HQ",
+                                data: [100, 105, 110, 120, 125, 130, 135],
+                                borderColor: "rgba(75, 192, 192, 1)",
+                                backgroundColor: "rgba(75, 192, 192, 0.2)",
+                                tension: 0.3
+                            },
+                            {
+                                label: "Donkey Kong BMW",
+                                data: [90, 92, 95, 100, 105, 110, 115],
+                                borderColor: "rgba(255, 99, 132, 1)",
+                                backgroundColor: "rgba(255, 99, 132, 0.2)",
+                                tension: 0.3
+                            },
+                            {
+                                label: "Hogwarts Castle",
+                                data: [120, 115, 117, 119, 123, 127, 130],
+                                borderColor: "rgba(54, 162, 235, 1)",
+                                backgroundColor: "rgba(54, 162, 235, 0.2)",
+                                tension: 0.3
+                            }
+                        ]
+                    };
+
+
+                    const config = {
+                        type: 'line',
+                        data: legoSetData,
+                        options: {
+                            responsive: true,
+                            plugins: {
+                                title: {
+                                    display: true,
+                                    text: 'LEGO Set Market Price Trends'
+                                },
+                                legend: {
+                                    position: 'top',
+                                }
+                            },
+                            scales: {
+                                x: {
+                                    title: {
+                                        display: true,
+                                        text: 'Month'
+                                    }
+                                },
+                                y: {
+                                    title: {
+                                        display: true,
+                                        text: 'Price (USD)'
+                                    },
+                                    beginAtZero: false
+                                }
+                            }
+                        }
+                    };
+
+                    // Render the chart
+                    const ctx = document.getElementById('legoChart').getContext('2d');
+                    new Chart(ctx, config);
+                </script>
+
             </div>
-            <div class="terminal-box container">
+            <div class="terminal-box home-container">
                 <table>
                     <tr>
                         <th>Top Ranked News </th>
@@ -215,8 +291,8 @@
             </div>
             
         </div>
-        <div class="terminal-box home-top-ranked-text">
-            <h2>Lego Set &emsp; Price &emsp; Change &emsp; Index</h2>
+        <div class="terminal-box">
+            <h2>Lego Set &emsp; Price &emsp; Change &nbsp; Index</h2>
             
             <div class="top-set">
                 <p class="top-set-name">Star Destroyer</p>
@@ -241,6 +317,30 @@
                 <p class="for-sale-price">$799.99</p>
                 <p class="positive-change">+0.50</p>
                 <p class="for-sale-price">1.1671</p>
+            </div>
+            <div class="top-set">
+                <p class="top-set-name">City Police HQ</p>
+                <p class="for-sale-price">$99,99</p>
+                <p class="negative-change">-0.26</p>
+                <p class="for-sale-price">1.0108</p>
+            </div>
+            <div class="top-set">
+                <p class="top-set-name">City Police HQ</p>
+                <p class="for-sale-price">$99,99</p>
+                <p class="negative-change">-0.26</p>
+                <p class="for-sale-price">1.0108</p>
+            </div>
+            <div class="top-set">
+                <p class="top-set-name">City Police HQ</p>
+                <p class="for-sale-price">$99,99</p>
+                <p class="negative-change">-0.26</p>
+                <p class="for-sale-price">1.0108</p>
+            </div>
+            <div class="top-set">
+                <p class="top-set-name">City Police HQ</p>
+                <p class="for-sale-price">$99,99</p>
+                <p class="negative-change">-0.26</p>
+                <p class="for-sale-price">1.0108</p>
             </div>
             <div class="top-set">
                 <p class="top-set-name">City Police HQ</p>
