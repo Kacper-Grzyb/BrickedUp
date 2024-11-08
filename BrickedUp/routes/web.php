@@ -1,6 +1,7 @@
 <?php
 
 use Illuminate\Support\Facades\Route;
+use App\Http\Controllers\FileUploadController;
 
 
 Route::get('/login', function () {
@@ -30,3 +31,6 @@ Route::get('/features', function () {
 Route::get('/home', function() {
     return view('home');
 });
+
+Route::get('/upload-data', [FileUploadController::class, 'showUploadForm'])->name('form');
+Route::post('/upload-data', [FileUploadController::class, 'upload'])->name('upload');
