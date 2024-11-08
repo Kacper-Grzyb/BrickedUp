@@ -32,5 +32,9 @@ Route::get('/home', function() {
     return view('home');
 });
 
+Route::get('/full-graph', function () {
+    return view('full-graph');
+});
+
 Route::get('/upload-data', [FileUploadController::class, 'showUploadForm'])->name('form');
 Route::post('/upload-data', [FileUploadController::class, 'upload'])->name('upload');
