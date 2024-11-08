@@ -132,7 +132,7 @@
             <a href="/">BrickedUp</a>
         </div>
         <div class="nav-links">
-            <a href="/">Home</a>
+            <a href="/home">Home</a>
             <a href="#">About</a>
             <a href="/features">Features</a>
             <a href="#">Pricing</a>

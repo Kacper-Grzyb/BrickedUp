@@ -9,163 +9,19 @@
 </head>
 <body>
 <body>
-    <div class = "nav-header">
-        <ul class="navbar">
-            <div> {{--This is in a div so that the allignment is correct--}}
-                <li>
-                    <img src="{{asset('images/home_icon_highlighted.svg')}}" alt="home icon">
-                </li>
-                <li>
-                    <a href="/full-graph">
-                        <img src="{{asset('images/chart_icon.svg')}}" alt="chart icon">
-                    </a>
-                </li>
-                <li>
-                    <a href="/settings">
-                        <img src="{{asset('images/settings_icon.svg')}}" alt="settings icon">
-                    </a>
-                </li>
-                <li>
-                    <img src="{{asset('images/user_icon.svg')}}" alt="user icon">
-                </li>
-            </div>
-            <li>
-                <div class="searchbar">
-                    <button>
-                        <img src="{{asset('images/search_icon.svg')}}" alt="search icon">
-                    </button>
-                    <input type="text" placeholder="Search for set...">
-                </div>
-            </li>
-        </ul>
-    
-        <ul class="set-prices-sidescroller">
-            <li class="sidescroller-box">
-                <div class="sidescroller-box-status-green"></div>
-                <div class="sidescroller-box-content">
-                    <img src="{{asset('images/lego_logo.svg')}}" alt="lego logo">
-                    <h6>76453</h6>
-                    <p>+1.37%</p>
-                </div>
-            </li>
-            <li class="sidescroller-box">
-                <div class="sidescroller-box-status-green"></div>
-                <div class="sidescroller-box-content">
-                    <img src="{{asset('images/lego_logo.svg')}}" alt="lego logo">
-                    <h6>76453</h6>
-                    <p>+1.37%</p>
-                </div>
-            </li>
-            <li class="sidescroller-box">
-                <div class="sidescroller-box-status-green"></div>
-                <div class="sidescroller-box-content">
-                    <img src="{{asset('images/lego_logo.svg')}}" alt="lego logo">
-                    <h6>76453</h6>
-                    <p>+1.37%</p>
-                </div>
-            </li>
-            <li class="sidescroller-box">
-                <div class="sidescroller-box-status-green"></div>
-                <div class="sidescroller-box-content">
-                    <img src="{{asset('images/lego_logo.svg')}}" alt="lego logo">
-                    <h6>76453</h6>
-                    <p>+1.37%</p>
-                </div>
-            </li>
-            <li class="sidescroller-box">
-                <div class="sidescroller-box-status-green"></div>
-                <div class="sidescroller-box-content">
-                    <img src="{{asset('images/lego_logo.svg')}}" alt="lego logo">
-                    <h6>76453</h6>
-                    <p>+1.37%</p>
-                </div>
-            </li>
-            <li class="sidescroller-box">
-                <div class="sidescroller-box-status-green"></div>
-                <div class="sidescroller-box-content">
-                    <img src="{{asset('images/lego_logo.svg')}}" alt="lego logo">
-                    <h6>76453</h6>
-                    <p>+1.37%</p>
-                </div>
-            </li>
-            <li class="sidescroller-box">
-                <div class="sidescroller-box-status-green"></div>
-                <div class="sidescroller-box-content">
-                    <img src="{{asset('images/lego_logo.svg')}}" alt="lego logo">
-                    <h6>76453</h6>
-                    <p>+1.37%</p>
-                </div>
-            </li>
-            <li class="sidescroller-box">
-                <div class="sidescroller-box-status-green"></div>
-                <div class="sidescroller-box-content">
-                    <img src="{{asset('images/lego_logo.svg')}}" alt="lego logo">
-                    <h6>76453</h6>
-                    <p>+1.37%</p>
-                </div>
-            </li>
-            <li class="sidescroller-box">
-                <div class="sidescroller-box-status-green"></div>
-                <div class="sidescroller-box-content">
-                    <img src="{{asset('images/lego_logo.svg')}}" alt="lego logo">
-                    <h6>76453</h6>
-                    <p>+1.37%</p>
-                </div>
-            </li>
-
-            <li class="sidescroller-box">
-                <div class="sidescroller-box-status-green"></div>
-                <div class="sidescroller-box-content">
-                    <img src="{{asset('images/lego_logo.svg')}}" alt="lego logo">
-                    <h6>76453</h6>
-                    <p>+1.37%</p>
-                </div>
-            </li>
-            <li class="sidescroller-box">
-                <div class="sidescroller-box-status-green"></div>
-                <div class="sidescroller-box-content">
-                    <img src="{{asset('images/lego_logo.svg')}}" alt="lego logo">
-                    <h6>76453</h6>
-                    <p>+1.37%</p>
-                </div>
-            </li>
-            <li class="sidescroller-box">
-                <div class="sidescroller-box-status-green"></div>
-                <div class="sidescroller-box-content">
-                    <img src="{{asset('images/lego_logo.svg')}}" alt="lego logo">
-                    <h6>76453</h6>
-                    <p>+1.37%</p>
-                </div>
-            </li>
-            <li class="sidescroller-box">
-                <div class="sidescroller-box-status-green"></div>
-                <div class="sidescroller-box-content">
-                    <img src="{{asset('images/lego_logo.svg')}}" alt="lego logo">
-                    <h6>76453</h6>
-                    <p>+1.37%</p>
-                </div>
-            </li>
-            <li class="sidescroller-box">
-                <div class="sidescroller-box-status-green"></div>
-                <div class="sidescroller-box-content">
-                    <img src="{{asset('images/lego_logo.svg')}}" alt="lego logo">
-                    <h6>76453</h6>
-                    <p>+1.37%</p>
-                </div>
-            </li>
-            
-        </ul>
-    </div>
+    @include('components.navbar', ['currentPage' => 'home'])
 
     <div class="home-top-ranked-container" style="align-items: start">
         
         <div class="home-top-ranked-subcontainer">
             
-            <div class="terminal-box home-container">
-            <h1>Static LEGO Set Market Price Comparison</h1>
-                <div id="chartContainer">
-                    <canvas id="legoChart"></canvas>
-                </div>
+            <div class="terminal-box home-container">   
+                <a href="full-graph">
+                    <h1>LEGO Set Market Price/Time Comparison</h1>
+                </a>
+                    <div id="chartContainer">
+                        <canvas id="legoChart"></canvas>
+                    </div>
                 
                 <script>
                     //Static Sample Data, CHANGE AFTER DEMO
