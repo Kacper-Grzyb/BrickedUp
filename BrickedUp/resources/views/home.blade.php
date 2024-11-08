@@ -16,7 +16,7 @@
         <div class="home-top-ranked-subcontainer">
             
             <div class="terminal-box home-container">   
-                <a href="full-graph">
+                <a href="full-graph" style="text-decoration: none; color: inherit;">
                     <h1>LEGO Set Market Price/Time Comparison</h1>
                 </a>
                     <div id="chartContainer">
@@ -150,61 +150,85 @@
         <div class="terminal-box">
             <h2>Lego Set &emsp; Price &emsp; Change &nbsp; Index</h2>
             
-            <div class="top-set">
-                <p class="top-set-name">Star Destroyer</p>
-                <p class="for-sale-price">$139,99</p>
-                <p class="positive-change">+0.42</p>
-                <p class="for-sale-price">1.2103</p>
-            </div>
-            <div class="top-set">
-                <p class="top-set-name">Hogwarts Castle</p>
-                <p class="for-sale-price">$129.99</p>
-                <p class="negative-change">-0.18</p>
-                <p class="for-sale-price">1.8703</p>
-            </div>
-            <div class="top-set">
-                <p class="top-set-name">Technic Bugatti</p>
-                <p class="for-sale-price">$349.99</p>
-                <p class="positive">+0.31</p>
-                <p class="for-sale-price">1.8933</p>
-            </div>
-            <div class="top-set">
-                <p class="top-set-name">Millennium Falcon</p>
-                <p class="for-sale-price">$799.99</p>
-                <p class="positive-change">+0.50</p>
-                <p class="for-sale-price">1.1671</p>
-            </div>
-            <div class="top-set">
-                <p class="top-set-name">City Police HQ</p>
-                <p class="for-sale-price">$99,99</p>
-                <p class="negative-change">-0.26</p>
-                <p class="for-sale-price">1.0108</p>
-            </div>
-            <div class="top-set">
-                <p class="top-set-name">City Police HQ</p>
-                <p class="for-sale-price">$99,99</p>
-                <p class="negative-change">-0.26</p>
-                <p class="for-sale-price">1.0108</p>
-            </div>
-            <div class="top-set">
-                <p class="top-set-name">City Police HQ</p>
-                <p class="for-sale-price">$99,99</p>
-                <p class="negative-change">-0.26</p>
-                <p class="for-sale-price">1.0108</p>
-            </div>
-            <div class="top-set">
-                <p class="top-set-name">City Police HQ</p>
-                <p class="for-sale-price">$99,99</p>
-                <p class="negative-change">-0.26</p>
-                <p class="for-sale-price">1.0108</p>
-            </div>
-            <div class="top-set">
-                <p class="top-set-name">City Police HQ</p>
-                <p class="for-sale-price">$99,99</p>
-                <p class="negative-change">-0.26</p>
-                <p class="for-sale-price">1.0108</p>
-            </div>
+            <a href="/set-details" style="text-decoration: none; color: inherit;">
+                <div class="top-set" href="/set-details">
+                    <p class="top-set-name">Star Destroyer</p>
+                    <p class="for-sale-price">$139,99</p>
+                    <p class="positive-change">+0.42</p>
+                    <p class="for-sale-price">1.2103</p>
+                </div>
+            </a>
 
+            <a href="/set-details" style="text-decoration: none; color: inherit;">
+                <div class="top-set">
+                    <p class="top-set-name">Hogwarts Castle</p>
+                    <p class="for-sale-price">$129.99</p>
+                    <p class="negative-change">-0.18</p>
+                    <p class="for-sale-price">1.8703</p>
+                </div>
+            </a>
+
+            <a href="/set-details" style="text-decoration: none; color: inherit;">
+                <div class="top-set">
+                    <p class="top-set-name">Technic Bugatti</p>
+                    <p class="for-sale-price">$349.99</p>
+                    <p class="positive">+0.31</p>
+                    <p class="for-sale-price">1.8933</p>
+                </div>
+            </a>
+
+            <a href="/set-details" style="text-decoration: none; color: inherit;">
+                <div class="top-set">
+                    <p class="top-set-name">Millennium Falcon</p>
+                    <p class="for-sale-price">$799.99</p>
+                    <p class="positive-change">+0.50</p>
+                    <p class="for-sale-price">1.1671</p>
+                </div>
+            </a>
+            
+            <a href="/set-details" style="text-decoration: none; color: inherit;">
+                <div class="top-set">
+                    <p class="top-set-name">City Police HQ</p>
+                    <p class="for-sale-price">$99,99</p>
+                    <p class="negative-change">-0.26</p>
+                    <p class="for-sale-price">1.0108</p>
+                </div>
+            </a>
+
+            <a href="/set-details" style="text-decoration: none; color: inherit;">
+                <div class="top-set">
+                    <p class="top-set-name">City Police HQ</p>
+                    <p class="for-sale-price">$99,99</p>
+                    <p class="negative-change">-0.26</p>
+                    <p class="for-sale-price">1.0108</p>
+                </div>
+            </a>
+            <a href="/set-details" style="text-decoration: none; color: inherit;">
+                <div class="top-set">
+                    <p class="top-set-name">City Police HQ</p>
+                    <p class="for-sale-price">$99,99</p>
+                    <p class="negative-change">-0.26</p>
+                    <p class="for-sale-price">1.0108</p>
+                </div>
+            </a>
+
+            <a href="/set-details" style="text-decoration: none; color: inherit;">
+                <div class="top-set">
+                    <p class="top-set-name">City Police HQ</p>
+                    <p class="for-sale-price">$99,99</p>
+                    <p class="negative-change">-0.26</p>
+                    <p class="for-sale-price">1.0108</p>
+                </div>
+            </a>
+
+            <a href="/set-details" style="text-decoration: none; color: inherit;">
+                <div class="top-set">
+                    <p class="top-set-name">City Police HQ</p>
+                    <p class="for-sale-price">$99,99</p>
+                    <p class="negative-change">-0.26</p>
+                    <p class="for-sale-price">1.0108</p>
+                </div>
+            </a>
         </div>
     </div>
 </body>
