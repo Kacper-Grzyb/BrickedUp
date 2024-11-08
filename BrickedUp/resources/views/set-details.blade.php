@@ -8,149 +8,7 @@
 <body>
 
     {{-- Navbar goes here --}}
-    <div class = "nav-header">
-        <ul class="navbar">
-            <div> {{--This is in a div so that the allignment is correct--}}
-                <li>
-                    <img src="{{asset('images/home_icon.svg')}}" alt="home icon">
-                </li>
-                <li>
-                    <img src="{{asset('images/chart_icon.svg')}}" alt="chart icon">
-                </li>
-                <li>
-                    <img src="{{asset('images/settings_icon_highlighted.svg')}}" alt="settings icon">
-                </li>
-                <li>
-                    <img src="{{asset('images/user_icon.svg')}}" alt="user icon">
-                </li>
-            </div>
-            <li>
-                <div class="searchbar">
-                    <button>
-                        <img src="{{asset('images/search_icon.svg')}}" alt="search icon">
-                    </button>
-                    <input type="text" placeholder="Search for set...">
-                </div>
-            </li>
-        </ul>
-    
-        <ul class="set-prices-sidescroller">
-            <li class="sidescroller-box">
-                <div class="sidescroller-box-status-green"></div>
-                <div class="sidescroller-box-content">
-                    <img src="{{asset('images/lego_logo.svg')}}" alt="lego logo">
-                    <h6>76453</h6>
-                    <p>+1.37%</p>
-                </div>
-            </li>
-            <li class="sidescroller-box">
-                <div class="sidescroller-box-status-green"></div>
-                <div class="sidescroller-box-content">
-                    <img src="{{asset('images/lego_logo.svg')}}" alt="lego logo">
-                    <h6>76453</h6>
-                    <p>+1.37%</p>
-                </div>
-            </li>
-            <li class="sidescroller-box">
-                <div class="sidescroller-box-status-green"></div>
-                <div class="sidescroller-box-content">
-                    <img src="{{asset('images/lego_logo.svg')}}" alt="lego logo">
-                    <h6>76453</h6>
-                    <p>+1.37%</p>
-                </div>
-            </li>
-            <li class="sidescroller-box">
-                <div class="sidescroller-box-status-green"></div>
-                <div class="sidescroller-box-content">
-                    <img src="{{asset('images/lego_logo.svg')}}" alt="lego logo">
-                    <h6>76453</h6>
-                    <p>+1.37%</p>
-                </div>
-            </li>
-            <li class="sidescroller-box">
-                <div class="sidescroller-box-status-green"></div>
-                <div class="sidescroller-box-content">
-                    <img src="{{asset('images/lego_logo.svg')}}" alt="lego logo">
-                    <h6>76453</h6>
-                    <p>+1.37%</p>
-                </div>
-            </li>
-            <li class="sidescroller-box">
-                <div class="sidescroller-box-status-green"></div>
-                <div class="sidescroller-box-content">
-                    <img src="{{asset('images/lego_logo.svg')}}" alt="lego logo">
-                    <h6>76453</h6>
-                    <p>+1.37%</p>
-                </div>
-            </li>
-            <li class="sidescroller-box">
-                <div class="sidescroller-box-status-green"></div>
-                <div class="sidescroller-box-content">
-                    <img src="{{asset('images/lego_logo.svg')}}" alt="lego logo">
-                    <h6>76453</h6>
-                    <p>+1.37%</p>
-                </div>
-            </li>
-            <li class="sidescroller-box">
-                <div class="sidescroller-box-status-green"></div>
-                <div class="sidescroller-box-content">
-                    <img src="{{asset('images/lego_logo.svg')}}" alt="lego logo">
-                    <h6>76453</h6>
-                    <p>+1.37%</p>
-                </div>
-            </li>
-            <li class="sidescroller-box">
-                <div class="sidescroller-box-status-green"></div>
-                <div class="sidescroller-box-content">
-                    <img src="{{asset('images/lego_logo.svg')}}" alt="lego logo">
-                    <h6>76453</h6>
-                    <p>+1.37%</p>
-                </div>
-            </li>
-
-            <li class="sidescroller-box">
-                <div class="sidescroller-box-status-green"></div>
-                <div class="sidescroller-box-content">
-                    <img src="{{asset('images/lego_logo.svg')}}" alt="lego logo">
-                    <h6>76453</h6>
-                    <p>+1.37%</p>
-                </div>
-            </li>
-            <li class="sidescroller-box">
-                <div class="sidescroller-box-status-green"></div>
-                <div class="sidescroller-box-content">
-                    <img src="{{asset('images/lego_logo.svg')}}" alt="lego logo">
-                    <h6>76453</h6>
-                    <p>+1.37%</p>
-                </div>
-            </li>
-            <li class="sidescroller-box">
-                <div class="sidescroller-box-status-green"></div>
-                <div class="sidescroller-box-content">
-                    <img src="{{asset('images/lego_logo.svg')}}" alt="lego logo">
-                    <h6>76453</h6>
-                    <p>+1.37%</p>
-                </div>
-            </li>
-            <li class="sidescroller-box">
-                <div class="sidescroller-box-status-green"></div>
-                <div class="sidescroller-box-content">
-                    <img src="{{asset('images/lego_logo.svg')}}" alt="lego logo">
-                    <h6>76453</h6>
-                    <p>+1.37%</p>
-                </div>
-            </li>
-            <li class="sidescroller-box">
-                <div class="sidescroller-box-status-green"></div>
-                <div class="sidescroller-box-content">
-                    <img src="{{asset('images/lego_logo.svg')}}" alt="lego logo">
-                    <h6>76453</h6>
-                    <p>+1.37%</p>
-                </div>
-            </li>
-            
-        </ul>
-    </div>
+    @include('components.navbar')
 
     {{-- All of the values inside the fields are placeholders for now --}}
     <div class="set-details-container">
@@ -269,53 +127,9 @@
             <h6>28 reviews</h6>
 
             <div class="set-details-list">
-                <div class="set-details-review">
-                    <header>
-                        <img src="{{ asset('images/lego-head-icon.png') }}" alt="User Profile Icon">
-                        <h5> Brickipedia </h5>
-                        <div class="set-details-review-stars">
-                            <img src="{{asset('images/full_star.svg')}}" alt="">
-                            <img src="{{asset('images/full_star.svg')}}" alt="">
-                            <img src="{{asset('images/full_star.svg')}}" alt="">
-                            <img src="{{asset('images/full_star.svg')}}" alt="">
-                            <img src="{{asset('images/empty_star.svg')}}" alt="">
-                        </div>
-                        <p> 4/5 </p>
-                    </header>
-                    <p>It was most notable for being the first appearance of a Lando  Calrissian Minifigure. This set is also the only set released so far  that features Lando in his most recognized clothing (the other being on  6210 Jabba's Sail Barge where he is in disguise).</p>
-                </div>
-
-                <div class="set-details-review">
-                    <header>
-                        <img src="{{ asset('images/lego-head-icon.png') }}" alt="User Profile Icon">
-                        <h5> Brickipedia </h5>
-                        <div class="set-details-review-stars">
-                            <img src="{{asset('images/full_star.svg')}}" alt="">
-                            <img src="{{asset('images/full_star.svg')}}" alt="">
-                            <img src="{{asset('images/full_star.svg')}}" alt="">
-                            <img src="{{asset('images/full_star.svg')}}" alt="">
-                            <img src="{{asset('images/empty_star.svg')}}" alt="">
-                        </div>
-                        <p> 4/5 </p>
-                    </header>
-                    <p>It was most notable for being the first appearance of a Lando  Calrissian Minifigure. This set is also the only set released so far  that features Lando in his most recognized clothing (the other being on  6210 Jabba's Sail Barge where he is in disguise).</p>
-                </div>
-
-                <div class="set-details-review">
-                    <header>
-                        <img src="{{ asset('images/lego-head-icon.png') }}" alt="User Profile Icon">
-                        <h5> Brickipedia </h5>
-                        <div class="set-details-review-stars">
-                            <img src="{{asset('images/full_star.svg')}}" alt="">
-                            <img src="{{asset('images/full_star.svg')}}" alt="">
-                            <img src="{{asset('images/full_star.svg')}}" alt="">
-                            <img src="{{asset('images/full_star.svg')}}" alt="">
-                            <img src="{{asset('images/empty_star.svg')}}" alt="">
-                        </div>
-                        <p> 4/5 </p>
-                    </header>
-                    <p>It was most notable for being the first appearance of a Lando  Calrissian Minifigure. This set is also the only set released so far  that features Lando in his most recognized clothing (the other being on  6210 Jabba's Sail Barge where he is in disguise).</p>
-                </div>
+                @include('components.review')
+                @include('components.review')
+                @include('components.review')
             </div>
         </div>
 
@@ -328,26 +142,10 @@
             <div class="terminal-box set-details-for-sale">
                 <h2>For Sale</h2>
 
-                <div class="for-sale-record">
-                    <img src="{{asset('images/ebay.svg')}}" alt="platform-logo">
-                    <h5>Lorem ipsum dolor sit, amet consectetur adipisicing elit. Nisi, magnam!</h5>
-                    <p>EU</p>
-                    <p class="for-sale-price">$4839,99</p>
-                </div>
-
-                <div class="for-sale-record">
-                    <img src="{{asset('images/ebay.svg')}}" alt="platform-logo">
-                    <h5>Lorem ipsum dolor sit, amet consectetur adipisicing elit. Nisi, magnam!</h5>
-                    <p>EU</p>
-                    <p class="for-sale-price">$4839,99</p>
-                </div>
-
-                <div class="for-sale-record">
-                    <img src="{{asset('images/ebay.svg')}}" alt="platform-logo">
-                    <h5>Lorem ipsum dolor sit, amet consectetur adipisicing elit. Nisi, magnam!</h5>
-                    <p>EU</p>
-                    <p class="for-sale-price">$4839,99</p>
-                </div>
+                @include('components.for-sale-record')
+                @include('components.for-sale-record')
+                @include('components.for-sale-record')
+                @include('components.for-sale-record')
 
             </div>
         </div>
