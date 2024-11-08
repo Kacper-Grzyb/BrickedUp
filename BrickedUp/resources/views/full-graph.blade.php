@@ -4,11 +4,13 @@
     <meta charset="UTF-8" />
     <title>LEGO Set Comparison Chart</title>
     <link rel="stylesheet" href="{{ asset('css/full-graph.css') }}" />
+    <link rel="stylesheet" href="{{ asset('css/app.css') }}" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <script src="https://unpkg.com/lightweight-charts/dist/lightweight-charts.standalone.production.js"></script>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/PapaParse/5.3.2/papaparse.min.js"></script>
   </head>
   <body>
+    @include('components.navbar', ['currentPage' => 'full-graph'])
     <div id="container">
       <div id="leftBlock">
         <h2>Select A Set To Display</h2>

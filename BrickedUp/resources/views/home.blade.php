@@ -3,169 +3,24 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <link rel="stylesheet" href="{{ asset('css/app.css') }}">
-    <link rel="stylesheet" href="{{ asset('css/full-graph.css') }}" />
     <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
     <title>BrickedUp - Home</title>
 </head>
-<body>
-<body>
-    <div class = "nav-header">
-        <ul class="navbar">
-            <div> {{--This is in a div so that the allignment is correct--}}
-                <li>
-                    <img src="{{asset('images/home_icon_highlighted.svg')}}" alt="home icon">
-                </li>
-                <li>
-                    <a href="/full-graph">
-                        <img src="{{asset('images/chart_icon.svg')}}" alt="chart icon">
-                    </a>
-                </li>
-                <li>
-                    <a href="/settings">
-                        <img src="{{asset('images/settings_icon.svg')}}" alt="settings icon">
-                    </a>
-                </li>
-                <li>
-                    <img src="{{asset('images/user_icon.svg')}}" alt="user icon">
-                </li>
-            </div>
-            <li>
-                <div class="searchbar">
-                    <button>
-                        <img src="{{asset('images/search_icon.svg')}}" alt="search icon">
-                    </button>
-                    <input type="text" placeholder="Search for set...">
-                </div>
-            </li>
-        </ul>
-    
-        <ul class="set-prices-sidescroller">
-            <li class="sidescroller-box">
-                <div class="sidescroller-box-status-green"></div>
-                <div class="sidescroller-box-content">
-                    <img src="{{asset('images/lego_logo.svg')}}" alt="lego logo">
-                    <h6>76453</h6>
-                    <p>+1.37%</p>
-                </div>
-            </li>
-            <li class="sidescroller-box">
-                <div class="sidescroller-box-status-green"></div>
-                <div class="sidescroller-box-content">
-                    <img src="{{asset('images/lego_logo.svg')}}" alt="lego logo">
-                    <h6>76453</h6>
-                    <p>+1.37%</p>
-                </div>
-            </li>
-            <li class="sidescroller-box">
-                <div class="sidescroller-box-status-green"></div>
-                <div class="sidescroller-box-content">
-                    <img src="{{asset('images/lego_logo.svg')}}" alt="lego logo">
-                    <h6>76453</h6>
-                    <p>+1.37%</p>
-                </div>
-            </li>
-            <li class="sidescroller-box">
-                <div class="sidescroller-box-status-green"></div>
-                <div class="sidescroller-box-content">
-                    <img src="{{asset('images/lego_logo.svg')}}" alt="lego logo">
-                    <h6>76453</h6>
-                    <p>+1.37%</p>
-                </div>
-            </li>
-            <li class="sidescroller-box">
-                <div class="sidescroller-box-status-green"></div>
-                <div class="sidescroller-box-content">
-                    <img src="{{asset('images/lego_logo.svg')}}" alt="lego logo">
-                    <h6>76453</h6>
-                    <p>+1.37%</p>
-                </div>
-            </li>
-            <li class="sidescroller-box">
-                <div class="sidescroller-box-status-green"></div>
-                <div class="sidescroller-box-content">
-                    <img src="{{asset('images/lego_logo.svg')}}" alt="lego logo">
-                    <h6>76453</h6>
-                    <p>+1.37%</p>
-                </div>
-            </li>
-            <li class="sidescroller-box">
-                <div class="sidescroller-box-status-green"></div>
-                <div class="sidescroller-box-content">
-                    <img src="{{asset('images/lego_logo.svg')}}" alt="lego logo">
-                    <h6>76453</h6>
-                    <p>+1.37%</p>
-                </div>
-            </li>
-            <li class="sidescroller-box">
-                <div class="sidescroller-box-status-green"></div>
-                <div class="sidescroller-box-content">
-                    <img src="{{asset('images/lego_logo.svg')}}" alt="lego logo">
-                    <h6>76453</h6>
-                    <p>+1.37%</p>
-                </div>
-            </li>
-            <li class="sidescroller-box">
-                <div class="sidescroller-box-status-green"></div>
-                <div class="sidescroller-box-content">
-                    <img src="{{asset('images/lego_logo.svg')}}" alt="lego logo">
-                    <h6>76453</h6>
-                    <p>+1.37%</p>
-                </div>
-            </li>
 
-            <li class="sidescroller-box">
-                <div class="sidescroller-box-status-green"></div>
-                <div class="sidescroller-box-content">
-                    <img src="{{asset('images/lego_logo.svg')}}" alt="lego logo">
-                    <h6>76453</h6>
-                    <p>+1.37%</p>
-                </div>
-            </li>
-            <li class="sidescroller-box">
-                <div class="sidescroller-box-status-green"></div>
-                <div class="sidescroller-box-content">
-                    <img src="{{asset('images/lego_logo.svg')}}" alt="lego logo">
-                    <h6>76453</h6>
-                    <p>+1.37%</p>
-                </div>
-            </li>
-            <li class="sidescroller-box">
-                <div class="sidescroller-box-status-green"></div>
-                <div class="sidescroller-box-content">
-                    <img src="{{asset('images/lego_logo.svg')}}" alt="lego logo">
-                    <h6>76453</h6>
-                    <p>+1.37%</p>
-                </div>
-            </li>
-            <li class="sidescroller-box">
-                <div class="sidescroller-box-status-green"></div>
-                <div class="sidescroller-box-content">
-                    <img src="{{asset('images/lego_logo.svg')}}" alt="lego logo">
-                    <h6>76453</h6>
-                    <p>+1.37%</p>
-                </div>
-            </li>
-            <li class="sidescroller-box">
-                <div class="sidescroller-box-status-green"></div>
-                <div class="sidescroller-box-content">
-                    <img src="{{asset('images/lego_logo.svg')}}" alt="lego logo">
-                    <h6>76453</h6>
-                    <p>+1.37%</p>
-                </div>
-            </li>
-            
-        </ul>
-    </div>
+<body>
+    @include('components.navbar', ['currentPage' => 'home'])
 
     <div class="home-top-ranked-container" style="align-items: start">
         
         <div class="home-top-ranked-subcontainer">
             
-            <div class="terminal-box home-container">
-            <h1>Static LEGO Set Market Price Comparison</h1>
-                <div id="chartContainer">
-                    <canvas id="legoChart"></canvas>
-                </div>
+            <div class="terminal-box home-container">   
+                <a href="full-graph" style="text-decoration: none; color: inherit;">
+                    <h1>LEGO Set Market Price/Time Comparison</h1>
+                </a>
+                    <div id="chartContainer">
+                        <canvas id="legoChart"></canvas>
+                    </div>
                 
                 <script>
                     //Static Sample Data, CHANGE AFTER DEMO
@@ -294,61 +149,85 @@
         <div class="terminal-box">
             <h2>Lego Set &emsp; Price &emsp; Change &nbsp; Index</h2>
             
-            <div class="top-set">
-                <p class="top-set-name">Star Destroyer</p>
-                <p class="for-sale-price">$139,99</p>
-                <p class="positive-change">+0.42</p>
-                <p class="for-sale-price">1.2103</p>
-            </div>
-            <div class="top-set">
-                <p class="top-set-name">Hogwarts Castle</p>
-                <p class="for-sale-price">$129.99</p>
-                <p class="negative-change">-0.18</p>
-                <p class="for-sale-price">1.8703</p>
-            </div>
-            <div class="top-set">
-                <p class="top-set-name">Technic Bugatti</p>
-                <p class="for-sale-price">$349.99</p>
-                <p class="positive">+0.31</p>
-                <p class="for-sale-price">1.8933</p>
-            </div>
-            <div class="top-set">
-                <p class="top-set-name">Millennium Falcon</p>
-                <p class="for-sale-price">$799.99</p>
-                <p class="positive-change">+0.50</p>
-                <p class="for-sale-price">1.1671</p>
-            </div>
-            <div class="top-set">
-                <p class="top-set-name">City Police HQ</p>
-                <p class="for-sale-price">$99,99</p>
-                <p class="negative-change">-0.26</p>
-                <p class="for-sale-price">1.0108</p>
-            </div>
-            <div class="top-set">
-                <p class="top-set-name">City Police HQ</p>
-                <p class="for-sale-price">$99,99</p>
-                <p class="negative-change">-0.26</p>
-                <p class="for-sale-price">1.0108</p>
-            </div>
-            <div class="top-set">
-                <p class="top-set-name">City Police HQ</p>
-                <p class="for-sale-price">$99,99</p>
-                <p class="negative-change">-0.26</p>
-                <p class="for-sale-price">1.0108</p>
-            </div>
-            <div class="top-set">
-                <p class="top-set-name">City Police HQ</p>
-                <p class="for-sale-price">$99,99</p>
-                <p class="negative-change">-0.26</p>
-                <p class="for-sale-price">1.0108</p>
-            </div>
-            <div class="top-set">
-                <p class="top-set-name">City Police HQ</p>
-                <p class="for-sale-price">$99,99</p>
-                <p class="negative-change">-0.26</p>
-                <p class="for-sale-price">1.0108</p>
-            </div>
+            <a href="/set-details" style="text-decoration: none; color: inherit;">
+                <div class="top-set" href="/set-details">
+                    <p class="top-set-name">Star Destroyer</p>
+                    <p class="for-sale-price">$139,99</p>
+                    <p class="positive-change">+0.42</p>
+                    <p class="for-sale-price">1.2103</p>
+                </div>
+            </a>
 
+            <a href="/set-details" style="text-decoration: none; color: inherit;">
+                <div class="top-set">
+                    <p class="top-set-name">Hogwarts Castle</p>
+                    <p class="for-sale-price">$129.99</p>
+                    <p class="negative-change">-0.18</p>
+                    <p class="for-sale-price">1.8703</p>
+                </div>
+            </a>
+
+            <a href="/set-details" style="text-decoration: none; color: inherit;">
+                <div class="top-set">
+                    <p class="top-set-name">Technic Bugatti</p>
+                    <p class="for-sale-price">$349.99</p>
+                    <p class="positive">+0.31</p>
+                    <p class="for-sale-price">1.8933</p>
+                </div>
+            </a>
+
+            <a href="/set-details" style="text-decoration: none; color: inherit;">
+                <div class="top-set">
+                    <p class="top-set-name">Millennium Falcon</p>
+                    <p class="for-sale-price">$799.99</p>
+                    <p class="positive-change">+0.50</p>
+                    <p class="for-sale-price">1.1671</p>
+                </div>
+            </a>
+            
+            <a href="/set-details" style="text-decoration: none; color: inherit;">
+                <div class="top-set">
+                    <p class="top-set-name">City Police HQ</p>
+                    <p class="for-sale-price">$99,99</p>
+                    <p class="negative-change">-0.26</p>
+                    <p class="for-sale-price">1.0108</p>
+                </div>
+            </a>
+
+            <a href="/set-details" style="text-decoration: none; color: inherit;">
+                <div class="top-set">
+                    <p class="top-set-name">City Police HQ</p>
+                    <p class="for-sale-price">$99,99</p>
+                    <p class="negative-change">-0.26</p>
+                    <p class="for-sale-price">1.0108</p>
+                </div>
+            </a>
+            <a href="/set-details" style="text-decoration: none; color: inherit;">
+                <div class="top-set">
+                    <p class="top-set-name">City Police HQ</p>
+                    <p class="for-sale-price">$99,99</p>
+                    <p class="negative-change">-0.26</p>
+                    <p class="for-sale-price">1.0108</p>
+                </div>
+            </a>
+
+            <a href="/set-details" style="text-decoration: none; color: inherit;">
+                <div class="top-set">
+                    <p class="top-set-name">City Police HQ</p>
+                    <p class="for-sale-price">$99,99</p>
+                    <p class="negative-change">-0.26</p>
+                    <p class="for-sale-price">1.0108</p>
+                </div>
+            </a>
+
+            <a href="/set-details" style="text-decoration: none; color: inherit;">
+                <div class="top-set">
+                    <p class="top-set-name">City Police HQ</p>
+                    <p class="for-sale-price">$99,99</p>
+                    <p class="negative-change">-0.26</p>
+                    <p class="for-sale-price">1.0108</p>
+                </div>
+            </a>
         </div>
     </div>
 </body>

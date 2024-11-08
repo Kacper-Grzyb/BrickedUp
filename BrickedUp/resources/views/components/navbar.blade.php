@@ -11,13 +11,31 @@
         <ul class="navbar">
             <div> {{--This is in a div so that the allignment is correct--}}
                 <li>
-                    <img src="{{asset('images/home_icon.svg')}}" alt="home icon">
+                    <a href="/home">
+                        @if($currentPage === 'home')
+                            <img src="{{asset('images/home_icon_highlighted.svg')}}" alt="home icon">
+                        @else 
+                            <img src="{{asset('images/home_icon.svg')}}" alt="home icon">
+                        @endif
+                    </a>
                 </li>
                 <li>
-                    <img src="{{asset('images/chart_icon.svg')}}" alt="chart icon">
+                    <a href="/full-graph">
+                        @if($currentPage === 'full-graph')
+                            <img src="{{asset('images/chart_icon_highlighted.svg')}}" alt="chart icon">
+                        @else 
+                            <img src="{{asset('images/chart_icon.svg')}}" alt="chart icon">
+                        @endif
+                    </a>
                 </li>
                 <li>
-                    <img src="{{asset('images/settings_icon_highlighted.svg')}}" alt="settings icon">
+                    <a href="/settings">
+                        @if($currentPage === 'settings')
+                            <img src="{{asset('images/settings_icon_highlighted.svg')}}" alt="settings icon">
+                        @else 
+                            <img src="{{asset('images/settings_icon.svg')}}" alt="settings icon">
+                        @endif
+                    </a>
                 </li>
                 <li>
                     <img src="{{asset('images/user_icon.svg')}}" alt="user icon">
@@ -34,6 +52,7 @@
         </ul>
     
         <ul class="set-prices-sidescroller">
+            @include('components.sidescroller-box')
             @include('components.sidescroller-box')
             @include('components.sidescroller-box')
             @include('components.sidescroller-box')
