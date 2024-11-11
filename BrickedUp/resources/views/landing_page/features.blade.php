@@ -10,7 +10,6 @@
 <head>
     <title>Grid Layout Example</title>
     <style>
-        /* CSS styles for the layout */
         body {
             display: grid;
             grid-template-rows: auto 1fr auto;
@@ -22,53 +21,6 @@
             background-repeat: no-repeat;
             align-items: center;
         }
-
-        /* Top navigation bar */
-        .top-bar {
-            color: #fff;
-            padding: 10px;
-            display: flex;
-            justify-content: space-between;
-            align-items: center;
-        }
-
-        .top-bar .title {
-            font-size: 20px;
-            font-weight: bold;
-            margin-left: 10px;
-            font-family: Montserrat;
-        }
-
-        .top-bar a {
-            color: #fff;
-            text-decoration: none;
-            margin: 0 10px;
-        }
-
-        .top-bar .nav-links {
-            display: flex;
-            justify-content: center;
-            flex-grow: 1;
-            font-family: Inter;
-        }
-
-        .top-bar .nav-links a {
-            text-decoration: none;
-            margin: 0 10px;
-            padding: 5px 10px;
-            /* Add padding to the links */
-            border: 1px solid;
-            /* Add a transparent border */
-            border-radius: 4px;
-            /* Add some rounded corners */
-            transition: border-color 0.3s ease;
-            /* Add a transition for the border color */
-        }
-
-        .top-bar .nav-links a:hover {
-            text-decoration: underline;
-        }
-
 
         .container {
             display: flex;
@@ -123,43 +75,12 @@
         .box li {
             padding: 5px;
         }
-
-        .btn-signup {
-            font-family: Inter;
-            text-decoration: none;
-            margin: 0 10px;
-            padding: 5px 10px;
-            /* Add padding to the links */
-            border: 1px solid;
-            /* Add a transparent border */
-            border-radius: 4px;
-            /* Add some rounded corners */
-            transition: border-color 0.3s ease;
-            /* Add a transition for the border color */
-        }
-
-        .btn-signup:hover {
-            text-decoration: underline;
-        }
-
     </style>
 </head>
 
 <body>
-    <div class="top-bar">
-        <div class="title">
-            <a href="/">BrickedUp</a>
-        </div>
-        <div class="nav-links">
-            <a href="/">Home</a>
-            <a href="#">About</a>
-            <a href="/features">Features</a>
-            <a href="#">Pricing</a>
-            <a href="mailto:info@pornhub.com">Contact</a>
-        </div>
-        <a class="btn-signup" href="/signup">Sign Up</a>
-        
-    </div>
+  
+    @include('components.home_navbar')
 
     <div class="container">
         <div class="row">

@@ -15,13 +15,11 @@
         margin: 0;
         padding: 0;
         height: 100vh;
-        background-image: url('{{ asset('img/sign_up_bg.jpg') }}');
+        background-image: url('{{ asset('img/gold-bricks-falling-d.png') }}');
         background-size: cover;
         background-position: center;
         background-repeat: no-repeat;
-        display: flex;
-        justify-content: center;
-        align-items: center;
+      
     }
 
     body::before {
@@ -211,9 +209,9 @@
 </style>
 
 <body>
+    @include('components.home_navbar')
     <div class="card-holder">
         <div class="card">
-    
             <img class="profile-photo" src="/img/chuj.webp" alt="profile-image">
             <div class="input-fields">
                 <form action="">

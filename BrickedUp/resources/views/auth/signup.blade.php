@@ -16,7 +16,7 @@
         margin: 0;
         padding: 0;
         height: 100vh;
-        background-image: url('{{ asset('img/sign_up_bg.jpg') }}');
+        background-image: url('{{ asset('img/gold-bricks-falling-d.png') }}');
         background-size: cover;
         background-position: center;
         background-repeat: no-repeat;
@@ -50,6 +50,7 @@
         height: inherit;
         color: white;
         animation: moveGradient 3s infinite alternate ease-in-out;
+        border-radius: 15px;
     }
     
     @keyframes moveGradient {
@@ -69,7 +70,7 @@
         flex-direction: column; 
         justify-content: center;
         align-items: center;
-        font-family: "Inter", sans-serif;
+        font-family: Inter;
         font-optical-sizing: auto;
         font-weight: 100;
         font-style: normal;
@@ -130,7 +131,7 @@
         color: white;
         font-size: x-large;
         font-weight: 100;
-        font-family: "Inter", sans-serif; 
+        font-family: Inter; 
     }
 
     .input-container input:hover {
@@ -144,7 +145,7 @@
         opacity: 0.7;
         font-size: x-large;
         font-weight: 100;
-        font-family: "Inter", sans-serif;
+        font-family: Inter;
     }
 
     .input-fields form button {
@@ -157,7 +158,7 @@
         color: white;
         font-size: x-large; 
         font-weight: 100;
-        font-family: "Inter", sans-serif; 
+        font-family: Inter; 
         cursor: pointer;
         display: inline-flex;
         justify-content: center;
@@ -207,7 +208,7 @@
     }
 
     .separator p {
-        font-family: "Inter", sans-serif;
+        font-family: Inter;
         font-optical-sizing: auto;
         font-weight: 100;
         font-style: normal;
@@ -248,6 +249,8 @@
 
 </style>
 <body>
+
+    @include('components.home_navbar')
 
     <section id="left-menu">
 
