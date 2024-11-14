@@ -73,24 +73,38 @@ class FileUploadController extends Controller
                     ->get();
                 
                 // If there are no records in the database with that set number
-                if(empty($existsCheck)) 
+                if(count($existsCheck) == 0) 
                 {
-                    $set = new Set;
-
-                    $set->set_number = $row[0];
-                    $set->set_name = $row[1];
-                    $set->theme_id = DB::select('id')->distinct()->where('theme', '=', $row[2])->get()[0];
-                    $set->subtheme_id = DB::select('id')->distinct()->where('subtheme', '=', $row[3])->get()[0];
-                    $set->release_date = $row[4];
-                    $set->retired_date = $row[5];
-                    $set->availability_id = DB::select('id')->distinct()->where('availability', '=', $row[6])->get()[0];
-                    $set->piece_count = $row[7];
-                    $set->minifigures = $row[8];
-                    $set->retail_price = $row[9];
-
+                    // $set = new Set;
                     Log::info("supposedly added somewhere the set below");
-                    Log::info($set);
-                    $set->save();
+
+                    // $set->set_number = $row[0];
+                    // $set->set_name = $row[1];
+                    // $set->theme_id = DB::table('themes')->select('id')->where('theme', '=', $row[2])->get()[0];
+                    // $set->subtheme_id = DB::table('subthemes')->select('id')->where('subtheme', '=', $row[3])->get()[0];
+                    // $set->release_date = $row[4];
+                    // $set->retired_date = $row[5];
+                    // $set->availability_id = DB::table('availability')->select('id')->where('availability', '=', $row[6])->get()[0];
+                    // $set->piece_count = $row[7];
+                    // $set->minifigures = $row[8];
+                    // $set->retail_price = $row[9];
+
+                    // $set->save();
+
+                    // Log::info($set);
+                    DB::table('sets')->insert([
+                        'set_number' => $row[0],
+                        'set_name' => $row[1],
+                        'theme_id' => DB::table('themes')->select('id')->where('theme', '=', $row[2])->get()[0]->id,
+                        'subtheme_id' => DB::table('subthemes')->select('id')->where('subtheme', '=', $row[3])->get()[0]->id,
+                        'release_date' => $row[4],
+                        'retired_date' => $row[5],
+                        'availability_id' => DB::table('availability')->select('id')->where('availability', '=', $row[6])->get()[0]->id,
+                        'piece_count' => $row[7],
+                        'minifigures' => $row[8],
+                        'retail_price' => str_replace(',', '.', $row[9]),
+                        'popularity' => 0
+                    ]);
                 }
                 else 
                 {
