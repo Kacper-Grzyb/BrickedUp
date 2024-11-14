@@ -37,4 +37,5 @@ Route::get('/full-graph', function () {
 });
 
 Route::get('/upload-data', [FileUploadController::class, 'showUploadForm'])->name('form');
-Route::post('/upload-data', [FileUploadController::class, 'upload'])->name('upload');
+Route::post('/receive-data', [FileUploadController::class, 'receiveData'])->name('receiveData');
+Route::post('/process-upload', [FileUploadController::class, 'uploadData'])->name('uploadData');
