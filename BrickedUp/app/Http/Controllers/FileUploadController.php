@@ -18,6 +18,7 @@ class FileUploadController extends Controller
     public function receiveData(Request $request) 
     {
         $file = $request->file('datafile');
+        if(!isset($file)) return view("upload-data-form");
         Log::debug($file->getMimeType());
 
         $request->validate([
@@ -67,31 +68,15 @@ class FileUploadController extends Controller
         {
             foreach($data as $row) 
             {
+                // Try to get a record with the provided set number from the database
                 $existsCheck = DB::table('sets')
                     ->select('set_number')
                     ->where('set_number', '=', $row[0])
                     ->get();
                 
-                // If there are no records in the database with that set number
+                // If there are no records in the database with that set number, add the set
                 if(count($existsCheck) == 0) 
                 {
-                    // $set = new Set;
-                    Log::info("supposedly added somewhere the set below");
-
-                    // $set->set_number = $row[0];
-                    // $set->set_name = $row[1];
-                    // $set->theme_id = DB::table('themes')->select('id')->where('theme', '=', $row[2])->get()[0];
-                    // $set->subtheme_id = DB::table('subthemes')->select('id')->where('subtheme', '=', $row[3])->get()[0];
-                    // $set->release_date = $row[4];
-                    // $set->retired_date = $row[5];
-                    // $set->availability_id = DB::table('availability')->select('id')->where('availability', '=', $row[6])->get()[0];
-                    // $set->piece_count = $row[7];
-                    // $set->minifigures = $row[8];
-                    // $set->retail_price = $row[9];
-
-                    // $set->save();
-
-                    // Log::info($set);
                     DB::table('sets')->insert([
                         'set_number' => $row[0],
                         'set_name' => $row[1],
@@ -102,9 +87,22 @@ class FileUploadController extends Controller
                         'availability_id' => DB::table('availability')->select('id')->where('availability', '=', $row[6])->get()[0]->id,
                         'piece_count' => $row[7],
                         'minifigures' => $row[8],
-                        'retail_price' => str_replace(',', '.', $row[9]),
-                        'popularity' => 0
+                        'retail_price' => str_replace(',', '.', $row[9])
                     ]);
+
+                    // This can also be achieved with the approach below:
+                    // $set = new Set;
+                    // $set->set_number = $row[0];
+                    // $set->set_name = $row[1];
+                    // $set->theme_id = DB::table('themes')->select('id')->where('theme', '=', $row[2])->get()[0]->id;
+                    // $set->subtheme_id = DB::table('subthemes')->select('id')->where('subtheme', '=', $row[3])->get()[0]->id;
+                    // $set->release_date = $row[4];
+                    // $set->retired_date = $row[5];
+                    // $set->availability_id = DB::table('availability')->select('id')->where('availability', '=', $row[6])->get()[0]->id;
+                    // $set->piece_count = $row[7];
+                    // $set->minifigures = $row[8];
+                    // $set->retail_price = str_replace(',', '.', $row[9])
+                    // $set->save(); // Adds the record to the database
                 }
                 else 
                 {
@@ -118,5 +116,10 @@ class FileUploadController extends Controller
         }
         
         return "<p>Data successfully uploaded<p> <a href='/home'>Return to home page</a>";
+    }
+
+    public function downloadCsvTemplate() 
+    {
+        return response()->download('upload-template.csv');
     }
 }

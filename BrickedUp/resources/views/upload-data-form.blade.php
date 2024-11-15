@@ -14,6 +14,12 @@
         <button type="submit">Upload</button>
     </form>
 
+    <p>To make sure everything gets added to the database correctly, please use the provided csv template</p>
+    <form action="{{route('downloadCsvTemplate')}}" method="GET">
+        @csrf
+        <button type="submit">Download CSV Template</button>
+    </form>
+
     @if (@isset($csvData))
         <p>Uploaded table:</p>
         <table>
