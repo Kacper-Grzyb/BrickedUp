@@ -50,6 +50,8 @@ for theme in themeArray:
     )
     print(f"Theme inserted with response: {themeResponse}")
 
+# insert default null subtheme
+print(f"Subtheme default inserted with respone: {supabase.table("subthemes").insert({"subtheme": None}).execute()}")
 for subtheme in subthemeArray:
     # insert subthemes
     subthemeResponse = (
