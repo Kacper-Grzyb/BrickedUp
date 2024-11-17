@@ -19,7 +19,7 @@ Route::middleware('auth')->group(function () {
         return view('home');
     })->middleware(['verified'])->name('home');
 
-    Route::get('/profile', [ProfileController::class, 'edit'])->name('profile');
+    Route::get('/profile', [ProfileController::class, 'view'])->name('profile');
 
     Route::get('/set-details', function () {
         return view('set-details');

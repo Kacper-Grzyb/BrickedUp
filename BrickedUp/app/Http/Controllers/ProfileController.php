@@ -11,6 +11,11 @@ use Illuminate\View\View;
 
 class ProfileController extends Controller
 {
+    public function view() 
+    {
+        return view('profile/profile');
+    }
+
     /**
      * Display the user's profile form.
      */
@@ -41,9 +46,14 @@ class ProfileController extends Controller
      */
     public function destroy(Request $request): RedirectResponse
     {
-        // $request->validateWithBag('userDeletion', [
-        //     'password' => ['required', 'current_password'],
-        // ]);
+        try {
+            $request->validateWithBag('userDeletion', [
+                'password' => ['required', 'current_password'],
+            ]);
+        }
+        catch(ValidationException $e) {
+            return Redirect::route('settings')-with('status', 'Wrong password provided!');
+        }
 
         $user = $request->user();
 

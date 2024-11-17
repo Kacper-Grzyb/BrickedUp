@@ -145,11 +145,24 @@
         </div>
 
         <div class="terminal-box">
-            <form method="post" action="{{ route('profile.destroy') }}">
-                @csrf
-                @method('delete')
-                <button type="submit"><p class="fake-link" style="color:rgb(255, 67, 61); margin:0">Delete Account</p></button>
-            </form>
+            <button onclick="showDeletePopup()" type="button"><p class="fake-link" style="color:rgb(255, 67, 61); margin:0">Delete Account</p></button>
+        </div>
+
+        <div class="delete-popup">  
+                <form class="delete-popup-content" method="post" action="{{route('profile.destroy')}}">
+                    @csrf
+                    @method('delete')
+                    <h3>Are you sure you want to delete your account?</h3>
+                    <div style="width:100%">
+                        <label for="password">Input your password:</label>
+                        <input type="password" id="password" name="password">
+                    </div>
+                    <div class="button-group">
+                        <button type="submit"><span class="fake-link" style="color:rgb(255, 67, 61)">Delete Account</span></button>
+                        <button id="cancelDeleteAccount" onclick="closeDeletePopup()" type="button"><span class="fake-link">Cancel</span></button>
+                    </div>
+                </form>
+            <div class="delete-background"></div>
         </div>
 
     </div>
@@ -202,6 +215,43 @@
                 favouriteSubthemesDropdown.style.display = "none";
             }
         });
+
+        // Copied the scroll functions from GeeksForGeeks dont judge
+        function disableScroll() {
+            // Get the current page scroll position
+            scrollTop =
+                window.pageYOffset ||
+                document.documentElement.scrollTop;
+            scrollLeft =
+                window.pageXOffset ||
+                document.documentElement.scrollLeft,
+
+                // if any scroll is attempted,
+                // set this to the previous value
+                window.onscroll = function () {
+                    window.scrollTo(scrollLeft, scrollTop);
+                };
+        }
+
+        function enableScroll() {
+            window.onscroll = function () { };
+        }
+
+        let deletePopup = document.querySelector(".delete-popup");
+
+        function showDeletePopup() 
+        {
+            deletePopup.style.display = "block";
+            document.body.scrollTop = 0; // For Safari
+            document.documentElement.scrollTop = 0; // For Chrome, Firefox, IE and Opera
+            disableScroll();
+        }
+
+        function closeDeletePopup() 
+        {
+            deletePopup.style.display = "none";
+            enableScroll();
+        }
 
     </script>
 

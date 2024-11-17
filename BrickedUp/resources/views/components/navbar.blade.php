@@ -1,49 +1,3 @@
-<!DOCTYPE html>
-<html lang="en">
-
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <meta http-equiv="X-UA-Compatible" content="ie=edge">
-    <title>Navbar</title>
-    {{-- <style>
-        .dropdown {
-            position: relative;
-            display: inline-block;
-            cursor: pointer;
-        }
-
-        .dropdown-content {
-            display: none;
-            position: absolute;
-            background-color: #333;
-            color: white;
-            min-width: 200px;
-            height: auto;
-            border-radius: 4px;
-            z-index: 1;
-        }
-
-        .dropdown-content a {
-            color: white;
-            padding: 8px 12px;
-            display: block;
-            text-decoration: none;
-        }
-
-        .dropdown-content a:hover {
-            background-color: #555;
-        }
-
-        .dropdown:hover .dropdown-content {
-            display: block;
-        }
-
-
-    </style> --}}
-</head>
-
-<body>
     <div class="nav-header">
         <ul class="navbar">
             <div>
@@ -76,11 +30,15 @@
                 </li>
 
                 <li>
-                    <img id="profile-dropdown-icon" src="{{asset('images/user_icon.svg')}}" alt="user icon">
+                    @if($currentPage === 'profile') 
+                        <img id="profile-dropdown-icon" src="{{asset('images/user_icon_highlighted.svg')}}" alt="user icon">
+                    @else
+                        <img id="profile-dropdown-icon" src="{{asset('images/user_icon.svg')}}" alt="user icon">
+                    @endif
                     <span class="arrow"></span>
                     <div class="profile-dropdown">
                         <h3>Logged in as: <span class="profile-name-span">{{auth()->user()->name}}</span></h3>
-                        <a href="/chujciwdupe">Go to your profile</a>
+                        <a href="/profile">Go to your profile</a>
                         <form method="POST" action="{{ route('logout') }}" style="margin: 0;">
                             @csrf
                             <a href="{{ route('logout') }}"
@@ -144,6 +102,3 @@
         });
 
     </script>
-</body>
-
-</html>
