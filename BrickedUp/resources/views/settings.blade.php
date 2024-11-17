@@ -16,21 +16,21 @@
         <div class="terminal-box">
             <div class="settings-row">
                 <h3>Username:</h3>
-                <p>Stefan</p>
+                <p>{{$user->name}}</p>
             </div>
             <a href="kawaszlugbombakupa">Change Username</a>
         </div>
         <div class="terminal-box">
             <div class="settings-row">
                 <h3>Password: </h3>
-                <p>*********</p>
+                <p>******** </p>
             </div>
             <a href="kawaszlugbombakupa">Change Password</a>
         </div>
         <div class="terminal-box">
             <div class="settings-row">
                 <h3>Email: </h3>
-                <p>stefan@hotmale.com</p>
+                <p>{{$user->email}}</p>
             </div>
             <a href="kawaszlugbombakupa">Change Email</a>
         </div>

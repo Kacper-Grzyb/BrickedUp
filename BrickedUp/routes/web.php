@@ -28,7 +28,7 @@ Route::middleware('auth')->group(function () {
     });
 
     Route::get('/settings', function () {
-        return view('settings');
+        return view('settings', ['user' => auth()->user()]);
     });
 
     Route::get('/full-graph', function () {

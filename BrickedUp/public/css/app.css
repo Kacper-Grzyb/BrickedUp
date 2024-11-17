@@ -14,6 +14,10 @@ h1 {
     align-content: center;
 }
 
+a {
+    color: rgb(251, 139, 30);
+}
+
 input[type="checkbox"] {
     /* Add if not using autoprefixer */
     -webkit-appearance: none;
@@ -54,9 +58,9 @@ input[type="checkbox"]:checked::before {
     margin-top: 0px;
 }
 
-.terminal-box a {
-    color: rgb(251, 139, 30);
-}
+/*
+NAVBAR CONTENT START
+*/
 
 .nav-header {
     z-index: 10;
@@ -84,6 +88,45 @@ input[type="checkbox"]:checked::before {
 .navbar li {
     float: left;
     padding: 0 1rem;
+}
+
+.navbar img {
+    cursor: pointer
+}
+
+.arrow {
+    display: inline-block;
+    margin-left: 4px;
+    margin-top: -12px;
+    width: 6px;
+    height: 6px;
+    border-right: 2px solid #333;
+    border-bottom: 2px solid #333;
+    transform: rotate(45deg);
+    vertical-align: middle;
+    cursor: pointer;
+}
+
+.profile-dropdown {
+    display: none;
+    flex-direction: column;
+    gap: 0.4rem;
+    position: fixed;
+    z-index: 11;
+    background-color: rgb(18, 18, 18);
+    border: 1px solid rgb(173, 173, 173);
+    border-radius: 0.3rem;
+    padding: 0.75rem;
+    justify-content: space-evenly;
+}
+
+.profile-dropdown h3 {
+    font-size: 1rem;
+}
+
+.profile-name-span {
+    color: white;
+    font-size: 1rem;
 }
 
 .set-prices-sidescroller {
@@ -151,6 +194,10 @@ input[type="checkbox"]:checked::before {
     border-radius: 0.5rem;
     flex: 1;
 }
+
+/*
+NAVBAR CONTENT END
+*/
 
 .settings-container {
     display: flex;
