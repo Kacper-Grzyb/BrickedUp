@@ -19,17 +19,20 @@ Route::middleware('auth')->group(function () {
         return view('home');
     })->middleware(['verified'])->name('home');
 
-    Route::get('/profile', [ProfileController::class, 'edit'])->name('profile.edit');
-    Route::patch('/profile', [ProfileController::class, 'update'])->name('profile.update');
-    Route::delete('/profile', [ProfileController::class, 'destroy'])->name('profile.destroy');
+    Route::get('/profile', [ProfileController::class, 'edit'])->name('profile');
 
     Route::get('/set-details', function () {
         return view('set-details');
     });
 
     Route::get('/settings', function () {
-        return view('settings', ['user' => auth()->user()]);
-    });
+        return view('settings');
+    })->name('settings');
+    
+    Route::get('/edit-profile', [ProfileController::class, 'edit'])->name('profile.edit');
+    Route::patch('/edit-profile', [ProfileController::class, 'update'])->name('profile.update');
+    Route::delete('/edit-profile', [ProfileController::class, 'destroy'])->name('profile.destroy');
+    
 
     Route::get('/full-graph', function () {
         return view('full-graph');

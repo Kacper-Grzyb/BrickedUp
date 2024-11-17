@@ -58,6 +58,18 @@ input[type="checkbox"]:checked::before {
     margin-top: 0px;
 }
 
+.alert-message {
+    position:absolute;
+    z-index: 12;
+    left:50%;
+    top: 10%;
+    transform: translate(-50%, -50%);
+    margin: 0;
+    padding: 0.5rem 2rem;
+    color: rgb(62, 163, 65);
+    background-color: rgb(18, 18, 18);
+}
+
 /*
 NAVBAR CONTENT START
 */
@@ -88,6 +100,9 @@ NAVBAR CONTENT START
 .navbar li {
     float: left;
     padding: 0 1rem;
+    -webkit-user-select: none; /* Safari */
+    -ms-user-select: none; /* IE 10 and IE 11 */
+    user-select: none; /* Standard syntax */
 }
 
 .navbar img {
@@ -199,6 +214,10 @@ NAVBAR CONTENT START
 NAVBAR CONTENT END
 */
 
+/*
+SETTINGS CONTEND START
+*/
+
 .settings-container {
     display: flex;
     flex-direction: column;
@@ -228,6 +247,135 @@ NAVBAR CONTENT END
     align-items: center;
     width: auto;
 }
+
+.settings-dropdown {
+    position: relative;
+    display:inline-block;
+}
+
+.fake-link {
+    font-family:'Courier New', Courier, monospace;
+    color: rgb(251, 139, 30);
+    text-decoration: underline;
+    font-size: 1rem;
+    cursor: pointer;
+    -webkit-user-select: none; /* Safari */
+    -ms-user-select: none; /* IE 10 and IE 11 */
+    user-select: none; /* Standard syntax */
+}
+
+.settings-dropdown p {
+    color: rgb(251, 139, 30);
+    text-decoration: underline;
+    font-size: 1rem;
+    cursor: pointer;
+    -webkit-user-select: none; /* Safari */
+    -ms-user-select: none; /* IE 10 and IE 11 */
+    user-select: none; /* Standard syntax */
+}
+
+.settings-dropdown input[type="checkbox"] {
+    width: 1em;
+    height: 1em;
+}
+
+.settings-dropdown-content {
+    z-index: 5;
+    border: 1px solid rgb(118, 118, 118);
+    border-radius: 5px;;
+    background-color: rgb(18, 18, 18);
+    margin-top: 0.5rem;
+    padding: 0.5rem;
+    width: 100%;
+    display: none;
+    position:absolute; 
+    flex-direction: column;
+    justify-content: flex-start;
+    align-content: space-between;
+}
+
+.settings-dropdown-row {
+    margin: 0.3rem;
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+}
+
+.settings-dropdown-row label {
+    align-content: center;
+    font-size: 0.75rem;
+    height: 100%;
+    margin-left: .5rem
+}
+
+.settings-dropdown-content .searchbar {
+    margin: 0 0.5rem 0.5rem 0.5rem;
+}
+
+.searchbar input {
+    width: 80%;
+    border: none;
+    font-size: 0.8rem;
+    background-color: rgb(18, 18, 18);
+    color: rgb(173, 173, 173);
+    font-family: 'Courier New', Courier, monospace;
+    outline: none;
+}
+
+.searchbar button {
+    border:none;
+    background-color: rgb(18, 18, 18);
+    width: auto;
+}
+
+.searchbar button img {
+    height: 70%;
+}
+
+
+.terminal-box-edit {
+    border: 1px solid white;
+    border-radius: 0.3rem;
+    padding: 2rem;
+    width: 70%;
+    border-color: rgb(118, 118, 118);
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+    margin: 1rem;
+    gap: 0.5rem;
+}
+
+.terminal-box-edit input {
+    width: 80%;
+    border: none;
+    background-color: rgb(18, 18, 18);
+    color: rgb(173, 173, 173);
+    font-family: 'Courier New', Courier, monospace;
+    outline: none;
+}
+
+.terminal-box-edit button {
+    background-color: rgb(18, 18, 18);
+    border: none;
+    height: auto;
+    padding: 0px;
+    margin: 0px;
+}
+
+.terminal-box-edit button p {
+    margin: 0;
+    text-align: left;
+    font-weight: normal;
+}
+
+/*
+SETTINGS CONTENT END
+*/
+
+/*
+SET DETAILS CONTENT START
+*/
 
 .set-details-container {
     display: flex;
@@ -421,50 +569,6 @@ h3 {
     color: rgb(251, 139, 30);
 }
 
-.settings-dropdown {
-    position: relative;
-    display:inline-block;
-}
-
-
-.settings-dropdown input[type="checkbox"] {
-    width: 1em;
-    height: 1em;
-}
-
-.settings-dropdown:hover .settings-dropdown-content {
-    display: flex;
-}
-
-.settings-dropdown-content {
-    z-index: 5;
-    border: 1px solid rgb(118, 118, 118);
-    border-radius: 5px;;
-    background-color: rgb(18, 18, 18);
-    margin-top: 0.5rem;
-    padding: 0.5rem;
-    width: 100%;
-    display: none;
-    position:absolute; 
-    flex-direction: column;
-    justify-content: flex-start;
-    align-content: space-between;
-}
-
-.settings-dropdown-row {
-    margin: 0.3rem;
-    display: flex;
-    flex-direction: row;
-    align-items: center;
-}
-
-.settings-dropdown-row label {
-    align-content: center;
-    font-size: 0.75rem;
-    height: 100%;
-    margin-left: .5rem
-}
-
 .searchbar {
     border: 1px solid rgb(118, 118, 118);
     border-radius: 5px;
@@ -476,30 +580,9 @@ h3 {
     box-sizing: border-box;
 }
 
-.settings-dropdown-content .searchbar {
-    margin: 0 0.5rem 0.5rem 0.5rem;
-}
-
-.searchbar input {
-    width: 80%;
-    border: none;
-    font-size: 0.8rem;
-    background-color: rgb(18, 18, 18);
-    color: rgb(173, 173, 173);
-    font-family: 'Courier New', Courier, monospace;
-    outline: none;
-}
-
-.searchbar button {
-    border:none;
-    background-color: rgb(18, 18, 18);
-    width: auto;
-}
-
-.searchbar button img {
-    height: 70%;
-}
-
+/*
+SET DETAILS CONTENT END
+*/
 
 /*
 HOME PAGE CONTENT START
