@@ -144,6 +144,14 @@
             </div>
         </div>
 
+        <div class="terminal-box">
+            <form method="post" action="{{ route('profile.destroy') }}">
+                @csrf
+                @method('delete')
+                <button type="submit"><p class="fake-link" style="color:rgb(255, 67, 61); margin:0">Delete Account</p></button>
+            </form>
+        </div>
+
     </div>
 
     <script>
