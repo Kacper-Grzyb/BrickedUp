@@ -72,15 +72,27 @@ form {
 }
 
 .alert-message {
-    position:absolute;
+    position:fixed;
     z-index: 12;
     left:50%;
-    top: 10%;
+    top: 8%;
     transform: translate(-50%, -50%);
     margin: 0;
     padding: 0.5rem 2rem;
-    color: rgb(62, 163, 65);
     background-color: rgb(18, 18, 18);
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+}
+
+.success {
+    color: rgb(62, 163, 65);
+}
+
+.error {
+    height: 3rem;
+    color: rgb(255, 67, 61);
 }
 
 /*

@@ -11,6 +11,27 @@
 
     <h1>Update Profile Information</h1>
 
+    @if ($errors->updatePassword->any())
+        <div id="error-message" class="alert-message terminal-box error">
+            @foreach($errors->updatePassword->all() as $error)
+                {{ $error }}
+            @endforeach
+        </div>
+
+        <script>
+            document.addEventListener('DOMContentLoaded', function() {
+                setTimeout(function () {
+                    let message = document.getElementById('error-message');
+                    if(message) {
+                        message.style.transition = 'opacity 0.5s ease';
+                        message.style.opacity = '0'
+                        setTimeout(() => message.remove(), 500)
+                    }
+                }, 5000)
+            })
+        </script>
+    @endif
+
     <div class="settings-container">
 
         <form class="terminal-box-edit" method="post" action="{{ route('profile.update') }}">

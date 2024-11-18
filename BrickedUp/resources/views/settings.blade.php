@@ -12,7 +12,7 @@
     <h1>Settings</h1>
 
     @if(session('status'))
-        <div id="success-message" class="alert-message terminal-box">
+        <div id="success-message" class="alert-message terminal-box success">
             <p>{{session('status')}}</p>
         </div>
 
@@ -25,6 +25,27 @@
                         message.style.opacity = '0';
                         setTimeout(() => message.remove(), 500);
                      }
+                }, 5000)
+            })
+        </script>
+    @endif
+
+    @if ($errors->userDeletion->any())
+        <div id="error-message" class="alert-message terminal-box error">
+            @foreach($errors->userDeletion->all() as $error)
+                {{ $error }}
+            @endforeach
+        </div>
+
+        <script>
+            document.addEventListener('DOMContentLoaded', function() {
+                setTimeout(function () {
+                    let message = document.getElementById('error-message');
+                    if(message) {
+                        message.style.transition = 'opacity 0.5s ease';
+                        message.style.opacity = '0'
+                        setTimeout(() => message.remove(), 500)
+                    }
                 }, 5000)
             })
         </script>
@@ -70,18 +91,12 @@
                         </button>
                         <input type="text" placeholder="Set number, name...">
                     </div>
-                    <div class="settings-dropdown-row">
-                        <input type="checkbox" id="12345" name="12345" value="SetName">
-                        <label for="12345">Set Name</label>
-                    </div>
-                    <div class="settings-dropdown-row">
-                        <input type="checkbox" id="12345" name="12345" value="SetName">
-                        <label for="12345">Set Name</label>
-                    </div>
-                    <div class="settings-dropdown-row">
-                        <input type="checkbox" id="12345" name="12345" value="SetName">
-                        <label for="12345">Set Name</label>
-                    </div>
+                    @foreach(DB::table('sets')->select("*")->limit(10)->get() as $set)
+                        <div class="settings-dropdown-row">
+                            <input type="checkbox" id="12345" name="12345" value="SetName">
+                            <label for="12345">Set Name</label>
+                        </div>
+                    @endforeach
                 </div>
             </div>
         </div>
