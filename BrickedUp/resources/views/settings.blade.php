@@ -80,17 +80,19 @@
         <div class="terminal-box">
             <div class="settings-row">
                 <h3>Favourite Sets: </h3>
-                @if(count($favouriteSetNames) > 0)
-                    @for($i=0; $i < count($favouriteSetNames); $i++)
-                        @if($i !== count($favouriteSetNames)-1)
-                            <p>{{$favouriteSetNames[$i]->set_number}} {{$favouriteSetNames[$i]->set_name}} |</p>
-                        @else
-                            <p>{{$favouriteSetNames[$i]->set_number}} {{$favouriteSetNames[$i]->set_name}}</p>
-                        @endif
-                    @endfor
-                @else 
-                    <p>No favourited sets... </p> 
-                @endif
+                <div class="settings-display-favourites">
+                    @if(count($favouriteSetNames) > 0)
+                        @for($i=0; $i < count($favouriteSetNames); $i++)
+                            @if($i !== count($favouriteSetNames)-1)
+                                <p>{{$favouriteSetNames[$i]->set_number}} {{$favouriteSetNames[$i]->set_name}} |</p>
+                            @else
+                                <p>{{$favouriteSetNames[$i]->set_number}} {{$favouriteSetNames[$i]->set_name}}</p>
+                            @endif
+                        @endfor
+                    @else 
+                        <p>No favourited sets... </p> 
+                    @endif
+                </div>
             </div>
             <div class="settings-dropdown">
                 <p id="favouriteSetDropdownButton">Edit Favourite Sets ˅</p>
@@ -119,17 +121,19 @@
         <div class="terminal-box">
             <div class="settings-row">
                 <h3>Favourite Themes: </h3>
-                @if(count($favouriteThemeNames) > 0)
-                    @for($i=0; $i < count($favouriteThemeNames); $i++)
-                        @if($i !== count($favouriteThemeNames)-1)
-                            <p>{{$favouriteThemeNames[$i]->theme}} |</p>
-                        @else
-                            <p>{{$favouriteThemeNames[$i]->theme}}</p>
-                        @endif
-                    @endfor
-                @else 
-                    <p>No favourited themes... </p> 
-                @endif
+                <div class="settings-display-favourites">
+                    @if(count($favouriteThemeNames) > 0)
+                        @for($i=0; $i < count($favouriteThemeNames); $i++)
+                            @if($i !== count($favouriteThemeNames)-1)
+                                <p>{{$favouriteThemeNames[$i]->theme}} |</p>
+                            @else
+                                <p>{{$favouriteThemeNames[$i]->theme}}</p>
+                            @endif
+                        @endfor
+                    @else 
+                        <p>No favourited themes... </p> 
+                    @endif
+                </div>
             </div>
             <div class="settings-dropdown">
                 <p id="favouriteThemesDropdownButton">Edit Favourite Themes ˅</p>
@@ -158,17 +162,19 @@
         <div class="terminal-box">
             <div class="settings-row">
                 <h3>Favourite Subthemes: </h3>
-                @if(count($favouriteSubthemeNames) > 0)
-                    @for($i=0; $i < count($favouriteSubthemeNames); $i++)
-                        @if($i !== count($favouriteSubthemeNames)-1)
-                            <p>{{$favouriteSubthemeNames[$i]->subtheme . " |"}}</p>
-                        @else
-                            <p>{{$favouriteSubthemeNames[$i]->subtheme}}</p>
-                        @endif
-                    @endfor
-                @else 
-                    <p>No favourited subthemes... </p>
-                @endif
+                <div class="settings-display-favourites">
+                    @if(count($favouriteSubthemeNames) > 0)
+                        @for($i=0; $i < count($favouriteSubthemeNames); $i++)
+                            @if($i !== count($favouriteSubthemeNames)-1)
+                                <p>{{$favouriteSubthemeNames[$i]->subtheme . " |"}}</p>
+                            @else
+                                <p>{{$favouriteSubthemeNames[$i]->subtheme}}</p>
+                            @endif
+                        @endfor
+                    @else 
+                        <p>No favourited subthemes... </p>
+                    @endif
+                </div>
             </div>
             <div class="settings-dropdown">
                 <p id="favouriteSubthemesDropdownButton">Edit Favourite Subthemes ˅</p>
