@@ -80,82 +80,118 @@
         <div class="terminal-box">
             <div class="settings-row">
                 <h3>Favourite Sets: </h3>
-                <p>Display favourite sets here...</p>
+                @if(count($favouriteSetNames) > 0)
+                    @for($i=0; $i < count($favouriteSetNames); $i++)
+                        @if($i !== count($favouriteSetNames)-1)
+                            <p>{{$favouriteSetNames[$i]->set_number}} {{$favouriteSetNames[$i]->set_name}} |</p>
+                        @else
+                            <p>{{$favouriteSetNames[$i]->set_number}} {{$favouriteSetNames[$i]->set_name}}</p>
+                        @endif
+                    @endfor
+                @else 
+                    <p>No favourited sets... </p> 
+                @endif
             </div>
             <div class="settings-dropdown">
                 <p id="favouriteSetDropdownButton">Edit Favourite Sets ˅</p>
-                <div id="favouriteSets" class="settings-dropdown-content">
+                <form method="POST" id="favouriteSets" class="settings-dropdown-content" action="{{ route('profile.update-favourite-sets') }}">
+                    @csrf
+                    @method('patch')
+
                     <div class="searchbar">
                         <button>
                             <img src="{{asset('images/search_icon.svg')}}" alt="search icon">
                         </button>
-                        <input type="text" placeholder="Set number, name...">
+                        <input type="text" placeholder="Set number, name..." id="sets-checkbox-search" onkeyup="filterSetCheckboxes()">
                     </div>
-                    @foreach(DB::table('sets')->select("*")->limit(10)->get() as $set)
-                        <div class="settings-dropdown-row">
-                            <input type="checkbox" id="12345" name="12345" value="SetName">
-                            <label for="12345">Set Name</label>
-                        </div>
-                    @endforeach
-                </div>
+                    <div class="settings-dropdown-records">
+                        @foreach($sets as $set)
+                            <div class="settings-dropdown-row">
+                                <input type="checkbox" id="{{$set->set_number}}" name="set-checkbox[]" value="{{$set->set_number}}" {{$favouriteSets->contains('set_number', $set->set_number) ? 'checked' : ''}}>
+                                <label for="set-checkbox[]">{{$set->set_number}} {{$set->set_name}}</label>
+                            </div>
+                        @endforeach
+                    </div>
+                    <button type="submit"><p class="fake-link">Save</p></button>
+                </form>
             </div>
         </div>
         <div class="terminal-box">
             <div class="settings-row">
                 <h3>Favourite Themes: </h3>
-                <p>Display favourite themes here...</p>
+                @if(count($favouriteThemeNames) > 0)
+                    @for($i=0; $i < count($favouriteThemeNames); $i++)
+                        @if($i !== count($favouriteThemeNames)-1)
+                            <p>{{$favouriteThemeNames[$i]->theme}} |</p>
+                        @else
+                            <p>{{$favouriteThemeNames[$i]->theme}}</p>
+                        @endif
+                    @endfor
+                @else 
+                    <p>No favourited themes... </p> 
+                @endif
             </div>
             <div class="settings-dropdown">
                 <p id="favouriteThemesDropdownButton">Edit Favourite Themes ˅</p>
-                <div id="favouriteThemes" class="settings-dropdown-content">
+                <form method="POST" id="favouriteThemes" class="settings-dropdown-content" action="{{ route('profile.update-favourite-themes') }}">
+                    @csrf
+                    @method('patch')
+
                     <div class="searchbar">
                         <button>
                             <img src="{{asset('images/search_icon.svg')}}" alt="search icon">
                         </button>
-                        <input type="text" placeholder="Theme name...">
+                        <input type="text" placeholder="Theme name..." id="themes-checkbox-search" onkeyup="filterThemeCheckboxes()">
                     </div>
-                    <div class="settings-dropdown-row">
-                        <input type="checkbox" id="12345" name="12345" value="Theme">
-                        <label for="12345">Theme</label>
+                    <div class="settings-dropdown-records">
+                        @foreach($themes as $theme)
+                            <div class="settings-dropdown-row">
+                                <input type="checkbox" id="{{$theme->id}}" name="theme-checkbox[]" value="{{$theme->id}}" {{$favouriteThemes->contains('theme_id', $theme->id) ? 'checked' : ''}}>
+                                <label for="theme-checkbox[]">{{$theme->theme}}</label>
+                            </div>
+                        @endforeach
                     </div>
-                    <div class="settings-dropdown-row">
-                        <input type="checkbox" id="12345" name="12345" value="Theme">
-                        <label for="12345">Theme</label>
-                    </div>
-                    <div class="settings-dropdown-row">
-                        <input type="checkbox" id="12345" name="12345" value="Theme">
-                        <label for="12345">Theme</label>
-                    </div>
-                </div>
+                    <button type="submit"><p class="fake-link">Save</p></button>
+                </form>
             </div>
         </div>
         <div class="terminal-box">
             <div class="settings-row">
                 <h3>Favourite Subthemes: </h3>
-                <p>Display favourite subthemes here...</p>
+                @if(count($favouriteSubthemeNames) > 0)
+                    @for($i=0; $i < count($favouriteSubthemeNames); $i++)
+                        @if($i !== count($favouriteSubthemeNames)-1)
+                            <p>{{$favouriteSubthemeNames[$i]->subtheme . " |"}}</p>
+                        @else
+                            <p>{{$favouriteSubthemeNames[$i]->subtheme}}</p>
+                        @endif
+                    @endfor
+                @else 
+                    <p>No favourited subthemes... </p>
+                @endif
             </div>
             <div class="settings-dropdown">
                 <p id="favouriteSubthemesDropdownButton">Edit Favourite Subthemes ˅</p>
-                <div id="favouriteSubthemes" class="settings-dropdown-content">
+                <form method="POST" id="favouriteSubthemes" class="settings-dropdown-content" action="{{ route('profile.update-favourite-subthemes') }}">
+                    @csrf
+                    @method('patch')
+
                     <div class="searchbar">
                         <button>
                             <img src="{{asset('images/search_icon.svg')}}" alt="search icon">
                         </button>
-                        <input type="text" placeholder="Subtheme name...">
+                        <input type="text" placeholder="Subtheme name..." id="subthemes-checkbox-search" onkeyup="filterSubthemeCheckboxes()">
                     </div>
-                    <div class="settings-dropdown-row">
-                        <input type="checkbox" id="12345" name="12345" value="Subtheme">
-                        <label for="12345">Subtheme</label>
+                    <div class="settings-dropdown-records">
+                        @foreach($subthemes as $subtheme)
+                            <div class="settings-dropdown-row">
+                                <input type="checkbox" id="{{$subtheme->id}}" name="subtheme-checkbox[]" value="{{$subtheme->id}}" {{$favouriteSubthemes->contains('subtheme_id', $subtheme->id) ? 'checked' : ''}}>
+                                <label for="subtheme-checkbox[]">{{$subtheme->subtheme}}</label>
+                            </div>
+                        @endforeach
                     </div>
-                    <div class="settings-dropdown-row">
-                        <input type="checkbox" id="12345" name="12345" value="Subtheme">
-                        <label for="12345">Subtheme</label>
-                    </div>
-                    <div class="settings-dropdown-row">
-                        <input type="checkbox" id="12345" name="12345" value="Subtheme">
-                        <label for="12345">Subtheme</label>
-                    </div>
-                </div>
+                    <button type="submit"><p class="fake-link">Save</p></button>
+                </form>
             </div>
         </div>
 
@@ -217,6 +253,7 @@
             }
         });
 
+        // This can be made more complex in the future because now you can open multiple dropdowns at once
         document.addEventListener('click', (e) => {
             if(!favouriteSetsButton.contains(e.target) &&
                !favouriteSetsDropdown.contains(e.target) &&
@@ -268,6 +305,53 @@
             enableScroll();
         }
 
+        function filterSetCheckboxes() {
+            const searchInput = document.getElementById('sets-checkbox-search').value.toLowerCase();
+            const favouriteSets = document.getElementById('favouriteSets');
+            const checkboxes = favouriteSets.querySelectorAll('.settings-dropdown-row')
+
+            checkboxes.forEach(checkbox => {
+                const label = checkbox.querySelector('label').textContent.toLowerCase();
+                if(label.includes(searchInput)) {
+                    checkbox.style.display= "flex";
+                }
+                else {
+                    checkbox.style.display= "none";
+                }
+            })
+        }
+
+        function filterThemeCheckboxes() {
+            const searchInput = document.getElementById('themes-checkbox-search').value.toLowerCase();
+            const favouriteThemes = document.getElementById('favouriteThemes');
+            const checkboxes = favouriteThemes.querySelectorAll('.settings-dropdown-row')
+
+            checkboxes.forEach(checkbox => {
+                const label = checkbox.querySelector('label').textContent.toLowerCase();
+                if(label.includes(searchInput)) {
+                    checkbox.style.display= "flex";
+                }
+                else {
+                    checkbox.style.display= "none";
+                }
+            })
+        }
+
+        function filterSubthemeCheckboxes() {
+            const searchInput = document.getElementById('subthemes-checkbox-search').value.toLowerCase();
+            const favouriteSubthemes = document.getElementById('favouriteSubthemes');
+            const checkboxes = favouriteSubthemes.querySelectorAll('.settings-dropdown-row')
+
+            checkboxes.forEach(checkbox => {
+                const label = checkbox.querySelector('label').textContent.toLowerCase();
+                if(label.includes(searchInput)) {
+                    checkbox.style.display= "flex";
+                }
+                else {
+                    checkbox.style.display= "none";
+                }
+            })
+        }
     </script>
 
 </body>

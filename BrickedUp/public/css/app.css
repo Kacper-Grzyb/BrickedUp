@@ -319,6 +319,12 @@ SETTINGS CONTEND START
     align-content: space-between;
 }
 
+.settings-dropdown-records {
+    list-style-type: none;
+    max-height: 10rem;
+    overflow-y: scroll;
+}
+
 .settings-dropdown-row {
     margin: 0.3rem;
     display: flex;
@@ -330,11 +336,21 @@ SETTINGS CONTEND START
     align-content: center;
     font-size: 0.75rem;
     height: 100%;
-    margin-left: .5rem
+    margin-left: .5rem;
+    overflow:hidden
+}
+
+.settings-dropdown-row input {
+    min-width: 7%;
+    height: auto;
 }
 
 .settings-dropdown-content .searchbar {
     margin: 0 0.5rem 0.5rem 0.5rem;
+}
+
+.settings-dropdown-content button {
+    margin-top: 0.5rem;
 }
 
 .searchbar input {
@@ -351,6 +367,7 @@ SETTINGS CONTEND START
     border:none;
     background-color: rgb(18, 18, 18);
     width: auto;
+    margin: 0;
 }
 
 .searchbar button img {
