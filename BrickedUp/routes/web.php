@@ -4,6 +4,7 @@ use App\Http\Controllers\ProfileController;
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\FileUploadController;
 use App\Http\Controllers\SettingsController;
+use App\Http\Controllers\HomeController;
 
 Route::get('/', function () {
     return view('landing_page/landing');
@@ -16,9 +17,9 @@ Route::get('/features', function () {
 require __DIR__ . '/auth.php'; 
 
 Route::middleware('auth')->group(function () {
-    Route::get('/home', function () {
-        return view('home');
-    })->middleware(['verified'])->name('home');
+    Route::get('/home', [HomeController::class, 'home'])
+    ->middleware(['verified'])
+    ->name('home');
 
     Route::get('/profile', [ProfileController::class, 'view'])->name('profile');
 
