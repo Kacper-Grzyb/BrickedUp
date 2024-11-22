@@ -1,5 +1,6 @@
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
@@ -19,7 +20,7 @@
         background-size: cover;
         background-position: center;
         background-repeat: no-repeat;
-      
+
     }
 
     body::before {
@@ -40,20 +41,20 @@
         display: flex;
         justify-content: center;
         align-items: center;
-        
+
     }
 
     .card {
         position: relative;
         height: 600px;
         width: 400px;
-        background: radial-gradient(circle at top left, rgba(0, 255, 0, 0.1), transparent 40%), 
-                radial-gradient(circle at top right, rgba(0, 255, 0, 0.1), transparent 40%), 
-                radial-gradient(circle at bottom left, rgba(0, 255, 0, 0.1), transparent 40%), 
-                radial-gradient(circle at bottom right, rgba(0, 255, 0, 0.1), transparent 40%);
+        background: radial-gradient(circle at top left, rgba(0, 255, 0, 0.1), transparent 40%),
+            radial-gradient(circle at top right, rgba(0, 255, 0, 0.1), transparent 40%),
+            radial-gradient(circle at bottom left, rgba(0, 255, 0, 0.1), transparent 40%),
+            radial-gradient(circle at bottom right, rgba(0, 255, 0, 0.1), transparent 40%);
         background-size: 100% 100%;
         background-position: top left, top right, bottom left, bottom right;
-        background-color: rgba(0, 0, 0, 0.8); 
+        background-color: rgba(0, 0, 0, 0.8);
         border-radius: 15px;
         padding: 20px;
         box-shadow: 0 8px 32px rgba(0, 0, 0, 0.37);
@@ -67,11 +68,13 @@
         0% {
             background-size: 100% 100%;
         }
+
         50% {
-            background-size: 150% 150%; 
+            background-size: 150% 150%;
         }
+
         100% {
-            background-size: 100% 100%; 
+            background-size: 100% 100%;
         }
     }
 
@@ -129,9 +132,9 @@
 
     input::placeholder {
         color: rgba(255, 255, 255, 0.7);
-        font-size: large; 
+        font-size: large;
         font-weight: 100;
-        font-family: "Inter", sans-serif; 
+        font-family: "Inter", sans-serif;
         cursor: pointer;
     }
 
@@ -143,25 +146,25 @@
         border: 2px solid orange;
         border-radius: 7px;
         color: white;
-        font-size: large; 
+        font-size: large;
         font-weight: 100;
-        font-family: "Inter", sans-serif; 
+        font-family: "Inter", sans-serif;
         cursor: pointer;
         display: inline-flex;
         justify-content: center;
         align-items: center;
-        padding: 0; 
+        padding: 0;
         outline: 0;
-        overflow:hidden;
+        overflow: hidden;
         background: none;
         z-index: 1;
         cursor: pointer;
-        transition:         0.08s ease-in;
-        -o-transition:      0.08s ease-in;
-        -ms-transition:     0.08s ease-in;
-        -moz-transition:    0.08s ease-in;
+        transition: 0.08s ease-in;
+        -o-transition: 0.08s ease-in;
+        -ms-transition: 0.08s ease-in;
+        -moz-transition: 0.08s ease-in;
         -webkit-transition: 0.08s ease-in;
-        }
+    }
 
     .login:after {
         content: "";
@@ -173,25 +176,28 @@
         top: 100%;
         width: 100%;
         z-index: -2;
-        -webkit-transition: all 250ms cubic-bezier(0.230, 1.000, 0.320, 1.000); 
+        -webkit-transition: all 250ms cubic-bezier(0.230, 1.000, 0.320, 1.000);
     }
-    .login:hover{
-        color:white;
+
+    .login:hover {
+        color: white;
         border: 0px #d19b26 solid;
     }
+
     .login:hover:before {
         opacity: .8;
     }
+
     .login:hover:after {
         top: 0;
     }
 
     .input-fields p {
-        margin-top: 30px;
+        margin-top: -10px;
         color: rgba(255, 255, 255, 0.5);
-        font-size: large; 
+        font-size: large;
         font-weight: 100;
-        font-family: "Inter", sans-serif; 
+        font-family: "Inter", sans-serif;
         cursor: pointer;
     }
 
@@ -205,36 +211,42 @@
     .input-fields p a:hover {
         opacity: 1;
     }
-
 </style>
 
+
+
 <body>
-    @include('components.home_navbar')
     <div class="card-holder">
         <div class="card">
             <img class="profile-photo" src="/img/chuj.webp" alt="profile-image">
             <div class="input-fields">
-                <form action="">
-                    <!-- Email field with icon -->
+                <form method="POST" action="{{ route('login') }}">
+                    @csrf
+
                     <div class="input-container">
                         <img src="/img/mail.png" alt="email icon">
-                        <input type="text" id="email" name="email" placeholder="Email">
+                        <input type="email" name="email" value="{{ old('email') }}" placeholder="Email" required
+                            autofocus>
                     </div>
 
-                    <!-- Password field with icon -->
                     <div class="input-container">
                         <img src="/img/password.png" alt="password icon">
-                        <input type="password" id="password" name="password" placeholder="Password">
+                        <input type="password" name="password" placeholder="Password" required>
                     </div>
 
-                    <!-- Log in button -->
-                    <button type="submit" class="login">Log In</button>
+                    <button type="submit" class="login">
+                        {{ __('Login') }}
+                    </button>
+                    @if (Route::has('password.request'))
+                        <p class="forgot_pass"><a href="{{ route('password.request') }}">Forgot your password?</a></p>
+                    @endif
                 </form>
 
-                <!-- Sign up link -->
-                <p>Don't have a profile? <a href="{{ url('/signup') }}">Sign up</a></p>
+                <p>Don't have a profile? <a href="{{ route('register') }}">Sign up</a></p>
+
             </div>
         </div>
     </div>
 </body>
+
 </html>
