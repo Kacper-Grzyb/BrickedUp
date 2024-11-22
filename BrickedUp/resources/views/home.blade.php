@@ -153,11 +153,11 @@
                 <a href="/set-details/{{ $set->id }}" style="text-decoration: none; color: inherit;">
                     <div class="top-set">
                         <p class="top-set-name">{{ $set->set_name }}</p>
-                        <p class="for-sale-price">${{ number_format($set->price, 2) }}</p>
+                        <p class="for-sale-price">${{ $set->retail_price }}</p>
                         <p class="{{ $set->change >= 0 ? 'positive-change' : 'negative-change' }}">
                             {{ $set->change >= 0 ? '+' : '' }}{{ number_format($set->change, 2) }}
                         </p>
-                        <p class="for-sale-price">{{ $set->additional_price }}</p>
+                        <p class="for-sale-price">{{ $set->retail_price }}</p>
                     </div>
                 </a>
             @endforeach

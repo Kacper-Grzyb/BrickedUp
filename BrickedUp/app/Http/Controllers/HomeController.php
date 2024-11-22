@@ -11,7 +11,7 @@ class HomeController extends Controller
 {
     public function home()
         {
-            $sets = Set::take(10)->get(); // Fetch all sets or apply necessary filters
+            $sets = Set::take(10)->get(); 
             return view('home', compact('sets'));
         }
 }
