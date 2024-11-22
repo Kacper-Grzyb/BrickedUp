@@ -42,3 +42,4 @@ Route::post('/process-upload', [FileUploadController::class, 'uploadData'])->nam
 
 Route::get('/download-csv-template', [FileUploadController::class, 'downloadCsvTemplate'])->name('downloadCsvTemplate');
 
+});
