@@ -3,6 +3,9 @@
 use App\Http\Controllers\ProfileController;
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\FileUploadController;
+use App\Http\Controllers\LegoSetController;
+use App\Models\SetPrice;
+use App\Http\Controllers\SetController;
 
 Route::get('/', function () {
     return view('landing_page/landing');
@@ -31,9 +34,7 @@ Route::middleware('auth')->group(function () {
         return view('settings');
     });
 
-    Route::get('/full-graph', function () {
-        return view('full-graph');
-    });
+    Route::get('full-graph', [SetController::class, 'fullGraph'])->name('full-graph');
 
     Route::controller(FileUploadController::class)->group(function () {
         Route::get('/upload-data', 'showUploadForm')->name('form');
