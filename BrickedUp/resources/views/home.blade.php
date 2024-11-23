@@ -14,7 +14,7 @@
         
         <div class="home-top-ranked-subcontainer">
             
-            <div class="terminal-box home-container">   
+            <div class="terminal-box chart-container">   
                 <a href="full-graph" style="text-decoration: none; color: inherit;">
                     <h1>LEGO Set Market Price/Time Comparison</h1>
                 </a>

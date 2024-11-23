@@ -831,13 +831,13 @@ th, td {
 }
 
 .home-container{
-    max-width: 690px;
+    width: 690px;
+    height: 365px;
 }
 
-.chartContainer {
-    width: 80%;
-    max-width: 700px;
-    margin: 20px auto;
+.chart-container {
+    width: 690px;
+    height: 480px;
 }
 
 .price-table{
