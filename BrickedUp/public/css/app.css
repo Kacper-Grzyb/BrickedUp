@@ -840,6 +840,12 @@ th, td {
     margin: 20px auto;
 }
 
+.price-table{
+    height: 975px;
+    width: 500;
+    overflow: auto;
+}
+
 /*
 HOME PAGE CONTENT END
 */

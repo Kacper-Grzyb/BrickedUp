@@ -146,7 +146,7 @@
             </div>
             
         </div>
-        <div class="terminal-box">
+        <div class="terminal-box price-table">
             <h2>Lego Set &emsp; Price &emsp; Change &nbsp; Index</h2>
             
             @foreach ($sets as $set)

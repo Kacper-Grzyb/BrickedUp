@@ -11,7 +11,7 @@ class HomeController extends Controller
 {
     public function home()
         {
-            $sets = Set::take(10)->get(); 
+            $sets = Set::take(9)->get(); 
             return view('home', compact('sets'));
         }
 }
