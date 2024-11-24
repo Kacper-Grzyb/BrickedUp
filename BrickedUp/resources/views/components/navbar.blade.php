@@ -49,6 +49,31 @@
             transform: rotate(45deg);
             vertical-align: middle;
         }
+
+        .search-results {
+            display: none;
+            position: fixed;
+            margin: 48px 8px 8px 8px;
+            border: 1px solid rgb(118, 118, 118);
+            border-radius: 5px;
+            z-index: 1000;
+        }
+
+        .search-result {
+            cursor: pointer;
+            background-color: #333;
+            padding: 8px 12px;
+            border-bottom: 1px solid rgb(118, 118, 118);
+        }
+
+        .search-results:last-child {
+            border-bottom: none;
+        }
+
+        .search-result:hover {
+            background-color: #555;
+        }
+
     </style>
 </head>
 
@@ -100,11 +125,14 @@
                 </li>
             </div>
             <li>
-                <div class="searchbar">
-                    <button>
-                        <img src="{{asset('images/search_icon.svg')}}" alt="search icon">
-                    </button>
-                    <input type="text" placeholder="Search for set...">
+                <div class="search-menu">
+                    <div class="searchbar">
+                        <button>
+                            <img src="{{asset('images/search_icon.svg')}}" alt="search icon">
+                        </button>
+                        <input id="search-input" type="text" placeholder="Search for set...">
+                    </div>
+                    <div id="search-results" class="search-results"></div>
                 </div>
             </li>
         </ul>
@@ -123,6 +151,7 @@
         </ul>
     </div>
     <script src="//unpkg.com/alpinejs" defer></script>
+    <script src="{{ asset('js/searchbar.js') }}"></script>
 </body>
 
 </html>

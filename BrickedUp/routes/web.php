@@ -3,6 +3,7 @@
 use App\Http\Controllers\ProfileController;
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\FileUploadController;
+use App\Http\Controllers\LegoSetController;
 
 Route::get('/', function () {
     return view('landing_page/landing');
@@ -11,6 +12,9 @@ Route::get('/', function () {
 Route::get('/features', function () {
     return view('landing_page/features');
 });
+
+Route::get('/search-legosets', [LegoSetController::class, 'search'])->name('legosets.search');
+
 
 require __DIR__ . '/auth.php'; 
 
