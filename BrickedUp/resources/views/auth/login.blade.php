@@ -105,7 +105,7 @@
 
     .input-container {
         position: relative;
-        width: 80%%;
+        width: 100%;
         height: 45px;
     }
 
@@ -229,10 +229,7 @@
                             autofocus>
                     </div>
 
-                    <div class="input-container">
-                        <img src="/img/password.png" alt="password icon">
-                        <input type="password" name="password" placeholder="Password" required>
-                    </div>
+                    @include('components.password-input')
 
                     <button type="submit" class="login">
                         {{ __('Login') }}

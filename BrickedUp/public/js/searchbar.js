@@ -26,8 +26,8 @@ searchInput.addEventListener('input', function () {
                                 this.value = '';
                                 searchResults.style.display = 'none';
 
-                                console.log("Redirect to: " + set.set_name);
-                                window.location.href = '/set-details';
+                                // console.log("Redirect to: " + set.set_name);
+                                window.location.href = '/set-details/' + set.set_number;
                             });
                             searchResults.appendChild(item);
                         });
