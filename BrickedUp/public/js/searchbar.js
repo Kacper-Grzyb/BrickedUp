@@ -27,7 +27,7 @@ searchInput.addEventListener('input', function () {
                                 searchResults.style.display = 'none';
 
                                 console.log("Redirect to: " + set.set_name);
-                                window.location.href = '/set-details';
+                                window.location.href = '/set-details/' + set.set_number;
                             });
                             searchResults.appendChild(item);
                         });
