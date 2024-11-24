@@ -169,6 +169,76 @@ NAVBAR CONTENT START
     font-size: 1rem;
 }
 
+.search-menu {
+    width: 20%;
+}
+
+.searchbar {
+    border: 1px solid rgb(118, 118, 118);
+    border-radius: 5px;
+    background-color: rgb(18, 18, 18);
+    margin: 0.5rem;
+    display: flex;
+    flex-direction: row;
+    padding: 0.1rem;
+    box-sizing: border-box;
+}
+
+.settings-dropdown-content .searchbar {
+    margin: 0 0.5rem 0.5rem 0.5rem;
+}
+
+.settings-dropdown-content button {
+    margin-top: 0.5rem;
+}
+
+.searchbar input {
+    width: 80%;
+    border: none;
+    font-size: 0.8rem;
+    background-color: rgb(18, 18, 18);
+    color: rgb(173, 173, 173);
+    font-family: 'Courier New', Courier, monospace;
+    outline: none;
+}
+
+.searchbar button {
+    border:none;
+    background-color: rgb(18, 18, 18);
+    width: auto;
+    margin: 0;
+}
+
+.searchbar button img {
+    height: 70%;
+}
+
+.search-results {
+    display: none;
+    position: fixed;
+    margin: 0px 15px 8px 8px;
+    border: 1px solid rgb(118, 118, 118);
+    border-radius: 5px;
+    z-index: 1000;
+    width: -moz-available;
+    width: -webkit-fill-available;
+}
+
+.search-result {
+    cursor: pointer;
+    background-color: #333;
+    padding: 8px 12px;
+    border-bottom: 1px solid rgb(118, 118, 118);
+}
+
+.search-results:last-child {
+    border-bottom: none;
+}
+
+.search-result:hover {
+    background-color: #555;
+}
+
 .set-prices-sidescroller {
     list-style-type: none;
     margin: 0;
@@ -365,36 +435,6 @@ SETTINGS CONTEND START
     min-width: 7%;
     height: auto;
 }
-
-.settings-dropdown-content .searchbar {
-    margin: 0 0.5rem 0.5rem 0.5rem;
-}
-
-.settings-dropdown-content button {
-    margin-top: 0.5rem;
-}
-
-.searchbar input {
-    width: 80%;
-    border: none;
-    font-size: 0.8rem;
-    background-color: rgb(18, 18, 18);
-    color: rgb(173, 173, 173);
-    font-family: 'Courier New', Courier, monospace;
-    outline: none;
-}
-
-.searchbar button {
-    border:none;
-    background-color: rgb(18, 18, 18);
-    width: auto;
-    margin: 0;
-}
-
-.searchbar button img {
-    height: 70%;
-}
-
 
 .terminal-box-edit {
     border: 1px solid white;
@@ -683,16 +723,7 @@ h3 {
     color: rgb(251, 139, 30);
 }
 
-.searchbar {
-    border: 1px solid rgb(118, 118, 118);
-    border-radius: 5px;
-    background-color: rgb(18, 18, 18);
-    margin: 0.5rem;
-    display: flex;
-    flex-direction: row;
-    padding: 0.1rem;
-    box-sizing: border-box;
-}
+
 
 /*
 SET DETAILS CONTENT END

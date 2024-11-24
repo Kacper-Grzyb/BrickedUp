@@ -49,14 +49,17 @@
                     </div>
                 </li>
             </div>
-            <li>
+
+            <div class="search-menu">
                 <div class="searchbar">
                     <button>
                         <img src="{{asset('images/search_icon.svg')}}" alt="search icon">
                     </button>
-                    <input type="text" placeholder="Search for set...">
+                    <input id="search-input" type="text" placeholder="Search for set...">
                 </div>
-            </li>
+                <div id="search-results" class="search-results"></div>
+            </div>
+
         </ul>
 
         <ul class="set-prices-sidescroller">
@@ -102,3 +105,6 @@
         });
 
     </script>
+
+<script src="//unpkg.com/alpinejs" defer></script>
+<script src="{{ asset('js/searchbar.js') }}"></script>
