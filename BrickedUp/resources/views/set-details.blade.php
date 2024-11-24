@@ -8,7 +8,7 @@
 <body>
 
     {{-- Navbar goes here --}}
-    @include('components.navbar', ['currentPage' => 'set-details'])
+    <x-navbar :currentPage='"set-details"'/>
 
     {{-- All of the values inside the fields are placeholders for now --}}
     <div class="set-details-container">

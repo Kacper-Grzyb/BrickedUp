@@ -5,15 +5,22 @@ namespace App\View\Components;
 use Closure;
 use Illuminate\Contracts\View\View;
 use Illuminate\View\Component;
+use DB;
 
 class Navbar extends Component
 {
+    public $sets;
+    public $currentPage;
+
     /**
      * Create a new component instance.
-     */
-    public function __construct()
+     */     
+    public function __construct($currentPage)
     {
-        //
+        $this->currentPage = $currentPage;
+
+        $sets = DB::table('sets')->select('*')->limit(20)->get();
+        $this->sets = $sets;
     }
 
     /**
@@ -21,6 +28,6 @@ class Navbar extends Component
      */
     public function render(): View|Closure|string
     {
-        return view('components.navbar');
+        return view('components.navbar', ['sets' => $this->sets]);
     }
 }
