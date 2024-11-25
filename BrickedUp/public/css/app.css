@@ -243,7 +243,7 @@ NAVBAR CONTENT START
     list-style-type: none;
     margin: 0;
     padding: 0;
-    overflow: auto;
+    overflow: hidden;
     white-space: nowrap;
     border-bottom: 1px solid rgb(118, 118, 118);
     background-color: rgb(18, 18, 18);
@@ -251,7 +251,6 @@ NAVBAR CONTENT START
     margin: 0;
     display: flex;
     flex-direction: row;
-    justify-content: center;
     align-items: center;
 }
 
@@ -272,7 +271,7 @@ NAVBAR CONTENT START
     display: flex;
     height: 95%;
     align-items: center;
-    justify-content: space-evenly;
+    justify-content: space-around;
     padding: 0.2rem 0.5rem;
     flex: 8;
     gap: 0.2rem
@@ -283,17 +282,33 @@ NAVBAR CONTENT START
     width: auto;
 }
 
+.sidescroller-box-content h6 {
+    margin-top: 0;
+    margin-bottom: 0;
+    font-size: 0.9rem;
+}
+
 .sidescroller-box-content p {
-    font-size: 0.6rem;
+    margin-top: 0;
+    margin-bottom: 0;
+    font-weight: bold;
+    font-size: 0.9rem;
+}
+
+.positive-price {
     color: rgb(62, 163, 65);
 }
 
+.negative-price {
+    color: rgb(255, 67, 61);
+}
 
 .sidescroller-box-status-green {
     border: 1px solid rgb(62, 163, 65);
     background-color: rgb(62, 163, 65);
     height: 95%;
-    border-radius: 0.5rem;
+    border-top-left-radius: 0.5rem;
+    border-bottom-left-radius: 0.5rem;
     width: 0.75rem;
 }
 
@@ -301,7 +316,8 @@ NAVBAR CONTENT START
     border: 1px solid rgb(255, 67, 61);
     background-color: rgb(255, 67, 61);
     height: 95%;
-    border-radius: 0.5rem;
+    border-top-left-radius: 0.5rem;
+    border-bottom-left-radius: 0.5rem;
     flex: 1;
 }
 

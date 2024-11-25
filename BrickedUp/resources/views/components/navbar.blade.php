@@ -65,7 +65,7 @@
         <ul id="sidescroller" class="set-prices-sidescroller">
             @foreach ($sets as $set)
                 {{-- Change is random for now as there are no calculations of the set price records --}}
-                <x-sidescroller-box :set=$set :change='sprintf("%.1f", rand(1, 100))/10'/>
+                <x-sidescroller-box :set=$set :change='sprintf("%.1f", rand(-100, 100))/10'/>
             @endforeach
         </ul>
    
@@ -99,21 +99,8 @@
             }
         });
 
-        let sidescroller = document.getElementById('sidescroller');
-        let sidescrollerElements = document.querySelectorAll('.sidescroller-box');
-        const refreshRate = 1000 / 60;
-        let speedX = 0.1;
-        let positionX = 0;
-
-        window.setInterval(() => {
-            sidescrollerElements.forEach(element => {
-                //positionX = positionX + speedX;
-                if(positionX > 1000) positionX = 0;
-                element.style.transform = 'translateX(' + positionX + 'px)';  
-            });
-        }, refreshRate)
-
     </script>
 
 <script src="//unpkg.com/alpinejs" defer></script>
 <script src="{{ asset('js/searchbar.js') }}"></script>
+<script src="{{asset('js/sidescroller.js')}}"></script>

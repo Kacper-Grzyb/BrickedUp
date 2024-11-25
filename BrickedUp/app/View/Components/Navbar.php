@@ -18,7 +18,8 @@ class Navbar extends Component
     public function __construct($currentPage)
     {
         $this->currentPage = $currentPage;
-
+        // Always make sure the total width of elements in the navbar is larger than the website screen width
+        // for the scrollbar animation to function correctly
         $sets = DB::table('sets')->select('*')->limit(20)->get();
         $this->sets = $sets;
     }
