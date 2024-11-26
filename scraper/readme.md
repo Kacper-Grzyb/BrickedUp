@@ -5,8 +5,21 @@
 
 `pwsh bin/Debug/net8.0/playwright.ps1 install`
 
-3. Get the api key and url from supabase by `cmd + k`and searching for it in your supabase project
+## Set up api keys
 
-TODO: set up some kind of encrypted storage for api's etc
+I wanted to experiment with proper secure managment of api keys during development. 
+This repository is currently a public repository so it is even of bigger importance.
 
-4. `dotnet run`
+**Set Up**
+
+- Get your api key and url from supabase
+    - If you're lost on how to get them, go to supabase, `cmd/ctrl + k` and search both for "url" and "api key"
+- Run `dotnet restore` to get all dependencies
+
+(maybe need to run `dotnet user-secrets init`)
+
+`dotnet user-secrets set "SUPABASE_URL" "<ur supabase url>"`
+
+`dotnet user-secrets set "SUPABASE_API_KEY" "<ur api key>"`
+
+- Now the secrets are safely stored and can be accessed statically on the Program class

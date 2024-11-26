@@ -6,8 +6,8 @@ namespace scraper_webtech;
 public class IngestItems
 {
     Supabase.Client supabase;
-    private readonly string url = "";
-    private readonly string key = "";
+    private readonly string url = Program.SUPABASE_URL;
+    private readonly string key = Program.SUPABASE_API_KEY;
 
     public IngestItems()
     {
@@ -32,17 +32,10 @@ public class IngestItems
         return sets.Select(set => set.Set_number).ToList();
     }
 
-    public static async Task Main()
+    public static async Task notMain()
     {
-        IngestItems ingestItems = new();
 
-        var result = await ingestItems.supabase.From<Sets>().Get();
-        var hehe = result.Models;
 
-        foreach (var item in hehe)
-        {
-            Console.WriteLine(item);
-        }
     }
 
     [Table("sets")]

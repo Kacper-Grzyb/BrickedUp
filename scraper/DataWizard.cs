@@ -26,7 +26,7 @@ public class DataWizard
 
         foreach (string? price in priceValues)
         {
-            if (!String.IsNullOrEmpty(price) && !String.IsNullOrWhiteSpace(price))
+            if (!string.IsNullOrEmpty(price) && !string.IsNullOrWhiteSpace(price))
             {
                 priceValuesS.Add(price);
             }
@@ -70,6 +70,7 @@ public class DataWizard
         floatPriceValues.Sort();
         CleanPriceValues = floatPriceValues;
     }
+
     private float CalculateMean()
     {
         return CleanPriceValues.Average();

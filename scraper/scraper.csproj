@@ -4,9 +4,16 @@
         <TargetFramework>net8.0</TargetFramework>
         <ImplicitUsings>enable</ImplicitUsings>
         <Nullable>enable</Nullable>
+        <UserSecretsId>d6b967ea-5162-451b-b068-fde7c2ee4754</UserSecretsId>
     </PropertyGroup>
     <ItemGroup>
-      <PackageReference Include="Microsoft.Playwright" Version="1.49.0" />
-      <PackageReference Include="supabase" Version="1.1.1" />
+        <PackageReference Include="Microsoft.Extensions.Configuration"
+                          Version="9.0.0" />
+        <PackageReference Include="Microsoft.Extensions.Configuration.UserSecrets"
+                          Version="9.0.0" />
+        <PackageReference Include="Microsoft.Playwright"
+                          Version="1.49.0" />
+        <PackageReference Include="supabase"
+                          Version="1.1.1" />
     </ItemGroup>
 </Project>
