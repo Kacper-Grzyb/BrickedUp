@@ -5,4 +5,8 @@
 
 `pwsh bin/Debug/net8.0/playwright.ps1 install`
 
-3. `dotnet run`
+3. Get the api key and url from supabase by `cmd + k`and searching for it in your supabase project
+
+TODO: set up some kind of encrypted storage for api's etc
+
+4. `dotnet run`
