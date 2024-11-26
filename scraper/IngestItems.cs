@@ -20,7 +20,6 @@ public class IngestItems
         supabase.InitializeAsync();
     }
 
-
     //Probably should cache it somewhere to not call db every day with all the rows 
     //Is there a way to get only chnaged items or sth 
     //For now this is good enough 
@@ -32,10 +31,13 @@ public class IngestItems
         return sets.Select(set => set.Set_number).ToList();
     }
 
-    public static async Task notMain()
+    public static async Task Main()
     {
+        IngestItems ingestItems = new();
 
+        List<string?> list = await ingestItems.GetSetNumbers();
 
+        list.ForEach(Console.WriteLine);
     }
 
     [Table("sets")]
