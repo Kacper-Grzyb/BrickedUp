@@ -127,7 +127,7 @@
             <li>
                 <div class="search-menu">
                     <div class="searchbar">
-                        <button>
+                        <button onclick="window.location='{{ route('explore-view') }}'">
                             <img src="{{asset('images/search_icon.svg')}}" alt="search icon">
                         </button>
                         <input id="search-input" type="text" placeholder="Search for set...">

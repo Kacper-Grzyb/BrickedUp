@@ -16,7 +16,7 @@ Route::get('/features', function () {
 Route::get('/search-legosets', [LegoSetController::class, 'search'])->name('legosets.search');
 
 
-require __DIR__ . '/auth.php'; 
+require __DIR__ . '/auth.php';
 
 Route::middleware('auth')->group(function () {
     Route::get('/home', function () {
@@ -39,11 +39,17 @@ Route::middleware('auth')->group(function () {
         return view('full-graph');
     });
 
+    Route::get('/explore-view', function () {
+        return view('explore');
+    })->name('explore-view');
 
-Route::get('/upload-data', [FileUploadController::class, 'showUploadForm'])->name('form');
-Route::post('/receive-data', [FileUploadController::class, 'receiveData'])->name('receiveData');
-Route::post('/process-upload', [FileUploadController::class, 'uploadData'])->name('uploadData');
 
-Route::get('/download-csv-template', [FileUploadController::class, 'downloadCsvTemplate'])->name('downloadCsvTemplate');
+
+    Route::get('/upload-data', [FileUploadController::class, 'showUploadForm'])->name('form');
+    Route::post('/receive-data', [FileUploadController::class, 'receiveData'])->name('receiveData');
+    Route::post('/process-upload', [FileUploadController::class, 'uploadData'])->name('uploadData');
+
+    Route::get('/download-csv-template', [FileUploadController::class, 'downloadCsvTemplate'])->name('downloadCsvTemplate');
 
 });
+
