@@ -4,8 +4,6 @@ use App\Http\Controllers\ProfileController;
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\FileUploadController;
 use App\Http\Controllers\LegoSetController;
-use App\Models\SetPrice;
-use App\Http\Controllers\SetController;
 
 Route::get('/', function () {
     return view('landing_page/landing');
@@ -14,6 +12,9 @@ Route::get('/', function () {
 Route::get('/features', function () {
     return view('landing_page/features');
 });
+
+Route::get('/search-legosets', [LegoSetController::class, 'search'])->name('legosets.search');
+
 
 require __DIR__ . '/auth.php'; 
 
@@ -36,8 +37,9 @@ Route::middleware('auth')->group(function () {
 
     Route::get('full-graph', [SetController::class, 'fullGraph'])->name('full-graph');
 
-    Route::controller(FileUploadController::class)->group(function () {
-        Route::get('/upload-data', 'showUploadForm')->name('form');
-        Route::post('/upload-data', 'upload')->name('upload');
-    });
+    Route::get('/upload-data', [FileUploadController::class, 'showUploadForm'])->name('form');
+    Route::post('/receive-data', [FileUploadController::class, 'receiveData'])->name('receiveData');
+    Route::post('/process-upload', [FileUploadController::class, 'uploadData'])->name('uploadData');
+
+    Route::get('/download-csv-template', [FileUploadController::class, 'downloadCsvTemplate'])->name('downloadCsvTemplate');
 });
