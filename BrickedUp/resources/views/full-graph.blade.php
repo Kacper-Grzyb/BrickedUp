@@ -10,7 +10,7 @@
     <script src="https://cdnjs.cloudflare.com/ajax/libs/PapaParse/5.3.2/papaparse.min.js"></script>
   </head>
   <body>
-    @include('components.navbar', ['currentPage' => 'full-graph'])
+    <x-navbar :currentPage='"full-graph"'/>
     <div id="container">
       <div id="leftBlock">
         <h2>Select A Set To Display</h2>

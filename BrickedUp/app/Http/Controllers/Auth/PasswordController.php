@@ -7,6 +7,8 @@ use Illuminate\Http\RedirectResponse;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Hash;
 use Illuminate\Validation\Rules\Password;
+use Illuminate\Support\Facades\Redirect;
+use Illuminate\Support\Facades\Log;
 
 class PasswordController extends Controller
 {
@@ -24,6 +26,6 @@ class PasswordController extends Controller
             'password' => Hash::make($validated['password']),
         ]);
 
-        return back()->with('status', 'password-updated');
+        return Redirect::route('settings')->with('status', 'Password updated successfully!');
     }
 }
