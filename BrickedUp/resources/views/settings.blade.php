@@ -6,8 +6,7 @@
     <title>Settings</title>
 </head>
 <body>
-    
-    @include('components.navbar', ['currentPage' => 'settings'])
+    <x-navbar :currentPage='"settings"'/>
 
     <h1>Settings</h1>
 

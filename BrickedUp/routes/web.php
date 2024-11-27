@@ -5,6 +5,7 @@ use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\FileUploadController;
 use App\Http\Controllers\SettingsController;
 use App\Http\Controllers\HomeController;
+use App\Http\Controllers\LegoSetController;
 
 Route::get('/', function () {
     return view('landing_page/landing');
@@ -23,6 +24,8 @@ Route::middleware('auth')->group(function () {
 
     Route::get('/profile', [ProfileController::class, 'view'])->name('profile');
 
+    Route::get('/search-legosets', [LegoSetController::class, 'search'])->name('legosets.search');
+    
     Route::get('/set-details', function () {
         return view('set-details');
     });
@@ -40,8 +43,11 @@ Route::middleware('auth')->group(function () {
         return view('full-graph');
     });
 
-    Route::controller(FileUploadController::class)->group(function () {
-        Route::get('/upload-data', 'showUploadForm')->name('form');
-        Route::post('/upload-data', 'upload')->name('upload');
-    });
+
+    Route::get('/upload-data', [FileUploadController::class, 'showUploadForm'])->name('form');
+    Route::post('/receive-data', [FileUploadController::class, 'receiveData'])->name('receiveData');
+    Route::post('/process-upload', [FileUploadController::class, 'uploadData'])->name('uploadData');
+
+    Route::get('/download-csv-template', [FileUploadController::class, 'downloadCsvTemplate'])->name('downloadCsvTemplate');
+
 });

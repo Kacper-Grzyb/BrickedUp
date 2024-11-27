@@ -49,28 +49,26 @@
                     </div>
                 </li>
             </div>
-            <li>
+
+            <div class="search-menu">
                 <div class="searchbar">
                     <button>
                         <img src="{{asset('images/search_icon.svg')}}" alt="search icon">
                     </button>
-                    <input type="text" placeholder="Search for set...">
+                    <input id="search-input" type="text" placeholder="Search for set...">
                 </div>
-            </li>
-        </ul>
+                <div id="search-results" class="search-results"></div>
+            </div>
 
-        <ul class="set-prices-sidescroller">
-            @include('components.sidescroller-box')
-            @include('components.sidescroller-box')
-            @include('components.sidescroller-box')
-            @include('components.sidescroller-box')
-            @include('components.sidescroller-box')
-            @include('components.sidescroller-box')
-            @include('components.sidescroller-box')
-            @include('components.sidescroller-box')
-            @include('components.sidescroller-box')
-            @include('components.sidescroller-box')
         </ul>
+        
+        <ul id="sidescroller" class="set-prices-sidescroller">
+            @foreach ($sets as $set)
+                {{-- Change is random for now as there are no calculations of the set price records --}}
+                <x-sidescroller-box :set=$set :change='sprintf("%.1f", rand(-100, 100))/10'/>
+            @endforeach
+        </ul>
+   
     </div>
     <script>
         let dropdownIcon = document.getElementById('profile-dropdown-icon');
@@ -102,3 +100,7 @@
         });
 
     </script>
+
+<script src="//unpkg.com/alpinejs" defer></script>
+<script src="{{ asset('js/searchbar.js') }}"></script>
+<script src="{{asset('js/sidescroller.js')}}"></script>

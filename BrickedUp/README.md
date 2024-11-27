@@ -64,3 +64,22 @@ If you discover a security vulnerability within Laravel, please send an e-mail t
 ## License
 
 The Laravel framework is open-sourced software licensed under the [MIT license](https://opensource.org/licenses/MIT).
+
+
+## Dates in set data
+
+When uploading set data, either the release date or retired date (nullable) must be in the format dd/mm/yyyy
+This is the only one I tested that I am sure works, for other ones there may be some errors or misinterpretations
+
+## Displaying dates on the website
+
+The release/retired dates should be displayed in MMMM yyyy format, so March 2013 for example. Because of that, the date day does not
+matter in the database, it can be defaulted to just the first of every month. If you cannot find a release month, default to January.
+
+## Un-Nuking the database
+
+1. First run `php artisan migrate:fresh` just to make sure everything is up to date (since there is no data to nuke anyways)
+2. Run the python setup script that will add theme, subtheme, and availability categories
+For that you may need to run `pip install selenium numpy supabase` first because these packages seem to not want to stay in the project
+Then run `python db-setup.py`
+3. Go to the url /upload-data and upload the InitialData.csv file from the project's resources folder

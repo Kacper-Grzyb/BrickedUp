@@ -7,7 +7,7 @@
     <title>{{auth()->user()->name}} Profile</title>
 </head>
 <body>
-    @include('components.navbar', ['currentPage' => 'profile'])
+    <x-navbar :currentPage='"profile"'/>
 
     <img src="{{asset('img/chuj.webp')}}" alt="">
     <h1>Welcome {{auth()->user()->name}}</h1>

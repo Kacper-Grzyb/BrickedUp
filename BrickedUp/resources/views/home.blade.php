@@ -8,7 +8,7 @@
 </head>
 
 <body>
-    @include('components.navbar', ['currentPage' => 'home'])
+    <x-navbar :currentPage='"home"'/>
 
     <div class="home-top-ranked-container" style="align-items: start">
         
