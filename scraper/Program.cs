@@ -31,17 +31,17 @@ public class Program
     {
         IngestItems ingestItems = new();
 
-        var setNumbers = await ingestItems.GetSetNumbers(); 
+        var setNumbers = await ingestItems.GetSetNumbers();
 
         foreach (var set in setNumbers)
         {
             if (set is null)
-            {   
+            {
                 break;
             }
 
-            List<string> pricesForSet = await Scraper.ScrapeItem(set);
-            
+            List<string?> pricesForSet = await Scraper.ScrapeItem(set);
+
             DataWizard dataWizard = new(pricesForSet);
 
         }

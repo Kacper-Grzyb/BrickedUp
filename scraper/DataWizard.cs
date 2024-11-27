@@ -7,58 +7,45 @@ namespace scraper_webtech;
 
 public class DataWizard
 {
-    private List<string> RawPriceValues;
-    private List<float> CleanPriceValues;
+    private float _priceOrMedian;
+    private float _trimmedMean;
+    private float _meanOrAverage;
 
-    /// <summary>
-    /// Gets the data for the state of the object, checks that the list is not null or empty in a very stupid way
-    /// </summary>
-    /// <param name="priceValues"></param>
-    /// <returns>0 if the operation didn't complete, 1 if the operation completed successfully</returns>
-    public int SetData(List<string?> priceValues)
+    public float PriceOrMedian
     {
-        if (priceValues.Count == 0)
-        {
-            return 0;
-        }
-
-        List<string> priceValuesS = new();
-
-        foreach (string? price in priceValues)
-        {
-            if (!string.IsNullOrEmpty(price) && !string.IsNullOrWhiteSpace(price))
-            {
-                priceValuesS.Add(price);
-            }
-            else
-                continue;
-        }
-
-        if (priceValuesS.Count == 0)
-        {
-            return 0;
-        }
-
-        RawPriceValues = priceValuesS;
-        priceValuesS.ForEach(Console.WriteLine);
-
-        return 1;
+        get => _priceOrMedian;
+        init => _priceOrMedian = CalculateMedian();
     }
+
+    public float TrimmedMean
+    {
+        get => _trimmedMean;
+        init => _trimmedMean = CalculateTrimmedMean();
+    }
+
+    public float MeanOrAverage
+    {
+        get => _meanOrAverage;
+        init => _meanOrAverage = CalculateMean();
+    }
+
+    private List<float> CleanPriceValues;
 
     public DataWizard(List<string?> priceValues)
     {
-        RawPriceValues = priceValues;
-        CleanUp();
+        if (priceValues is null or { Count: 0 })
+        {
+            throw new ArgumentException("List cannot be null or empty", nameof(priceValues));
+        }
+
+        CleanPriceValues = CleanUp(priceValues);
     }
 
-    /// <summary>
-    /// Gets a List<string> and converts it into a List<float>, and sorts it, hopefully
-    /// </summary>
-    private void CleanUp()
+    private List<float> CleanUp(List<string?> rawValues)
     {
         List<float> floatPriceValues = new();
 
-        foreach (var price in RawPriceValues)
+        foreach (var price in rawValues)
         {
             string clean = Regex.Replace(price, "[^.0-9]", "");
 
@@ -74,7 +61,9 @@ public class DataWizard
                 continue;
         }
         floatPriceValues.Sort();
-        CleanPriceValues = floatPriceValues;
+
+        return floatPriceValues;
+
     }
 
     private float CalculateMean()
@@ -123,4 +112,65 @@ public class DataWizard
 
         return workingList.Average();
     }
+
+    /// <summary>
+    /// Gets the data for the state of the object, checks that the list is not null or empty in a very stupid way
+    /// </summary>
+    /// <param name="priceValues"></param>
+    /// <returns>0 if the operation didn't complete, 1 if the operation completed successfully</returns>
+    // public int SetData(List<string?> priceValues)
+    // {
+    //     if (priceValues.Count == 0)
+    //     {
+    //         return 0;
+    //     }
+
+    //     List<string> priceValuesS = new();
+
+    //     foreach (string? price in priceValues)
+    //     {
+    //         if (!string.IsNullOrEmpty(price) && !string.IsNullOrWhiteSpace(price))
+    //         {
+    //             priceValuesS.Add(price);
+    //         }
+    //         else
+    //             continue;
+    //     }
+
+    //     if (priceValuesS.Count == 0)
+    //     {
+    //         return 0;
+    //     }
+
+    //     RawPriceValues = priceValuesS;
+    //     priceValuesS.ForEach(Console.WriteLine);
+
+    //     return 1;
+    // }
+
+    /// <summary>
+    /// Gets a List<string> and converts it into a List<float>, and sorts it, hopefully
+    /// </summary>
+    // private void CleanUp()
+    // {
+    //     List<float> floatPriceValues = new();
+
+    //     foreach (var price in RawPriceValues)
+    //     {
+    //         string clean = Regex.Replace(price, "[^.0-9]", "");
+
+    //         float converted = float.Parse(clean, CultureInfo.InvariantCulture.NumberFormat);
+
+    //         //We have a magic numver 20.00 here, which might cause issues in the future
+    //         //Right now it stays here because spotoify randomly returns two items with the value of 20.00 in every listing
+    //         if (converted != 0 && converted != 20.00)
+    //         {
+    //             floatPriceValues.Add(converted);
+    //         }
+    //         else
+    //             continue;
+    //     }
+    //     floatPriceValues.Sort();
+    //     CleanPriceValues = floatPriceValues;
+    // }
 }
