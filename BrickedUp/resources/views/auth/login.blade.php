@@ -48,10 +48,10 @@
         position: relative;
         height: 600px;
         width: 400px;
-        background: radial-gradient(circle at top left, rgba(0, 255, 0, 0.1), transparent 40%),
-            radial-gradient(circle at top right, rgba(0, 255, 0, 0.1), transparent 40%),
-            radial-gradient(circle at bottom left, rgba(0, 255, 0, 0.1), transparent 40%),
-            radial-gradient(circle at bottom right, rgba(0, 255, 0, 0.1), transparent 40%);
+        background: radial-gradient(circle at top left, rgba(255, 215, 0, 0.1), transparent 40%),
+            radial-gradient(circle at top right, rgba(255, 215, 0, 0.1), transparent 40%),
+            radial-gradient(circle at bottom left, rgba(255, 215, 0, 0.1), transparent 40%),
+            radial-gradient(circle at bottom right, rgba(255, 215, 0, 0.1), transparent 40%);
         background-size: 100% 100%;
         background-position: top left, top right, bottom left, bottom right;
         background-color: rgba(0, 0, 0, 0.8);
