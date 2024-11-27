@@ -18,7 +18,7 @@ public class Scraper
 
         await using var browser = await playwright.Chromium.LaunchAsync(new()
         {
-            Headless = false,
+            Headless = true,
         });
 
         string pageLink = $"https://www.ebay.com/sch/i.html?_from=R40&_trksid=p2334524.m570.l1313&_nkw=%22lego+{setNumber}%22&_sacat=0&_odkw=%22lego+40676%22&_osacat=0";
@@ -56,6 +56,10 @@ public class Scraper
 
             prices.Add(price);
         }
+
+        //Console.WriteLine("We just scraped, any key to conintue ");
+        prices.ForEach(Console.WriteLine);
+        Console.WriteLine();
 
         return prices;
     }

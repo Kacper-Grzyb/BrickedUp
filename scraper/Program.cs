@@ -27,26 +27,22 @@ public class Program
         SUPABASE_URL = config["SUPABASE_URL"]!;
     }
 
-    public static async void Main()
+    public static async Task Main()
     {
-        IngestItems ingestItems = new();
+        DataProvider dataProvider = new();
 
-        var setNumbers = await ingestItems.GetSetNumbers();
+        var setNumbers = await dataProvider.GetAllSetNumbers();
 
         foreach (var set in setNumbers)
         {
-            if (set is null)
-            {
-                break;
-            }
-
+            Console.WriteLine(set);
             List<string?> pricesForSet = await Scraper.ScrapeItem(set);
 
             DataWizard dataWizard = new(pricesForSet);
 
+            await dataProvider.Send(setNumber: set, price: dataWizard.PriceOrMedian);
+
+            await Task.Delay(1000);
         }
-
-
-
     }
 }

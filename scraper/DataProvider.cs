@@ -1,15 +1,16 @@
+using scraper_webtech;
 using Supabase.Postgrest.Attributes;
 using Supabase.Postgrest.Models;
 
 namespace scraper;
 
-public class IngestItems
+public class DataProvider
 {
     Supabase.Client supabase;
     private readonly string url = Program.SUPABASE_URL;
     private readonly string key = Program.SUPABASE_API_KEY;
 
-    public IngestItems()
+    public DataProvider()
     {
         var options = new Supabase.SupabaseOptions
         {
@@ -23,21 +24,57 @@ public class IngestItems
     //Probably should cache it somewhere to not call db every day with all the rows 
     //Is there a way to get only chnaged items or sth 
     //For now this is good enough 
-    public async Task<List<string?>> GetSetNumbers()
+    //I don't think it would matter, because then I'd need to query another table
+    public async Task<List<string>> GetAllSetNumbers()
     {
         var resultSets = await supabase.From<Sets>().Get();
         var sets = resultSets.Models;
 
-        return sets.Select(set => set.Set_number).ToList();
+        if (sets is null or { Count: 0 })
+        {
+            throw new ArgumentException("List cannot be null or empty", nameof(sets));
+        }
+
+        return sets.Select(set => set.Set_number).ToList()!; //Good supression cause I check
     }
 
-    public static async Task Main()
+    //Idk if it should return if it was successfull or not, for now it will yeet
+    public async Task Send(string setNumber, float price)
     {
-        IngestItems ingestItems = new();
+        DateTime dateTime = DateTime.Now;
+        DateOnly today = DateOnly.FromDateTime(dateTime);
 
-        List<string?> list = await ingestItems.GetSetNumbers();
+        //Console.WriteLine($"We're about to send, {setNumber} with {price}");
 
-        list.ForEach(Console.WriteLine);
+        var set_price = new Set_prices
+        {
+            Set_number = setNumber,
+            Record_date = today,
+            Price = price
+        };
+
+        //Console.WriteLine("IF BELOW HERE sth is off, the object is shit");
+        //Console.WriteLine(set_price);
+
+        await supabase.From<Set_prices>().Insert(set_price);
+    }
+
+    [Table("set_prices")]
+    class Set_prices : BaseModel
+    {
+        [Column("set_number")]
+        public string? Set_number { get; set; }
+
+        [Column("record_date")]
+        public DateOnly Record_date { get; set; }
+
+        [Column("price")]
+        public float Price { get; set; }
+
+        public override string ToString()
+        {
+            return string.Concat(Set_number, "\t", Record_date, "\t", Price);
+        }
     }
 
     [Table("sets")]

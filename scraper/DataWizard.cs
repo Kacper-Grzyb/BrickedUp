@@ -7,26 +7,20 @@ namespace scraper_webtech;
 
 public class DataWizard
 {
-    private float _priceOrMedian;
-    private float _trimmedMean;
-    private float _meanOrAverage;
-
     public float PriceOrMedian
     {
-        get => _priceOrMedian;
-        init => _priceOrMedian = CalculateMedian();
+        get => CalculateMedian();
     }
 
+    //Currently these properties are not really intended to be used, but want to keep them here without wasting cpu cycles
     public float TrimmedMean
     {
-        get => _trimmedMean;
-        init => _trimmedMean = CalculateTrimmedMean();
+        get => CalculateTrimmedMean();
     }
 
     public float MeanOrAverage
     {
-        get => _meanOrAverage;
-        init => _meanOrAverage = CalculateMean();
+        get => CalculateMean();
     }
 
     private List<float> CleanPriceValues;
@@ -47,12 +41,18 @@ public class DataWizard
 
         foreach (var price in rawValues)
         {
-            string clean = Regex.Replace(price, "[^.0-9]", "");
+            if (price!.Contains("to"))
+            {
+                continue;   
+            }
+
+
+            string clean = Regex.Replace(price!, "[^.0-9]", "");
 
             float converted = float.Parse(clean, CultureInfo.InvariantCulture.NumberFormat);
 
             //We have a magic numver 20.00 here, which might cause issues in the future
-            //Right now it stays here because spotoify randomly returns two items with the value of 20.00 in every listing
+            //Right now it stays here because ebay randomly returns two items with the value of 20.00 in every listing
             if (converted != 0 && converted != 20.00)
             {
                 floatPriceValues.Add(converted);
@@ -63,7 +63,6 @@ public class DataWizard
         floatPriceValues.Sort();
 
         return floatPriceValues;
-
     }
 
     private float CalculateMean()
@@ -78,6 +77,11 @@ public class DataWizard
     private float CalculateMedian()
     {
         int length = CleanPriceValues.Count;
+
+        if (length == 0)
+        {
+            return 0;
+        }
 
         if (length % 2 != 0)
         {
@@ -112,6 +116,9 @@ public class DataWizard
 
         return workingList.Average();
     }
+
+    //THIS IS OLD CODE FROM BEFORE THE FIRST REFACTOR 
+    //LEFT HERE FOR DOCUMENTATION PURPOSES, MIGHT GET NUKED
 
     /// <summary>
     /// Gets the data for the state of the object, checks that the list is not null or empty in a very stupid way
