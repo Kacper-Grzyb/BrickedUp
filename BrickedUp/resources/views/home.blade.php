@@ -150,7 +150,7 @@
             <h2>Lego Set &emsp; Price &emsp; Change &nbsp; Index</h2>
             
             @foreach ($sets as $set)
-                <a href="/set-details/{{ $set->id }}" style="text-decoration: none; color: inherit;">
+                <a href="/set-details/{{ $set->set_number }}" style="text-decoration: none; color: inherit;">
                     <div class="top-set">
                         <p class="top-set-name">{{ $set->set_name }}</p>
                         <p class="for-sale-price">${{ $set->retail_price }}</p>
