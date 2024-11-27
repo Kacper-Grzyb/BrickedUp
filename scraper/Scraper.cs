@@ -10,16 +10,7 @@ namespace scraper_webtech;
 /// </summary>
 public class Scraper
 {
-    public static async Task notMain()
-    {
-        Scraper scraper = new();
-
-        var a = await scraper.ScrapeItem("10212");
-
-        a.ForEach(Console.WriteLine);
-    }
-
-    public async Task<List<string?>> ScrapeItem(string setNumber)
+    public static async Task<List<string?>> ScrapeItem(string setNumber)
     {
         List<string?> prices = new();
 

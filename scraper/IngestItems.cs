@@ -1,7 +1,7 @@
 using Supabase.Postgrest.Attributes;
 using Supabase.Postgrest.Models;
 
-namespace scraper_webtech;
+namespace scraper;
 
 public class IngestItems
 {

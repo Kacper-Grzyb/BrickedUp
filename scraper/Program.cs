@@ -1,5 +1,7 @@
 using Microsoft.Extensions.Configuration;
 using Microsoft.IdentityModel.Tokens;
+using scraper;
+using scraper_webtech;
 
 public class Program
 {
@@ -23,5 +25,28 @@ public class Program
 
         SUPABASE_API_KEY = config["SUPABASE_API_KEY"]!;
         SUPABASE_URL = config["SUPABASE_URL"]!;
+    }
+
+    public static async void Main()
+    {
+        IngestItems ingestItems = new();
+
+        var setNumbers = await ingestItems.GetSetNumbers(); 
+
+        foreach (var set in setNumbers)
+        {
+            if (set is null)
+            {   
+                break;
+            }
+
+            List<string> pricesForSet = await Scraper.ScrapeItem(set);
+            
+            DataWizard dataWizard = new(pricesForSet);
+
+        }
+
+
+
     }
 }

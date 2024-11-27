@@ -45,6 +45,12 @@ public class DataWizard
         return 1;
     }
 
+    public DataWizard(List<string?> priceValues)
+    {
+        RawPriceValues = priceValues;
+        CleanUp();
+    }
+
     /// <summary>
     /// Gets a List<string> and converts it into a List<float>, and sorts it, hopefully
     /// </summary>
@@ -116,36 +122,5 @@ public class DataWizard
         workingList.RemoveRange(0, tenPercent);
 
         return workingList.Average();
-    }
-
-    public static void hehehMain()
-    {
-        List<string?> mockValues = new();
-
-        mockValues.Add(new string("$20.00"));
-        mockValues.Add(new string("$20.00"));
-        mockValues.Add(new string("DKK 4,101.79"));
-        mockValues.Add(new string("DKK 6,152.80"));
-        mockValues.Add(new string("DKK 229.08"));
-        mockValues.Add(new string("DKK 10,068.14"));
-        mockValues.Add(new string(""));
-        mockValues.Add(new string("  "));
-        mockValues.Add(new string("DKK 1,416.63"));
-        mockValues.Add(new string("DKK 10,738.05"));
-        mockValues.Add(new string("DKK 2,237.01"));
-        mockValues.Add(new string("DKK 7,129.99"));
-        mockValues.Add(new string("DKK 14,915.87"));
-        mockValues.Add(new string("DKK 12,155.47"));
-        mockValues.Add(new string("DKK 745.72"));
-        mockValues.Add(new string("DKK 44.44"));
-        mockValues.Add(new string("DKK 7,308.70"));
-        mockValues.Add(new string("DKK 6,407.04"));
-        mockValues.Add(new string("DKK 14,317.40"));
-
-        DataWizard dataWizard = new DataWizard();
-        dataWizard.SetData(mockValues);
-        dataWizard.CleanUp();
-        dataWizard.CleanPriceValues.ForEach(Console.WriteLine);
-        dataWizard.CalculateTrimmedMean();
     }
 }
