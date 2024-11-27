@@ -157,6 +157,17 @@
             margin-top: 1rem;
         }
     }
+
+    .graph {
+        border: 1px solid white;
+        border-radius: 15px;
+        margin: 25px;
+        display: flex;
+        justify-content: center;
+        align-items: flex-end;
+        padding: 20px;
+    }
+
 </style>
 
 <body>
@@ -169,159 +180,108 @@
     </section>
 
     <section id="explore-view">
-
-        <div class="content">
-            <div class="column one">
-                <img src="/img/f1.jpeg" alt="zoom">
-            </div>
-
-            <div class="column two">
-                <div class="text">
-                    <h1 id="set-details" class="heading">
-                        LEGO 4231 | Mercedes - AMG F1 W14 E Performance
-                    </h1>
-                    <hr>
-                    <div class="description">
-                        <div class="left-details">
-                            <p>AGE: 18+</p>
-                            <p>PIECES: 2342</p>
-                            <p>THEME: Techninc</p>
-                            <p>PRICE: <span style="color: orange;">269.90$</span></p>
-                        </div>
-                        <div class="right-details">
-                            <p>
-                                Lorem ipsum dolor sit amet, consectetur adipisicing elit.
-                                Aliquam enim delectus illo ab, soluta, ratione excepturi quia numquam
-                                mollitia reprehenderit, dolores pariatur? Ad veniam nisi impedit vero
-                                alias hic nulla!
-                            </p>
-                        </div>
-
-                    </div>
-                    <div class="socials">
-                        <p>Check on: </p>
-                        <a href="https://www.ebay.com">
-                            <img src="/img/ebay.png" alt="ebay-logo" width="60px" height="40px">
-                        </a>
-                        <a href="https://www.amazon.com">
-                            <img src="/img/amazon.png" alt="amazon-logo" width="60px" height="30px"
-                                style="margin-top: 10px;">
-                        </a>
-                    </div>
+        @foreach ($sets as $set)
+            <div class="content">
+                <div class="column one">
+                    <img src="/img/f1.jpeg" alt="zoom">
                 </div>
-            </div>
-            <div class="column three">
-                <div class="graph">
 
-                </div>
-            </div>
+                <div class="column two">
+                    <div class="text">
+                        <h1 id="set-details" class="heading">
+                            LEGO {{ $set->set_number  }} | {{ $set->set_name }}
+                        </h1>
+                        <hr>
+                        <div class="description">
+                            <div class="left-details">
+                                <p>Available:
+                                    @if($set->availability)
+                                        {{ $set->availability->availability }}
+                                    @else
+                                        N/A
+                                    @endif
+                                </p>
+                                <p>PIECES: {{ $set->piece_count }}</p>
+                                <p>THEME: {{ $set->theme->theme }}</p>
+                                <p>PRICE: <span
+                                        style="color: orange;">{{ $set->retail_price ? '$' . $set->retail_price : 'Not available' }}</span>
+                                </p>
+                            </div>
+                            <div class="right-details">
+                                <p>
+                                    Lorem ipsum dolor sit amet, consectetur adipisicing elit.
+                                    Aliquam enim delectus illo ab, soluta, ratione excepturi quia numquam
+                                    mollitia reprehenderit, dolores pariatur? Ad veniam nisi impedit vero
+                                    alias hic nulla!
+                                </p>
+                            </div>
 
-
-
-        </div>
-
-        <div class="content">
-            <div class="column one">
-                <img src="/img/f1.jpeg" alt="zoom">
-            </div>
-
-            <div class="column two">
-                <div class="text">
-                    <h1 id="set-details" class="heading">
-                        LEGO 4231 | Mercedes - AMG F1 W14 E Performance
-                    </h1>
-                    <hr>
-                    <div class="description">
-                        <div class="left-details">
-                            <p>AGE: 18+</p>
-                            <p>PIECES: 2342</p>
-                            <p>THEME: Techninc</p>
-                            <p>PRICE: <span style="color: orange;">269.90$</span></p>
                         </div>
-                        <div class="right-details">
-                            <p>
-                                Lorem ipsum dolor sit amet, consectetur adipisicing elit.
-                                Aliquam enim delectus illo ab, soluta, ratione excepturi quia numquam
-                                mollitia reprehenderit, dolores pariatur? Ad veniam nisi impedit vero
-                                alias hic nulla!
-                            </p>
+                        <div class="socials">
+                            <p>Check on: </p>
+                            <a href="https://www.ebay.com/sch/i.html?_nkw=LEGO+{{ $set->set_number }}" target="_blank">
+                                <img src="/img/ebay.png" alt="ebay-logo" width="60px" height="40px">
+                            </a>
+                            <a href="https://www.amazon.com/s?k=LEGO+{{ $set->set_number }}" target="_blank">
+                                <img src="/img/amazon.png" alt="amazon-logo" width="60px" height="30px"
+                                    style="margin-top: 10px;">
+                            </a>
                         </div>
-
-                    </div>
-                    <div class="socials">
-                        <p>Check on: </p>
-                        <a href="https://www.ebay.com">
-                            <img src="/img/ebay.png" alt="ebay-logo" width="60px" height="40px">
-                        </a>
-                        <a href="https://www.amazon.com">
-                            <img src="/img/amazon.png" alt="amazon-logo" width="60px" height="30px"
-                                style="margin-top: 10px;">
-                        </a>
                     </div>
                 </div>
-            </div>
-            <div class="column three">
-                <div class="graph">
-
-                </div>
-            </div>
-
-
-
-        </div>
-
-        <div class="content">
-            <div class="column one">
-                <img src="/img/f1.jpeg" alt="zoom">
-            </div>
-
-            <div class="column two">
-                <div class="text">
-                    <h1 id="set-details" class="heading">
-                        LEGO 4231 | Mercedes - AMG F1 W14 E Performance
-                    </h1>
-                    <hr>
-                    <div class="description">
-                        <div class="left-details">
-                            <p>AGE: 18+</p>
-                            <p>PIECES: 2342</p>
-                            <p>THEME: Techninc</p>
-                            <p>PRICE: <span style="color: orange;">269.90$</span></p>
-                        </div>
-                        <div class="right-details">
-                            <p>
-                                Lorem ipsum dolor sit amet, consectetur adipisicing elit.
-                                Aliquam enim delectus illo ab, soluta, ratione excepturi quia numquam
-                                mollitia reprehenderit, dolores pariatur? Ad veniam nisi impedit vero
-                                alias hic nulla!
-                            </p>
-                        </div>
-
-                    </div>
-                    <div class="socials">
-                        <p>Check on: </p>
-                        <a href="https://www.ebay.com">
-                            <img src="/img/ebay.png" alt="ebay-logo" width="60px" height="40px">
-                        </a>
-                        <a href="https://www.amazon.com">
-                            <img src="/img/amazon.png" alt="amazon-logo" width="60px" height="30px"
-                                style="margin-top: 10px;">
-                        </a>
+                <div class="column three">
+                    <div class="graph">
+                        <canvas id="barChart{{ $set->set_number }}"></canvas>
                     </div>
                 </div>
+
+
+
             </div>
-            <div class="column three">
-                <div class="graph">
-
-                </div>
-            </div>
-
-
-
-        </div>
-
-
+        @endforeach
     </section>
+
+    <script>
+        document.addEventListener("DOMContentLoaded", function () {
+            @foreach ($sets as $set)
+                    var ctx = document.getElementById("barChart{{ $set->set_number }}").getContext('2d');
+                    var data = {
+                        labels: ['Availability', 'Piece Count', 'Retail Price'],
+                        datasets: [{
+                            label: 'LEGO Set {{ $set->set_number }}',
+                            data: [
+                                @if($set->availability) {{ $set->availability->id }} @else 0 @endif,
+                                            {{ $set->piece_count }},
+                            @if($set->retail_price) {{ $set->retail_price }} @else 0 @endif
+                                        ],
+                    backgroundColor: [
+                        'rgba(54, 162, 235, 0.2)',
+                        'rgba(75, 192, 192, 0.2)',
+                        'rgba(255, 159, 64, 0.2)'
+                    ],
+                        borderColor: [
+                            'rgba(54, 162, 235, 1)',
+                            'rgba(75, 192, 192, 1)',
+                            'rgba(255, 159, 64, 1)'
+                        ],
+                            borderWidth: 1
+                }]
+                                };
+                var config = {
+                    type: 'bar',
+                    data: data,
+                    options: {
+                        scales: {
+                            y: {
+                                beginAtZero: true
+                            }
+                        }
+                    }
+                };
+                var myChart = new Chart(ctx, config);
+            @endforeach
+        });
+    </script>
 
 </body>
 
