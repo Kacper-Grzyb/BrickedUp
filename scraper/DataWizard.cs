@@ -43,7 +43,7 @@ public class DataWizard
         {
             if (price!.Contains("to"))
             {
-                continue;   
+                continue;
             }
 
 
@@ -80,7 +80,7 @@ public class DataWizard
 
         if (length == 0)
         {
-            return 0;
+            return -1;
         }
         if (length == 2)
         {
