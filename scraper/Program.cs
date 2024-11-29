@@ -36,7 +36,17 @@ public class Program
         foreach (var set in setNumbers)
         {
             Console.WriteLine(set);
-            List<string?> pricesForSet = await Scraper.ScrapeItem(set);
+            List<string?> pricesForSet;
+
+            try
+            {
+                pricesForSet = await Scraper.ScrapeItem(set);
+            }
+            catch (System.Exception e)
+            {
+                Console.WriteLine(e);
+                continue;
+            }
 
             DataWizard dataWizard = new(pricesForSet);
 

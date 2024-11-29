@@ -82,7 +82,14 @@ public class DataWizard
         {
             return 0;
         }
-
+        if (length == 2)
+        {
+            return (CleanPriceValues[0] + CleanPriceValues[1]) / 2;
+        }
+        if (length == 1)
+        {
+            return CleanPriceValues[0];
+        }
         if (length % 2 != 0)
         {
             return CleanPriceValues[length / 2];
