@@ -42,7 +42,7 @@ public class Program
             {
                 pricesForSet = await Scraper.ScrapeItem(set);
             }
-            catch (System.Exception e)
+            catch (Exception e)
             {
                 Console.WriteLine(e);
                 continue;
