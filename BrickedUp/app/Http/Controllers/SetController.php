@@ -11,7 +11,7 @@ class SetController extends Controller
 {
     public function fullGraph()
     {
-        $sets = Set::all();
+        $sets = Set::with('theme')->get();
         return view('full-graph', compact('sets'));
     }
 

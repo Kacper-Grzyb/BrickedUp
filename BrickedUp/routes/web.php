@@ -4,6 +4,7 @@ use App\Http\Controllers\ProfileController;
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\FileUploadController;
 use App\Http\Controllers\LegoSetController;
+use App\Http\Controllers\SetController;
 
 Route::get('/', function () {
     return view('landing_page/landing');

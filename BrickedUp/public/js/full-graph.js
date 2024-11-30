@@ -2,10 +2,14 @@ async function fetchSetData() {
     // Access the data passed from the Laravel controller
     const viewData = window.setsData; // Assuming the data is assigned to a global variable in the Blade view
 
+    viewData.forEach(element => {
+        console.log(element);
+    });
+
     return viewData.map(set => ({
         "Set Number": set.set_number,
         "Set Name": set.set_name,
-        "Theme": set.theme_id,
+        "Theme": set.theme.theme,
         "Subtheme": set.subtheme_id,
         "Market Price": parsePrice(set.retail_price),
         "Release Date": set.release_date
@@ -48,7 +52,7 @@ function generateCheckboxes(data) {
         details.innerHTML = `
             <div><strong>Set Number:</strong> ${set["Set Number"]}</div>
             <div><strong>Name:</strong> ${set["Set Name"]}</div>
-            <div><strong>Theme:</strong> <a href="#">${set["Theme"]}${set["Subtheme"] && set["Subtheme"] !== "-" ? ` - ${set["Subtheme"]}` : ''}</a></div>
+            <div><strong>Theme:</strong> ${set["Theme"]}</div>
         `;
 
         label.appendChild(checkbox);
