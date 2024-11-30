@@ -1,56 +1,38 @@
-// chart-page.js
+async function fetchSetData() {
+    // Access the data passed from the Laravel controller
+    const viewData = window.setsData; // Assuming the data is assigned to a global variable in the Blade view
 
-// Function to load and parse the CSV file using Papa Parse
-function loadCSVFile(url) {
-    return new Promise((resolve, reject) => {
-        Papa.parse(url, {
-            download: true,
-            header: true,
-            skipEmptyLines: true,
-            complete: function(results) {
-                resolve(results.data);
-            },
-            error: function(err) {
-                reject(err);
-            }
-        });
+    viewData.forEach(element => {
+        console.log(element);
     });
+
+    return viewData.map(set => ({
+        "Set Number": set.set_number,
+        "Set Name": set.set_name,
+        "Theme": set.theme.theme,
+        "Subtheme": set.subtheme_id,
+        "Market Price": parsePrice(set.retail_price),
+        "Release Date": set.release_date
+    }));
+}
+
+// Add this helper function at the top
+function parsePrice(price) {
+    return typeof price === 'string' ? parseFloat(price.replace(/[^0-9.-]+/g, '')) : price;
 }
 
 // Function to transform CSV data to chart data format
 function transformData(set) {
-    // Parse the release date to a JavaScript Date object
     const releaseDate = new Date(set["Release Date"]);
-    // If retiredDate is available and not "-", parse it
-    const retiredDateRaw = set["Retired Date"];
-    const retiredDate = retiredDateRaw && retiredDateRaw !== "-" && retiredDateRaw.toLowerCase() !== "still available"
-        ? new Date(retiredDateRaw)
-        : null;
-
-    const dataPoints = [
-        {
-            time: releaseDate.toISOString().split('T')[0], // Format as YYYY-MM-DD
-            value: parsePrice(set["Market Price"]),
-            label: `${set["Set Name"]} (Release)`,
-        },
-    ];
-
-    if (retiredDate) {
-        dataPoints.push({
-            time: retiredDate.toISOString().split('T')[0],
-            value: parsePrice(set["Market Price"]),
-            label: `${set["Set Name"]} (Retired)`,
-        });
-    }
-
+    const dataPoints = [];
+    
+    // Add release date point
+    dataPoints.push({
+        time: releaseDate.toISOString().split('T')[0],
+        value: parsePrice(set["Market Price"]),
+        label: `${set["Set Name"]} (Release)`
+    });
     return dataPoints;
-}
-
-// Function to parse price strings to numbers
-function parsePrice(priceStr) {
-    if (typeof priceStr === 'number') return priceStr;
-    // Replace comma with dot and remove currency symbols
-    return parseFloat(priceStr.replace(',', '.').replace('€', '').replace('€', ''));
 }
 
 // Function to dynamically generate checkboxes
@@ -70,7 +52,7 @@ function generateCheckboxes(data) {
         details.innerHTML = `
             <div><strong>Set Number:</strong> ${set["Set Number"]}</div>
             <div><strong>Name:</strong> ${set["Set Name"]}</div>
-            <div><strong>Theme:</strong> <a href="#">${set["Theme"]}${set["Subtheme"] && set["Subtheme"] !== "-" ? ` - ${set["Subtheme"]}` : ''}</a></div>
+            <div><strong>Theme:</strong> ${set["Theme"]}</div>
         `;
 
         label.appendChild(checkbox);
@@ -81,8 +63,7 @@ function generateCheckboxes(data) {
 
 document.addEventListener('DOMContentLoaded', async () => {
     try {
-        // Load and parse the CSV file
-        const data = await loadCSVFile('data/legoSets.csv'); // Ensure the path is correct
+        const data = await fetchSetData(); // Fetch data from the server
         generateCheckboxes(data); // Generate checkboxes based on dataset
 
         const chartContainer = document.getElementById('mountainChart');
@@ -94,7 +75,7 @@ document.addEventListener('DOMContentLoaded', async () => {
             layout: {
                 background: {
                     type: 'solid',
-                    color: '#000000',
+                    color: '#121212',
                 },
                 textColor: '#FFFFFF',
             },
@@ -120,57 +101,46 @@ document.addEventListener('DOMContentLoaded', async () => {
 
         // Function to convert HEX color to RGB
         function hexToRgb(hex) {
-            // Remove '#' if present
             hex = hex.replace(/^#/, '');
-
-            // Parse r, g, b values
             let bigint = parseInt(hex, 16);
             let r = (bigint >> 16) & 255;
             let g = (bigint >> 8) & 255;
             let b = bigint & 255;
-
             return `${r}, ${g}, ${b}`;
         }
 
-        // Function to get color based on theme
-        function getColor(theme) {
+        // Function to get color based on theme ID
+        function getColor(themeId) {
+            // Map theme IDs to colors
             const themeColors = {
-                "Star Wars": "#26a69a",
-                "IDEAS": "#FFC000",
-                "Super Mario": "#FF5722",
-                "Clone Wars": "#3F51B5",
-                "Power Miners": "#9C27B0",
-                "Ninjago": "#4CAF50",
-                "Bionicle": "#E91E63",
-                "Atlantis": "#00BCD4",
-                "Brickheadz": "#FF9800",
-                "Marvel": "#F44336",
-                "DC": "#2196F3",
-                "Indiana Jones": "#795548",
-                "Harry Potter": "#673AB7",
-                "Technic": "#607D8B",
-                "Icons": "#8BC34A",
-                "Creator Expert": "#CDDC39",
-                "Art": "#FFEB3B",
-                "Jurassic World": "#009688",
-                "Architecture": "#FFC107",
-                "Stranger Things": "#FF5722",
-                "Speed Champions": "#795548",
-                "Monkie Kid": "#3F51B5",
-                "Seasonal": "#E91E63",
-                // Add more themes and their colors as needed
+                119: "#26a69a",  // Example color for theme ID 119
+                125: "#FFC000",  // Example color for theme ID 125
+                128: "#FF5722",  // Example color for theme ID 128
+                104: "#8BC34A",  // Example color for theme ID 104
+                98: "#3F51B5",   // Example color for theme ID 98
+                10: "#9C27B0",   // Example color for theme ID 10
+                70: "#FF9800",   // Example color for theme ID 70
+                65: "#E91E63",   // Example color for theme ID 65
+                71: "#00BCD4",   // Example color for theme ID 71
+                9: "#CDDC39",    // Example color for theme ID 9
+                130: "#607D8B",  // Example color for theme ID 130
+                84: "#795548",   // Example color for theme ID 84
+                99: "#FFEB3B",   // Example color for theme ID 99
+                120: "#F44336",  // Example color for theme ID 120
+                126: "#2196F3",  // Example color for theme ID 126
+                77: "#673AB7",   // Example color for theme ID 77
+                // Add more theme ID mappings as needed
             };
 
-            return themeColors[theme] || "#FFFFFF"; // Default to white if theme not found
+            return themeColors[themeId] || "#FFFFFF"; // Default to white if theme not found
         }
 
         // Function to add a new series to the chart
         const addSeries = (setId, setData) => {
             if (seriesMap[setId]) return; // Prevent adding the same series multiple times
 
-            loadingSpinner.style.display = 'block'; // Show loading spinner
+            loadingSpinner.style.display = 'block';
 
-            // Simulate data fetching delay (since data is local, you can remove this in production)
             setTimeout(() => {
                 const newSeries = chart.addAreaSeries({
                     topColor: `rgba(${hexToRgb(getColor(setData["Theme"]))}, 0.5)`,
@@ -183,10 +153,10 @@ document.addEventListener('DOMContentLoaded', async () => {
                 newSeries.setData(dataPoints);
                 seriesMap[setId] = newSeries;
 
-                loadingSpinner.style.display = 'none'; // Hide loading spinner
-                placeholder.style.display = 'none'; // Hide placeholder
+                loadingSpinner.style.display = 'none';
+                placeholder.style.display = 'none';
                 updateLegend();
-            }, 500); // 0.5-second delay
+            }, 500);
         };
 
         // Function to remove a series from the chart
@@ -196,7 +166,6 @@ document.addEventListener('DOMContentLoaded', async () => {
             chart.removeSeries(seriesMap[setId]);
             delete seriesMap[setId];
 
-            // Show placeholder if no series are present
             if (Object.keys(seriesMap).length === 0) {
                 placeholder.style.display = 'block';
             }
@@ -230,7 +199,7 @@ document.addEventListener('DOMContentLoaded', async () => {
         // Function to update the legend
         const updateLegend = () => {
             const legend = document.getElementById('legend');
-            legend.innerHTML = ''; // Clear existing legend
+            legend.innerHTML = '';
 
             Object.keys(seriesMap).forEach(setId => {
                 const set = data.find(s => s["Set Number"] === setId);
@@ -253,8 +222,7 @@ document.addEventListener('DOMContentLoaded', async () => {
                 if (
                     set["Set Number"].includes(query) ||
                     set["Set Name"].toLowerCase().includes(query.toLowerCase()) ||
-                    set["Theme"].toLowerCase().includes(query.toLowerCase()) ||
-                    (set["Subtheme"] && set["Subtheme"].toLowerCase().includes(query.toLowerCase()))
+                    set["Theme"].toString().includes(query)
                 ) {
                     label.style.display = 'flex';
                 } else {
@@ -263,7 +231,7 @@ document.addEventListener('DOMContentLoaded', async () => {
             });
         }
 
-        // Debounce function to limit the rate of function execution
+        // Debounce function
         function debounce(func, wait) {
             let timeout;
             return function (...args) {
@@ -272,7 +240,7 @@ document.addEventListener('DOMContentLoaded', async () => {
             };
         }
 
-        // Attach the search handler to the input with debouncing
+        // Attach the search handler
         const searchInput = document.getElementById('search-input');
         searchInput.addEventListener('input', debounce((event) => {
             const query = event.target.value.trim();
@@ -287,13 +255,10 @@ document.addEventListener('DOMContentLoaded', async () => {
             });
         };
 
-        // Add event listener for window resize
         window.addEventListener('resize', resizeChart);
-
-        // Trigger initial resize to ensure proper sizing
         resizeChart();
 
-        // Optional: Load initial data if any sets are pre-selected
+        // Load initial data for pre-selected sets
         const checkboxes = form.querySelectorAll('input[name="lego_set"]:checked');
         checkboxes.forEach(checkbox => {
             handleCheckboxChange({ target: checkbox });

@@ -1,4 +1,4 @@
-*, *::before, *::after {
+*{
     box-sizing: border-box;
   }
   
@@ -6,6 +6,7 @@
     height: 100%;
     margin: 0;
     padding: 0;
+    overflow: hidden;
   }
   
   
@@ -14,7 +15,6 @@
     flex-direction: column;
     font-family: Arial, sans-serif;
     text-align: center;
-    background-color: #000;
     color: #fff;
   }
   
@@ -28,34 +28,40 @@
   
   #container {
     display: flex;
-      flex-direction: row;
-      flex-wrap: wrap;
-      text-align: flex-start;
-      margin: 0 auto;
-      height: 100%;
-      width: 100%;
+    flex-direction: row;
+    flex-wrap: nowrap;
+    text-align: flex-start;
+    margin-bottom: 5%;
+    height: 95vh;
+    width: 95vw;
+    overflow: hidden;
   }
   
   #leftBlock {
     flex: 1 1 300px;
     margin: 10px;
     text-align: left;    
-    overflow-y: auto;
-    max-height: 80vh;
+    height: 80%;
+    border: 1px solid white;
+    border-radius: 8px;
+    margin-bottom: 5%;
   }
   
   #chartWrapper {
     flex: 2 1 600px;
     min-width: 300px;
     margin: 10px;
+    height: 80%;
+    width: 90%;
+    margin-bottom: 5%;
   }
   
   #mountainChart {
     position: relative;
     flex: 1;
     width: 100%;
-    min-height: 400px;
-    background-color: black;
+    min-height: 200px;
+    height: 70%;
   }
   
   .placeholder-message {
@@ -93,10 +99,7 @@
     margin-right: 10px;
     margin-top: 10px;
     border-radius: 8px;
-    background-color: #111;
-  }
-  .my-mountainChart{
-    background-color: black;
+    width: 100%;
   }
   
   .search-container{
@@ -111,18 +114,24 @@
     border: 1px solid #ccc;
     border-radius: 4px;
     outline: none;
-    width: 100%;
-    background-color: #222;
+    width: 90%;
     color: white;
+    background-color: rgb(18, 18, 18);
+    margin-left: 5%;
+    margin-right: 5%;
   }
   
   
   .my-form {
-    background-color: #000;
+    flex: 1;
     color: white;
+    overflow-y: auto;
     padding: 20px;
     border: 1px solid white;
     border-radius: 8px;
+    width: 90%;
+    margin: 0 auto;
+    height: 65%;
   }
   
   .option-container {
@@ -131,8 +140,11 @@
     border: 1px solid white;
     padding: 10px;
     margin-bottom: 10px;
-    border-radius: 4px;
+    border-radius: 8px;
     transition: background-color 0.3s;
+    width: 90%;
+    margin-left: 5%;
+    margin-right: 5%;
   }
   
   .option-container:hover {
