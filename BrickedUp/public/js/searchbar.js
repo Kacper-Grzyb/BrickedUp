@@ -20,7 +20,7 @@ searchInput.addEventListener('input', function () {
                         data.forEach(set => {
                             const item = document.createElement('div');
                             item.classList.add('search-result');
-                            item.textContent = set.set_name;
+                            item.textContent = set.set_number + ' - ' + set.set_name;
                             item.addEventListener('click', () => {
                                 searchResults.innerHTML = '';
                                 this.value = '';
