@@ -9,7 +9,7 @@
     <script src="https://unpkg.com/lightweight-charts/dist/lightweight-charts.standalone.production.js"></script>
   </head>
   <body>
-    @include('components.navbar', ['currentPage' => 'full-graph'])
+    <x-navbar :currentPage='"full-graph"'/>
     <div id="container">
       <div id="leftBlock">
         <h2>Select A Set To Display</h2>
