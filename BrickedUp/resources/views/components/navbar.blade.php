@@ -2,20 +2,20 @@
         <ul class="navbar">
             <div>
                 <li>
-                    <a href="/home">
-                        @if($currentPage === 'home')
-                            <img src="{{asset('images/home_icon_highlighted.svg')}}" alt="home icon">
+                    <a href="/dashboard">
+                        @if($currentPage === 'dashboard')
+                            <img src="{{asset('images/chart_icon_highlighted.svg')}}" alt="chart icon">
                         @else
-                            <img src="{{asset('images/home_icon.svg')}}" alt="home icon">
+                            <img src="{{asset('images/chart_icon.svg')}}" alt="chart icon">
                         @endif
                     </a>
                 </li>
                 <li>
-                    <a href="/full-graph">
-                        @if($currentPage === 'full-graph')
-                            <img src="{{asset('images/chart_icon_highlighted.svg')}}" alt="chart icon">
+                    <a href="/explore-view">
+                        @if($currentPage === 'explore-view')
+                            <img src="{{asset('images/explore_icon_highlighted.svg')}}" alt="explore icon">
                         @else
-                            <img src="{{asset('images/chart_icon.svg')}}" alt="chart icon">
+                            <img src="{{asset('images/explore_icon.svg')}}" alt="explore icon">
                         @endif
                     </a>
                 </li>
