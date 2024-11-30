@@ -2,7 +2,7 @@ let sidescroller = document.getElementById('sidescroller');
 let sidescrollerElements = document.querySelectorAll('.sidescroller-box');
 let elementOffsetsX = [];
 let startingPositions = [];
-let scrollSpeed = 1.5;
+let scrollSpeed = 1;
 
 // calculate the screenBorder
 let screenBorder = document.querySelector('.set-prices-sidescroller').scrollWidth - sidescrollerElements[0].offsetWidth;
