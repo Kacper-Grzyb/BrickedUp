@@ -25,6 +25,8 @@ Route::middleware('auth')->group(function () {
     Route::get('/dashboard', function () {
         return view('home');
     })->middleware(['verified'])->name('home');
+
+    Route::get('/edit-dashboard', [EditDashboardLayoutController::class, 'index'])->name('dashboard.edit');
     
     Route::get('/profile', [ProfileController::class, 'view'])->name('profile');
 
