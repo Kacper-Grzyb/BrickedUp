@@ -7,6 +7,7 @@ use App\Http\Controllers\SettingsController;
 use App\Http\Controllers\LegoSetController;
 use App\Http\Controllers\SetsDataController;
 use App\Http\Controllers\SetController;
+use App\Http\Controllers\EditDashboardLayoutController;
 
 Route::get('/', function () {
     return view('landing_page/landing');
