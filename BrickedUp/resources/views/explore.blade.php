@@ -11,7 +11,7 @@
         href="https://fonts.googleapis.com/css2?family=Inter:ital,opsz,wght@0,14..32,100..900;1,14..32,100..900&display=swap"
         rel="stylesheet">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Document</title>
+    <title>Explore Sets</title>
 </head>
 
 <style>
@@ -172,7 +172,7 @@
 
 <body>
     <section id="navbar">
-        @include('components.navbar', ['currentPage' => 'home'])
+        @include('components.navbar', ['currentPage' => 'explore-view'])
     </section>
 
     <section id="live-prices">
