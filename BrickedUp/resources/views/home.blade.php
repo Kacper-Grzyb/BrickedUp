@@ -8,7 +8,7 @@
 </head>
 
 <body>
-    <x-navbar :currentPage='"home"'/>
+    <x-navbar :currentPage='"dashboard"'/>
 
     <div class="home-top-ranked-container" style="align-items: start">
         
