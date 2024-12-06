@@ -23,7 +23,7 @@ Route::get('/search-legosets', [LegoSetController::class, 'search'])->name('lego
 require __DIR__ . '/auth.php'; 
 
 Route::middleware('auth')->group(function () {
-    Route::get('/dashboard', function () {
+    Route::get('/dashboard', [HomeController::class, 'home'],  function () {
         return view('home');
     })->middleware(['verified'])->name('home');
     
