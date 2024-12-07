@@ -8,10 +8,10 @@ class ModularElement {
     constructor(elementReference) {
         this.ref = elementReference;
         // coordinates on the grid
-        this.columnStart = -1;
-        this.columnEnd = -1;
-        this.rowStart = -1;
-        this.rowEnd = -1;
+        this.columnStart = 0;
+        this.columnEnd = 0;
+        this.rowStart = 0;
+        this.rowEnd = 0;
         // resize elements
         this.resizeUp = undefined;
         this.resizeDown = undefined;
@@ -20,11 +20,17 @@ class ModularElement {
     }
 }
 
-let dragElement = undefined;
-let dragElementColumn = -1;
-let dragElementRow = -1;
-let lastElementColumn = -1;
-let lastElementRow = -1;
+const modular = new ModularElement(toolboxElement);
+modular.columnStart = 2;
+modular.columnEnd = 3;
+modular.rowStart = 2;
+modular.rowEnd = 3;
+modular.resizeUp = toolboxElement.querySelector(".resize-up");
+modular.resizeDown = toolboxElement.querySelector(".resize-down");
+modular.resizeRight = toolboxElement.querySelector(".resize-right");
+modular.resizeLeft = toolboxElement.querySelector(".resize-left");
+
+let beingDragged = new ModularElement(undefined);
 
 const highlightElement = document.createElement("div");
 highlightElement.className = "highlighted-cell";
@@ -36,8 +42,12 @@ toolbox.addEventListener("dragleave", unhighlightToolbox);
 toolbox.addEventListener("dragover", dragOverToolbox)
 toolbox.addEventListener("drop", appendToToolbox)
 
-toolboxElement.addEventListener("dragstart", dragStart);
-toolboxElement.addEventListener("dragend", dragEnd);
+modular.ref.addEventListener("dragstart", (e) => dragStart(e, modular));
+modular.ref.addEventListener("dragend", dragEnd);
+modular.resizeUp.addEventListener("click", (e) => resizeUp(e, modular));
+modular.resizeDown.addEventListener("click", (e) => resizeDown(e, modular));
+modular.resizeRight.addEventListener("click", (e) => resizeRight(e, modular));
+modular.resizeLeft.addEventListener("click", (e) => resizeLeft(e, modular));
 
 grid.addEventListener("dragenter", gridEnter);
 grid.addEventListener("dragleave", gridLeave);
@@ -45,9 +55,51 @@ grid.addEventListener("dragover", getElementPosition);
 grid.addEventListener("drop", gridDrop);
 //#endregion
 
+//#region Modular Element Callback Functions
+function dragStart(e, modularRef) {
+    if(e.target != null) {
+        beingDragged = modularRef;
+        console.log(beingDragged.rowEnd)
+    }
+}
+
+function dragEnd() {
+    beingDragged = undefined;
+}
+
+function resizeUp(e, modularRef) {
+    if(e.target != null && modularRef.rowStart > 1) {
+        modularRef.rowStart -= 1;
+        modularRef.ref.style.gridRow = `${modularRef.rowStart} / ${modularRef.rowEnd}`;
+    }
+}
+
+function resizeDown(e, modularRef) {
+    if(e.target != null && modularRef.rowEnd < 6) {
+        modularRef.rowEnd += 1;
+        modularRef.ref.style.gridRow = `${modularRef.rowStart} / ${modularRef.rowEnd}`;
+    }
+}
+
+function resizeLeft(e, modularRef) {
+    if(e.target != null && modularRef.columnEnd < 11) {
+        modularRef.columnEnd += 1;
+        modularRef.ref.style.gridColumn = `${modularRef.columnStart} / ${modularRef.columnEnd}`;
+    }
+}
+
+function resizeRight(e, modularRef) {
+    if(e.target != null && modularRef.columnStart > 1) {
+        modularRef.columnStart -= 1;
+        modularRef.ref.style.gridColumn = `${modularRef.columnStart} / ${modularRef.columnEnd}`;
+    }
+}
+
+//#endregion
+
 //#region Toolbox Callback Functions
 function highlightToolbox(e) {
-    if(e != null && dragElement != undefined && !e.target.contains(dragElement)) {
+    if(e != null && beingDragged != undefined && !e.target.contains(beingDragged.ref)) {
         e.target.classList.add("highlight-toolbox");
     }
 }
@@ -59,31 +111,18 @@ function unhighlightToolbox(e) {
 }
 
 function dragOverToolbox(e) {
-    if(e.target != null && dragElement != undefined)  {
+    if(e.target != null && beingDragged.ref != undefined)  {
         e.preventDefault();
     }
 }
 
 function appendToToolbox(e) {
-    if(dragElement != undefined && !e.target.contains(dragElement)) {
-        e.target.append(dragElement);
-        dragElement.classList.remove("grid-item");
-        dragElement.classList.add("toolbox-item");
+    if(beingDragged != undefined && !e.target.contains(beingDragged.ref)) {
+        e.target.append(beingDragged.ref);
+        beingDragged.ref.classList.remove("grid-item");
+        beingDragged.ref.classList.add("toolbox-item");
         unhighlightToolbox(e);
     }
-}
-
-//#endregion
-
-//#region Toolbox Element Callback Functions
-function dragStart(e) {
-    if(e.target != null) {
-        dragElement = e.target;
-    }
-}
-
-function dragEnd() {
-    dragElement = undefined;
 }
 
 //#endregion
@@ -95,15 +134,22 @@ function getElementPosition(e) {
         const rect = grid.getBoundingClientRect();
         const x = e.clientX - rect.left;
         const y = e.clientY - rect.top;
-        dragElementColumn = Math.floor(x / cellWidth);
-        dragElementRow = Math.floor(y / cellHeight);
-        console.log(`The element is at position: X=${x}, Y=${y} within the grid element`);
-        console.log(`The element is over the cell at coordinates (${dragElementRow}, ${dragElementColumn})`);
+
+        let newRowStart = Math.floor(y / cellHeight) + 1;
+        let newRowEnd = newRowStart + Math.max(1, beingDragged.rowEnd - beingDragged.rowStart)
+        let newColumnStart = Math.floor(x / cellWidth) + 1;
+        let newColumnEnd = newColumnStart + Math.max(1, beingDragged.columnEnd - beingDragged.columnStart); 
+
+        beingDragged.rowStart = newRowStart;
+        beingDragged.rowEnd = newRowEnd;
+        beingDragged.columnStart = newColumnStart;
+        beingDragged.columnEnd = newColumnEnd;
+        console.log(`The mouse is over the cell at coordinates (${beingDragged.rowStart}, ${beingDragged.columnStart})`);
 
         // update the highlight element position or create it if it does not exist
         if(highlightCellReference != undefined) {
-            highlightCellReference.style.gridColumn = `${dragElementColumn+1} / ${dragElementColumn+1}`;
-            highlightCellReference.style.gridRow = `${dragElementRow+1} / ${dragElementRow+1}`;
+            highlightCellReference.style.gridRow = `${beingDragged.rowStart} / ${beingDragged.rowEnd}`;
+            highlightCellReference.style.gridColumn = `${beingDragged.columnStart} / ${beingDragged.columnEnd}`;
         }
         else {
             gridEnter();
@@ -111,10 +157,9 @@ function getElementPosition(e) {
     }
 }
 
-
 function gridEnter() {
     // add the highlight element to the grid
-    if(dragElement != undefined) {
+    if(beingDragged != undefined && !grid.contains(highlightCellReference)) {
         grid.appendChild(highlightElement);
         highlightCellReference = document.querySelector(".highlighted-cell")
     }
@@ -122,33 +167,26 @@ function gridEnter() {
 
 function gridLeave() {
     // remove the highlighted element from the grid
-    if(highlightCellReference != undefined) {
+    if(highlightCellReference != undefined && grid.contains(highlightCellReference)) {
         grid.removeChild(highlightCellReference);
         highlightCellReference = undefined;
     }
 }
 
-function gridDrop(e) {
-    if(dragElement != undefined && dragElementColumn >= 0 && dragElementRow >= 0) {
-        e.target.append(dragElement);
-
-        dragElement.classList.remove("toolbox-item");
-        dragElement.classList.add("grid-item");
-
-        dragElement.style.gridColumn = `${dragElementColumn+1} / ${dragElementColumn+1}`;
-        dragElement.style.gridRow = `${dragElementRow+1} / ${dragElementRow+1}`;
-
-        // for removing the highlight element
-        gridLeave()
-    }
+function gridDrop() {
+    if(beingDragged != undefined) {
+        if(beingDragged.rowStart >= 0 && beingDragged.columnStart >= 0 && beingDragged.rowEnd <= 6 && beingDragged.columnEnd <= 11) {
+            grid.append(beingDragged.ref);
+    
+            beingDragged.ref.classList.remove("toolbox-item");
+            beingDragged.ref.classList.add("grid-item");
+    
+            beingDragged.ref.style.gridColumn = `${beingDragged.columnStart} / ${beingDragged.columnEnd}`;
+            beingDragged.ref.style.gridRow = `${beingDragged.rowStart} / ${beingDragged.rowEnd}`;
+        }
+    } 
+    // for removing the highlight element
+    gridLeave()
 }
 
 //#endregion
-
-
-const resizeTest = document.querySelector(".resize-up");
-resizeTest.addEventListener("click", () => {
-    console.log("o", dragElementColumn);
-    let temp = document.getElementById("draggable");
-    temp.style.gridRow = `1 / 3`; 
-})
