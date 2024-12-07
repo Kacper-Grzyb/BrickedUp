@@ -63,4 +63,57 @@ public class Scraper
 
         return prices;
     }
+
+    /// <summary>
+    /// Scrapes lego set images from duckduckgo, MIGHT FAIL PUT IT IN A TRY CATCH
+    /// </summary>
+    /// <param name="setInfo">setInfo should follow follwoing example "75389+The+Dark+Falcon"</param>
+    /// <returns></returns>
+    public static async Task<byte[]> ScrapeImages(string setInfo)
+    {
+        using var playwright = await Playwright.CreateAsync();
+
+        await using var browser = await playwright.Chromium.LaunchAsync(new()
+        {
+            Headless = true,
+        });
+
+
+        string pageLink = $"https://duckduckgo.com/?q=lego+{setInfo}&t=ffab&iar=images&iax=images&ia=images";
+
+        var page = await browser.NewPageAsync();
+        await page.GotoAsync(pageLink);
+
+        string xPath = "xpath=/html/body/div[2]/div[4]/div[2]/div[1]/div[2]/div[2]/div[1]/div[1]/span/img";
+
+        var imageElement = await page.Locator(xPath).ElementHandleAsync();
+        if (imageElement == null)
+        {
+            Console.WriteLine("Image not found!");
+            return [];
+        }
+
+        string? imageUrl = await imageElement.GetAttributeAsync("src");
+        if (string.IsNullOrEmpty(imageUrl))
+        {
+            Console.WriteLine("Image URL not found!");
+            return [];
+        }
+
+        imageUrl = string.Concat("https:", imageUrl);
+
+        Console.WriteLine($"Image URL: {imageUrl}");
+
+        // Download the image
+        using var httpClient = new HttpClient();
+        var imageBytes = await httpClient.GetByteArrayAsync(imageUrl);
+
+        // // Save the image to a file
+        string fileName = "downloaded_image.jpg";
+        await File.WriteAllBytesAsync(fileName, imageBytes);
+
+        // Console.WriteLine($"Image saved as {fileName}");
+
+        return imageBytes;
+    }
 }

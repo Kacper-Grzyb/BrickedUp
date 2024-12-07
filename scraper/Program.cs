@@ -27,7 +27,7 @@ public class Program
         SUPABASE_URL = config["SUPABASE_URL"]!;
     }
 
-    public static async Task Main()
+    public static async Task notMain()
     {
         DataProvider dataProvider = new();
 
@@ -54,5 +54,37 @@ public class Program
 
             await Task.Delay(1000);
         }
+    }
+
+    public static async Task Main()
+    {
+        DataProvider dataProvider = new();
+
+        var a = await dataProvider.GetAllSetNumbersAndNames();
+
+        byte[] image;
+
+        foreach (var set in a)
+        {
+
+            string setInfo = string.Concat(set.Item1, "+", set.Item2);
+
+            try
+            {
+                image = await Scraper.ScrapeImages(setInfo);
+                await Task.Delay(500);
+            }
+            catch (Exception e)
+            {
+                Console.WriteLine(e);
+                continue;
+            }
+
+
+
+            await dataProvider.Send(set.Item1, image);
+        }
+
+        Console.ReadLine();
     }
 }
