@@ -11,17 +11,21 @@
 
     <div class="edit-layout-content">
         <div class="terminal-box toolbox">
-            Available Charts
-            <div id="draggable" draggable="true"></div>
+            <h3 style="font-size:1rem">Available Charts</h3>
+            <div class="toolbox-container" id="toolbox">
+                {{-- <div id="draggable" draggable="true" class="toolbox-item"></div> --}}
+            </div>
         </div>
         <div class="terminal-box edit-grid" id="dashboard-grid" draggable="false">
             {{-- Grid is being displayed here --}}
-            @for($r = 0; $r < 5; $r++)
-                @for($c = 0; $c < 10; $c++)
-                    <div class="grid-item" id="{{$r}}-{{$c}}" draggable="false"></div>
-                @endfor
-            @endfor
-            
+            <div id="draggable" draggable="true" class="grid-item" style="grid-area: 2 / 2 / 2 / 2;">
+                <div class="resize-up"></div>
+                <div class="horizontal-resize">
+                    <div class="resize-right"></div>
+                    <div class="resize-left"></div>
+                </div>
+                <div class="resize-down"></div>
+            </div>
         </div>
     </div>
 

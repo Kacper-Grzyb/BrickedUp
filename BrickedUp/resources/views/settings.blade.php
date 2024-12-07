@@ -74,7 +74,7 @@
             <a href="/edit-profile">Change Password</a>
         </div>
         <div class="terminal-box">
-            <a href="#">Edit Dashboard Layout</a>
+            <a href="/edit-dashboard">Edit Dashboard Layout</a>
         </div>
         <div class="terminal-box">
             <div class="settings-row">

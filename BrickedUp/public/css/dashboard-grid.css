@@ -9,6 +9,39 @@
     flex: 1;
     display: flex;
     flex-direction: column;
+    padding-top: 1.5rem;
+}
+
+.toolbox h3 {
+    text-align: center;
+}
+
+.toolbox-container {
+    margin-top: 1rem;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-around;
+    align-items: center;
+    background-color: #333;
+    padding: 1rem;
+    flex: 1 1 auto;
+    border-radius: 5px;
+}
+
+.highlight-toolbox {
+    background-color: #444;
+}
+
+.toolbox-item {
+    width: 100px;
+    height: 100px;
+    background-color: #f1f1f1;
+    border: 1px solid #d3d3d3;
+    border-radius: 5px;
+    /* 
+    cursor:w-resize;
+    cursor:n-resize;
+    */
 }
 
 .edit-grid {
@@ -23,26 +56,61 @@
     padding: 0 !important;
 }
 
+.highlighted-cell {
+    background-color: rgba(255, 255, 255, 0.3); 
+    grid-column: -1; /* This is with the intention to be set solely by the script */ 
+    grid-row: -1; /* This is with the intention to be set solely by the script */
+    z-index: 1; 
+    pointer-events: none; 
+}
+
 .grid-item {
-    background-color:transparent;
-    border: 1px solid white;
-    outline: 1px soli red
+    width: 100%;
+    height: 100%;
+    background-color: #f1f1f1;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-around;
+    align-items: center;
 }
 
 .highlight {
     background-color: rgba(255, 255, 255, 0.4);
 }
 
-#draggable {
-    width: 100px;
-    height: 100px;
-    background-color: #f1f1f1;
-    border: 1px solid #d3d3d3;
-    border-radius: 5px;
-    /* 
-    position: absolute;
-    z-index: 9;
-    text-align: center;
-    cursor: pointer; 
-    */
-  }
+.resize-up {
+    width: 75%;
+    height: 20%;
+    background-color: aqua;
+    cursor: n-resize;
+}
+
+.resize-down {
+    width: 75%;
+    height: 20%;
+    background-color: aqua;
+    cursor: n-resize;
+}
+
+.horizontal-resize {
+    display: flex;
+    flex-direction: row;
+    justify-content: space-between;
+    width: 100%;
+    height: 75%;
+}
+
+.resize-right {
+    width: 20%;
+    height: 100%;
+    background-color: blueviolet;
+    cursor: w-resize;
+}
+
+.resize-left {
+    width: 20%;
+    height: 100%;
+    background-color: blueviolet;
+    cursor: w-resize;
+}
+
