@@ -22,11 +22,37 @@ class ModularElement {
         this.columnEnd = 0;
         this.rowStart = 0;
         this.rowEnd = 0;
+        // last coordinates for grid cleanup
+        this.lastColumnStart = -1;
+        this.lastColumnEnd = -1;
+        this.lastRowStart = -1;
+        this.lastRowEnd = -1;
         // resize elements
         this.resizeUp = undefined;
         this.resizeDown = undefined;
         this.resizeRight = undefined;
         this.resizeLeft = undefined;
+    }
+
+    updatePosition(newRowStart, newRowEnd, newColumnStart, newColumnEnd) {
+        this.rowStart = newRowStart;
+        this.rowEnd = newRowEnd;
+        this.columnStart = newColumnStart;
+        this.columnEnd = newColumnEnd;
+    }
+
+    updateLastPosition(lastRowStart, lastRowEnd, lastColumnStart, lastColumnEnd) {
+        this.lastRowStart = lastRowStart;
+        this.lastRowEnd = lastRowEnd;
+        this.lastColumnStart = lastColumnStart;
+        this.lastColumnEnd = lastColumnEnd;
+    }
+
+    clearLastPosition() {
+        this.lastRowStart = -1;
+        this.lastRowEnd = -1;
+        this.lastColumnStart = -1;
+        this.lastColumnEnd = -1;
     }
 }
 
@@ -79,30 +105,34 @@ grid.addEventListener("drop", gridDrop);
 function dragStart(e, modular) {
     if(e.target != null) {
         beingDragged = modular;
-        if(checkGrid(beingDragged.id, beingDragged.rowStart, beingDragged.rowEnd, beingDragged.columnStart, beingDragged.columnEnd)) {
-            setGrid("", beingDragged.rowStart, beingDragged.rowEnd, beingDragged.columnStart, beingDragged.columnEnd);
-        }
+        beingDragged.updateLastPosition(beingDragged.rowStart, beingDragged.rowEnd, beingDragged.columnStart, beingDragged.columnEnd);
+    }
+}
+
+function dragEnd() {
+    if(beingDragged != undefined) {
+        clearGrid(beingDragged.lastRowStart, beingDragged.lastRowEnd, beingDragged.lastColumnStart, beingDragged.lastColumnEnd);
+        beingDragged.clearLastPosition(); // so that the element does not clear its current position in the future
+        setGrid(beingDragged.id, beingDragged.rowStart, beingDragged.rowEnd, beingDragged.columnStart, beingDragged.columnEnd);
+        beingDragged = undefined;
     }
 }
 
 function startResize(e, modular, direction) {
-    e.stopPropagation();
-    resizeDirection = direction;
-    beingResized = modular;
-    if(checkGrid(beingResized.id, beingResized.rowStart, beingResized.rowEnd, beingResized.columnStart, beingResized.columnEnd)) { 
-        setGrid(beingResized.id, beingResized.rowStart, beingResized.rowEnd, beingResized.columnStart, beingResized.columnEnd);
+    if(e.target != null) {
+        e.stopPropagation();
+        resizeDirection = direction;
+        beingResized = modular;
+        beingResized.updateLastPosition(beingResized.rowStart, beingResized.rowEnd, beingResized.columnStart, beingResized.columnEnd);
     }
-
 }
 
 function stopResize() {
-    resizeDirection = ResizeDirections.NONE;
-    beingResized = undefined;
-    
-}
-
-function dragEnd() {
-    beingDragged = undefined;
+    if(beingResized != null) {
+        beingResized.clearLastPosition();
+        resizeDirection = ResizeDirections.NONE;
+        beingResized = undefined;
+    }
 }
 
 function resizeUp(e, modular) {
@@ -178,11 +208,7 @@ function getElementPosition(e) {
         let newColumnStart = Math.floor(x / cellWidth) + 1;
         let newColumnEnd = newColumnStart + Math.max(1, beingDragged.columnEnd - beingDragged.columnStart); 
 
-        beingDragged.rowStart = newRowStart;
-        beingDragged.rowEnd = newRowEnd;
-        beingDragged.columnStart = newColumnStart;
-        beingDragged.columnEnd = newColumnEnd;
-        console.log(`The mouse is over the cell at coordinates (${beingDragged.rowStart}, ${beingDragged.columnStart})`);
+        beingDragged.updatePosition(newRowStart, newRowEnd, newColumnStart, newColumnEnd);
 
         // update the highlight element position or create it if it does not exist
         if(highlightCellReference != undefined) {
@@ -236,14 +262,13 @@ function getElementPosition(e) {
         }
         
         if(checkGrid(beingResized.id, newRowStart, newRowEnd, newColumnStart, newColumnEnd)) {
-            beingResized.rowStart = newRowStart;
-            beingResized.rowEnd = newRowEnd;
-            beingResized.columnStart = newColumnStart;
-            beingResized.columnEnd = newColumnEnd;
-
+            // Updating the grid data structure
+            beingResized.updatePosition(newRowStart, newRowEnd, newColumnStart, newColumnEnd);
+            clearGrid(beingResized.lastRowStart, beingResized.lastRowEnd, beingResized.lastColumnStart, beingResized.lastColumnEnd);
+            setGrid(beingResized.id, beingResized.rowStart, beingResized.rowEnd, beingResized.columnStart, beingResized.columnEnd);
+            // Setting the actual position on the page
             beingResized.ref.style.gridRow = `${beingResized.rowStart} / ${beingResized.rowEnd}`;
             beingResized.ref.style.gridColumn = `${beingResized.columnStart} / ${beingResized.columnEnd}`;
-            setGrid(beingResized.id, beingResized.rowStart, beingResized.rowEnd, beingResized.columnStart, beingResized.columnEnd)
         }
     }
 }
@@ -268,23 +293,32 @@ function gridDrop() {
     if(beingDragged != undefined && resizeDirection == ResizeDirections.NONE) {
         if(checkGrid(beingDragged.id, beingDragged.rowStart, beingDragged.rowEnd, beingDragged.columnStart, beingDragged.columnEnd)) {
             grid.append(beingDragged.ref);
-    
             beingDragged.ref.classList.remove("toolbox-item");
             beingDragged.ref.classList.add("grid-item");
-    
             beingDragged.ref.style.gridColumn = `${beingDragged.columnStart} / ${beingDragged.columnEnd}`;
             beingDragged.ref.style.gridRow = `${beingDragged.rowStart} / ${beingDragged.rowEnd}`;
-
-            setGrid(beingDragged.id, beingDragged.rowStart, beingDragged.rowEnd, beingDragged.columnStart, beingDragged.columnEnd)
+        }
+        else {
+            // reset the position of the element
+            beingDragged.updatePosition(beingDragged.lastRowStart, beingDragged.lastRowEnd, beingDragged.lastColumnStart, beingDragged.lastColumnEnd);
         }
     } 
     // for removing the highlight element
     gridLeave()
 }
 
+//#endregion
+
+//#region Utility Functions
+
+function printGrid() {
+    for(let i=0; i<5; i++) {
+        console.log(`${i+1}: ${dashboardLayout[i][0] == "" ? 0 : dashboardLayout[i][0]}, ${dashboardLayout[i][1] == "" ? 0 : dashboardLayout[i][1]}, ${dashboardLayout[i][2] == "" ? 0 : dashboardLayout[i][2]}, ${dashboardLayout[i][3] == "" ? 0 : dashboardLayout[i][3]}, ${dashboardLayout[i][4] == "" ? 0 : dashboardLayout[i][4]}`);
+    }
+}
+
 function checkGrid(id, rowStart, rowEnd, colStart, colEnd) {
     if(rowStart <= 0 || colStart <= 0 || rowEnd > 6 || colEnd > 11) return false;
-    console.log(dashboardLayout);
     for(let i = rowStart-1; i < rowEnd-1; i++) {
         for(let j = colStart-1; j < colEnd-1; j++) {
             if(dashboardLayout[i][j] !== "" && dashboardLayout[i][j] !== id) {
@@ -301,6 +335,10 @@ function setGrid(id, rowStart, rowEnd, colStart, colEnd) {
             dashboardLayout[i][j] = id;
         }
     }
+}
+
+function clearGrid(rowStart, rowEnd, colStart, colEnd) {
+    setGrid("", rowStart, rowEnd, colStart, colEnd);
 }
 
 //#endregion
