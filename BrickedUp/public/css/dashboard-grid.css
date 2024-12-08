@@ -32,9 +32,13 @@
     background-color: #444;
 }
 
+.modular-element {
+    text-align: center;
+}
+
 .toolbox-item {
-    width: 100px;
-    height: 100px;
+    width: 4rem;
+    height: 4rem;
     background-color: #f1f1f1;
     border: 1px solid #d3d3d3;
     border-radius: 5px;
@@ -81,14 +85,24 @@
 .resize-up {
     width: 75%;
     height: 20%;
-    background-color: aqua;
+    cursor: n-resize;
+    z-index: 5;
+    position:relative
+}
+
+.resize-up:active {
+    opacity: 0;
     cursor: n-resize;
 }
 
 .resize-down {
     width: 75%;
     height: 20%;
-    background-color: aqua;
+    cursor: n-resize;
+}
+
+.resize-down:active {
+    opacity: 0;
     cursor: n-resize;
 }
 
@@ -103,14 +117,21 @@
 .resize-right {
     width: 20%;
     height: 100%;
-    background-color: blueviolet;
+    cursor: w-resize;
+}
+
+.resize-right:active {
+    opacity: 0;
     cursor: w-resize;
 }
 
 .resize-left {
     width: 20%;
     height: 100%;
-    background-color: blueviolet;
     cursor: w-resize;
 }
 
+.resize-left:active {
+    opacity: 0;
+    cursor: w-resize;
+}

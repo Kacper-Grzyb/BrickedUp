@@ -13,19 +13,47 @@
         <div class="terminal-box toolbox">
             <h3 style="font-size:1rem">Available Charts</h3>
             <div class="toolbox-container" id="toolbox">
-                {{-- <div id="draggable" draggable="true" class="toolbox-item"></div> --}}
+                <div draggable="true" class="toolbox-item modular-element" id="1">
+                    <div class="resize-up" draggable="true"></div>
+                    <div class="horizontal-resize">
+                        <div class="resize-left" draggable="true"></div>
+                        <div class="resize-right" draggable="true"></div>
+                    </div>
+                    <div class="resize-down" draggable="true"></div>
+                </div>
+
+                <div draggable="true" class="toolbox-item modular-element" id="2" style="background-color: red">
+                    <div class="resize-up" draggable="true"></div>
+                    <div class="horizontal-resize">
+                        <div class="resize-left" draggable="true"></div>
+                        <div class="resize-right" draggable="true"></div>
+                    </div>
+                    <div class="resize-down" draggable="true"></div>
+                </div>
+
+                
+                <div draggable="true" class="toolbox-item modular-element" id="3" style="background-color: green">
+                    <div class="resize-up" draggable="true"></div>
+                    <div class="horizontal-resize">
+                        <div class="resize-left" draggable="true"></div>
+                        <div class="resize-right" draggable="true"></div>
+                    </div>
+                    <div class="resize-down" draggable="true"></div>
+                </div>
+
+                
+                <div draggable="true" class="toolbox-item modular-element" id="4">
+                    <div class="resize-up" draggable="true"></div>
+                    <div class="horizontal-resize">
+                        <div class="resize-left" draggable="true"></div>
+                        <div class="resize-right" draggable="true"></div>
+                    </div>
+                    <div class="resize-down" draggable="true"></div>
+                </div>
             </div>
         </div>
         <div class="terminal-box edit-grid" id="dashboard-grid" draggable="false">
             {{-- Grid is being displayed here --}}
-            <div id="draggable" draggable="true" class="grid-item" style="grid-area: 2 / 2 / 2 / 2;">
-                <div class="resize-up"></div>
-                <div class="horizontal-resize">
-                    <div class="resize-right"></div>
-                    <div class="resize-left"></div>
-                </div>
-                <div class="resize-down"></div>
-            </div>
         </div>
     </div>
 
