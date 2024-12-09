@@ -13,27 +13,27 @@ class DashboardElementSeeder extends Seeder
      */
     public function run(): void
     {
-        DashboardElement::firstOrCreate(
+        DashboardElement::insert(
         [
             'name' => 'set_prices'
         ]);
 
-        DashboardElement::firstOrCreate(
+        DashboardElement::insert(
         [
             'name' => 'theme_prices'
         ]);
 
-        DashboardElement::firstOrCreate(
+        DashboardElement::insert(
         [
             'name' => 'subtheme_prices'
         ]);
 
-        DashboardElement::firstOrCreate(
+        DashboardElement::insert(
         [
             'name' => 'marketshare'
         ]);
 
-        DashboardElement::firstOrCreate(
+        DashboardElement::insert(
         [
             'name' => 'price_updates'
         ]);

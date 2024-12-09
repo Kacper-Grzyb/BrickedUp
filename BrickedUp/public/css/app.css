@@ -299,6 +299,10 @@ NAVBAR CONTENT START
     color: rgb(62, 163, 65);
 }
 
+.neutral-price {
+    color: white;
+}
+
 .negative-price {
     color: rgb(255, 67, 61);
 }
@@ -306,6 +310,15 @@ NAVBAR CONTENT START
 .sidescroller-box-status-green {
     border: 1px solid rgb(62, 163, 65);
     background-color: rgb(62, 163, 65);
+    height: 95%;
+    border-top-left-radius: 0.5rem;
+    border-bottom-left-radius: 0.5rem;
+    width: 0.75rem;
+}
+
+.sidescroller-box-status-white {
+    border: 1px solid white;
+    background-color: white;
     height: 95%;
     border-top-left-radius: 0.5rem;
     border-bottom-left-radius: 0.5rem;
@@ -839,6 +852,11 @@ HOME PAGE CONTENT START
 {
     color: #3EA341;
 }
+
+.neutral-change {
+    color: white;
+}
+
 .negative-change
 {
     color: #FF433D;

@@ -136,8 +136,40 @@ class FileUploadController extends Controller
             return '<p>Something went wrong during file upload. The data received was not an array.<p> <a href="/home">Return to home page</a>'; 
         }
         
-        generateSetPriceDummyData();
-        return '<p>Data successfully uploaded<p> <a href="/home">Return to home page</a>';
+        return '<p>Data successfully uploaded<p> <a href="/dashboard">Return to home page</a>';
+    }
+
+    public function generateSetPriceDummyData(Request $request)
+    {
+        $sets = Set::get();
+        for ($i = 0; $i < 50; $i++) {
+            $randomIndex = rand(0, count($sets) - 1); // Fix random index calculation
+            
+            DB::table('set_prices')->insert([
+                'set_number' => $sets[$randomIndex]->set_number,
+                'record_date' => date(
+                    'Y-m-d',
+                    rand(mktime(0, 0, 0, 12, 1, 2024), mktime(0, 0, 0, 12, 17, 2024))
+                ),
+                'price' => ($sets[$randomIndex]->retail_price ?? 0) + rand(-100, 100)
+            ]);
+
+        }
+
+        return '<p>Data generated successfully<p> <a href="/dashboard">Return to home page</a>';
+    }
+
+    private function randomDate($start_timestamp, $end_timestamp)
+    {
+        // Convert to timetamps
+        $min = strtotime($start_date);
+        $max = strtotime($end_date);
+    
+        // Generate random number using above bounds
+        $val = rand($min, $max);
+    
+        // Convert back to desired date format
+        return date('Y-m-d H:i:s', $val);
     }
     
     // If the set cannot be added to the database, $set_number will be set to -1
@@ -486,30 +518,4 @@ class FileUploadController extends Controller
         return response()->download('upload-template.csv');
     }
 
-    public function generateSetPriceDummyData() 
-    {
-        $sets = Set::get();
-        for($i = 0; $i < 50; $i++) 
-        {
-            $randomIndex = rand(0, count($sets));
-            $newSetPriceRecord = SetPrice::class;
-
-            $newSetPriceRecord->set_number = $sets[$randomIndex]->set_number;
-            $newSetPriceRecord->record_date = date('Y-m-d', rand(mktime(0, 0, 0, 12, 1, 2024),mktime(0, 0, 0, 12, 17, 2024)));
-            $newSetPriceRecord->price = ($sets[$randomIndex]->retail_price ?? 0) + rand(-100, 100);
-        }
-    }
-
-    private function randomDate($start_timestamp, $end_timestamp)
-    {
-        // Convert to timetamps
-        $min = strtotime($start_date);
-        $max = strtotime($end_date);
-    
-        // Generate random number using above bounds
-        $val = rand($min, $max);
-    
-        // Convert back to desired date format
-        return date('Y-m-d H:i:s', $val);
-    }
 }

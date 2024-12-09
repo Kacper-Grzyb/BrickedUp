@@ -13,41 +13,18 @@
         <div class="terminal-box toolbox">
             <h3 style="font-size:1rem">Available Charts</h3>
             <div class="toolbox-container" id="toolbox">
-                <div draggable="true" class="toolbox-item modular-element" id="1">
+                @foreach($dashboardElements as $element)
+                <div draggable="true" class="toolbox-item modular-element" id="{{$element->name}}">
                     <div class="resize-up" draggable="true"></div>
                     <div class="horizontal-resize">
                         <div class="resize-left" draggable="true"></div>
+                        <p class="modular-element-name">{{$element->name}}</p>
                         <div class="resize-right" draggable="true"></div>
                     </div>
                     <div class="resize-down" draggable="true"></div>
                 </div>
-
-                <div draggable="true" class="toolbox-item modular-element" id="2" style="background-color: red">
-                    <div class="resize-up" draggable="true"></div>
-                    <div class="horizontal-resize">
-                        <div class="resize-left" draggable="true"></div>
-                        <div class="resize-right" draggable="true"></div>
-                    </div>
-                    <div class="resize-down" draggable="true"></div>
-                </div>
-
-                <div draggable="true" class="toolbox-item modular-element" id="3" style="background-color: green">
-                    <div class="resize-up" draggable="true"></div>
-                    <div class="horizontal-resize">
-                        <div class="resize-left" draggable="true"></div>
-                        <div class="resize-right" draggable="true"></div>
-                    </div>
-                    <div class="resize-down" draggable="true"></div>
-                </div>
-
-                <div draggable="true" class="toolbox-item modular-element" id="4">
-                    <div class="resize-up" draggable="true"></div>
-                    <div class="horizontal-resize">
-                        <div class="resize-left" draggable="true"></div>
-                        <div class="resize-right" draggable="true"></div>
-                    </div>
-                    <div class="resize-down" draggable="true"></div>
-                </div>
+                @endforeach
+ 
             </div>
             <h4>Warning: Resizing this page will result in unexpected behavior</h4>
         </div>
@@ -55,6 +32,12 @@
             {{-- Grid is being displayed here --}}
         </div>
     </div>
+
+    <form action="{{ route('dashboard.save-layout') }}" method="POST" id="saveLayoutForm">
+        @csrf
+        <input type="hidden" name="dashboardLayout" id="saveLayoutFormInput">
+        <button type="submit" class="fake-link">Save Current Layout</button>
+    </form>
 
     <script src="{{asset('js/edit-dashboard.js')}}"></script>
 </body>

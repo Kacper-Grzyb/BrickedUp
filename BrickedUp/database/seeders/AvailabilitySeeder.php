@@ -13,17 +13,17 @@ class AvailabilitySeeder extends Seeder
      */
     public function run(): void
     {
-        Availability::firstOrCreate(
+        Availability::insert(
         [
             'availability' => 'Retail'
         ]);
 
-        Availability::firstOrCreate(
+        Availability::insert(
         [
             'availability' => 'Retired'
         ]);
 
-        Availability::firstOrCreate(
+        Availability::insert(
         [
             'availability' => 'Exclusive'
         ]);

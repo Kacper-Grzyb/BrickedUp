@@ -24,8 +24,7 @@ return new class extends Migration
             $table->float('retail_price')->nullable(); // If set was not available for retail
             $table->float('price_change')->nullable();
             $table->text('price_median')->nullable();
-            $table->timestamp('created_at');
-            $table->timestamp('updated_at');
+            $table->timestamps();
 
             $table->primary('set_number');
         });

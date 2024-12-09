@@ -74,7 +74,7 @@
         <ul id="sidescroller" class="set-prices-sidescroller">
             @foreach ($sets as $set)
                 {{-- Change is random for now as there are no calculations of the set price records --}}
-                <x-sidescroller-box :set=$set :change='sprintf("%.1f", rand(-100, 100))/10'/>
+                <x-sidescroller-box :set=$set :change='$set->price_change ?? 0'/>
             @endforeach
         </ul>
    

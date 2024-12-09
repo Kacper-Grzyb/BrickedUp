@@ -2,6 +2,8 @@
 const grid = document.getElementById("dashboard-grid");
 const toolbox = document.getElementById("toolbox");
 const toolboxItems = document.querySelectorAll(".modular-element");
+const form = document.getElementById("saveLayoutForm");
+const formInput = document.getElementById("saveLayoutFormInput");
 const cellWidth = grid.clientWidth / 10;
 const cellHeight = grid.clientHeight / 5;
 let dashboardLayout = Array.from({length: 5}, () => Array(10).fill(""));
@@ -89,6 +91,11 @@ const highlightElement = document.createElement("div");
 highlightElement.className = "highlighted-cell";
 let highlightCellReference = undefined;
 
+form.addEventListener("submit", () => {
+    console.log(dashboardLayout);
+    formInput.value = JSON.stringify(dashboardLayout);
+})
+
 toolbox.addEventListener("dragenter", highlightToolbox);
 toolbox.addEventListener("dragleave", unhighlightToolbox);
 toolbox.addEventListener("dragover", dragOverToolbox)
@@ -166,15 +173,15 @@ function resizeRight(e, modular) {
 //#endregion
 
 //#region Toolbox Callback Functions
-function highlightToolbox(e) {
-    if(e != null && beingDragged != undefined && !e.target.contains(beingDragged.ref)) {
-        e.target.classList.add("highlight-toolbox");
+function highlightToolbox() {
+    if(toolbox != null && beingDragged != undefined && !toolbox.contains(beingDragged.ref)) {
+        toolbox.classList.add("highlight-toolbox");
     }
 }
 
-function unhighlightToolbox(e) {
-    if(e != null) {
-        e.target.classList.remove("highlight-toolbox");
+function unhighlightToolbox() {
+    if(toolbox != null) {
+        toolbox.classList.remove("highlight-toolbox");
     }
 }
 
@@ -184,12 +191,12 @@ function dragOverToolbox(e) {
     }
 }
 
-function appendToToolbox(e) {
-    if(beingDragged != undefined && !e.target.contains(beingDragged.ref)) {
-        e.target.append(beingDragged.ref);
+function appendToToolbox() {
+    if(beingDragged != undefined && !toolbox.contains(beingDragged.ref)) {
+        toolbox.append(beingDragged.ref);
         beingDragged.ref.classList.remove("grid-item");
         beingDragged.ref.classList.add("toolbox-item");
-        unhighlightToolbox(e);
+        unhighlightToolbox(toolbox);
     }
 }
 
