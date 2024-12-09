@@ -5,13 +5,11 @@ namespace App\Models;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
 
-class Availability extends Model
+class DashboardElement extends Model
 {
     use HasFactory;
 
-    protected $table = 'availability';
-    public function set() 
-    {
-        return $this->hasMany(Set::class);
+    public function usedInLayout() {
+        return $this->hasMany(UserDashboardLayout::class);
     }
 }

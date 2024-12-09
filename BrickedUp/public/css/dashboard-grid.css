@@ -14,6 +14,16 @@
 
 .toolbox h3 {
     text-align: center;
+    color: white;
+    font-weight: normal;
+}
+
+.toolbox h4 {
+    text-align: center;;
+    font-size: 0.75rem;
+    color: rgba(255, 67, 61, 0.685);
+    font-weight: lighter;
+    margin-bottom: 0;
 }
 
 .toolbox-container {
@@ -26,6 +36,8 @@
     padding: 1rem;
     flex: 1 1 auto;
     border-radius: 5px;
+    overflow: auto;
+    white-space: nowrap;
 }
 
 .highlight-toolbox {

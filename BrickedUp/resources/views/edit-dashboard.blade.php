@@ -31,7 +31,6 @@
                     <div class="resize-down" draggable="true"></div>
                 </div>
 
-                
                 <div draggable="true" class="toolbox-item modular-element" id="3" style="background-color: green">
                     <div class="resize-up" draggable="true"></div>
                     <div class="horizontal-resize">
@@ -41,7 +40,6 @@
                     <div class="resize-down" draggable="true"></div>
                 </div>
 
-                
                 <div draggable="true" class="toolbox-item modular-element" id="4">
                     <div class="resize-up" draggable="true"></div>
                     <div class="horizontal-resize">
@@ -51,6 +49,7 @@
                     <div class="resize-down" draggable="true"></div>
                 </div>
             </div>
+            <h4>Warning: Resizing this page will result in unexpected behavior</h4>
         </div>
         <div class="terminal-box edit-grid" id="dashboard-grid" draggable="false">
             {{-- Grid is being displayed here --}}

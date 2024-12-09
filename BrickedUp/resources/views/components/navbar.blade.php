@@ -4,6 +4,15 @@
                 <li>
                     <a href="/dashboard">
                         @if($currentPage === 'dashboard')
+                            <img src="{{asset('images/dashboard_icon_highlighted.svg')}}" alt="dashboard icon">
+                        @else
+                            <img src="{{asset('images/dashboard_icon.svg')}}" alt="dashboard icon">
+                        @endif
+                    </a>
+                </li>
+                <li>
+                    <a href="/full-graph">
+                        @if($currentPage === 'full-graph')
                             <img src="{{asset('images/chart_icon_highlighted.svg')}}" alt="chart icon">
                         @else
                             <img src="{{asset('images/chart_icon.svg')}}" alt="chart icon">

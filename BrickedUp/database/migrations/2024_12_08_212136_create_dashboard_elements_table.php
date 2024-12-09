@@ -11,10 +11,9 @@ return new class extends Migration
      */
     public function up(): void
     {
-        Schema::create('set_prices', function (Blueprint $table) {
-            $table->foreignId('set_number', length: 6)->references('set_number')->on('sets')->constrained()->onDelete('cascade');
-            $table->date('record_date');
-            $table->float('price');
+        Schema::create('dashboard_elements', function (Blueprint $table) {
+            $table->id();
+            $table->string('name', length: 50);
         });
     }
 
@@ -23,6 +22,6 @@ return new class extends Migration
      */
     public function down(): void
     {
-        Schema::dropIfExists('set_prices');
+        Schema::dropIfExists('dashboard_elements');
     }
 };

@@ -749,6 +749,12 @@ SET DETAILS CONTENT END
 HOME PAGE CONTENT START
 */
 
+.dashboard-content {
+    display: grid;
+    grid-template-columns: repeat(10, 10%);
+    grid-template-rows: repeat(5, 20%);
+}
+
 .home-top-ranked-container
 {
     display: flex;

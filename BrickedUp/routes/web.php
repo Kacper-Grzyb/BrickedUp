@@ -7,7 +7,7 @@ use App\Http\Controllers\SettingsController;
 use App\Http\Controllers\LegoSetController;
 use App\Http\Controllers\SetsDataController;
 use App\Http\Controllers\SetController;
-use App\Http\Controllers\EditDashboardLayoutController;
+use App\Http\Controllers\DashboardController;
 
 Route::get('/', function () {
     return view('landing_page/landing');
@@ -23,11 +23,8 @@ Route::get('/search-legosets', [LegoSetController::class, 'search'])->name('lego
 require __DIR__ . '/auth.php'; 
 
 Route::middleware('auth')->group(function () {
-    Route::get('/dashboard', function () {
-        return view('home');
-    })->middleware(['verified'])->name('home');
-
-    Route::get('/edit-dashboard', [EditDashboardLayoutController::class, 'index'])->name('dashboard.edit');
+    Route::get('/dashboard', [DashboardController::class, 'index'])->middleware(['verified'])->name('home');
+    Route::get('/edit-dashboard', [DashboardController::class, 'editDashboard'])->name('dashboard.edit');
     
     Route::get('/profile', [ProfileController::class, 'view'])->name('profile');
 
