@@ -6,6 +6,7 @@ use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Storage;
 use Illuminate\Support\Facades\Log;
 use App\Models\Set;
+use App\Models\SetPrice;
 use DB;
 
 class FileUploadController extends Controller
@@ -135,6 +136,7 @@ class FileUploadController extends Controller
             return '<p>Something went wrong during file upload. The data received was not an array.<p> <a href="/home">Return to home page</a>'; 
         }
         
+        generateSetPriceDummyData();
         return '<p>Data successfully uploaded<p> <a href="/home">Return to home page</a>';
     }
     
@@ -482,5 +484,32 @@ class FileUploadController extends Controller
     public function downloadCsvTemplate() 
     {
         return response()->download('upload-template.csv');
+    }
+
+    public function generateSetPriceDummyData() 
+    {
+        $sets = Set::get();
+        for($i = 0; $i < 50; $i++) 
+        {
+            $randomIndex = rand(0, count($sets));
+            $newSetPriceRecord = SetPrice::class;
+
+            $newSetPriceRecord->set_number = $sets[$randomIndex]->set_number;
+            $newSetPriceRecord->record_date = date('Y-m-d', rand(mktime(0, 0, 0, 12, 1, 2024),mktime(0, 0, 0, 12, 17, 2024)));
+            $newSetPriceRecord->price = ($sets[$randomIndex]->retail_price ?? 0) + rand(-100, 100);
+        }
+    }
+
+    private function randomDate($start_timestamp, $end_timestamp)
+    {
+        // Convert to timetamps
+        $min = strtotime($start_date);
+        $max = strtotime($end_date);
+    
+        // Generate random number using above bounds
+        $val = rand($min, $max);
+    
+        // Convert back to desired date format
+        return date('Y-m-d H:i:s', $val);
     }
 }

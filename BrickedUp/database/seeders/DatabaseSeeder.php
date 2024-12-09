@@ -13,6 +13,8 @@ class DatabaseSeeder extends Seeder
      */
     public function run(): void
     {
+        // To seed the themes and subthemes, run the db-setup scraper program
+
         $this->call([
             AvailabilitySeeder::class,
             DashboardElementSeeder::class,

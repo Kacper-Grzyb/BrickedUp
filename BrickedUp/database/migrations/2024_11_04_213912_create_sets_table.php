@@ -12,17 +12,22 @@ return new class extends Migration
     public function up(): void
     {
         Schema::create('sets', function (Blueprint $table) {
-            $table->string('set_number', length: 6)->primary();
+            $table->string('set_number', 6);
             $table->text('set_name');
-            $table->foreignId('theme_id')->constrained()->onDelete('cascade');  // don't have to specify the references thingy if using foreignId
-            $table->foreignId('subtheme_id')->constrained()->onDelete('cascade'); // Some sets do not have a subtheme, then give them the id of the null subtheme
+            $table->foreignId('theme_id')->constrained('themes')->onDelete('cascade');  // don't have to specify the references thingy if using foreignId
+            $table->foreignId('subtheme_id')->constrained('subthemes')->onDelete('cascade'); // Some sets do not have a subtheme, then give them the id of the null subtheme
             $table->date('release_date');
             $table->date('retired_date')->nullable(); // If set was not retired yet
-            $table->INTEGER('availability_id')->references('id')->on('availability')->constrained()->onDelete('cascade');
+            $table->foreignId('availability_id')->constrained('availability')->onDelete('cascade');
             $table->smallInteger('piece_count');
             $table->tinyInteger('minifigures');
             $table->float('retail_price')->nullable(); // If set was not available for retail
-            $table->tinyInteger('popularity')->nullable(); // This is for a potential recommendation system later on
+            $table->float('price_change')->nullable();
+            $table->text('price_median')->nullable();
+            $table->timestamp('created_at');
+            $table->timestamp('updated_at');
+
+            $table->primary('set_number');
         });
     }
 

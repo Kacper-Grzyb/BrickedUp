@@ -13,7 +13,7 @@ return new class extends Migration
     {
         Schema::create('dashboard_elements', function (Blueprint $table) {
             $table->id();
-            $table->string('name', length: 50);
+            $table->string('name', 50);
         });
     }
 
