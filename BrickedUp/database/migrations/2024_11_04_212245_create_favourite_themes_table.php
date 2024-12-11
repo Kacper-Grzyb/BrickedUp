@@ -13,8 +13,8 @@ return new class extends Migration
     {
         Schema::create('favourite_themes', function (Blueprint $table) {
             // Define foreign keys
-            $table->foreignId('user_id')->constrained()->onDelete('cascade');
-            $table->foreignId('theme_id')->constrained()->onDelete('cascade');
+            $table->foreignId('user_id')->constrained('users')->onDelete('cascade');
+            $table->foreignId('theme_id')->constrained('themes')->onDelete('cascade');
 
             // Define the compound key
             $table->primary(['user_id', 'theme_id']);

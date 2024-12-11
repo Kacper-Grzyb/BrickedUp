@@ -11,9 +11,9 @@ return new class extends Migration
      */
     public function up(): void
     {
-        Schema::create('set_links', function (Blueprint $table) {
-            $table->string('set_number', length: 6)->references('set_number')->on('sets')->constrained()->onDelete('cascade');
-            $table->text('link');
+        Schema::create('dashboard_elements', function (Blueprint $table) {
+            $table->id();
+            $table->string('name', 50);
         });
     }
 
@@ -22,6 +22,6 @@ return new class extends Migration
      */
     public function down(): void
     {
-        Schema::dropIfExists('set_links');
+        Schema::dropIfExists('dashboard_elements');
     }
 };

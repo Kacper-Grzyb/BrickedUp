@@ -50,6 +50,12 @@
             <input type="hidden" name="data" value="{{json_encode($csvData)}}">
             <button type="submit">Add to Database</button>
         </form>
+
     @endif
+
+    <form action="{{route('generateSetPriceData')}}" method="POST">
+        @csrf
+        <button type="submit">Generate Dummy Set Price Data</button>
+    </form>
 </body>
 </html>

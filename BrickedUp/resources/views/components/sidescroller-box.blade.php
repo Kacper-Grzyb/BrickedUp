@@ -11,15 +11,19 @@
         <li class="sidescroller-box">
             @if ($change > 0)
                 <div class="sidescroller-box-status-green"></div>
+            @elseif($change == 0) 
+                <div class="sidescroller-box-status-white"></div>
             @else 
                 <div class="sidescroller-box-status-red"></div>
             @endif
             <div class="sidescroller-box-content">
                 <h6>{{$set->set_number}}</h6>
                 @if($change > 0) 
-                    <p class="positive-price">+{{$change}}%</p>
-                @else 
-                    <p class="negative-price">{{$change}}%</p> 
+                    <p class="positive-change">+{{$change}}%</p>
+                @elseif($change == 0) 
+                    <p class="neutral-change">{{$change}}%</p>
+                @else
+                    <p class="negative-change">{{$change}}%</p> 
                 @endif
             </div>
         </li>

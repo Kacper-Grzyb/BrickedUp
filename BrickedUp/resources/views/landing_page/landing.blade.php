@@ -8,7 +8,7 @@
     rel="stylesheet">
 
 <head>
-    <title>Grid Layout Example</title>
+    <title>Welcome to BrickedUp</title>
     <style>
         body {
             display: grid;

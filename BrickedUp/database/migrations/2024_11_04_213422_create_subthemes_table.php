@@ -13,7 +13,7 @@ return new class extends Migration
     {
         Schema::create('subthemes', function(Blueprint $table) {
             $table->id();
-            $table->string('subtheme', length: 100)->nullable();
+            $table->string('subtheme', 100)->nullable();
         });
     }
 

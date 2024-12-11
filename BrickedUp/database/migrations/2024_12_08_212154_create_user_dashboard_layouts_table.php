@@ -11,13 +11,13 @@ return new class extends Migration
      */
     public function up(): void
     {
-        Schema::create('favourite_subthemes', function (Blueprint $table) {
+        Schema::create('user_dashboard_layouts', function (Blueprint $table) {
             // Define foreign keys
             $table->foreignId('user_id')->constrained('users')->onDelete('cascade');
-            $table->foreignId('subtheme_id')->constrained('subthemes')->onDelete('cascade');
+            $table->foreignId('element_id')->constrained('dashboard_elements')->onDelete('cascade');
+            $table->string('style', 200);
 
-            // Define the compound key
-            $table->primary(['user_id', 'subtheme_id']);
+            $table->primary(['user_id', 'element_id']);
         });
     }
 
@@ -26,6 +26,6 @@ return new class extends Migration
      */
     public function down(): void
     {
-        Schema::dropIfExists('favourite_subthemes');
+        Schema::dropIfExists('user_dashboard_layouts');
     }
 };
