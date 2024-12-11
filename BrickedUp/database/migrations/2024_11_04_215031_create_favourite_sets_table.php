@@ -13,8 +13,9 @@ return new class extends Migration
     {
         Schema::create('favourite_sets', function (Blueprint $table) {
             // Define foreign keys
-            $table->foreignId('user_id')->constrained()->onDelete('cascade');
-            $table->string('set_number', length: 6)->references('set_number')->on('sets')->constrained()->onDelete('cascade');
+            $table->foreignId('user_id')->constrained('users')->onDelete('cascade');
+            $table->text('set_number');
+            $table->foreign('set_number')->references('set_number')->on('sets')->onDelete('cascade');
 
             // Define the compound key
             $table->primary(['user_id', 'set_number']);

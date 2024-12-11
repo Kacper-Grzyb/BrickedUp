@@ -13,11 +13,12 @@ class DatabaseSeeder extends Seeder
      */
     public function run(): void
     {
-        // User::factory(10)->create();
+        // To seed the themes and subthemes, run the db-setup scraper program
 
-        User::factory()->create([
-            'name' => 'Test User',
-            'email' => 'test@example.com',
+        $this->call([
+            AvailabilitySeeder::class,
+            DashboardElementSeeder::class,
+            UserSeeder::class
         ]);
     }
 }

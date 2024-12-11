@@ -299,6 +299,10 @@ NAVBAR CONTENT START
     color: rgb(62, 163, 65);
 }
 
+.neutral-price {
+    color: white;
+}
+
 .negative-price {
     color: rgb(255, 67, 61);
 }
@@ -306,6 +310,15 @@ NAVBAR CONTENT START
 .sidescroller-box-status-green {
     border: 1px solid rgb(62, 163, 65);
     background-color: rgb(62, 163, 65);
+    height: 95%;
+    border-top-left-radius: 0.5rem;
+    border-bottom-left-radius: 0.5rem;
+    width: 0.75rem;
+}
+
+.sidescroller-box-status-white {
+    border: 1px solid white;
+    background-color: white;
     height: 95%;
     border-top-left-radius: 0.5rem;
     border-bottom-left-radius: 0.5rem;
@@ -745,3 +758,204 @@ h3 {
 SET DETAILS CONTENT END
 */
 
+<<<<<<< HEAD
+=======
+/*
+HOME PAGE CONTENT START
+*/
+
+.dashboard-content {
+    display: grid;
+    grid-template-columns: repeat(10, 1fr);
+    grid-template-rows: repeat(5, 2fr);
+    padding: 2rem;
+    width: 100%;
+    min-height: 100%;
+    max-height: 2000px;
+    margin-bottom: 5rem;
+    gap: 2rem;
+    box-sizing: border-box;
+}
+
+.dashboard-content .terminal-box {
+    overflow: scroll;
+    margin: 0px;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: right;
+    /* Make sure no extra size is added */
+    height: 100%;
+    margin: 0;
+    padding: 0;
+}
+
+.home-top-ranked-container
+{
+    display: flex;
+    flex-direction: row;
+    justify-content: center;
+    align-items: stretch;
+    flex: 8;
+    padding: 0;
+    height: auto;
+    box-sizing: border-box;
+
+}
+
+.home-top-ranked-subcontainer {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: flex-start;
+    padding: 0;
+    height: auto;
+    box-sizing: border-box;
+}
+
+.terminal-table {
+    border-collapse: collapse;
+    border-radius: 5px;
+    width: 100%;
+    height: 100%;
+}
+
+.terminal-table td {
+    white-space: nowrap;
+    overflow: hidden;
+}
+
+.terminal-table-row {
+    border: 1px solid #555;
+}
+
+.terminal-table td{
+    border: 1px solid #555;
+    padding: 0.5rem;
+}
+
+.terminal-table th {
+    border: 1px solid #555;
+    padding: 0.75rem;
+}
+
+.terminal-table-row:hover {
+    background-color: #333;
+}
+
+
+
+.home-top-ranked-list {
+    display: flex;
+    height: 85%;
+    justify-content: space-evenly;
+    flex-direction: column;
+}
+
+
+.home-top-ranked-row {
+    display: flex;
+    justify-content: space-between;
+    flex-direction: row;
+}
+
+.home-top-ranked-row p {
+    margin: 0;
+}
+
+.home-chart {
+    flex: 8;
+    margin: 2rem;
+}
+
+.top-set {
+    display: flex;
+    flex-direction: row;
+    justify-content: space-between;
+    border-top: 1px solid white;
+    padding: 0.75rem 1rem;
+}
+
+.top-set-name{
+    width: 5rem;
+}
+
+.top-set img {
+    max-width: 3rem;
+    height: auto;
+    margin: 0.5rem 1rem;
+}
+
+.top-set h5 {
+    color: rgb(173, 173, 173);
+    font-weight: normal;
+    font-size: 1rem;
+    margin: 0.5rem 1rem;
+    align-content: center;
+    text-align: center;
+}
+
+.top-set p {
+    text-align: center;
+    align-content:center;
+}
+
+.positive-change
+{
+    color: #3EA341;
+}
+
+.neutral-change {
+    color: white;
+}
+
+.negative-change
+{
+    color: #FF433D;
+}
+
+.top-ranked-news-container {
+    width: 400px;
+    margin: 20px auto;
+    border: 1px solid #FFA500;
+    padding: 0;
+}
+.top-ranked-news-header {
+    background-color: #FFA500;
+    color: #333;
+    font-size: 1.2em;
+    font-weight: bold;
+    padding: 10px;
+    text-align: center;
+}
+
+.news-title {
+    color: #FFA500;
+    font-weight: bold;
+}
+.type {
+    color: red;
+    text-align: center;
+}
+.time {
+    color: #ccc;
+    text-align: right;
+}
+.row {
+    border-top: 1px solid #333;
+}
+
+.home-container{
+    max-width: 690px;
+}
+
+.chartContainer {
+    width: 80%;
+    max-width: 700px;
+    margin: 20px auto;
+}
+
+/*
+HOME PAGE CONTENT END
+*/
+>>>>>>> 8edd52c08550e02e78e79b2b82410a3a2e2bbb59
