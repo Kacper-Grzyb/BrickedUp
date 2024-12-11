@@ -6,15 +6,14 @@ use Closure;
 use Illuminate\Contracts\View\View;
 use Illuminate\View\Component;
 
-class PriceUpdates extends Component
+class HomeNavbar extends Component
 {
-    public $setPrices;
-    public $style;
-
-    public function __construct($setPrices, $style)
+    /**
+     * Create a new component instance.
+     */
+    public function __construct()
     {
-        $this->setPrices = $setPrices;
-        $this->style = $style;
+        //
     }
 
     /**
@@ -22,6 +21,6 @@ class PriceUpdates extends Component
      */
     public function render(): View|Closure|string
     {
-        return view('components.price-updates');
+        return view('components.home_navbar');
     }
 }

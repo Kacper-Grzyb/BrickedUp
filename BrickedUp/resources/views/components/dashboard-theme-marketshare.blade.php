@@ -1,8 +1,8 @@
 <div class="terminal-box" style="{{$style}}">
     <a href="full-graph" style="text-decoration: none; color: inherit;">
-        <h1>LEGO Theme Marketshare</h1>
+        <h4>LEGO Theme Marketshare</h4>
     </a>
-    <div id="chartContainer">
+    <div>
         <canvas id="marketShareChart"></canvas>
     </div>
 </div>
@@ -11,8 +11,6 @@
     const sets = @json($sets);
 
     let themeShares = new Map();
-
-    console.log(sets);
 
     sets.forEach(set => {
         let themeName = set['theme']['theme'];

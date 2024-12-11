@@ -6,14 +6,14 @@ use Closure;
 use Illuminate\Contracts\View\View;
 use Illuminate\View\Component;
 
-class MarketshareChart extends Component
+class DashboardSetPrices extends Component
 {
-    public $sets;
+    public $favouriteSetPriceRecords;
     public $style;
 
-    public function __construct($sets, $style)
-    {   
-        $this->sets = $sets;
+    public function __construct($favouriteSetPriceRecords, $style)
+    {
+        $this->favouriteSetPriceRecords = $favouriteSetPriceRecords;
         $this->style = $style;
     }
 
@@ -22,6 +22,6 @@ class MarketshareChart extends Component
      */
     public function render(): View|Closure|string
     {
-        return view('components.marketshare-chart');
+        return view('components.dashboard-set-prices');
     }
 }

@@ -15,27 +15,27 @@ class DashboardElementSeeder extends Seeder
     {
         DashboardElement::insert(
         [
-            'name' => 'set_prices'
+            'name' => 'set-prices'
         ]);
 
         DashboardElement::insert(
         [
-            'name' => 'theme_prices'
+            'name' => 'theme-prices'
         ]);
 
         DashboardElement::insert(
         [
-            'name' => 'subtheme_prices'
+            'name' => 'subtheme-prices'
         ]);
 
         DashboardElement::insert(
         [
-            'name' => 'marketshare'
+            'name' => 'theme-marketshare'
         ]);
 
         DashboardElement::insert(
         [
-            'name' => 'price_updates'
+            'name' => 'set-price-table'
         ]);
     }
 }

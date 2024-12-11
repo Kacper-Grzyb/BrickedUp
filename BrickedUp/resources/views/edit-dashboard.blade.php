@@ -15,10 +15,11 @@
             <div class="toolbox-container" id="toolbox">
                 @foreach($dashboardElements as $element)
                 <div draggable="true" class="toolbox-item modular-element" id="{{$element->name}}">
+                    <p class="modular-element-name">{{$element->name}}</p>
                     <div class="resize-up" draggable="true"></div>
                     <div class="horizontal-resize">
                         <div class="resize-left" draggable="true"></div>
-                        <p class="modular-element-name">{{$element->name}}</p>
+                        
                         <div class="resize-right" draggable="true"></div>
                     </div>
                     <div class="resize-down" draggable="true"></div>
@@ -33,10 +34,11 @@
         </div>
     </div>
 
-    <form action="{{ route('dashboard.save-layout') }}" method="POST" id="saveLayoutForm">
+    <form action="{{ route('dashboard.save-layout') }}" method="POST" id="saveLayoutForm" class="save-layout-form">
         @csrf
         <input type="hidden" name="dashboardLayout" id="saveLayoutFormInput">
         <button type="submit" class="fake-link">Save Current Layout</button>
+        <a href="/settings">Go back to Settings</a>
     </form>
 
     <script src="{{asset('js/edit-dashboard.js')}}"></script>

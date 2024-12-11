@@ -6,14 +6,15 @@ use Closure;
 use Illuminate\Contracts\View\View;
 use Illuminate\View\Component;
 
-class home_navbar extends Component
+class DashboardThemeMarketshare extends Component
 {
-    /**
-     * Create a new component instance.
-     */
-    public function __construct()
-    {
-        //
+    public $sets;
+    public $style;
+
+    public function __construct($sets, $style)
+    {   
+        $this->sets = $sets;
+        $this->style = $style;
     }
 
     /**
@@ -21,6 +22,6 @@ class home_navbar extends Component
      */
     public function render(): View|Closure|string
     {
-        return view('components.home_navbar');
+        return view('components.dashboard-theme-marketshare');
     }
 }

@@ -45,13 +45,13 @@
 
 .modular-element {
     text-align: center;
+    justify-content: center !important;
 }
 
 .modular-element-name {
-    align-self: center;
-    justify-self: center;
     text-align: center;
     color: #444;
+    margin: auto;
 }
 
 .toolbox-item {
@@ -62,10 +62,13 @@
     border-radius: 5px;
     cursor:move;
     font-size: 0.5rem;
+    display: flex;
+    align-items: center;
+    justify-content: center;
 }
 
 .toolbox-item .modular-element-name {
-    margin: auto;
+    position:relative;
 }
 
 .toolbox-item .resize-up {
@@ -76,13 +79,10 @@
     display: none
 }
 
-.toolbox-item .resize-right {
+.toolbox-item .horizontal-resize {
     display: none;
 }
 
-.toolbox-item .resize-left {
-    display: none;
-}
 
 .edit-grid {
     flex: 7;
@@ -117,20 +117,28 @@
     font-size: 1rem;
 }
 
+.grid-item .modular-element-name{
+    position: absolute;
+}
+
 .grid-item .resize-up {
     display:block;
+    z-index: 2;
 }
 
 .grid-item .resize-down {
     display:block;
+    z-index: 2;
 }
 
 .grid-item .resize-right {
     display:block;
+    z-index: 2;
 }
 
 .grid-item .resize-left {
     display:block;
+    z-index: 2;
 }
 
 .highlight {
@@ -193,4 +201,12 @@
 
 .resize-up:hover, .resize-down:hover, .resize-right:hover, .resize-left:hover {
     background-color: rgba(255, 238, 0, 0.5)
+}
+
+.save-layout-form {
+    margin: 3rem 0;
+    display: flex;
+    flex-direction: row;
+    justify-content: space-evenly;
+    align-items: center;
 }

@@ -11,8 +11,11 @@
     <x-navbar :currentPage='"dashboard"'/>
 
     <div class="dashboard-content" style="align-items: start">
-        <x-marketshare-chart :sets='$sets' :style="'grid-row: 1 / 4; grid-column: 1 / 5'"/>    
-        <x-price-updates :setPrices='$setPrices' :style="'grid-row: 1 / 4; grid-column: 5 / 11'"/>
+        <x-dashboard-theme-marketshare :sets='$sets' :style='$themeMarketshareStyle'/>
+        <x-dashboard-set-price-table :setPrices='$setPrices' :displayAmount='20' :style='$setPriceTableStyle'/>
+        <x-dashboard-set-prices :style='$setPricesStyle' :favouriteSetPriceRecords='$favouriteSetPriceRecords'/>
+        <x-dashboard-theme-prices :style='$themePricesStyle' :favouriteThemeValues='$favouriteThemeValues'/>
+        <x-dashboard-subtheme-prices :style='$subthemePricesStyle' :favouriteSubthemeValues='$favouriteSubthemeValues'/>
     </div>
 </body>
 </html>
