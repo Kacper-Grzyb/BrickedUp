@@ -688,15 +688,37 @@ h3 {
     min-width: 20%;
 }
 
-.set-details-trends {
+.set-details-price-alerts {
     width: 100%;
     min-height: 20rem;
     box-sizing: border-box;
     margin-top: 0;
 }   
 
-.set-details-trends h2 {
+.set-details-price-alerts h2 {
     margin: 0px;
+}
+
+.button-container {
+    display: flex;
+    margin-top: 2rem;
+    gap: 1.5rem;
+    justify-content: center;
+}
+
+.box-button {
+    margin: 0.5rem 1rem;
+    border: 1px solid white;
+    border-radius: 0.3rem;
+    cursor: pointer;
+    font-size: 1.6rem;
+    padding: 1rem;
+}
+
+.box-button p{
+    color: rgb(173, 173, 173);
+    font-family:'Courier New', Courier, monospace;
+    
 }
 
 .set-details-for-sale {
@@ -738,8 +760,6 @@ h3 {
 .for-sale-price {
     color: rgb(251, 139, 30);
 }
-
-
 
 /*
 SET DETAILS CONTENT END

@@ -134,23 +134,24 @@
         </div>
 
         <div class="set-details-subcontainer">
-            <div class="terminal-box set-details-trends">
-                <h2>Sales Trends</h2>
-                <p>Insert chart here</p>
+            <div class="terminal-box set-details-price-alerts">
+                <h2 style="margin-bottom: 20px;">🔔 Set up price alert</h2>
+                <h3>Set your alerts to receive a notification when a Lego set reaches its set goal.</h3>
+                <div class="button-container">
+                    <button class="box-button"><p>-5%</p></button>
+                    <button class="box-button"><p>-10%</p></button>
+                    <button class="box-button"><p>+5%</p></button>
+                    <button class="box-button"><p>+10%</p></button>
+                </div>
             </div>
     
             <div class="terminal-box set-details-for-sale">
                 <h2>For Sale</h2>
 
                 @include('components.for-sale-record')
-                @include('components.for-sale-record')
-                @include('components.for-sale-record')
-                @include('components.for-sale-record')
 
             </div>
         </div>
-
-    </div>
 
     <script>
 
@@ -168,7 +169,34 @@
             });
         });
 
-    </script>
+        document.addEventListener("DOMContentLoaded", function () {
+            const alertButtons = document.querySelectorAll('.box-button');
 
+            alertButtons.forEach(button => {
+                button.addEventListener('click', function () {
+                    // Get the text content of the clicked button
+                    const alertValue = this.textContent.trim();
+
+                    // Create a success message dynamically
+                    const message = document.createElement('div');
+                    message.id = "success-message";
+                    message.className = "alert-message terminal-box success";
+                    message.innerHTML = `<p>Price alert updated successfully to ${alertValue} of the actual price.</p>`;
+
+                    // Append the message to the body or a specific container
+                    document.body.appendChild(message);
+
+                    // Set timeout to remove the message
+                    setTimeout(function () {
+                        message.style.transition = 'opacity 0.5s ease';
+                        message.style.opacity = '0';
+                        setTimeout(() => message.remove(), 500);
+                    }, 5000);
+                });
+            });
+        });
+
+
+    </script>
 </body>
 </html>
