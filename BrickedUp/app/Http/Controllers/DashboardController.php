@@ -20,25 +20,49 @@ class DashboardController extends Controller
         $layout = DB::table('user_dashboard_layouts')->where('user_id', '=', $userID)->get();
         if($layout->isEmpty()) {
             // Get Element IDs
-            $marketShareEl = DB::table('dashboard_elements')->where('name', '=', 'marketshare')->first();
-            $priceUpdatesEl = DB::table('dashboard_elements')->where('name', '=', 'price_updates')->first();
-            $setPricesEl = DB::table('dashboard_elements')->where('name', '=', 'set_prices')->first();
+            $themeMarketshare = DB::table('dashboard_elements')->where('name', '=', 'theme-marketshare')->first();
+            $setPriceTable = DB::table('dashboard_elements')->where('name', '=', 'set-price-table')->first();
+            $setPrices = DB::table('dashboard_elements')->where('name', '=', 'set-prices')->first();
+            $themePrices = DB::table('dashboard_elements')->where('name', '=', 'theme-prices')->first();
+            $subthemePrices = DB::table('dashboard_elements')->where('name', '=', 'subtheme-prices')->first();
             // Insert a base layout
             DB::table('user_dashboard_layouts')->insert(
                 [
                     'user_id' => $userID,
-                    'element_id' => $marketShareEl->id,
-                    'style' => 'gridRow: 1 / 4; gridColumn: 1 / 7'
-                ],
+                    'element_id' => $themeMarketshare->id,
+                    'style' => 'grid-row: 1 / 6; grid-column: 1 / 5'
+                ]
+            );
+
+            DB::table('user_dashboard_layouts')->insert(
                 [
                     'user_id' => $userID,
-                    'element_id' => $priceUpdatesEl->id,
-                    'style' => 'gridRow: 1 / 6; gridColumn: 7 / 10'
-                ],
+                    'element_id' => $setPriceTable->id,
+                    'style' => 'grid-row: 1 / 6; grid-column: 5 / 11'
+                ]
+            );
+
+            DB::table('user_dashboard_layouts')->insert(
                 [
                     'user_id' => $userID,
-                    'element_id' => $setPricesEl->id,
-                    'style' => 'gridRow: 4 / 6; gridColumn: 1 / 7'
+                    'element_id' => $setPrices->id,
+                    'style' => 'display: none'
+                ]
+            );
+
+            DB::table('user_dashboard_layouts')->insert(
+                [
+                    'user_id' => $userID,
+                    'element_id' => $themePrices->id,
+                    'style' => 'display: none'
+                ]
+            );
+
+            DB::table('user_dashboard_layouts')->insert(
+                [
+                    'user_id' => $userID,
+                    'element_id' => $subthemePrices->id,
+                    'style' => 'display: none'
                 ]
             );
         }

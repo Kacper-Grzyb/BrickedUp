@@ -3,7 +3,7 @@
         <p>No favourite sets themes, please add them to see the chart</p>
     @else
         <h4>Total Theme Values</h4>
-        <div id>
+        <div style="height: 100%; width: 90%;">
             <canvas id="themeValueChart"></canvas>
         </div>
     @endif

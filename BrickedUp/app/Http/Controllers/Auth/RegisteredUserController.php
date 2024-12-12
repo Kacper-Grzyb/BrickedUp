@@ -11,6 +11,7 @@ use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Hash;
 use Illuminate\Validation\Rules;
 use Illuminate\View\View;
+use DB;
 
 class RegisteredUserController extends Controller
 {
@@ -40,6 +41,52 @@ class RegisteredUserController extends Controller
             'email' => $request->email,
             'password' => Hash::make($request->password),
         ]);
+
+        $themeMarketshare = DB::table('dashboard_elements')->where('name', '=', 'theme-marketshare')->first();
+        $setPriceTable = DB::table('dashboard_elements')->where('name', '=', 'set-price-table')->first();
+        $setPrices = DB::table('dashboard_elements')->where('name', '=', 'set-prices')->first();
+        $themePrices = DB::table('dashboard_elements')->where('name', '=', 'theme-prices')->first();
+        $subthemePrices = DB::table('dashboard_elements')->where('name', '=', 'subtheme-prices')->first();
+        // Insert a base layout
+        DB::table('user_dashboard_layouts')->insert(
+            [
+                'user_id' => $user->id,
+                'element_id' => $themeMarketshare->id,
+                'style' => 'grid-row: 1 / 6; grid-column: 1 / 5'
+            ]
+        );
+
+        DB::table('user_dashboard_layouts')->insert(
+            [
+                'user_id' => $user->id,
+                'element_id' => $setPriceTable->id,
+                'style' => 'grid-row: 1 / 6; grid-column: 5 / 11'
+            ]
+        );
+
+        DB::table('user_dashboard_layouts')->insert(
+            [
+                'user_id' => $user->id,
+                'element_id' => $setPrices->id,
+                'style' => 'display: none'
+            ]
+        );
+
+        DB::table('user_dashboard_layouts')->insert(
+            [
+                'user_id' => $user->id,
+                'element_id' => $themePrices->id,
+                'style' => 'display: none'
+            ]
+        );
+
+        DB::table('user_dashboard_layouts')->insert(
+            [
+                'user_id' => $user->id,
+                'element_id' => $subthemePrices->id,
+                'style' => 'display: none'
+            ]
+        );
 
         event(new Registered($user));
 

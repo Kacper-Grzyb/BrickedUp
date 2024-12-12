@@ -2,7 +2,7 @@
     <a href="full-graph" style="text-decoration: none; color: inherit;">
         <h4>LEGO Theme Marketshare</h4>
     </a>
-    <div>
+    <div style="height: 100%; width: 90%;">
         <canvas id="marketShareChart"></canvas>
     </div>
 </div>
