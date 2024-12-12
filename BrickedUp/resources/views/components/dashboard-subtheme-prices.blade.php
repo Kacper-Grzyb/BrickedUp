@@ -3,7 +3,7 @@
         <p>No favourite set subthemes, please add them to see the chart</p>
     @else
         <h4>Total Subtheme Values</h4>
-        <div id>
+        <div style="height: 100%; width: 90%;">
             <canvas id="subthemeValueChart"></canvas>
         </div>
     @endif

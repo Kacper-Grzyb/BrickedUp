@@ -3,7 +3,7 @@
         <p>No favourite sets added, please add them to see the chart</p>
     @else
         <h4>Set Price Trends</h4>
-        <div id>
+        <div style="height: 100%; width: 90%;">
             <canvas id="setPriceChart"></canvas>
         </div>
     @endif
