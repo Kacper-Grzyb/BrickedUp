@@ -23,3 +23,12 @@ This repository is currently a public repository so it is even of bigger importa
 `dotnet user-secrets set "SUPABASE_API_KEY" "<ur api key>"`
 
 - Now the secrets are safely stored and can be accessed statically on the Program class
+
+# How to run
+
+The program accepts one argument
+
+- `--prices` Which will scrape and calculate the price for all sets in the db
+- `--images` Which will scrape one image for every set in the db 
+
+**CAUTION**: Because of scraping limitations, one cannot run the images headlessly, it can only be run if chroium can render on a screen
