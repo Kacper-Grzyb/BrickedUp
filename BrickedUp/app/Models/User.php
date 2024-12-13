@@ -69,4 +69,8 @@ class User extends Authenticatable
     {
         return $this->hasMany(SetSelectedForChart::class);
     }
+
+    public function dashboardLayouts() {
+        return $this->hasMany(UserDashboardLayout::class);
+    }
 }

@@ -12,8 +12,11 @@ return new class extends Migration
     public function up(): void
     {
         Schema::create('set_images', function (Blueprint $table) {
-            $table->string('set_number', length: 6)->references('set_number')->on('sets')->constrained()->onDelete('cascade');
+            $table->string('set_number', 6);
+            $table->foreign('set_number')->references('set_number')->on('sets')->onDelete('cascade');
             $table->binary('image_data');
+
+            // No primary key
         });
     }
 

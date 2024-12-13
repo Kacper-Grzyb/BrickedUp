@@ -51,7 +51,7 @@ for theme in themeArray:
     print(f"Theme inserted with response: {themeResponse}")
 
 # insert default null subtheme
-print(f"Subtheme default inserted with respone: {supabase.table("subthemes").insert({"subtheme": None}).execute()}")
+print(f"Subtheme default inserted with respone: {supabase.table('subthemes').insert({'subtheme': None}).execute()}")
 for subtheme in subthemeArray:
     # insert subthemes
     subthemeResponse = (
@@ -60,17 +60,4 @@ for subtheme in subthemeArray:
         .execute()
     )
     print(f"Subtheme inserted with response: {subthemeResponse}")
-#endregion
-
-#region Adding availability categories
-availabilityResponse = supabase.table("availability").insert({"availability": "Retail"}).execute()
-print(f"Availability inserted with response: {availabilityResponse}")
-availabilityResponse = supabase.table("availability").insert({"availability": "Retired"}).execute()
-print(f"Availability inserted with response: {availabilityResponse}")
-availabilityResponse = supabase.table("availability").insert({"availability": "Exclusive"}).execute()
-print(f"Availability inserted with response: {availabilityResponse}")
-#endregion
-
-#region Adding chart names
-# Add stuff here
 #endregion
