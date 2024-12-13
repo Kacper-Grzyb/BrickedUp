@@ -174,19 +174,15 @@
 
             alertButtons.forEach(button => {
                 button.addEventListener('click', function () {
-                    // Get the text content of the clicked button
                     const alertValue = this.textContent.trim();
 
-                    // Create a success message dynamically
                     const message = document.createElement('div');
                     message.id = "success-message";
                     message.className = "alert-message terminal-box success";
                     message.innerHTML = `<p>Price alert updated successfully to ${alertValue} of the actual price.</p>`;
 
-                    // Append the message to the body or a specific container
                     document.body.appendChild(message);
 
-                    // Set timeout to remove the message
                     setTimeout(function () {
                         message.style.transition = 'opacity 0.5s ease';
                         message.style.opacity = '0';
