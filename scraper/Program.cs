@@ -1,7 +1,7 @@
 using Microsoft.Extensions.Configuration;
 using Microsoft.IdentityModel.Tokens;
+using static System.Console;
 using scraper;
-using scraper_webtech;
 
 public class Program
 {
@@ -27,15 +27,43 @@ public class Program
         SUPABASE_URL = config["SUPABASE_URL"]!;
     }
 
-    public static async Task notMain()
+    public static async Task Main(string[] args)
     {
-        DataProvider dataProvider = new();
+        if (args.Length == 0)
+        {
+            HelpMessage();
+            return;
+        }
+
+        string command = args[0].ToLower();
+
+        switch (command)
+        {
+            case "--prices":
+                await ScrapePrices();
+                break;
+
+            case "--images":
+                await ScrapeImages();
+                break;
+
+            default:
+                WriteLine($"Unknown command: {command}");
+                HelpMessage();
+                break;
+        }
+
+    }
+
+    public static async Task ScrapePrices()
+    {
+        DataProvider dataProvider = new DataProvider();
 
         var setNumbers = await dataProvider.GetAllSetNumbers();
 
         foreach (var set in setNumbers)
         {
-            Console.WriteLine(set);
+            WriteLine(set);
             List<string?> pricesForSet;
 
             try
@@ -44,7 +72,7 @@ public class Program
             }
             catch (Exception e)
             {
-                Console.WriteLine(e);
+                WriteLine(e);
                 continue;
             }
 
@@ -56,16 +84,16 @@ public class Program
         }
     }
 
-    public static async Task Main()
+    public static async Task ScrapeImages()
     {
-        DataProvider dataProvider = new();
+        DataProvider dataProvider = new DataProvider();
 
         var a = await dataProvider.GetAllSetNumbersAndNames();
 
-        byte[] image;
 
         foreach (var set in a)
         {
+            byte[] image;
 
             string setInfo = string.Concat(set.Item1, "+", set.Item2);
 
@@ -76,15 +104,28 @@ public class Program
             }
             catch (Exception e)
             {
-                Console.WriteLine(e);
+                WriteLine(e);
                 continue;
             }
 
+            WriteLine();
+
+            string fileName = "downloaded_image.jpg";
+            await File.WriteAllBytesAsync(fileName, image);
 
 
             await dataProvider.Send(set.Item1, image);
         }
 
-        Console.ReadLine();
+        ReadLine();
+    }
+
+    private static void HelpMessage()
+    {
+        WriteLine("Program to scrape lego prices and images");
+        WriteLine();
+        WriteLine("Valid options: ");
+        WriteLine("--prices\t\t\t Starts scraping the price for all sets in the db");
+        WriteLine("--images\t\t\t Scrapes images for all sets in the db CANNOT RUN HEADLESSLY");
     }
 }
