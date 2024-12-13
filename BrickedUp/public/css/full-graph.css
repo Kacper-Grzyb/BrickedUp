@@ -108,7 +108,7 @@
     margin-bottom: 5%;
   }
   
-  #search-input {
+  #search-input-chart {
     padding: 8px;
     font-size: 16px;
     border: 1px solid #ccc;
@@ -145,6 +145,7 @@
     width: 90%;
     margin-left: 5%;
     margin-right: 5%;
+    cursor: pointer;
   }
   
   .option-container:hover {
@@ -154,7 +155,6 @@
   .option-container input[type="checkbox"] {
     margin-right: 15px;
     transform: scale(1.2);
-    cursor: pointer;
   }
   
   .option-details {
