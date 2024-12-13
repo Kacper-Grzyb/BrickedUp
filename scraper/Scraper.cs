@@ -1,8 +1,9 @@
 using System;
 using System.ComponentModel;
+using System.Globalization;
 using Microsoft.Playwright;
 
-namespace scraper_webtech;
+namespace scraper;
 
 /// <summary>
 /// Main component of the WebScraper
@@ -10,6 +11,9 @@ namespace scraper_webtech;
 /// </summary>
 public class Scraper
 {
+
+    //static int i;
+
     public static async Task<List<string?>> ScrapeItem(string setNumber)
     {
         List<string?> prices = new();
@@ -66,6 +70,7 @@ public class Scraper
 
     /// <summary>
     /// Scrapes lego set images from duckduckgo, MIGHT FAIL PUT IT IN A TRY CATCH
+    /// It cannot run headlessly
     /// </summary>
     /// <param name="setInfo">setInfo should follow follwoing example "75389+The+Dark+Falcon"</param>
     /// <returns></returns>
@@ -75,9 +80,8 @@ public class Scraper
 
         await using var browser = await playwright.Chromium.LaunchAsync(new()
         {
-            Headless = true,
+            Headless = false,
         });
-
 
         string pageLink = $"https://duckduckgo.com/?q=lego+{setInfo}&t=ffab&iar=images&iax=images&ia=images";
 
@@ -108,11 +112,10 @@ public class Scraper
         using var httpClient = new HttpClient();
         var imageBytes = await httpClient.GetByteArrayAsync(imageUrl);
 
-        // // Save the image to a file
-        string fileName = "downloaded_image.jpg";
-        await File.WriteAllBytesAsync(fileName, imageBytes);
-
-        // Console.WriteLine($"Image saved as {fileName}");
+        // Save the image to a file
+        // string fileName = $"downloaded_image{i}.jpg";
+        // i++;
+        // await File.WriteAllBytesAsync(fileName, imageBytes);
 
         return imageBytes;
     }

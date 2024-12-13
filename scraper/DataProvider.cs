@@ -1,10 +1,9 @@
-using scraper_webtech;
 using Supabase.Postgrest.Attributes;
 using Supabase.Postgrest.Models;
 
 namespace scraper;
 
-public class DataProvider
+public class DataProvider : IDataProvider
 {
     Supabase.Client supabase;
     private readonly string url = Program.SUPABASE_URL;
@@ -59,9 +58,8 @@ public class DataProvider
     public async Task Send(string setNumber, byte[] image)
     {
         string base64Image = Convert.ToBase64String(image);
+
         var set_image = new Set_images { Set_number = setNumber, Image_data = base64Image };
-
-
 
         await supabase.From<Set_images>().Insert(set_image);
     }
