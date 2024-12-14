@@ -11,7 +11,6 @@ class TwoFactorController extends Controller
     {
         $user = auth()->user();
         $code = rand(100000, 999999);
-        echo $code;
         $user->two_factor_code = $code;
         $user->save();
 
