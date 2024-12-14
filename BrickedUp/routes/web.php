@@ -8,6 +8,7 @@ use App\Http\Controllers\LegoSetController;
 use App\Http\Controllers\SetsDataController;
 use App\Http\Controllers\SetController;
 use App\Http\Controllers\TwoFactorController;
+use App\Http\Controllers\ImageController;
 
 Route::get('/', function () {
     return view('landing_page/landing');
@@ -63,5 +64,7 @@ Route::middleware(['auth', 'twofactor'])->group(function () {
 
     Route::get('/download-csv-template', [FileUploadController::class, 'downloadCsvTemplate'])->name('downloadCsvTemplate');
 
+
+    Route::get('/image/{id}', [ImageController::class, 'show']);
 });
 
