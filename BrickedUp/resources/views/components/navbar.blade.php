@@ -57,6 +57,18 @@
                         </form>
                     </div>
                 </li>
+                
+                <li>
+                    @if($currentPage === 'notification')
+                        <img id="notification-icon" src="{{ asset('images/bell_icon_highlighted.svg') }}" alt="notification icon">
+                    @else
+                        <img id="notification-icon" src="{{ asset('images/bell_icon.svg') }}" alt="notification icon">
+                    @endif
+                    <span class="notification-arrow"></span>
+                    <div class="notification-dropdown">
+                        <h3>No notifications at the moment</h3>
+                    </div>
+                </li>
             </div>
 
             <div class="search-menu">
@@ -97,6 +109,7 @@
             }
         }
 
+
         dropdownIcon.addEventListener('click', () => toggleProfileDropdown());
         dropdownButton.addEventListener('click', () => toggleProfileDropdown());
 
@@ -105,6 +118,35 @@
                 profileDropdown.style.display = "none";
                 dropdownIcon.src="{{asset('images/user_icon.svg')}}";
                 dropdownButton.style.transform = "rotate(45deg)";
+            }
+        });
+
+        let notDropdownIcon = document.getElementById('notification-icon');
+        let notDropdownButton = document.querySelector('.notification-arrow');
+        let notDropdown = document.querySelector('.notification-dropdown');
+
+        function toggleNotificationDropdown() {
+            if(notDropdown.style.display === "none") {
+                notDropdown.style.display = "flex";
+                notDropdownIcon.src="{{asset('images/bell_icon_highlighted.svg')}}";
+                notDropdownButton.style.transform = "rotate(225deg)";
+            }
+            else {
+                notDropdown.style.display = "none";
+                notDropdownIcon.src="{{asset('images/bell_icon.svg')}}";
+                notDropdownButton.style.transform = "rotate(45deg)";
+            }
+        }
+        
+
+        notDropdownIcon.addEventListener('click', () => toggleNotificationDropdown());
+        notDropdownButton.addEventListener('click', () => toggleNotificationDropdown());
+
+        document.addEventListener('click', (e) => {
+            if(!notDropdown.contains(e.target) && !notDropdownIcon.contains(e.target) && notDropdownButton.contains(e.target)) {
+                notDropdown.style.display = "none";
+                notDropdownIcon.src="{{asset('images/bell_icon.svg')}}";
+                notDropdownButton.style.transform = "rotate(45deg)";
             }
         });
 

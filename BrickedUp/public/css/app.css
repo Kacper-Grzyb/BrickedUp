@@ -147,6 +147,19 @@ NAVBAR CONTENT START
     cursor: pointer;
 }
 
+.notification-arrow {
+    display: inline-block;
+    margin-left: 4px;
+    margin-top: -12px;
+    width: 6px;
+    height: 6px;
+    border-right: 2px solid #333;
+    border-bottom: 2px solid #333;
+    transform: rotate(45deg);
+    vertical-align: middle;
+    cursor: pointer;
+}
+
 .profile-dropdown {
     display: none;
     flex-direction: column;
@@ -160,7 +173,25 @@ NAVBAR CONTENT START
     justify-content: space-evenly;
 }
 
+.notification-dropdown{
+    display: none;
+    flex-direction: column;
+    gap: 0.4rem;
+    position: fixed;
+    z-index: 11;
+    background-color: rgb(18, 18, 18);
+    border: 1px solid rgb(173, 173, 173);
+    border-radius: 0.3rem;
+    padding: 0.75rem;
+    justify-content: space-evenly;
+
+}
+
 .profile-dropdown h3 {
+    font-size: 1rem;
+}
+
+.notification-dropdown h3{
     font-size: 1rem;
 }
 

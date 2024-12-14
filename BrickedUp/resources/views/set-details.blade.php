@@ -7,10 +7,8 @@
 </head>
 <body>
 
-    {{-- Navbar goes here --}}
     <x-navbar :currentPage='"set-details"'/>
 
-    {{-- All of the values inside the fields are placeholders for now --}}
     <div class="set-details-container">
         <div class="terminal-box set-details-text">
             <h2>Set Details</h2>
@@ -22,23 +20,23 @@
                 </div>
                 <div class="set-details-row">
                     <h3>Name</h3>
-                    <p>Cloud City</p>
+                    <p id="set-name">Cloud City</p>
                 </div>
                 <div class="set-details-row">
                     <h3>Theme</h3>
-                    <a href="kawaszlugbombakupa">Star Wars</a>
+                    <a href="#">Star Wars</a>
                 </div>
                 <div class="set-details-row">
                     <h3>Subtheme</h3>
-                    <a href="kawaszlugbombakupa">Episode V</a>
+                    <a href="#">Episode V</a>
                 </div>
                 <div class="set-details-row">
                     <h3>Year</h3>
-                    <a href="kawaszlugbombakupa">2003</a>
+                    <a href="#">2003</a>
                 </div>
                 <div class="set-details-row">
                     <h3>Availability</h3>
-                    <a href="kawaszlugbombakupa">Retired</a>
+                    <a href="#">Retired</a>
                 </div>
                 <div class="set-details-row">
                     <h3>Pieces</h3>
@@ -52,7 +50,6 @@
         </div>
 
         <div class="terminal-box set-details-media">
-            {{-- Maybe make this a bit nicer in the future, will do for now --}}
             <div class="set-image-carouselle">
                 <img src="{{asset('images/placeholder_set_image1.jpg')}}" alt="placeholder lego set image">
                 <img src="{{asset('images/placeholder_set_image3.jpg')}}" alt="placeholder lego set image">
@@ -62,11 +59,9 @@
                 <img src="{{asset('images/placeholder_set_image3.jpg')}}" alt="placeholder lego set image">
             </div>
         </div>
-
     </div>
 
     <div class="set-details-container">
-
         <div class="terminal-box set-details-text"> 
             <h2>Set Pricing</h2>
             
@@ -80,7 +75,7 @@
 
                 <div class="set-details-row">
                     <h3>Value</h3>
-                    <p>$5953.95</p>
+                    <p id="actual-price">$5953.95</p>
                 </div>
                 <div class="set-details-row">
                     <h3>Price Variation</h3>
@@ -109,7 +104,6 @@
             <h2>Set Value Chart</h2>
             <p>Insert Chart here</p>
         </div>
-
     </div>
 
     <div class="set-details-container" style="align-items: start">
@@ -147,43 +141,48 @@
     
             <div class="terminal-box set-details-for-sale">
                 <h2>For Sale</h2>
-
                 @include('components.for-sale-record')
-
             </div>
         </div>
 
     <script>
-
         document.addEventListener("DOMContentLoaded", function() {
-            const varyingAmountElements = document.querySelectorAll(".varying-amount") // Select all elements with the class 'varying-amount'
-
+            const varyingAmountElements = document.querySelectorAll(".varying-amount");
             varyingAmountElements.forEach(element => {
                 const value = parseFloat(element.innerText);
-                if(value > 0) {
+                if (value > 0) {
                     element.classList.add("positive");
                     element.innerText = "+" + element.innerText;
+                } else if (value < 0) {
+                    element.classList.add("negative");
                 }
-                    
-                else if (value < 0) element.classList.add("negative");
             });
         });
 
-        document.addEventListener("DOMContentLoaded", function () {
+        document.addEventListener("DOMContentLoaded", function() {
             const alertButtons = document.querySelectorAll('.box-button');
+            const setName = document.getElementById('set-name').textContent.trim();
+            const actualPriceElement = document.getElementById('actual-price');
+            const actualPrice = parseFloat(actualPriceElement.textContent.replace('$', ''));
 
             alertButtons.forEach(button => {
-                button.addEventListener('click', function () {
+                button.addEventListener('click', function() {
                     const alertValue = this.textContent.trim();
+                    
+                    const percent = parseFloat(alertValue.replace('%', ''));
+                    
+                    const targetPrice = actualPrice * (1 + (percent / 100));
+
+                    const formattedTargetPrice = targetPrice.toLocaleString('en-US', { style: 'currency', currency: 'USD' });
 
                     const message = document.createElement('div');
                     message.id = "success-message";
                     message.className = "alert-message terminal-box success";
-                    message.innerHTML = `<p>Price alert updated successfully to ${alertValue} of the actual price.</p>`;
+                    message.innerHTML = `<p>We will notify you when "${setName}" reaches ${formattedTargetPrice} (a ${alertValue} change from the actual price).</p>`;
 
                     document.body.appendChild(message);
 
-                    setTimeout(function () {
+                    setTimeout(function() {
                         message.style.transition = 'opacity 0.5s ease';
                         message.style.opacity = '0';
                         setTimeout(() => message.remove(), 500);
@@ -191,8 +190,6 @@
                 });
             });
         });
-
-
     </script>
 </body>
 </html>
