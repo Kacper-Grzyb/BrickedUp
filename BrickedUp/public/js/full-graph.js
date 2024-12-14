@@ -110,29 +110,35 @@ document.addEventListener('DOMContentLoaded', async () => {
         }
 
         // Function to get color based on theme ID
-        function getColor(themeId) {
+        function getColor(theme) {
             // Map theme IDs to colors
             const themeColors = {
-                119: "#26a69a",  // Example color for theme ID 119
-                125: "#FFC000",  // Example color for theme ID 125
-                128: "#FF5722",  // Example color for theme ID 128
-                104: "#8BC34A",  // Example color for theme ID 104
-                98: "#3F51B5",   // Example color for theme ID 98
-                10: "#9C27B0",   // Example color for theme ID 10
-                70: "#FF9800",   // Example color for theme ID 70
-                65: "#E91E63",   // Example color for theme ID 65
-                71: "#00BCD4",   // Example color for theme ID 71
-                9: "#CDDC39",    // Example color for theme ID 9
-                130: "#607D8B",  // Example color for theme ID 130
-                84: "#795548",   // Example color for theme ID 84
-                99: "#FFEB3B",   // Example color for theme ID 99
-                120: "#F44336",  // Example color for theme ID 120
-                126: "#2196F3",  // Example color for theme ID 126
-                77: "#673AB7",   // Example color for theme ID 77
-                // Add more theme ID mappings as needed
+                "Star Wars": "#26a69a",
+                "IDEAS": "#FFC000",
+                "Super Mario": "#FF5722",
+                "Clone Wars": "#3F51B5",
+                "Power Miners": "#9C27B0",
+                "Ninjago": "#4CAF50",
+                "Bionicle": "#E91E63",
+                "Atlantis": "#00BCD4",
+                "Brickheadz": "#FF9800",
+                "Marvel": "#F44336",
+                "DC": "#2196F3",
+                "Indiana Jones": "#795548",
+                "Harry Potter": "#673AB7",
+                "Technic": "#607D8B",
+                "Icons": "#8BC34A",
+                "Creator Expert": "#CDDC39",
+                "Art": "#FFEB3B",
+                "Jurassic World": "#009688",
+                "Architecture": "#FFC107",
+                "Stranger Things": "#FF5722",
+                "Speed Champions": "#795548",
+                "Monkie Kid": "#3F51B5",
+                "Seasonal": "#E91E63",
             };
 
-            return themeColors[themeId] || "#FFFFFF"; // Default to white if theme not found
+            return themeColors[theme] || "#FFFFFF";
         }
 
         // Function to add a new series to the chart

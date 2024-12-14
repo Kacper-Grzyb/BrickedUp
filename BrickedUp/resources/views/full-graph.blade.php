@@ -16,7 +16,7 @@
         <div class="search-container">
           <input
             type="text"
-            id="search-input"
+            id="search-input-chart"
             placeholder="🔍 Search for set name/number..."
             onkeydown="handleKeyDown(event)"
           />
