@@ -1,0 +1,36 @@
+\section{Resource Management}
+
+Since we chose Laravel as our MVC framework, before we could define a resource management system in our project, we first needed a database.
+Our database solution of choice ended up being Supabase with PostgreSQL. We settled on it because it is very easy to set up, provides a generous
+free plan, has an intuitive UI, and can be easily scaled up by upgrading the database plan.\\
+With the database set up, we created a schema for our application using draw.io (the ERD diagram can be found in the Appendix) and started writing Laravel 
+migrations to implement the database. The central two models of our database are User and Set (stored in \textit{users} and \textit{sets} tables respectively)
+, the ladder storing all of the most important data about a LEGO set.
+The rest of the models within our database center around adding additional typechecking or information to the sets, such as the set's price records.\\
+As of the current state of the project, we populate the database from multiple different sources, and using multiple tools, but this could be streamlined 
+if this application were to evolve.
+\begin{itemize}
+    \item \textbf{Seeders} - We defined some basic database seeders for including static data such as the testing admin account (to be removed for production) or set availability types
+    \item \textbf{Python Web Scrapper} - A simple python console program utilizing \textit{Selenium} to scrape Brickeconomy for set themes and subthemes
+    \item \textbf{Playwright Web Scrapper} - The main tool for obtaining the current prices of the sets within our database, an implementation of \textit{Playwright} that scrapes eBay for price records
+    \item \textbf{Admin Upload Data Page} - Albeit a temporary solution, for now the main tool for adding new sets into the database 
+\end{itemize}
+Adhering to the MVC framework, we hydrate our views with data by the use of Laravel Controllers. Almost every single page has its own controller, so
+that the data can be custom formated and optimized to the needs of that specific page. Our controllers perform different CRUD operations, and some of them can
+only be accessed by the admin user, as to comply with the project's requirements of user roles and application functionality. The operations include:
+\begin{itemize}
+    \item \textbf{Account CRUD} - Before a user is logged in (checked by Laravel Breeze), they are only able to see our landing page with the ability to create an account.
+    Most of the account management functionality was already pre-provided for us by Laravel Breeze, which made the development process a lot smoother,
+    as we had to either user the pre-existing controllers or recycle their functions. Most note-worthy, the \textit{RegisteredUserController} manages user account creation,
+    and the \textit{PasswordController} manages user authentication. The rest of the controllers within the Auth directory are used within the Settings page
+    for editting the account details and deleting the account itself.
+    \item \textbf{Set Details CRUD} - The admin-only Upload Data page allows the admin to upload CSV files that contain information about the set they want
+    to add into the database. We created a small, initial dataset for our application, since we knew adding sets would require a lot of moderation. The data
+    sanitization and creation is handled by the \textit{FileUploadController}.
+    \item \textbf{User Favourites CRUD} - In the settings page, a user can select their favourite sets, themes and subthemes from all of the available ones
+    in the database. The controller responsible for this functionality is \textit{SettingsController}.
+    \item \textbf{User Inventory CRUD} - From the settings page, a user is able to add a set to their own set Inventory, where they can see a summary
+    of all of the sets they own. This is handled by the \textit{InventoryController}.
+    \item \textbf{User Dashboard Layout CRUD} - The \textit{DashboardController} is responsible for both providing the data for the dashboard view, as well
+    as saving the user custom created dashboard within the Edit Dashboard Layout page.
+\end{itemize}
