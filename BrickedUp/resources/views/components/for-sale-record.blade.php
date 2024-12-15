@@ -8,7 +8,7 @@
 </head>
 <body>
     <div class="for-sale-record">
-        <img src="{{asset('images/ebay.svg')}}" alt="platform-logo">
+        <img src="{{asset('img/ebay.svg')}}" alt="platform-logo">
         <h5>Lorem ipsum dolor sit, amet consectetur adipisicing elit. Nisi, magnam!</h5>
         <p>EU</p>
         <p class="for-sale-price">$4839,99</p>

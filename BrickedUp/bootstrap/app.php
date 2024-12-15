@@ -4,6 +4,8 @@ use Illuminate\Foundation\Application;
 use Illuminate\Foundation\Configuration\Exceptions;
 use Illuminate\Foundation\Configuration\Middleware;
 use App\Http\Middleware\Verify2FAMiddleWare;
+use App\Http\Middleware\CacheImages;
+use App\Http\Middleware\InactivityLogout;
 
 return Application::configure(basePath: dirname(__DIR__))
     ->withRouting(
@@ -23,6 +25,11 @@ return Application::configure(basePath: dirname(__DIR__))
 
         $middleware->appendToGroup('twofactor', [
             Verify2FAMiddleWare::class,
+        ]);
+
+        $middleware->appendToGroup('web', [
+            CacheImages::class,
+            InactivityLogout::class,
         ]);
 
         //

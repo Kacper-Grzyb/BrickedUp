@@ -54,12 +54,12 @@
         <div class="terminal-box set-details-media">
             {{-- Maybe make this a bit nicer in the future, will do for now --}}
             <div class="set-image-carouselle">
-                <img src="{{asset('images/placeholder_set_image1.jpg')}}" alt="placeholder lego set image">
-                <img src="{{asset('images/placeholder_set_image3.jpg')}}" alt="placeholder lego set image">
-                <img src="{{asset('images/placeholder_set_image1.jpg')}}" alt="placeholder lego set image">
-                <img src="{{asset('images/placeholder_set_image3.jpg')}}" alt="placeholder lego set image">
-                <img src="{{asset('images/placeholder_set_image1.jpg')}}" alt="placeholder lego set image">
-                <img src="{{asset('images/placeholder_set_image3.jpg')}}" alt="placeholder lego set image">
+                <img src="{{asset('img/placeholder_set_image1.jpg')}}" alt="placeholder lego set image">
+                <img src="{{asset('img/placeholder_set_image3.jpg')}}" alt="placeholder lego set image">
+                <img src="{{asset('img/placeholder_set_image1.jpg')}}" alt="placeholder lego set image">
+                <img src="{{asset('img/placeholder_set_image3.jpg')}}" alt="placeholder lego set image">
+                <img src="{{asset('img/placeholder_set_image1.jpg')}}" alt="placeholder lego set image">
+                <img src="{{asset('img/placeholder_set_image3.jpg')}}" alt="placeholder lego set image">
             </div>
         </div>
 
@@ -117,11 +117,11 @@
         <div class="terminal-box set-details-reviews">
             <h2>User Reviews</h2>
             <div class="set-details-reviews-star-header">
-                <img src="{{asset('images/full_star.svg')}}" alt="">
-                <img src="{{asset('images/full_star.svg')}}" alt="">
-                <img src="{{asset('images/full_star.svg')}}" alt="">
-                <img src="{{asset('images/full_star.svg')}}" alt="">
-                <img src="{{asset('images/full_star.svg')}}" alt="">
+                <img src="{{asset('img/full_star.svg')}}" alt="">
+                <img src="{{asset('img/full_star.svg')}}" alt="">
+                <img src="{{asset('img/full_star.svg')}}" alt="">
+                <img src="{{asset('img/full_star.svg')}}" alt="">
+                <img src="{{asset('img/full_star.svg')}}" alt="">
                 <p>4.9 / 5</p>
             </div>
             <h6>28 reviews</h6>
