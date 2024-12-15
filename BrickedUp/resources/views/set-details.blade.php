@@ -4,7 +4,6 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <link rel="stylesheet" href="{{ asset('css/app.css') }}">
     <title>(Set Name) Set Details</title>
-    <!-- CSRF Token for JavaScript -->
     <meta name="csrf-token" content="{{ csrf_token() }}">
 </head>
 <body>
@@ -109,25 +108,60 @@
     </div>
 
     <div class="set-details-container" style="align-items: start">
-        <div class="terminal-box set-details-price-alerts">
-            <h2 style="margin-bottom: 20px;">\ud83d\udd14 Set up price alert</h2>
-            <h3>Set your alerts to receive a notification when a Lego set reaches its set goal.</h3>
-            <div class="button-container">
-                <button class="box-button"><p>-5%</p></button>
-                <button class="box-button"><p>-10%</p></button>
-                <button class="box-button"><p>+5%</p></button>
-                <button class="box-button"><p>+10%</p></button>
+
+        <div class="terminal-box set-details-reviews">
+            <h2>User Reviews</h2>
+            <div class="set-details-reviews-star-header">
+                <img src="{{asset('images/full_star.svg')}}" alt="">
+                <img src="{{asset('images/full_star.svg')}}" alt="">
+                <img src="{{asset('images/full_star.svg')}}" alt="">
+                <img src="{{asset('images/full_star.svg')}}" alt="">
+                <img src="{{asset('images/full_star.svg')}}" alt="">
+                <p>4.9 / 5</p>
+            </div>
+            <h6>28 reviews</h6>
+
+            <div class="set-details-list">
+                @include('components.review')
+                @include('components.review')
+                @include('components.review')
             </div>
         </div>
+        
+        <div class="set-details-subcontainer">
+            <div class="terminal-box set-details-price-alerts">
+                <h2 style="margin-bottom: 20px;">🔔 Set up price alert</h2>
+                <h3>Set your alerts to receive a notification when a Lego set reaches its set goal.</h3>
+                <div class="button-container">
+                    <button class="box-button"><p>-5%</p></button>
+                    <button class="box-button"><p>-10%</p></button>
+                    <button class="box-button"><p>+5%</p></button>
+                    <button class="box-button"><p>+10%</p></button>
+                </div>
+            </div>
 
-        <div class="terminal-box set-details-for-sale">
-            <h2>For Sale</h2>
-            @include('components.for-sale-record')
+            <div class="terminal-box set-details-for-sale">
+                <h2>For Sale</h2>
+                @include('components.for-sale-record')
+            </div>
         </div>
     </div>
 
     <script>
         document.addEventListener("DOMContentLoaded", function() {
+            // Varying Amounts
+            const varyingAmountElements = document.querySelectorAll(".varying-amount");
+            varyingAmountElements.forEach(element => {
+                const value = parseFloat(element.innerText);
+                if (value > 0) {
+                    element.classList.add("positive");
+                    element.innerText = "+" + element.innerText;
+                } else if (value < 0) {
+                    element.classList.add("negative");
+                }
+            });
+
+            // Price Alerts
             const csrfToken = document.querySelector('meta[name="csrf-token"]').getAttribute('content');
             
             const alertButtons = document.querySelectorAll('.box-button');
