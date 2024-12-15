@@ -11,7 +11,7 @@ class CreatePriceAlertsTable extends Migration
         Schema::create('price_alerts', function (Blueprint $table) {
             $table->id();
             $table->unsignedBigInteger('user_id');
-            $table->string('set_name');
+            $table->integer('set_number');
             $table->decimal('target_price', 10, 2);
             $table->timestamps();
 

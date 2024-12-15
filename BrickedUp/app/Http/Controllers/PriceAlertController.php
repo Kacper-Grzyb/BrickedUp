@@ -12,13 +12,21 @@ class PriceAlertController extends Controller
     {
         // Validate the incoming request data
         $validated = $request->validate([
-            'setName' => 'required|string|max:255',
+            'setNumber' => 'required|numeric|min:0',
             'targetPrice' => 'required|numeric|min:0',
         ]);
 
+        $user = Auth::user();
+        if (!$user) {
+            return response()->json([
+                'success' => false,
+                'message' => 'User not authenticated.'
+            ], 401);
+        }
+
         $priceAlert = PriceAlert::create([
             'user_id' => Auth::id(),
-            'set_name' => $validated['setName'],
+            'set_number' => $validated['setNumber'],
             'target_price' => $validated['targetPrice'],
         ]);
 

@@ -11,7 +11,7 @@ class PriceAlert extends Model
 
     protected $fillable = [
         'user_id',
-        'set_name',
+        'set_number',
         'target_price',
     ];
 

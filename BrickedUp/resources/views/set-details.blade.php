@@ -17,7 +17,7 @@
             <div class="set-details-list">
                 <div class="set-details-row">
                     <h3>Set Number</h3>
-                    <p>10123</p>
+                    <p id="set-number">10123</p>
                 </div>
                 <div class="set-details-row">
                     <h3>Name</h3>
@@ -165,8 +165,9 @@
             const csrfToken = document.querySelector('meta[name="csrf-token"]').getAttribute('content');
             
             const alertButtons = document.querySelectorAll('.box-button');
-            const setName = document.getElementById('set-name').textContent.trim();
+            const setNumberElement = document.getElementById('set-number');
             const actualPriceElement = document.getElementById('actual-price');
+            const setNumber = setNumberElement.textContent.trim();
             const actualPrice = parseFloat(actualPriceElement.textContent.replace('$', ''));
 
             alertButtons.forEach(button => {
@@ -182,14 +183,14 @@
                             'X-CSRF-TOKEN': csrfToken
                         },
                         body: JSON.stringify({
-                            setName: setName,
+                            setNumber: setNumber,
                             targetPrice: targetPrice
                         })
                     })
                     .then(response => response.json())
                     .then(data => {
                         if (data.success) {
-                            showAlertMessage(`We will notify you when \"${setName}\" reaches ${targetPrice.toLocaleString('en-US', { style: 'currency', currency: 'USD' })} (a ${alertValue} change).`);
+                            showAlertMessage(`We will notify you when "${setNumber}" reaches ${targetPrice.toLocaleString('en-US', { style: 'currency', currency: 'USD' })} (${alertValue} change).`);
                         } else{
                             showAlertMessage("There was an error setting your price alert.", true);
                         }
