@@ -16,7 +16,7 @@
     align-items: center;
     justify-content: flex-start;
     padding: 0;
-    width: 1000px;
+    width: 850px;
     box-sizing: border-box;
 }
 
@@ -35,16 +35,14 @@
 .profile-box{
     border: 1px solid white;
     border-radius: 0.3rem;
-    margin: 1rem;
-    padding: 1rem;
+    margin: 0.5rem;
+    padding: 0.5rem;
 }
 
 .set-container {
     display: flex;
     flex-wrap: wrap;
     justify-content: center;
-    gap: 20px;
-    padding: 20px;
 }
 .set-item {
     padding: 10px;
@@ -68,4 +66,44 @@
     color: #fff;
 }
 
+/* Add to Favorites Button */
+.favorite-btn[data-action="add"] {
+    background-color: #28a745; /* Green background */
+    color: #fff; /* White text */
+    border: none;
+    border-radius: 4px;
+    padding: 8px 12px;
+    font-size: 14px;
+    cursor: pointer;
+    transition: background-color 0.3s ease, transform 0.2s ease;
+}
+
+.favorite-btn[data-action="add"]:hover {
+    background-color: #218838; /* Darker green on hover */
+    transform: scale(1.05); /* Slight zoom effect */
+}
+
+/* Remove from Favorites Button */
+.favorite-btn[data-action="remove"] {
+    background-color: #dc3545; /* Red background */
+    color: #fff; /* White text */
+    border: none;
+    border-radius: 4px;
+    padding: 8px 12px;
+    font-size: 14px;
+    cursor: pointer;
+    transition: background-color 0.3s ease, transform 0.2s ease;
+}
+
+.favorite-btn[data-action="remove"]:hover {
+    background-color: #c82333; /* Darker red on hover */
+    transform: scale(1.05); /* Slight zoom effect */
+}
+
+/* Optional General Button Styling */
+.favorite-btn {
+    display: inline-block;
+    margin: 5px; /* Add some spacing */
+    text-align: center;
+}
 

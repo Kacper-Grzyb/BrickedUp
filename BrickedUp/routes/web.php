@@ -30,6 +30,8 @@ Route::middleware('auth')->group(function () {
     Route::post('/save-layout', [DashboardController::class, 'saveLayout'])->name('dashboard.save-layout');
     
     Route::get('/profile', [ProfileController::class, 'view'])->name('profile');
+    Route::post('/profile/favorites/add', [ProfileController::class, 'addToFavorites'])->name('profile.favorites.add');
+    Route::post('/profile/favorites/remove', [ProfileController::class, 'removeFromFavorites'])->name('profile.favorites.remove');
 
 
     Route::get('/search-legosets', [LegoSetController::class, 'search'])->name('legosets.search');
