@@ -20,6 +20,7 @@ Route::get('/features', function () {
 
 Route::get('/search-legosets', [LegoSetController::class, 'search'])->name('legosets.search');
 
+Route::get('/image/{name}', [ImageController::class, 'show']);
 
 require __DIR__ . '/auth.php';
 
@@ -65,6 +66,5 @@ Route::middleware(['auth', 'twofactor'])->group(function () {
     Route::get('/download-csv-template', [FileUploadController::class, 'downloadCsvTemplate'])->name('downloadCsvTemplate');
 
 
-    Route::get('/image/{id}', [ImageController::class, 'show']);
 });
 
