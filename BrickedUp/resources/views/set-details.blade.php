@@ -17,7 +17,7 @@
             <div class="set-details-list">
                 <div class="set-details-row">
                     <h3>Set Number</h3>
-                    <p id="set-number">10123</p>
+                    <p id="set-number">10212</p>
                 </div>
                 <div class="set-details-row">
                     <h3>Name</h3>
@@ -76,7 +76,7 @@
 
                 <div class="set-details-row">
                     <h3>Value</h3>
-                    <p id="actual-price">$5953.95</p>
+                    <p id="actual-price">$259.99</p>
                 </div>
                 <div class="set-details-row">
                     <h3>Price Variation</h3>

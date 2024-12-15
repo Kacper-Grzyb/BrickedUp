@@ -41,12 +41,10 @@
         }
 
         .notification-item.unread {
-            background-color: #f9f9f9;
             font-weight: bold;
         }
 
         .notification-item.read {
-            background-color: #fff;
             font-weight: normal;
         }
     </style>

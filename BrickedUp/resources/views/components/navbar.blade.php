@@ -1,12 +1,10 @@
 @php
-    // Initialize unread notifications count
-    $unreadNotificationsCount = 0;
+    $unreadNotifications = false;
     
     if (Auth::check()) {
-        // Fecth unread notifications count
-        $unreadNotificationsCount = \App\Models\Notification::where('user_id', auth()->id())
+        $unreadNotifications = \App\Models\Notification::where('user_id', auth()->id())
                                             ->where('read', false)
-                                            ->count();
+                                            ->exists();
     }
 @endphp
 
@@ -51,9 +49,8 @@
                 </li>
                 <li>
                     <a href="{{ route('notifications.index') }}">
-                        @if($unreadNotificationsCount > 0)
+                        @if($unreadNotifications)
                             <img src="{{ asset('images/bell_icon_highlighted.svg') }}" alt="notification icon">
-                            <span class="notification-dot"></span>
                         @else
                             <img src="{{ asset('images/bell_icon.svg') }}" alt="notification icon">
                         @endif
