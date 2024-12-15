@@ -1,18 +1,16 @@
-<!-- resources/views/notifications/index.blade.php -->
-
 <!DOCTYPE html>
 <html lang="en">
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Your Notifications</title>
+    <title>Notifications Page</title>
     <link rel="stylesheet" href="{{ asset('css/app.css') }}">
 </head>
 <body>
     <x-navbar :currentPage='"notification"'/>
 
     <div class="notifications-container">
-        <h2>Your Notifications</h2>
+        <h1>Notifications</h1>
 
         @if($notifications->isEmpty())
             <p>No notifications available.</p>
@@ -28,7 +26,6 @@
         @endif
     </div>
 
-    <!-- Optional: Add some basic styling -->
     <style>
         .notifications-container {
             padding: 20px;
