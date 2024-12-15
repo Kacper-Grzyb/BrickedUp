@@ -1,6 +1,6 @@
 <?php
 
-namespace App\Http\Controller;
+namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
 use App\Models\PriceAlert;
@@ -10,31 +10,24 @@ class PriceAlertController extends Controller
 {
     public function store(Request $request)
     {
-
+        // Validate the incoming request data
         $validated = $request->validate([
             'setName' => 'required|string|max:255',
             'targetPrice' => 'required|numeric|min:0',
         ]);
 
         $priceAlert = PriceAlert::create([
-            'user_id' => Auth()::id(),
+            'user_id' => Auth::id(),
             'set_name' => $validated['setName'],
             'target_price' => $validated['targetPrice'],
         ]);
 
-        if ($priceAlert){
-            Notification::create([
-                'user_id' => Auth::id(),
-                'message' => "Price alert set for \"{$validated['setName']}\" at {$validated['targetPrice']}",
-                'read' => false,
-            ]);
-
+        if ($priceAlert) {
             return response()->json([
                 'success' => true,
-                'message' => 'Price alert has been set successfully and a notification has been created.'
+                'message' => 'Price alert has been set successfully.'
             ]);
-        }
-        else{
+        } else {
             return response()->json([
                 'success' => false,
                 'message' => 'Failed to set price alert.'

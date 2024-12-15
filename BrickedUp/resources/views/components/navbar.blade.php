@@ -1,13 +1,16 @@
-<div class="nav-header">
-        @php
-            // Initialize an empty collection in case the user is not authenticated
-            $notifications = collect([]);
+@php
+    // Initialize unread notifications count
+    $unreadNotificationsCount = 0;
+    
+    if (Auth::check()) {
+        // Fecth unread notifications count
+        $unreadNotificationsCount = \App\Models\Notification::where('user_id', auth()->id())
+                                            ->where('read', false)
+                                            ->count();
+    }
+@endphp
 
-            if (Auth::check()) {
-                // Fetch the latest 5 notifications for the authenticated user
-                $notifications = Auth::user()->notifications()->latest()->take(5)->get();
-            }
-        @endphp
+<div class="nav-header">
         <ul class="navbar">
             <div>
                 <li>
@@ -46,7 +49,16 @@
                         @endif
                     </a>
                 </li>
-
+                <li>
+                    <a href="{{ route('notifications.index') }}">
+                        @if($unreadNotificationsCount > 0)
+                            <img src="{{ asset('images/bell_icon_highlighted.svg') }}" alt="notification icon">
+                            <span class="notification-dot"></span>
+                        @else
+                            <img src="{{ asset('images/bell_icon.svg') }}" alt="notification icon">
+                        @endif
+                    </a>
+                </li>
                 <li>
                     @if($currentPage === 'profile') 
                         <img id="profile-dropdown-icon" src="{{asset('images/user_icon_highlighted.svg')}}" alt="user icon">
@@ -64,28 +76,6 @@
                                 {{ __('Log out') }}
                             </a>
                         </form>
-                    </div>
-                </li>
-                <li>
-                    @if($currentPage === 'notification')
-                        <img id="notification-icon" src="{{ asset('images/bell_icon_highlighted.svg') }}" alt="notification icon">
-                    @else
-                        <img id="notification-icon" src="{{ asset('images/bell_icon.svg') }}" alt="notification icon">
-                    @endif
-                    <span class="notification-arrow"></span>
-                    <div class="notification-dropdown">
-                        @if($notifications->isNotEmpty())
-                            <ul class="notification-list">
-                                @foreach($notifications as $notification)
-                                    <li class="{{ $notification->read ? 'read' : 'unread' }}">
-                                        {{ $notification->message }}
-                                    </li>
-                                @endforeach
-                            </ul>
-                            <a href="{{ route('notifications.index') }}" class="view-all-link">View All Notifications</a>
-                        @else
-                            <h3>No notifications at the moment</h3>
-                        @endif
                     </div>
                 </li>
             </div>
@@ -137,35 +127,6 @@
                 profileDropdown.style.display = "none";
                 dropdownIcon.src="{{asset('images/user_icon.svg')}}";
                 dropdownButton.style.transform = "rotate(45deg)";
-            }
-        });
-
-        let notDropdownIcon = document.getElementById('notification-icon');
-        let notDropdownButton = document.querySelector('.notification-arrow');
-        let notDropdown = document.querySelector('.notification-dropdown');
-
-        function toggleNotificationDropdown() {
-            if(notDropdown.style.display === "none") {
-                notDropdown.style.display = "flex";
-                notDropdownIcon.src="{{asset('images/bell_icon_highlighted.svg')}}";
-                notDropdownButton.style.transform = "rotate(225deg)";
-            }
-            else {
-                notDropdown.style.display = "none";
-                notDropdownIcon.src="{{asset('images/bell_icon.svg')}}";
-                notDropdownButton.style.transform = "rotate(45deg)";
-            }
-        }
-        
-
-        notDropdownIcon.addEventListener('click', () => toggleNotificationDropdown());
-        notDropdownButton.addEventListener('click', () => toggleNotificationDropdown());
-
-        document.addEventListener('click', (e) => {
-            if(!notDropdown.contains(e.target) && !notDropdownIcon.contains(e.target) && notDropdownButton.contains(e.target)) {
-                notDropdown.style.display = "none";
-                notDropdownIcon.src="{{asset('images/bell_icon.svg')}}";
-                notDropdownButton.style.transform = "rotate(45deg)";
             }
         });
 

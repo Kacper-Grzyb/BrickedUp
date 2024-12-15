@@ -61,7 +61,7 @@ Route::middleware('auth')->group(function () {
 
     Route::get('/download-csv-template', [FileUploadController::class, 'downloadCsvTemplate'])->name('downloadCsvTemplate');
 
-    Route::post('/price-alert', [PriceAlertController:: class, 'store'])->name('price-alert.store');
+    Route::post('/price-alert', [PriceAlertController::class, 'store'])->name('price-alert.store');
 
     Route::get('/notifications', [NotificationController::class, 'index'])->name('notifications.index');
 });

@@ -1,13 +1,15 @@
+<!-- resources/views/notifications/index.blade.php -->
+
 <!DOCTYPE html>
 <html lang="en">
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Your Notifications</title>
     <link rel="stylesheet" href="{{ asset('css/app.css') }}">
-    <title>Notifications</title>
 </head>
 <body>
-    <x-navbar :currentPage='"notifications"'/>
+    <x-navbar :currentPage='"notification"'/>
 
     <div class="notifications-container">
         <h2>Your Notifications</h2>
@@ -15,14 +17,41 @@
         @if($notifications->isEmpty())
             <p>No notifications available.</p>
         @else
-            <ul>
+            <div class="notification-list">
                 @foreach($notifications as $notification)
-                    <li class="{{ $notification->read ? 'read' : 'unread' }}">
-                        {{ $notification->message }} - {{ $notification->created_at->diffForHumans() }}
-                    </li>
+                    <div class="notification-item {{ $notification->read ? 'read' : 'unread' }}">
+                        <p>{{ $notification->message }}</p>
+                        <small>{{ $notification->created_at->diffForHumans() }}</small>
+                    </div>
                 @endforeach
-            </ul>
+            </div>
         @endif
     </div>
+
+    <!-- Optional: Add some basic styling -->
+    <style>
+        .notifications-container {
+            padding: 20px;
+        }
+
+        .notification-list {
+            margin-top: 20px;
+        }
+
+        .notification-item {
+            padding: 15px;
+            border-bottom: 1px solid #eee;
+        }
+
+        .notification-item.unread {
+            background-color: #f9f9f9;
+            font-weight: bold;
+        }
+
+        .notification-item.read {
+            background-color: #fff;
+            font-weight: normal;
+        }
+    </style>
 </body>
 </html>

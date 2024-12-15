@@ -10,10 +10,10 @@ class NotificationController extends Controller
 {
     public function index()
     {
-        $notifications = Notification::where('user_id', Auth::id())
-                                    ->orderBy('created_at', 'desc')
-                                    ->get();
+        $notifications = Auth::user()->notifications()->orderBy('created_at', 'desc')->get();
 
-        return view('notifications', compact('notifications'));
+        Auth::user()->notifications()->where('read', false)->update(['read' => true]);
+
+        return view('notifications.index', compact('notifications'));
     }
 }

@@ -79,10 +79,10 @@ class User extends Authenticatable
     public function notifications()
     {
         return $this->hasMany(Notification::class);
-    } 
+    }
 
     public function priceAlerts()
     {
-        return $this->hasMany(priceAlert::class);
+        return $this->hasMany(PriceAlert::class);
     }
 }
