@@ -89,7 +89,7 @@
     }
 
     .card button {
-        width: 100%;
+        width: 110%;
         padding: 10px 15px;
         font-size: 1rem;
         color: white;

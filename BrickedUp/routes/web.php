@@ -9,6 +9,7 @@ use App\Http\Controllers\SetsDataController;
 use App\Http\Controllers\SetController;
 use App\Http\Controllers\TwoFactorController;
 use App\Http\Controllers\ImageController;
+use App\Http\Middleware\InactivityLogout;
 
 Route::get('/', function () {
     return view('landing_page/landing');
@@ -29,7 +30,7 @@ Route::middleware('auth')->group(function () {
     Route::post('/two-factor', [TwoFactorController::class, 'verify'])->name('two-factor.verify');
 });
 
-Route::middleware(['auth', 'twofactor'])->group(function () {
+Route::middleware(['auth', 'twofactor', InactivityLogout::class])->group(function () {  // Apply InactivityLogout here
     Route::get('/dashboard', function () {
         return view('home');
     })->middleware(['verified'])->name('home');
@@ -64,7 +65,4 @@ Route::middleware(['auth', 'twofactor'])->group(function () {
     Route::post('/process-upload', [FileUploadController::class, 'uploadData'])->name('uploadData');
 
     Route::get('/download-csv-template', [FileUploadController::class, 'downloadCsvTemplate'])->name('downloadCsvTemplate');
-
-
 });
-
