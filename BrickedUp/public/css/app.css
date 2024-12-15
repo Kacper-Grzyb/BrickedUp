@@ -956,3 +956,146 @@ HOME PAGE CONTENT START
 /*
 HOME PAGE CONTENT END
 */
+
+/*
+ADMIN CONTROL PANEL START
+*/
+
+.control-panel-header {
+    display: flex;
+    flex-direction: row;
+    justify-content: center;
+    gap: 1rem;
+    align-items: center;
+    flex-wrap: wrap; 
+    height: auto;
+    margin-bottom: 3rem;
+    box-sizing: border-box;
+}
+
+.control-box {
+    box-sizing:border-box;
+    height: 100%;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+    align-items: center;
+    align-content: space-between;
+    border: 1px solid white;
+    border-radius: 0.3rem;
+    gap: 4.5rem;
+    padding: 2rem 2rem 1rem 2rem;
+}
+
+.csv-upload-box {
+    display: flex;
+    flex-direction: row;
+    width: 100%;
+    justify-content: space-between;
+    align-items: center;
+}
+
+.csv-template-box {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    width: 100%;
+    gap: 0.5rem;
+}
+
+.csv-template-box h6 {
+    color:rgb(118, 118, 118);
+    margin: 0 !important;
+    font-size: 0.75rem;
+}
+
+.additional-container {
+    display: flex;
+    flex-direction: column;
+    height: 100%;
+    width: 25%;
+    align-content: space-between;
+    gap: 1rem;
+}
+
+.save-box {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    border: 1px solid white;
+    border-radius: 0.3rem;
+    padding: 2rem;
+}
+
+.generate-box {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    border: 1px solid white;
+    border-radius: 0.3rem;
+    padding: 2rem;
+}
+
+.panel-table-container {
+    width: 80%;
+    margin: auto;
+    overflow: scroll;
+    margin-top: 4rem;
+    border: 1px solid white;
+    border-radius: 0.3rem;
+}
+
+.panel-table {
+    border-collapse:collapse;
+}
+
+.panel-table td {
+    white-space: nowrap;
+    overflow: hidden;
+}
+
+.panel-table-row {
+    border: 1px solid #555;
+}
+
+.panel-table td{
+    border: 1px solid #555;
+    padding: 0.5rem;
+}
+
+.panel-table th {
+    border: 1px solid #555;
+    padding: 0.75rem;
+}
+
+.panel-table-row:hover {
+    background-color: #333;
+}
+
+.panel-button {
+    font-family:'Courier New', Courier, monospace;
+    color: rgb(251, 139, 30);
+    text-decoration: underline;
+    font-size: 1rem;
+    cursor: pointer;
+    -webkit-user-select: none; /* Safari */
+    -ms-user-select: none; /* IE 10 and IE 11 */
+    user-select: none; /* Standard syntax */
+}
+
+.panel-button-disabled {
+    font-family:'Courier New', Courier, monospace;
+    color: rgb(173, 173, 173);
+    cursor:not-allowed;
+    font-size: 1rem;
+    -webkit-user-select: none; /* Safari */
+    -ms-user-select: none; /* IE 10 and IE 11 */
+    user-select: none; /* Standard syntax */
+}
+
+/*
+ADMIN CONTROL PANEL END
+*/
