@@ -28,7 +28,7 @@
             <div class="set-container">
                 @foreach ($sets as $set)
                     <div class="profile-box set-item" data-set-number="{{ $set->set_number }}">
-                        @if (!empty($set->setImage))
+                        @if (!empty( $set->setImage->first()->image_data ))
                             <img src="data:image/png;base64,{{ $set->setImage->first()->image_data }}" style="height: 200px; width: 200px " alt="Set Image">
                         @else
                             <p>No image available</p>
