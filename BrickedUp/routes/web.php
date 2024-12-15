@@ -9,6 +9,7 @@ use App\Http\Controllers\LegoSetController;
 use App\Http\Controllers\SetsDataController;
 use App\Http\Controllers\SetController;
 use App\Http\Controllers\DashboardController;
+use App\Http\Controllers\ImagesController;
 
 Route::get('/', function () {
     return view('landing_page/landing');
@@ -29,6 +30,7 @@ Route::middleware('auth')->group(function () {
     Route::post('/save-layout', [DashboardController::class, 'saveLayout'])->name('dashboard.save-layout');
     
     Route::get('/profile', [ProfileController::class, 'view'])->name('profile');
+
 
     Route::get('/search-legosets', [LegoSetController::class, 'search'])->name('legosets.search');
     

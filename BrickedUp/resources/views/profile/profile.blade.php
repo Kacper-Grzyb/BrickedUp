@@ -24,12 +24,18 @@
 
             
             <div class="terminal-box">
-                User Inventory <br/>
-                User Inventory
+            <div class="set-container">
+                @foreach ($sets as $set)
+                <div class="profile-box set-item">
+                        <img src="data:image/png;base64,{{ $set->setImage->first()->image_data }}" style="height: 200px; width: 200px " alt="Set Image">
+                        <h3>{{ $set['set_name'] }}</h3>
+                        <p>Set Number: {{ $set['set_number'] }}</p>
+                    </div>
+                @endforeach
             </div>
-            <div class="terminal-box">
-                User Reviews
+
             </div>
+            
         </div>
     </div>
 </body>

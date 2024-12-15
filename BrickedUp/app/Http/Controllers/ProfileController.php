@@ -3,6 +3,7 @@
 namespace App\Http\Controllers;
 
 use App\Http\Requests\ProfileUpdateRequest;
+use App\Models\Set;
 use Illuminate\Http\RedirectResponse;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
@@ -15,7 +16,11 @@ class ProfileController extends Controller
 {
     public function view() 
     {
-        return view('profile/profile');
+        $sets = Set::with('setImage')->orderBy('set_number')->get();
+        //debug because aaaaaaaa
+        //dd($sets->toArray());
+
+        return view('profile/profile', compact('sets'));
     }
 
     /**
