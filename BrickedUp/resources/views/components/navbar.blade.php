@@ -38,6 +38,18 @@
                     </a>
                 </li>
 
+                @if(auth()->user()->role === 'admin')
+                <li>
+                    <a href="/upload-data">
+                        @if($currentPage === 'upload-data')
+                            <img src="{{asset('images/upload_icon_highlighted.svg')}}" alt="upload icon">
+                        @else
+                            <img src="{{asset('images/upload_icon.svg')}}" alt="upload icon">
+                        @endif
+                    </a>
+                </li>
+                @endif
+
                 <li>
                     @if($currentPage === 'profile') 
                         <img id="profile-dropdown-icon" src="{{asset('images/user_icon_highlighted.svg')}}" alt="user icon">

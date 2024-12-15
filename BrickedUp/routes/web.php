@@ -8,6 +8,7 @@ use App\Http\Controllers\LegoSetController;
 use App\Http\Controllers\SetsDataController;
 use App\Http\Controllers\SetController;
 use App\Http\Controllers\DashboardController;
+use App\Http\Middleware\CheckRole;
 
 Route::get('/', function () {
     return view('landing_page/landing');
@@ -51,13 +52,13 @@ Route::middleware('auth')->group(function () {
     })->name('explore-view');
 
     Route::get('/explore-view', [SetsDataController::class, 'index'])->name('explore-view');
+});
 
+Route::middleware(CheckRole::class)->group(function () {
     Route::get('/upload-data', [FileUploadController::class, 'showUploadForm'])->name('form');
     Route::post('/receive-data', [FileUploadController::class, 'receiveData'])->name('receiveData');
     Route::post('/process-upload', [FileUploadController::class, 'uploadData'])->name('uploadData');
     Route::post('/generate-price-data', [FileUploadController::class, 'generateSetPriceDummyData'])->name('generateSetPriceData');
-
     Route::get('/download-csv-template', [FileUploadController::class, 'downloadCsvTemplate'])->name('downloadCsvTemplate');
-
 });
 
