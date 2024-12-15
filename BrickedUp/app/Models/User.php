@@ -6,6 +6,7 @@ namespace App\Models;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Foundation\Auth\User as Authenticatable;
 use Illuminate\Notifications\Notifiable;
+use Illuminate\Database\Eloquent\Relations\HasMany;
 
 class User extends Authenticatable
 {
@@ -70,7 +71,18 @@ class User extends Authenticatable
         return $this->hasMany(SetSelectedForChart::class);
     }
 
-    public function dashboardLayouts() {
+    public function dashboardLayouts() 
+    {
         return $this->hasMany(UserDashboardLayout::class);
+    }
+
+    public function notifications()
+    {
+        return $this->hasMany(Notification::class);
+    } 
+
+    public function priceAlerts()
+    {
+        return $this->hasMany(priceAlert::class);
     }
 }

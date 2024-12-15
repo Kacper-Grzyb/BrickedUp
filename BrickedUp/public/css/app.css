@@ -173,18 +173,52 @@ NAVBAR CONTENT START
     justify-content: space-evenly;
 }
 
-.notification-dropdown{
-    display: none;
-    flex-direction: column;
-    gap: 0.4rem;
-    position: fixed;
-    z-index: 11;
-    background-color: rgb(18, 18, 18);
-    border: 1px solid rgb(173, 173, 173);
-    border-radius: 0.3rem;
-    padding: 0.75rem;
-    justify-content: space-evenly;
+.notification-dropdown {
+    display: none; /* Ensure it's hidden by default */
+    position: absolute;
+    background-color: #fff;
+    box-shadow: 0 4px 8px rgba(0,0,0,0.1);
+    padding: 10px;
+    width: 300px;
+    max-height: 400px;
+    overflow-y: auto;
+    z-index: 1000;
+}
 
+.notification-dropdown .notification-list {
+    list-style: none;
+    padding: 0;
+    margin: 0;
+}
+
+.notification-dropdown .notification-list li {
+    padding: 10px;
+    border-bottom: 1px solid #eee;
+}
+
+.notification-dropdown .notification-list li.unread {
+    background-color: #f9f9f9;
+    font-weight: bold;
+}
+
+.notification-dropdown .notification-list li.read {
+    background-color: #fff;
+    font-weight: normal;
+}
+
+.notification-dropdown .view-all-link {
+    display: block;
+    text-align: center;
+    padding: 10px;
+    background-color: #f0f0f0;
+    text-decoration: none;
+    color: #333;
+    margin-top: 10px;
+    border-radius: 4px;
+}
+
+.notification-dropdown .view-all-link:hover {
+    background-color: #e0e0e0;
 }
 
 .profile-dropdown h3 {
