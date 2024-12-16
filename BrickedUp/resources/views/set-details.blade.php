@@ -5,7 +5,14 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <link rel="stylesheet" href="{{ asset('css/app.css') }}">
     <title>(Set Name) Set Details</title>
-    <script src="https://unpkg.com/lightweight-charts/dist/lightweight-charts.standalone.production.js"></script>
+    <script src='https://cdnjs.cloudflare.com/ajax/libs/Chart.js/2.9.3/Chart.min.js'></script>
+    <script src='https://cdnjs.cloudflare.com/ajax/libs/moment.js/2.24.0/moment.min.js'></script>
+    <!-- <link rel="stylesheet" href="{{ asset('css/uplot.css') }}"> -->
+    <script src="https://unpkg.com/uplot@1.6.24/dist/uPlot.iife.min.js"></script>
+    <link rel="stylesheet" href="https://unpkg.com/uplot@1.6.24/dist/uPlot.min.css">
+
+
+
 </head>
 
 <body>
@@ -76,7 +83,7 @@
             <div class="set-details-list">
                 <div class="set-details-row">
                     <h3>Retail</h3>
-                    <p> {{$prices?->price}} </p>
+                    <p> {{$lastPrice?->price}} </p>
                 </div>
 
                 <p>New / Sealed</p>
@@ -108,37 +115,13 @@
             </div>
         </div>
 
-        <div class="terminal-box set-details-media">
-            <h2>Set Value Chart</h2>
-            <div id="chartWrapper" class="my-chartWrapper">
-                <div id="mountainChart" class="my-mountainChart">
-                    <div id="placeholder" class="placeholder-message">
-                        Select a LEGO set to display its data on the chart.
-                    </div>
-                    <div id="loading" class="loading-spinner" style="display: none">
-                        Loading...
-                    </div>
-                </div>
-                <div id="legend">
-                    <!-- Dynamic Legend Items -->
-                </div>
-            </div>
+        <div class="terminal-box chart-to">
+            <div id="chart"></div>
         </div>
 
     </div>
 
-    <div class="set-details-container" style="align-items: start">
-
-
-        <div class="set-details-subcontainer">
-            <div class="terminal-box set-details-trends">
-                <h2>Sales Trends</h2>
-                <p>maybe chart</p>
-            </div>
-
-        </div>
-
-    </div>
+    
 
     <script>
         document.addEventListener("DOMContentLoaded", function() {
@@ -152,12 +135,56 @@
                 } else if (value < 0) element.classList.add("negative");
             });
         });
+
+        const prices = @json($prices);
+
+        // Extract dates and prices into separate arrays for the chart
+        const dates = prices.map(price => new Date(price.record_date).getTime() / 1000); // Convert to UNIX timestamp
+        const values = prices.map(price => price.price);
+
+        const opts = {
+            width: document.getElementById('chart').offsetWidth,
+            height: document.getElementById('chart').offsetHeight,
+            scales: {
+                x: {
+                    time: true, // x-axis as time
+                },
+                y: {
+                    range: [0, Math.max(...values) * 1.2], // Add 20% padding above max value
+                },
+            },
+            axes: [{
+                    stroke: "black",
+                    grid: {
+                        show: false
+                    }
+                }, // X-axis
+                {
+                    stroke: "black",
+                    grid: {
+                        stroke: "rgba(0,0,0,0.1)"
+                    }
+                }, // Y-axis
+            ],
+            series: [{}, // X-axis
+                {
+                    stroke: "blue", // Line color
+                    fill: "rgba(0, 0, 255, 0.1)", // Area under line color
+                    width: 2,
+                },
+            ],
+        };
+
+        const data = [dates, values];
+
+
+        const chartContainer = document.getElementById('chart');
+
+        chartContainer.style.backgroundColor = 'lightblue';
+
+        let u = new uPlot(opts, data, document.getElementById("chart"));
     </script>
 
 </body>
 
 </html>
-
-<script>
-    window.setsData = @json($sets);
-</script>
