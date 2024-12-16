@@ -93,7 +93,7 @@
                     @endif
                 </div>
             </div>
-            <a href="/profile">Edit Favourite Sets</a>
+            <a href="/favorite-sets" style="white-space: nowrap">Edit Favourite Sets</a>
             <!--
             OLD DROPDOWN MENU
             <div class="settings-dropdown">

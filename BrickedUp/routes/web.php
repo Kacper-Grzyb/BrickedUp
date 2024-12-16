@@ -10,6 +10,7 @@ use App\Http\Controllers\SetsDataController;
 use App\Http\Controllers\SetController;
 use App\Http\Controllers\DashboardController;
 use App\Http\Controllers\ImagesController;
+use App\Http\Controllers\FavoriteSetsController;
 
 Route::get('/', function () {
     return view('landing_page/landing');
@@ -29,6 +30,10 @@ Route::middleware('auth')->group(function () {
     Route::get('/edit-dashboard', [DashboardController::class, 'editDashboard'])->name('dashboard.edit');
     Route::post('/save-layout', [DashboardController::class, 'saveLayout'])->name('dashboard.save-layout');
     
+    Route::get('/favorite-sets', [FavoriteSetsController::class, 'view'])->name('favorite-sets');
+    Route::post('/favorite-sets/favorites/add', [FavoriteSetsController::class, 'addToFavorites'])->name('favorite-sets.favorites.add');
+    Route::post('/favorite-sets/favorites/remove', [FavoriteSetsController::class, 'removeFromFavorites'])->name('favorite-sets.favorites.remove');
+
     Route::get('/profile', [ProfileController::class, 'view'])->name('profile');
     Route::post('/profile/favorites/add', [ProfileController::class, 'addToFavorites'])->name('profile.favorites.add');
     Route::post('/profile/favorites/remove', [ProfileController::class, 'removeFromFavorites'])->name('profile.favorites.remove');
