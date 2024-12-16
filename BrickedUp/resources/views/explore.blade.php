@@ -167,7 +167,6 @@
         align-items: flex-end;
         padding: 20px;
     }
-
 </style>
 
 <body>
@@ -183,7 +182,12 @@
         @foreach ($sets as $set)
             <div class="content">
                 <div class="column one">
-                    <img src="/img/f1.jpeg" alt="zoom">
+                    @if ($set->setImage && $set->setImage->first())
+                        <img src="data:image/png;base64,{{ $set->setImage->first()->image_data }}"
+                            style="height: 200px; width: 200px;" alt="Set Image">
+                    @else
+                        <p>No image available</p>
+                    @endif
                 </div>
 
                 <div class="column two">
@@ -251,9 +255,9 @@
                             label: 'LEGO Set {{ $set->set_number }}',
                             data: [
                                 @if($set->availability) {{ $set->availability->id }} @else 0 @endif,
-                                            {{ $set->piece_count }},
+                                                                                            {{ $set->piece_count }},
                             @if($set->retail_price) {{ $set->retail_price }} @else 0 @endif
-                                        ],
+                                                                                        ],
                     backgroundColor: [
                         'rgba(54, 162, 235, 0.2)',
                         'rgba(75, 192, 192, 0.2)',
@@ -266,7 +270,7 @@
                         ],
                             borderWidth: 1
                 }]
-                                };
+                                                                                };
                 var config = {
                     type: 'bar',
                     data: data,

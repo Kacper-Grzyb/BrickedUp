@@ -7,52 +7,52 @@ use Illuminate\Database\Eloquent\Model;
 
 class Set extends Model
 {
-    public function review() 
+    public function review()
     {
         return $this->hasMany(Review::class);
     }
 
-    public function favouriteSet() 
+    public function favouriteSet()
     {
         return $this->hasMany(FavouriteSet::class);
     }
 
-    public function theme() 
+    public function theme()
     {
         return $this->belongsTo(Theme::class);
     }
 
-    public function subtheme() 
+    public function subtheme()
     {
         return $this->belongsTo(Subtheme::class);
     }
 
-    public function availability() 
+    public function availability()
     {
         return $this->belongsTo(Availability::class);
     }
 
-    public function setSelectedForCharts() 
+    public function setSelectedForCharts()
     {
         return $this->hasMany(SetSelectedForChart::class);
     }
 
-    public function setLink() 
+    public function setLink()
     {
         return $this->hasMany(SetLink::class);
     }
-    
-    public function setImage() 
+
+    public function setImage()
     {
-        return  $this->hasMany(SetImage::class, 'set_number', 'set_number');
+        return $this->hasMany(SetImage::class, 'set_number', 'set_number');
     }
 
-    public function setPrice() 
+    public function setPrice()
     {
         return $this->hasMany(SetPrice::class);
     }
 
-    public function reviews() 
+    public function reviews()
     {
         return $this->hasMany(Review::class);
     }
