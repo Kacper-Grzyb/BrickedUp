@@ -212,12 +212,11 @@
                                 </p>
                             </div>
                             <div class="right-details">
-                                <p>
-                                    Lorem ipsum dolor sit amet, consectetur adipisicing elit.
-                                    Aliquam enim delectus illo ab, soluta, ratione excepturi quia numquam
-                                    mollitia reprehenderit, dolores pariatur? Ad veniam nisi impedit vero
-                                    alias hic nulla!
-                                </p>
+                                @if ($set->description)
+                                    <p>{{ $set->description }}</p>
+                                @else
+                                    <p>No description available</p>
+                                @endif
                             </div>
 
                         </div>
@@ -255,9 +254,9 @@
                             label: 'LEGO Set {{ $set->set_number }}',
                             data: [
                                 @if($set->availability) {{ $set->availability->id }} @else 0 @endif,
-                                                                                            {{ $set->piece_count }},
+                                                                                                    {{ $set->piece_count }},
                             @if($set->retail_price) {{ $set->retail_price }} @else 0 @endif
-                                                                                        ],
+                                                                                                ],
                     backgroundColor: [
                         'rgba(54, 162, 235, 0.2)',
                         'rgba(75, 192, 192, 0.2)',
@@ -270,7 +269,7 @@
                         ],
                             borderWidth: 1
                 }]
-                                                                                };
+                                                                                        };
                 var config = {
                     type: 'bar',
                     data: data,

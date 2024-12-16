@@ -60,9 +60,7 @@ Route::middleware('auth')->group(function () {
         return view('explore');
     })->name('explore-view');
 
-    Route::get('/explore-view', [SetsDataController::class, 'index'])->name('explore-view');
     Route::get('/explore-view', [ImagesController::class, 'thumbnail'])->name('explore');
-
 
     Route::get('/upload-data', [FileUploadController::class, 'showUploadForm'])->name('form');
     Route::post('/receive-data', [FileUploadController::class, 'receiveData'])->name('receiveData');
