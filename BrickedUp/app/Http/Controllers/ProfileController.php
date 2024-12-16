@@ -3,6 +3,8 @@
 namespace App\Http\Controllers;
 
 use App\Http\Requests\ProfileUpdateRequest;
+use App\Models\Set;
+use App\Models\FavouriteSet;
 use Illuminate\Http\RedirectResponse;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
@@ -13,10 +15,11 @@ use DB;
 
 class ProfileController extends Controller
 {
-    public function view() 
+    public function view()
     {
-        return view('profile/profile');
+        return view('profile.profile');
     }
+
 
     /**
      * Display the user's profile form.

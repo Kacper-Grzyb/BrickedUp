@@ -93,6 +93,9 @@
                     @endif
                 </div>
             </div>
+            <a href="/favorite-sets" style="white-space: nowrap">Edit Favourite Sets</a>
+            <!--
+            OLD DROPDOWN MENU
             <div class="settings-dropdown">
                 <p id="favouriteSetDropdownButton">Edit Favourite Sets ˅</p>
                 <form method="POST" id="favouriteSets" class="settings-dropdown-content" action="{{ route('profile.update-favourite-sets') }}">
@@ -116,6 +119,7 @@
                     <button type="submit"><p class="fake-link">Save</p></button>
                 </form>
             </div>
+            -->
         </div>
         <div class="terminal-box">
             <div class="settings-row">
@@ -224,21 +228,21 @@
     </div>
 
     <script>
-        let favouriteSetsButton = document.getElementById("favouriteSetDropdownButton");
+        //let favouriteSetsButton = document.getElementById("favouriteSetDropdownButton");
         let favouriteThemesButton = document.getElementById("favouriteThemesDropdownButton");
         let favouriteSubthemesButton = document.getElementById("favouriteSubthemesDropdownButton");
-        let favouriteSetsDropdown = document.getElementById("favouriteSets");
+        //let favouriteSetsDropdown = document.getElementById("favouriteSets");
         let favouriteThemesDropdown = document.getElementById("favouriteThemes");
         let favouriteSubthemesDropdown = document.getElementById("favouriteSubthemes");
 
-        favouriteSetsButton.addEventListener('click', () => {
-            if(favouriteSetsDropdown.style.display === "none") {
-                favouriteSetsDropdown.style.display = "flex";
-            }
-            else {
-                favouriteSetsDropdown.style.display = "none";
-            }
-        });
+        //favouriteSetsButton.addEventListener('click', () => {
+        //    if(favouriteSetsDropdown.style.display === "none") {
+        //        favouriteSetsDropdown.style.display = "flex";
+        //    }
+        //    else {
+        //        favouriteSetsDropdown.style.display = "none";
+        //    }
+        //});
 
         favouriteThemesButton.addEventListener('click', () => {
             if(favouriteThemesDropdown.style.display === "none") {
@@ -260,15 +264,28 @@
 
         // This can be made more complex in the future because now you can open multiple dropdowns at once
         document.addEventListener('click', (e) => {
-            if(!favouriteSetsButton.contains(e.target) &&
-               !favouriteSetsDropdown.contains(e.target) &&
-               !favouriteThemesButton.contains(e.target) &&
+                //!favouriteSetsButton.contains(e.target) &&
+                //!favouriteSetsDropdown.contains(e.target) &&
+            if(!favouriteThemesButton.contains(e.target) &&
                !favouriteThemesDropdown.contains(e.target) &&
                !favouriteSubthemesButton.contains(e.target) &&
                !favouriteSubthemesDropdown.contains(e.target)
             ) {
-                favouriteSetsDropdown.style.display = "none";
+                //favouriteSetsDropdown.style.display = "none";
                 favouriteThemesDropdown.style.display = "none";
+                favouriteSubthemesDropdown.style.display = "none";
+            }
+        });
+
+        //Quality of Life update, If clicked outside of the dropdown menus it closes
+        document.addEventListener('click', (e) => {
+            if (!favouriteThemesButton.contains(e.target) &&
+                !favouriteThemesDropdown.contains(e.target)) {
+                favouriteThemesDropdown.style.display = "none";
+            }
+
+            if (!favouriteSubthemesButton.contains(e.target) &&
+                !favouriteSubthemesDropdown.contains(e.target)) {
                 favouriteSubthemesDropdown.style.display = "none";
             }
         });
