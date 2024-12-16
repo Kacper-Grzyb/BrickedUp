@@ -2,6 +2,7 @@
 
 namespace App\View\Components;
 
+use App\Models\Set;
 use Closure;
 use Illuminate\Contracts\View\View;
 use Illuminate\View\Component;
@@ -14,13 +15,13 @@ class Navbar extends Component
 
     /**
      * Create a new component instance.
-     */     
+     */
     public function __construct($currentPage)
     {
         $this->currentPage = $currentPage;
         // Always make sure the total width of elements in the navbar is larger than the website screen width
         // for the scrollbar animation to function correctly
-        $sets = DB::table('sets')->select('*')->limit(20)->get();
+        $sets = Set::select('*')->limit(20)->get();
         $this->sets = $sets;
     }
 
