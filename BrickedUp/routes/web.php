@@ -8,6 +8,7 @@ use App\Http\Controllers\LegoSetController;
 use App\Http\Controllers\SetsDataController;
 use App\Http\Controllers\SetController;
 use App\Http\Controllers\DashboardController;
+use App\Http\Controllers\SetDetail;
 
 Route::get('/', function () {
     return view('landing_page/landing');
@@ -20,17 +21,17 @@ Route::get('/features', function () {
 Route::get('/search-legosets', [LegoSetController::class, 'search'])->name('legosets.search');
 
 
-require __DIR__ . '/auth.php'; 
+require __DIR__ . '/auth.php';
 
 Route::middleware('auth')->group(function () {
     Route::get('/dashboard', [DashboardController::class, 'index'])->middleware(['verified'])->name('home');
     Route::get('/edit-dashboard', [DashboardController::class, 'editDashboard'])->name('dashboard.edit');
     Route::post('/save-layout', [DashboardController::class, 'saveLayout'])->name('dashboard.save-layout');
-    
+
     Route::get('/profile', [ProfileController::class, 'view'])->name('profile');
 
     Route::get('/search-legosets', [LegoSetController::class, 'search'])->name('legosets.search');
-    
+
     Route::get('/set-details', function () {
         return view('set-details');
     });
@@ -39,7 +40,7 @@ Route::middleware('auth')->group(function () {
     Route::patch('/update-favourite-sets', [ProfileController::class, 'updateFavouriteSets'])->name('profile.update-favourite-sets');
     Route::patch('/update-favourite-themes', [ProfileController::class, 'updateFavouriteThemes'])->name('profile.update-favourite-themes');
     Route::patch('/update-favourite-subthemes', [ProfileController::class, 'updateFavouriteSubthemes'])->name('profile.update-favourite-subthemes');
-    
+
     Route::get('/edit-profile', [ProfileController::class, 'edit'])->name('profile.edit');
     Route::patch('/edit-profile', [ProfileController::class, 'update'])->name('profile.update');
     Route::delete('/edit-profile', [ProfileController::class, 'destroy'])->name('profile.destroy');
@@ -59,5 +60,5 @@ Route::middleware('auth')->group(function () {
 
     Route::get('/download-csv-template', [FileUploadController::class, 'downloadCsvTemplate'])->name('downloadCsvTemplate');
 
+    Route::get('/set-details/{id}', [SetDetail::class, 'SetDetail']);
 });
-
