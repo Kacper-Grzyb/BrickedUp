@@ -47,7 +47,7 @@
                     <span class="arrow"></span>
                     <div class="profile-dropdown">
                         <h3>Logged in as: <span class="profile-name-span">{{auth()->user()->name}}</span></h3>
-                        <a href="/profile">Go to your profile</a>
+                        <!--<a href="/profile">Go to your profile</a>   -->
                         <form method="POST" action="{{ route('logout') }}" style="margin: 0;">
                             @csrf
                             <a href="{{ route('logout') }}"

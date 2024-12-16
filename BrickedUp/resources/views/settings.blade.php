@@ -93,6 +93,9 @@
                     @endif
                 </div>
             </div>
+            <a href="/profile">Edit Favourite Sets</a>
+            <!--
+            OLD DROPDOWN MENU
             <div class="settings-dropdown">
                 <p id="favouriteSetDropdownButton">Edit Favourite Sets ˅</p>
                 <form method="POST" id="favouriteSets" class="settings-dropdown-content" action="{{ route('profile.update-favourite-sets') }}">
@@ -116,6 +119,7 @@
                     <button type="submit"><p class="fake-link">Save</p></button>
                 </form>
             </div>
+            -->
         </div>
         <div class="terminal-box">
             <div class="settings-row">
