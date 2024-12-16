@@ -42,6 +42,7 @@
 
         .notification-item.unread {
             font-weight: bold;
+            color: rgb(251, 139, 30);
         }
 
         .notification-item.read {

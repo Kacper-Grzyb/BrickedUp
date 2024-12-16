@@ -9,17 +9,11 @@ use Illuminate\Support\Facades\Log;
 
 class SetPriceObserver
 {
-    /**
-     * Handle the SetPrice "created" event.
-     */
     public function created(SetPrice $setPrice)
     {
         $this->checkPriceAlerts($setPrice);
     }
 
-    /**
-     * Handle the SetPrice "updated" event.
-     */
     public function updated(SetPrice $setPrice)
     {
         $this->checkPriceAlerts($setPrice);
@@ -28,7 +22,10 @@ class SetPriceObserver
     protected function checkPriceAlerts(SetPrice $setPrice)
     {
         $triggeredAlerts = PriceAlert::where('set_number', $setPrice->set_number)
-            ->where('target_price', '<=', $setPrice->price)
+            ->where(function($query) use ($setPrice) {
+                $query->where('target_price', '<=', $setPrice->price)
+                      ->orWhere('target_price', '>=', $setPrice->price);
+            })
             ->get();
     
 
