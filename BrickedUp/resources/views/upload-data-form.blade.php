@@ -39,9 +39,9 @@
                 @endif
             </form>
     
-            <form action="{{route('generateSetPriceData')}}" method="POST" class="generate-box">
+            <form action="{{route('calculateChanges')}}" method="POST" class="generate-box">
                 @csrf
-                <button type="submit" class="panel-button">Generate Dummy Set Price Data</button>
+                <button type="submit" class="panel-button">Calculate Set Price Changes</button>
             </form>
         </div>
     </div>

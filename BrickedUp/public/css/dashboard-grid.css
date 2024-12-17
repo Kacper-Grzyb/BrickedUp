@@ -205,8 +205,11 @@
 
 .save-layout-form {
     margin: 3rem 0;
+}
+
+.bottom-controls {
     display: flex;
     flex-direction: row;
-    justify-content: space-evenly;
     align-items: center;
+    justify-content: space-around;
 }

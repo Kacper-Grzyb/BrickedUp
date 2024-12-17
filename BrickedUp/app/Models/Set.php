@@ -7,6 +7,10 @@ use Illuminate\Database\Eloquent\Model;
 
 class Set extends Model
 {
+    protected $primaryKey = 'set_number';
+    public $incrementing = false;
+    protected $keyType = 'string';
+
     public function review() 
     {
         return $this->hasMany(Review::class);

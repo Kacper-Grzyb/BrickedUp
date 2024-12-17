@@ -27,6 +27,7 @@ Route::middleware('auth')->group(function () {
     Route::get('/dashboard', [DashboardController::class, 'index'])->middleware(['verified'])->name('home');
     Route::get('/edit-dashboard', [DashboardController::class, 'editDashboard'])->name('dashboard.edit');
     Route::post('/save-layout', [DashboardController::class, 'saveLayout'])->name('dashboard.save-layout');
+    Route::post('/reset-layout', [DashboardController::class, 'resetLayout'])->name('dashboard.reset-layout');
     
     Route::get('/profile', [ProfileController::class, 'view'])->name('profile');
 
@@ -58,6 +59,7 @@ Route::middleware(CheckRole::class)->group(function () {
     Route::get('/upload-data', [FileUploadController::class, 'showUploadForm'])->name('form');
     Route::post('/receive-data', [FileUploadController::class, 'receiveData'])->name('receiveData');
     Route::post('/process-upload', [FileUploadController::class, 'uploadData'])->name('uploadData');
+    Route::post('/calculate-changes', [FileUploadController::class, 'calculatePriceChanges'])->name('calculateChanges');
     Route::post('/generate-price-data', [FileUploadController::class, 'generateSetPriceDummyData'])->name('generateSetPriceData');
     Route::get('/download-csv-template', [FileUploadController::class, 'downloadCsvTemplate'])->name('downloadCsvTemplate');
 });
