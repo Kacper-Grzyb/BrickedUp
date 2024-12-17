@@ -103,7 +103,7 @@
 
                     <div class="searchbar">
                         <button>
-                            <img src="{{asset('images/search_icon.svg')}}" alt="search icon">
+                            <img src="{{asset('img/search_icon.svg')}}" alt="search icon">
                         </button>
                         <input type="text" placeholder="Set number, name..." id="sets-checkbox-search" onkeyup="filterSetCheckboxes()">
                     </div>
@@ -146,7 +146,7 @@
 
                     <div class="searchbar">
                         <button>
-                            <img src="{{asset('images/search_icon.svg')}}" alt="search icon">
+                            <img src="{{asset('img/search_icon.svg')}}" alt="search icon">
                         </button>
                         <input type="text" placeholder="Theme name..." id="themes-checkbox-search" onkeyup="filterThemeCheckboxes()">
                     </div>
@@ -189,7 +189,7 @@
 
                     <div class="searchbar">
                         <button>
-                            <img src="{{asset('images/search_icon.svg')}}" alt="search icon">
+                            <img src="{{asset('img/search_icon.svg')}}" alt="search icon">
                         </button>
                         <input type="text" placeholder="Subtheme name..." id="subthemes-checkbox-search" onkeyup="filterSubthemeCheckboxes()">
                     </div>

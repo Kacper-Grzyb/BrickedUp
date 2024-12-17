@@ -168,6 +168,38 @@
         padding: 20px;
     }
 
+    #pagination {
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        margin-top: 20px;
+    }
+
+    .pagination {
+        display: flex;
+        gap: 10px;
+        list-style: none;
+    }
+
+    .pagination li {
+        margin: 0 5px;
+    }
+
+    .pagination a,
+    .pagination span {
+        display: inline-block;
+        padding: 8px 16px;
+        background-color: #333;
+        color: white;
+        text-decoration: none;
+        border-radius: 5px;
+    }
+
+    .pagination a:hover,
+    .pagination .active {
+        background-color: #ff7f00;
+        cursor: pointer;
+    }
 </style>
 
 <body>
@@ -183,13 +215,18 @@
         @foreach ($sets as $set)
             <div class="content">
                 <div class="column one">
-                    <img src="/img/f1.jpeg" alt="zoom">
+                    @if ($set->setImage && $set->setImage->first())
+                        <img src="data:image/png;base64,{{ $set->setImage->first()->image_data }}"
+                            style="height: 200px; width: 200px;" alt="Set Image">
+                    @else
+                        <p>No image available</p>
+                    @endif
                 </div>
 
                 <div class="column two">
                     <div class="text">
                         <h1 id="set-details" class="heading">
-                            LEGO {{ $set->set_number  }} | {{ $set->set_name }}
+                            LEGO {{ $set->set_number }} | {{ $set->set_name }}
                         </h1>
                         <hr>
                         <div class="description">
@@ -208,14 +245,12 @@
                                 </p>
                             </div>
                             <div class="right-details">
-                                <p>
-                                    Lorem ipsum dolor sit amet, consectetur adipisicing elit.
-                                    Aliquam enim delectus illo ab, soluta, ratione excepturi quia numquam
-                                    mollitia reprehenderit, dolores pariatur? Ad veniam nisi impedit vero
-                                    alias hic nulla!
-                                </p>
+                                @if ($set->description)
+                                    <p>{{ $set->description }}</p>
+                                @else
+                                    <p>No description available</p>
+                                @endif
                             </div>
-
                         </div>
                         <div class="socials">
                             <p>Check on: </p>
@@ -234,12 +269,21 @@
                         <canvas id="barChart{{ $set->set_number }}"></canvas>
                     </div>
                 </div>
-
-
-
             </div>
         @endforeach
+
+
+
+        <section id="pagination">
+            <div class="pagination">
+                {{ $sets->links() }}
+            </div>
+        </section>
+
+
     </section>
+
+
 
     <script>
         document.addEventListener("DOMContentLoaded", function () {
@@ -251,9 +295,9 @@
                             label: 'LEGO Set {{ $set->set_number }}',
                             data: [
                                 @if($set->availability) {{ $set->availability->id }} @else 0 @endif,
-                                            {{ $set->piece_count }},
+                                                                                                                                                                    {{ $set->piece_count }},
                             @if($set->retail_price) {{ $set->retail_price }} @else 0 @endif
-                                        ],
+                                                                                                                                                                ],
                     backgroundColor: [
                         'rgba(54, 162, 235, 0.2)',
                         'rgba(75, 192, 192, 0.2)',
@@ -266,7 +310,7 @@
                         ],
                             borderWidth: 1
                 }]
-                                };
+                                                                                                                                                        };
                 var config = {
                     type: 'bar',
                     data: data,
