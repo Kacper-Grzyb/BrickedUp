@@ -3,6 +3,9 @@
 \usepackage{listings}
 \usepackage{pdflscape}
 \usepackage{booktabs}
+\usepackage{hyperref}
+\usepackage{url}
+
 
 \newcommand{\myparagraph}[1]{\vspace{0.1cm}\noindent \textbf{\textit{#1.}}}
 
@@ -16,23 +19,9 @@
 
 \section{Introduction}
 
-The goal of the introduction is to let the readers (the professor and TAs) know the topic of your work and the main takeaways of it.
-The introduction should be broad enough to understand the document without reading it and specific enough to let the reader know: \textit{If you are interested in this topic, you should read this work}.
+The LEGO investment market has emerged as a profitable opportunity, with an average return of 11\% \cite{lego_market}. However, the current process for analyzing prices, trends, and data on LEGO sets needs to be more cohesive and efficient.  
+To address this, \textit{Bricked Up} centralizes key information, providing interactive graphs, historical price comparisons, and tools to explore investment opportunities efficiently. This report outlines the development of the software, inspired by the Bloomberg Terminal, and its role in simplifying LEGO set investments for users.
 
-In the context of the Web Technologies course, the introduction should clearly describe:
-
-\begin{itemize}
-    \item Motivation: what problem does this work try to solve (and why is it important)
-    \item Project: clearly describes the topic the group chose to work with
-    \item Contributions: main takeaways that readers will get from reading this work
-\end{itemize}
-
-
-Remember to keep this and all other sections within the page and column limits.
-It is your responsibility to describe first the most important and interesting aspect of each section.
-That way, you can leave behind non-interesting and repeated information more easily.
-
-\myparagraph{Length} Half a column.
 
 \section{Front-End}
 
@@ -78,6 +67,14 @@ In the context of the Web Technologies course, the conclusion should clearly des
 \end{itemize}
 
 \myparagraph{Length} Half a column.
+
+\begin{thebibliography}{9}
+
+    \bibitem{lego_market}
+    Dmitry B. Krylov, "LEGO investing as an alternative asset class: Annualized returns of 11\%," 
+    \textit{ScienceDirect}, 2021. Available at: \href{https://www.sciencedirect.com/science/article/abs/pii/S0275531921001604?via%3Dihub}{ScienceDirect Article}.
+    
+\end{thebibliography}
 
 \end{document}
 
