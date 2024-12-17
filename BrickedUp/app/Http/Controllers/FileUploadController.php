@@ -159,6 +159,20 @@ class FileUploadController extends Controller
         return '<p>Data generated successfully<p> <a href="/dashboard">Return to home page</a>';
     }
 
+    public function calculatePriceChanges(Request $request) 
+    {
+        $sets = Set::get();
+        foreach($sets as $set) {
+            $setPrices = SetPrice::where('set_number', $set->set_number)->orderBy('record_date', 'desc')->get();
+            if(count($setPrices) >= 2) {
+                $set->price_change = round(($setPrices[0]->price - $setPrices[1]->price) / $setPrices[1]->price, 2) * 100;
+                $set->save();
+            }
+        }
+
+        return back();
+    }
+
     private function randomDate($start_timestamp, $end_timestamp)
     {
         // Convert to timetamps

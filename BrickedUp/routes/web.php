@@ -13,6 +13,7 @@ use App\Http\Controllers\ImagesController;
 use App\Http\Controllers\FavoriteSetsController;
 use App\Http\Controllers\PriceAlertController;
 use App\Http\Controllers\NotificationController;
+use App\Http\Middleware\CheckRole;
 use App\Http\Controllers\SetDetail;
 
 Route::get('/', function () {
@@ -36,6 +37,8 @@ Route::middleware('auth')->group(function () {
     Route::get('/favorite-sets', [FavoriteSetsController::class, 'view'])->name('favorite-sets');
     Route::post('/favorite-sets/favorites/add', [FavoriteSetsController::class, 'addToFavorites'])->name('favorite-sets.favorites.add');
     Route::post('/favorite-sets/favorites/remove', [FavoriteSetsController::class, 'removeFromFavorites'])->name('favorite-sets.favorites.remove');
+    Route::post('/reset-layout', [DashboardController::class, 'resetLayout'])->name('dashboard.reset-layout');
+    
 
     Route::get('/profile', [ProfileController::class, 'view'])->name('profile');
     Route::post('/profile/favorites/add', [ProfileController::class, 'addToFavorites'])->name('profile.favorites.add');
@@ -70,12 +73,14 @@ Route::middleware('auth')->group(function () {
     })->name('explore-view');
 
     Route::get('/explore-view', [SetsDataController::class, 'index'])->name('explore-view');
+});
 
+Route::middleware(CheckRole::class)->group(function () {
     Route::get('/upload-data', [FileUploadController::class, 'showUploadForm'])->name('form');
     Route::post('/receive-data', [FileUploadController::class, 'receiveData'])->name('receiveData');
     Route::post('/process-upload', [FileUploadController::class, 'uploadData'])->name('uploadData');
+    Route::post('/calculate-changes', [FileUploadController::class, 'calculatePriceChanges'])->name('calculateChanges');
     Route::post('/generate-price-data', [FileUploadController::class, 'generateSetPriceDummyData'])->name('generateSetPriceData');
-
     Route::get('/download-csv-template', [FileUploadController::class, 'downloadCsvTemplate'])->name('downloadCsvTemplate');
 
     Route::post('/price-alert', [PriceAlertController::class, 'store'])->name('price-alert.store');

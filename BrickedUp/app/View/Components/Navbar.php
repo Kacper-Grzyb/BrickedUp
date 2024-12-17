@@ -21,7 +21,7 @@ class Navbar extends Component
         $this->currentPage = $currentPage;
         // Always make sure the total width of elements in the navbar is larger than the website screen width
         // for the scrollbar animation to function correctly
-        $sets = Set::select('*')->limit(20)->get();
+        $sets = DB::table('sets')->orderBy('updated_at', 'desc')->limit(20)->get();
         $this->sets = $sets;
     }
 

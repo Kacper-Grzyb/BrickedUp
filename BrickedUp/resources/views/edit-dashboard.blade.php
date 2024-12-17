@@ -33,13 +33,18 @@
             {{-- Grid is being displayed here --}}
         </div>
     </div>
-
-    <form action="{{ route('dashboard.save-layout') }}" method="POST" id="saveLayoutForm" class="save-layout-form">
-        @csrf
-        <input type="hidden" name="dashboardLayout" id="saveLayoutFormInput">
-        <button type="submit" class="fake-link">Save Current Layout</button>
+    <div class="bottom-controls">
+        <form action="{{ route('dashboard.save-layout') }}" method="POST" id="saveLayoutForm" class="save-layout-form">
+            @csrf
+            <input type="hidden" name="dashboardLayout" id="saveLayoutFormInput">
+            <button type="submit" class="fake-link">Save Current Layout</button>
+        </form>
+        <form action="{{ route('dashboard.reset-layout') }}" method="POST" id="resetLayoutForm" class="reset-layout-form">
+            @csrf
+            <button type="submit" class="fake-link">Reset Dashboard Layout</button>
+        </form>
         <a href="/settings">Go back to Settings</a>
-    </form>
+    </div>
 
     <script src="{{asset('js/edit-dashboard.js')}}"></script>
 </body>

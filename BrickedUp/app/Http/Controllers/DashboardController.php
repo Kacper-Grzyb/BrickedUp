@@ -190,4 +190,60 @@ class DashboardController extends Controller
 
         return Redirect::route('settings')->with('status', 'Dashboard layout saved successfully!');
     }
+
+    public function resetLayout() {
+        $userID = auth()->user()->id;
+        // Remove the existing styles
+        DB::table('user_dashboard_layouts')->where('user_id', $userID)->delete();
+
+        // Get Element IDs
+        $themeMarketshare = DB::table('dashboard_elements')->where('name', '=', 'theme-marketshare')->first();
+        $setPriceTable = DB::table('dashboard_elements')->where('name', '=', 'set-price-table')->first();
+        $setPrices = DB::table('dashboard_elements')->where('name', '=', 'set-prices')->first();
+        $themePrices = DB::table('dashboard_elements')->where('name', '=', 'theme-prices')->first();
+        $subthemePrices = DB::table('dashboard_elements')->where('name', '=', 'subtheme-prices')->first();
+        // Insert a base layout
+        DB::table('user_dashboard_layouts')->insert(
+            [
+                'user_id' => $userID,
+                'element_id' => $themeMarketshare->id,
+                'style' => 'grid-row: 1 / 6; grid-column: 1 / 5'
+            ]
+        );
+
+        DB::table('user_dashboard_layouts')->insert(
+            [
+                'user_id' => $userID,
+                'element_id' => $setPriceTable->id,
+                'style' => 'grid-row: 1 / 6; grid-column: 5 / 11'
+            ]
+        );
+
+        DB::table('user_dashboard_layouts')->insert(
+            [
+                'user_id' => $userID,
+                'element_id' => $setPrices->id,
+                'style' => 'display: none'
+            ]
+        );
+
+        DB::table('user_dashboard_layouts')->insert(
+            [
+                'user_id' => $userID,
+                'element_id' => $themePrices->id,
+                'style' => 'display: none'
+            ]
+        );
+
+        DB::table('user_dashboard_layouts')->insert(
+            [
+                'user_id' => $userID,
+                'element_id' => $subthemePrices->id,
+                'style' => 'display: none'
+            ]
+        );
+
+
+        return Redirect::route('settings')->with('status', 'Dashboard layout reset successfully!');
+    }
 }

@@ -32,9 +32,6 @@
         if(currDate > maxDate) maxDate = currDate
     });
 
-    console.log("Min Date", (new Date(minDate)).toLocaleString());
-    console.log("Max Date", (new Date(maxDate)).toLocaleString());
-
     const datesMap = new Map();
     for(let i = minDate; i<maxDate; i+=86400000) {
         datesMap.set(formatDate(new Date(i)), new Map());
