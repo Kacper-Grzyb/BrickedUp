@@ -69,6 +69,7 @@ class ProfileController extends Controller
         return Redirect::to('/');
     }
 
+
     public function updateFavouriteSets(Request $request) {
         // Remove the previous records
         $userID = auth()->user()->id;
@@ -99,6 +100,54 @@ class ProfileController extends Controller
         return Redirect::route('settings')->with('status', 'Favourite sets updated successfully!');
     }
 
+
+    public function updateFavouriteThemes(Request $request)
+    {
+        $themes = $request->input('themes', []);
+
+        $request->validate([
+            'themes' => 'array',
+            'themes.*' => 'exists:themes,id',
+        ]);
+
+        $user = auth()->user();
+
+        try {
+            $user->favouriteTheme()->sync($themes);
+            session()->flash('status', 'Favourite themes updated successfully!');
+
+        } catch (\Exception $e) {
+            \Log::error('Error updating favourite themes: ' . $e->getMessage());
+            session()->flash('error', 'Failed to update favourite themes.');
+        }
+
+        return response()->json(['message' => session('status')]);
+    }
+
+    public function updateFavouriteSubthemes(Request $request)
+    {
+        $subthemes = $request->input('subthemes', []);
+
+        $request->validate([
+            'subthemes' => 'array',
+            'subthemes.*' => 'exists:subthemes,id',
+        ]);
+
+        $user = auth()->user();
+
+        try {
+            $user->favouriteSubtheme()->sync($subthemes);
+            session()->flash('status', 'Favourite subthemes updated successfully!');
+        } catch (\Exception $e) {
+            \Log::error('Error updating favourite subthemes: ' . $e->getMessage());
+            session()->flash('error', 'Failed to update favourite subthemes.');
+        }
+
+        return response()->json(['message' => session('status')]);
+    }
+
+    
+    /*
     public function updateFavouriteThemes(Request $request) 
     {
         // Remove the previous records
@@ -160,4 +209,5 @@ class ProfileController extends Controller
 
         return Redirect::route('settings')->with('status', 'Favourite subthemes updated successfully!');
     }
+    */
 }

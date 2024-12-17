@@ -79,7 +79,7 @@
         <div class="terminal-box">
             <div class="settings-row">
                 <h3>Favourite Sets: </h3>
-                <div class="settings-display-favourites">
+                <div class="settings-display-favourite-sets">
                     @if(count($favouriteSetNames) > 0)
                         @for($i=0; $i < count($favouriteSetNames); $i++)
                             @if($i !== count($favouriteSetNames)-1)
@@ -124,7 +124,7 @@
         <div class="terminal-box">
             <div class="settings-row">
                 <h3>Favourite Themes: </h3>
-                <div class="settings-display-favourites">
+                <div class="settings-display-favourite-themes">
                     @if(count($favouriteThemeNames) > 0)
                         @for($i=0; $i < count($favouriteThemeNames); $i++)
                             @if($i !== count($favouriteThemeNames)-1)
@@ -140,32 +140,34 @@
             </div>
             <div class="settings-dropdown">
                 <p id="favouriteThemesDropdownButton">Edit Favourite Themes ˅</p>
-                <form method="POST" id="favouriteThemes" class="settings-dropdown-content" action="{{ route('profile.update-favourite-themes') }}">
-                    @csrf
-                    @method('patch')
-
+                <div id="favouriteThemes" class="settings-dropdown-content">
                     <div class="searchbar">
                         <button>
-                            <img src="{{asset('images/search_icon.svg')}}" alt="search icon">
+                            <img src="{{ asset('images/search_icon.svg') }}" alt="search icon">
                         </button>
                         <input type="text" placeholder="Theme name..." id="themes-checkbox-search" onkeyup="filterThemeCheckboxes()">
                     </div>
                     <div class="settings-dropdown-records">
                         @foreach($themes as $theme)
                             <div class="settings-dropdown-row">
-                                <input type="checkbox" id="{{$theme->id}}" name="theme-checkbox[]" value="{{$theme->id}}" {{$favouriteThemes->contains('theme_id', $theme->id) ? 'checked' : ''}}>
-                                <label for="theme-checkbox[]">{{$theme->theme}}</label>
+                                <input type="checkbox" id="theme-{{ $theme->id }}" name="theme-checkbox[]" value="{{ $theme->id }}" 
+                                    {{ $favouriteThemes->contains('theme_id', $theme->id) ? 'checked' : '' }}>
+                                <label for="theme-{{ $theme->id }}">{{ $theme->theme }}</label>
                             </div>
                         @endforeach
                     </div>
-                    <button type="submit"><p class="fake-link">Save</p></button>
-                </form>
+                    <button onclick="updateFavouriteThemes()">
+                        <p class="fake-link">
+                            Save
+                        </p>
+                    </button>
+                </div>
             </div>
         </div>
         <div class="terminal-box">
             <div class="settings-row">
                 <h3>Favourite Subthemes: </h3>
-                <div class="settings-display-favourites">
+                <div class="settings-display-favourite-subthemes">
                     @if(count($favouriteSubthemeNames) > 0)
                         @for($i=0; $i < count($favouriteSubthemeNames); $i++)
                             @if($i !== count($favouriteSubthemeNames)-1)
@@ -181,31 +183,33 @@
             </div>
             <div class="settings-dropdown">
                 <p id="favouriteSubthemesDropdownButton">Edit Favourite Subthemes ˅</p>
-                <form method="POST" id="favouriteSubthemes" class="settings-dropdown-content" action="{{ route('profile.update-favourite-subthemes') }}">
-                    @csrf
-                    @method('patch')
-
+                <div id="favouriteSubthemes" class="settings-dropdown-content">
                     <div class="searchbar">
                         <button>
-                            <img src="{{asset('images/search_icon.svg')}}" alt="search icon">
+                            <img src="{{ asset('images/search_icon.svg') }}" alt="search icon">
                         </button>
                         <input type="text" placeholder="Subtheme name..." id="subthemes-checkbox-search" onkeyup="filterSubthemeCheckboxes()">
                     </div>
                     <div class="settings-dropdown-records">
                         @foreach($subthemes as $subtheme)
                             <div class="settings-dropdown-row">
-                                <input type="checkbox" id="{{$subtheme->id}}" name="subtheme-checkbox[]" value="{{$subtheme->id}}" {{$favouriteSubthemes->contains('subtheme_id', $subtheme->id) ? 'checked' : ''}}>
-                                <label for="subtheme-checkbox[]">{{$subtheme->subtheme}}</label>
+                                <input type="checkbox" id="subtheme-{{ $subtheme->id }}" name="subtheme-checkbox[]" value="{{ $subtheme->id }}" 
+                                    {{ $favouriteSubthemes->contains('subtheme_id', $subtheme->id) ? 'checked' : '' }}>
+                                <label for="subtheme-{{ $subtheme->id }}">{{ $subtheme->subtheme }}</label>
                             </div>
                         @endforeach
                     </div>
-                    <button type="submit"><p class="fake-link">Save</p></button>
-                </form>
+                    <button onclick="updateFavouriteSubthemes()">
+                        <p class="fake-link">
+                            Save
+                        </p>
+                    </button>
+                </div>
             </div>
         </div>
 
         <div class="terminal-box">
-            <button onclick="showDeletePopup()" type="button"><p class="fake-link" style="color:rgb(255, 67, 61); margin:0">Delete Account</p></button>
+            <button onclick="showDeletePopup()"><p class="fake-link" style="color:rgb(255, 67, 61); margin:0">Delete Account</p></button>
         </div>
 
         <div class="delete-popup">  
@@ -243,6 +247,134 @@
         //        favouriteSetsDropdown.style.display = "none";
         //    }
         //});
+
+        //THE START OF AJAX REQUEST HANDLER
+
+        function updateFavouriteThemes() {
+            const selectedThemes = [];
+            document.querySelectorAll('#favouriteThemes input[name="theme-checkbox[]"]:checked').forEach(checkbox => {
+                selectedThemes.push({
+                    id: checkbox.value,
+                    name: checkbox.nextElementSibling.textContent.trim() // Get the label's text
+                });
+            });
+
+            fetch('{{ route('profile.update-favourite-themes') }}', {
+                method: 'POST',
+                headers: {
+                    'X-CSRF-TOKEN': '{{ csrf_token() }}',
+                    'Content-Type': 'application/json'
+                },
+                body: JSON.stringify({ themes: selectedThemes.map(theme => theme.id) })
+            })
+            .then(response => response.json())
+            .then(data => {
+                if (data.message) {
+                    showSuccessMessage(data.message);
+                }
+
+                // Update the displayed themes dynamically
+                const displayContainer = document.querySelector('.settings-display-favourite-themes');
+                displayContainer.innerHTML = ""; // Clear the current list
+
+                if (selectedThemes.length > 0) {
+                    selectedThemes.forEach(theme => {
+                        displayContainer.innerHTML += `<p>${theme.name} |</p>`;
+                    });
+                } else {
+                    displayContainer.innerHTML = "<p>No favourited themes...</p>";
+                }
+            })
+            .catch(error => {
+                console.error('Error:', error);
+                showErrorMessage('Failed to update favourite themes.');
+            });
+        }
+
+
+
+        function updateFavouriteSubthemes() {
+            const selectedSubthemes = [];
+            document.querySelectorAll('#favouriteSubthemes input[name="subtheme-checkbox[]"]:checked').forEach(checkbox => {
+                selectedSubthemes.push({
+                    id: checkbox.value,
+                    name: checkbox.nextElementSibling.textContent.trim() // Get the label's text
+                });
+            });
+
+            fetch('{{ route('profile.update-favourite-subthemes') }}', {
+                method: 'POST',
+                headers: {
+                    'X-CSRF-TOKEN': '{{ csrf_token() }}',
+                    'Content-Type': 'application/json'
+                },
+                body: JSON.stringify({ subthemes: selectedSubthemes.map(subtheme => subtheme.id) })
+            })
+            .then(response => response.json())
+            .then(data => {
+                if (data.message) {
+                    showSuccessMessage(data.message);
+                }
+
+                // Update the displayed subthemes dynamically
+                const displayContainer = document.querySelector('.settings-display-favourite-subthemes');
+                displayContainer.innerHTML = ""; // Clear the current list
+
+                if (selectedSubthemes.length > 0) {
+                    selectedSubthemes.forEach(subtheme => {
+                        displayContainer.innerHTML += `<p>${subtheme.name} |</p>`;
+                    });
+                } else {
+                    displayContainer.innerHTML = "<p>No favourited subthemes...</p>";
+                }
+            })
+            .catch(error => {
+                console.error('Error:', error);
+                showErrorMessage('Failed to update favourite subthemes.');
+            });
+        }
+
+
+
+        //Feedback messages:
+        function showSuccessMessage(message) {
+            const existingMessage = document.getElementById('success-message');
+            if (existingMessage) existingMessage.remove();
+
+            const successDiv = document.createElement('div');
+            successDiv.id = 'success-message';
+            successDiv.className = 'alert-message terminal-box success';
+            successDiv.innerHTML = `<p>${message}</p>`;
+
+            document.body.prepend(successDiv);
+
+            setTimeout(() => {
+                successDiv.style.transition = 'opacity 0.5s ease';
+                successDiv.style.opacity = '0';
+                setTimeout(() => successDiv.remove(), 500);
+            }, 5000);
+        }
+
+        function showErrorMessage(message) {
+            const existingMessage = document.getElementById('error-message');
+            if (existingMessage) existingMessage.remove();
+
+            const errorDiv = document.createElement('div');
+            errorDiv.id = 'error-message';
+            errorDiv.className = 'alert-message terminal-box error';
+            errorDiv.innerHTML = `<p>${message}</p>`;
+
+            document.body.prepend(errorDiv);
+
+            setTimeout(() => {
+                errorDiv.style.transition = 'opacity 0.5s ease';
+                errorDiv.style.opacity = '0';
+                setTimeout(() => errorDiv.remove(), 500);
+            }, 5000);
+        }
+
+
+
 
         favouriteThemesButton.addEventListener('click', () => {
             if(favouriteThemesDropdown.style.display === "none") {

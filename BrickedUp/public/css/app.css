@@ -371,7 +371,7 @@ SETTINGS CONTEND START
     width: auto;
 }
 
-.settings-display-favourites {
+.settings-display-favourite-sets {
     max-width: 65%; 
     overflow:scroll; 
     display:flex; 
@@ -379,7 +379,31 @@ SETTINGS CONTEND START
     padding: 0.5rem; 
 }
 
-.settings-display-favourites p {
+.settings-display-favourite-sets p {
+    min-width:fit-content;
+    margin: 0;
+}
+.settings-display-favourite-themes {
+    max-width: 65%; 
+    overflow:scroll; 
+    display:flex; 
+    flex-direction: row; 
+    padding: 0.5rem; 
+}
+
+.settings-display-favourite-themes p {
+    min-width:fit-content;
+    margin: 0;
+}
+.settings-display-favourite-subthemes {
+    max-width: 65%; 
+    overflow:scroll; 
+    display:flex; 
+    flex-direction: row; 
+    padding: 0.5rem; 
+}
+
+.settings-display-favourite-subthemes p {
     min-width:fit-content;
     margin: 0;
 }

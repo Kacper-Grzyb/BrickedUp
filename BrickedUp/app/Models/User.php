@@ -57,12 +57,12 @@ class User extends Authenticatable
 
     public function favouriteTheme() 
     {
-        return $this->hasMany(FavouriteTheme::class);
+        return $this->belongsToMany(FavouriteTheme::class, 'favourite_themes', 'user_id', 'theme_id');
     }
 
     public function favouriteSubtheme() 
     {
-        return $this->hasMany(FavouriteSubtheme::class);
+        return $this->belongsToMany(FavouriteSubtheme::class, 'favourite_subthemes', 'user_id', 'subtheme_id');
     }
 
     public function setSelectedForCharts() 

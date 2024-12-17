@@ -47,8 +47,14 @@ Route::middleware('auth')->group(function () {
 
     Route::get('/settings', [SettingsController::class, 'show'])->name('settings');
     Route::patch('/update-favourite-sets', [ProfileController::class, 'updateFavouriteSets'])->name('profile.update-favourite-sets');
-    Route::patch('/update-favourite-themes', [ProfileController::class, 'updateFavouriteThemes'])->name('profile.update-favourite-themes');
-    Route::patch('/update-favourite-subthemes', [ProfileController::class, 'updateFavouriteSubthemes'])->name('profile.update-favourite-subthemes');
+
+    Route::post('/update-favourite-themes', [ProfileController::class, 'updateFavouriteThemes'])
+        ->name('profile.update-favourite-themes');
+
+    Route::post('/update-favourite-subthemes', [ProfileController::class, 'updateFavouriteSubthemes'])
+        ->name('profile.update-favourite-subthemes');
+    //Route::patch('/update-favourite-themes', [ProfileController::class, 'updateFavouriteThemes'])->name('profile.update-favourite-themes');
+    //Route::patch('/update-favourite-subthemes', [ProfileController::class, 'updateFavouriteSubthemes'])->name('profile.update-favourite-subthemes');
     
     Route::get('/edit-profile', [ProfileController::class, 'edit'])->name('profile.edit');
     Route::patch('/edit-profile', [ProfileController::class, 'update'])->name('profile.update');
