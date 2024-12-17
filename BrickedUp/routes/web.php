@@ -18,7 +18,6 @@ use App\Http\Controllers\PriceAlertController;
 use App\Http\Controllers\NotificationController;
 use App\Http\Middleware\CheckRole;
 use App\Http\Controllers\SetDetail;
-use App\Http\Controllers\ImagesController;
 
 Route::get('/', function () {
     return view('landing_page/landing');
