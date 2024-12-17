@@ -11,6 +11,7 @@ use App\Http\Controllers\SetController;
 use App\Http\Controllers\DashboardController;
 use App\Http\Controllers\ImagesController;
 use App\Http\Controllers\FavoriteSetsController;
+use App\Http\Controllers\SetDetail;
 
 Route::get('/', function () {
     return view('landing_page/landing');
@@ -23,7 +24,7 @@ Route::get('/features', function () {
 Route::get('/search-legosets', [LegoSetController::class, 'search'])->name('legosets.search');
 
 
-require __DIR__ . '/auth.php'; 
+require __DIR__ . '/auth.php';
 
 Route::middleware('auth')->group(function () {
     Route::get('/dashboard', [DashboardController::class, 'index'])->middleware(['verified'])->name('home');
@@ -40,7 +41,7 @@ Route::middleware('auth')->group(function () {
 
 
     Route::get('/search-legosets', [LegoSetController::class, 'search'])->name('legosets.search');
-    
+
     Route::get('/set-details', function () {
         return view('set-details');
     });
@@ -75,5 +76,5 @@ Route::middleware('auth')->group(function () {
 
     Route::get('/download-csv-template', [FileUploadController::class, 'downloadCsvTemplate'])->name('downloadCsvTemplate');
 
+    Route::get('/set-details/{id}', [SetDetail::class, 'SetDetail']);
 });
-

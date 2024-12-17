@@ -1,57 +1,59 @@
 <html lang="en">
+
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <link rel="stylesheet" href="{{ asset('css/app.css') }}">
     <title>Settings</title>
 </head>
+
 <body>
-    <x-navbar :currentPage='"settings"'/>
+    <x-navbar :currentPage='"settings"' />
 
     <h1>Settings</h1>
 
     @if(session('status'))
-        <div id="success-message" class="alert-message terminal-box success">
-            <p>{{session('status')}}</p>
-        </div>
+    <div id="success-message" class="alert-message terminal-box success">
+        <p>{{session('status')}}</p>
+    </div>
 
-        <script>
-            document.addEventListener('DOMContentLoaded', function() {
-                setTimeout(function () {
-                    let message = document.getElementById('success-message');
-                    if(message) {
-                        message.style.transition = 'opacity 0.5s ease';
-                        message.style.opacity = '0';
-                        setTimeout(() => message.remove(), 500);
-                     }
-                }, 5000)
-            })
-        </script>
+    <script>
+        document.addEventListener('DOMContentLoaded', function() {
+            setTimeout(function() {
+                let message = document.getElementById('success-message');
+                if (message) {
+                    message.style.transition = 'opacity 0.5s ease';
+                    message.style.opacity = '0';
+                    setTimeout(() => message.remove(), 500);
+                }
+            }, 5000)
+        })
+    </script>
     @endif
 
     @if ($errors->userDeletion->any())
-        <div id="error-message" class="alert-message terminal-box error">
-            @foreach($errors->userDeletion->all() as $error)
-                {{ $error }}
-            @endforeach
-        </div>
+    <div id="error-message" class="alert-message terminal-box error">
+        @foreach($errors->userDeletion->all() as $error)
+        {{ $error }}
+        @endforeach
+    </div>
 
-        <script>
-            document.addEventListener('DOMContentLoaded', function() {
-                setTimeout(function () {
-                    let message = document.getElementById('error-message');
-                    if(message) {
-                        message.style.transition = 'opacity 0.5s ease';
-                        message.style.opacity = '0'
-                        setTimeout(() => message.remove(), 500)
-                    }
-                }, 5000)
-            })
-        </script>
+    <script>
+        document.addEventListener('DOMContentLoaded', function() {
+            setTimeout(function() {
+                let message = document.getElementById('error-message');
+                if (message) {
+                    message.style.transition = 'opacity 0.5s ease';
+                    message.style.opacity = '0'
+                    setTimeout(() => message.remove(), 500)
+                }
+            }, 5000)
+        })
+    </script>
     @endif
 
     <div class="settings-container">
-        
+
         <div class="terminal-box">
             <div class="settings-row">
                 <h3>Username:</h3>
@@ -81,16 +83,16 @@
                 <h3>Favourite Sets: </h3>
                 <div class="settings-display-favourite-sets">
                     @if(count($favouriteSetNames) > 0)
-                        @for($i=0; $i < count($favouriteSetNames); $i++)
-                            @if($i !== count($favouriteSetNames)-1)
-                                <p>{{$favouriteSetNames[$i]->set_number}} {{$favouriteSetNames[$i]->set_name}} |</p>
-                            @else
-                                <p>{{$favouriteSetNames[$i]->set_number}} {{$favouriteSetNames[$i]->set_name}}</p>
-                            @endif
+                    @for($i=0; $i < count($favouriteSetNames); $i++)
+                        @if($i !==count($favouriteSetNames)-1)
+                        <p>{{$favouriteSetNames[$i]->set_number}} {{$favouriteSetNames[$i]->set_name}} |</p>
+                        @else
+                        <p>{{$favouriteSetNames[$i]->set_number}} {{$favouriteSetNames[$i]->set_name}}</p>
+                        @endif
                         @endfor
-                    @else 
-                        <p>No favourited sets... </p> 
-                    @endif
+                        @else
+                        <p>No favourited sets... </p>
+                        @endif
                 </div>
             </div>
             <a href="/favorite-sets" style="white-space: nowrap">Edit Favourite Sets</a>
@@ -110,13 +112,15 @@
                     </div>
                     <div class="settings-dropdown-records">
                         @foreach($sets as $set)
-                            <div class="settings-dropdown-row">
-                                <input type="checkbox" id="{{$set->set_number}}" name="set-checkbox[]" value="{{$set->set_number}}" {{$favouriteSets->contains('set_number', $set->set_number) ? 'checked' : ''}}>
-                                <label for="set-checkbox[]">{{$set->set_number}} {{$set->set_name}}</label>
-                            </div>
+                        <div class="settings-dropdown-row">
+                            <input type="checkbox" id="{{$set->set_number}}" name="set-checkbox[]" value="{{$set->set_number}}" {{$favouriteSets->contains('set_number', $set->set_number) ? 'checked' : ''}}>
+                            <label for="set-checkbox[]">{{$set->set_number}} {{$set->set_name}}</label>
+                        </div>
                         @endforeach
                     </div>
-                    <button type="submit"><p class="fake-link">Save</p></button>
+                    <button type="submit">
+                        <p class="fake-link">Save</p>
+                    </button>
                 </form>
             </div>
             -->
@@ -126,16 +130,16 @@
                 <h3>Favourite Themes: </h3>
                 <div class="settings-display-favourite-themes">
                     @if(count($favouriteThemeNames) > 0)
-                        @for($i=0; $i < count($favouriteThemeNames); $i++)
-                            @if($i !== count($favouriteThemeNames)-1)
-                                <p>{{$favouriteThemeNames[$i]->theme}} |</p>
-                            @else
-                                <p>{{$favouriteThemeNames[$i]->theme}}</p>
-                            @endif
+                    @for($i=0; $i < count($favouriteThemeNames); $i++)
+                        @if($i !==count($favouriteThemeNames)-1)
+                        <p>{{$favouriteThemeNames[$i]->theme}} |</p>
+                        @else
+                        <p>{{$favouriteThemeNames[$i]->theme}}</p>
+                        @endif
                         @endfor
-                    @else 
-                        <p>No favourited themes... </p> 
-                    @endif
+                        @else
+                        <p>No favourited themes... </p>
+                        @endif
                 </div>
             </div>
             <div class="settings-dropdown">
@@ -169,16 +173,16 @@
                 <h3>Favourite Subthemes: </h3>
                 <div class="settings-display-favourite-subthemes">
                     @if(count($favouriteSubthemeNames) > 0)
-                        @for($i=0; $i < count($favouriteSubthemeNames); $i++)
-                            @if($i !== count($favouriteSubthemeNames)-1)
-                                <p>{{$favouriteSubthemeNames[$i]->subtheme . " |"}}</p>
-                            @else
-                                <p>{{$favouriteSubthemeNames[$i]->subtheme}}</p>
-                            @endif
+                    @for($i=0; $i < count($favouriteSubthemeNames); $i++)
+                        @if($i !==count($favouriteSubthemeNames)-1)
+                        <p>{{$favouriteSubthemeNames[$i]->subtheme . " |"}}</p>
+                        @else
+                        <p>{{$favouriteSubthemeNames[$i]->subtheme}}</p>
+                        @endif
                         @endfor
-                    @else 
+                        @else
                         <p>No favourited subthemes... </p>
-                    @endif
+                        @endif
                 </div>
             </div>
             <div class="settings-dropdown">
@@ -212,20 +216,20 @@
             <button onclick="showDeletePopup()"><p class="fake-link" style="color:rgb(255, 67, 61); margin:0">Delete Account</p></button>
         </div>
 
-        <div class="delete-popup">  
-                <form class="delete-popup-content" method="post" action="{{route('profile.destroy')}}">
-                    @csrf
-                    @method('delete')
-                    <h3>Are you sure you want to delete your account?</h3>
-                    <div style="width:100%">
-                        <label for="password">Input your password:</label>
-                        <input type="password" id="password" name="password">
-                    </div>
-                    <div class="button-group">
-                        <button type="submit"><span class="fake-link" style="color:rgb(255, 67, 61)">Delete Account</span></button>
-                        <button id="cancelDeleteAccount" onclick="closeDeletePopup()" type="button"><span class="fake-link">Cancel</span></button>
-                    </div>
-                </form>
+        <div class="delete-popup">
+            <form class="delete-popup-content" method="post" action="{{route('profile.destroy')}}">
+                @csrf
+                @method('delete')
+                <h3>Are you sure you want to delete your account?</h3>
+                <div style="width:100%">
+                    <label for="password">Input your password:</label>
+                    <input type="password" id="password" name="password">
+                </div>
+                <div class="button-group">
+                    <button type="submit"><span class="fake-link" style="color:rgb(255, 67, 61)">Delete Account</span></button>
+                    <button id="cancelDeleteAccount" onclick="closeDeletePopup()" type="button"><span class="fake-link">Cancel</span></button>
+                </div>
+            </form>
             <div class="delete-background"></div>
         </div>
 
@@ -379,19 +383,30 @@
 
         //DROPDOWN MENU VISIBILITY
         favouriteThemesButton.addEventListener('click', () => {
-            if(favouriteThemesDropdown.style.display === "none") {
+            if (favouriteThemesDropdown.style.display === "none") {
                 favouriteThemesDropdown.style.display = "flex";
-            }
-            else {
+            } else {
                 favouriteThemesDropdown.style.display = "none";
             }
         });
 
         favouriteSubthemesButton.addEventListener('click', () => {
-            if(favouriteSubthemesDropdown.style.display === "none") {
+            if (favouriteSubthemesDropdown.style.display === "none") {
                 favouriteSubthemesDropdown.style.display = "flex";
+            } else {
+                favouriteSubthemesDropdown.style.display = "none";
             }
-            else {
+        });
+        
+        //Quality of Life update, If clicked outside of the dropdown menus it closes
+        document.addEventListener('click', (e) => {
+            if (!favouriteThemesButton.contains(e.target) &&
+                !favouriteThemesDropdown.contains(e.target)) {
+                favouriteThemesDropdown.style.display = "none";
+            }
+
+            if (!favouriteSubthemesButton.contains(e.target) &&
+                !favouriteSubthemesDropdown.contains(e.target)) {
                 favouriteSubthemesDropdown.style.display = "none";
             }
         });
@@ -437,27 +452,25 @@
 
                 // if any scroll is attempted,
                 // set this to the previous value
-                window.onscroll = function () {
+                window.onscroll = function() {
                     window.scrollTo(scrollLeft, scrollTop);
                 };
         }
 
         function enableScroll() {
-            window.onscroll = function () { };
+            window.onscroll = function() {};
         }
 
         let deletePopup = document.querySelector(".delete-popup");
 
-        function showDeletePopup() 
-        {
+        function showDeletePopup() {
             deletePopup.style.display = "block";
             document.body.scrollTop = 0; // For Safari
             document.documentElement.scrollTop = 0; // For Chrome, Firefox, IE and Opera
             disableScroll();
         }
 
-        function closeDeletePopup() 
-        {
+        function closeDeletePopup() {
             deletePopup.style.display = "none";
             enableScroll();
         }
@@ -469,11 +482,10 @@
 
             checkboxes.forEach(checkbox => {
                 const label = checkbox.querySelector('label').textContent.toLowerCase();
-                if(label.includes(searchInput)) {
-                    checkbox.style.display= "flex";
-                }
-                else {
-                    checkbox.style.display= "none";
+                if (label.includes(searchInput)) {
+                    checkbox.style.display = "flex";
+                } else {
+                    checkbox.style.display = "none";
                 }
             })
         }
@@ -485,11 +497,10 @@
 
             checkboxes.forEach(checkbox => {
                 const label = checkbox.querySelector('label').textContent.toLowerCase();
-                if(label.includes(searchInput)) {
-                    checkbox.style.display= "flex";
-                }
-                else {
-                    checkbox.style.display= "none";
+                if (label.includes(searchInput)) {
+                    checkbox.style.display = "flex";
+                } else {
+                    checkbox.style.display = "none";
                 }
             })
         }
@@ -501,15 +512,15 @@
 
             checkboxes.forEach(checkbox => {
                 const label = checkbox.querySelector('label').textContent.toLowerCase();
-                if(label.includes(searchInput)) {
-                    checkbox.style.display= "flex";
-                }
-                else {
-                    checkbox.style.display= "none";
+                if (label.includes(searchInput)) {
+                    checkbox.style.display = "flex";
+                } else {
+                    checkbox.style.display = "none";
                 }
             })
         }
     </script>
 
 </body>
+
 </html>
