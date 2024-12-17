@@ -248,6 +248,9 @@
         //    }
         //});
 
+
+
+
         //THE START OF AJAX REQUEST HANDLER
 
         function updateFavouriteThemes() {
@@ -255,7 +258,7 @@
             document.querySelectorAll('#favouriteThemes input[name="theme-checkbox[]"]:checked').forEach(checkbox => {
                 selectedThemes.push({
                     id: checkbox.value,
-                    name: checkbox.nextElementSibling.textContent.trim() // Get the label's text
+                    name: checkbox.nextElementSibling.textContent.trim() 
                 });
             });
 
@@ -273,9 +276,8 @@
                     showSuccessMessage(data.message);
                 }
 
-                // Update the displayed themes dynamically
                 const displayContainer = document.querySelector('.settings-display-favourite-themes');
-                displayContainer.innerHTML = ""; // Clear the current list
+                displayContainer.innerHTML = ""; 
 
                 if (selectedThemes.length > 0) {
                     selectedThemes.forEach(theme => {
@@ -298,7 +300,7 @@
             document.querySelectorAll('#favouriteSubthemes input[name="subtheme-checkbox[]"]:checked').forEach(checkbox => {
                 selectedSubthemes.push({
                     id: checkbox.value,
-                    name: checkbox.nextElementSibling.textContent.trim() // Get the label's text
+                    name: checkbox.nextElementSibling.textContent.trim() 
                 });
             });
 
@@ -316,9 +318,8 @@
                     showSuccessMessage(data.message);
                 }
 
-                // Update the displayed subthemes dynamically
                 const displayContainer = document.querySelector('.settings-display-favourite-subthemes');
-                displayContainer.innerHTML = ""; // Clear the current list
+                displayContainer.innerHTML = ""; 
 
                 if (selectedSubthemes.length > 0) {
                     selectedSubthemes.forEach(subtheme => {
@@ -373,9 +374,10 @@
             }, 5000);
         }
 
+        //THE END OF AJAX REQUEST HANDLER
 
 
-
+        //DROPDOWN MENU VISIBILITY
         favouriteThemesButton.addEventListener('click', () => {
             if(favouriteThemesDropdown.style.display === "none") {
                 favouriteThemesDropdown.style.display = "flex";
@@ -390,6 +392,19 @@
                 favouriteSubthemesDropdown.style.display = "flex";
             }
             else {
+                favouriteSubthemesDropdown.style.display = "none";
+            }
+        });
+        
+        //Quality of Life update, If clicked outside of the dropdown menus it closes
+        document.addEventListener('click', (e) => {
+            if (!favouriteThemesButton.contains(e.target) &&
+                !favouriteThemesDropdown.contains(e.target)) {
+                favouriteThemesDropdown.style.display = "none";
+            }
+
+            if (!favouriteSubthemesButton.contains(e.target) &&
+                !favouriteSubthemesDropdown.contains(e.target)) {
                 favouriteSubthemesDropdown.style.display = "none";
             }
         });
@@ -409,18 +424,6 @@
             }
         });
 
-        //Quality of Life update, If clicked outside of the dropdown menus it closes
-        document.addEventListener('click', (e) => {
-            if (!favouriteThemesButton.contains(e.target) &&
-                !favouriteThemesDropdown.contains(e.target)) {
-                favouriteThemesDropdown.style.display = "none";
-            }
-
-            if (!favouriteSubthemesButton.contains(e.target) &&
-                !favouriteSubthemesDropdown.contains(e.target)) {
-                favouriteSubthemesDropdown.style.display = "none";
-            }
-        });
 
         // Copied the scroll functions from GeeksForGeeks dont judge
         function disableScroll() {
