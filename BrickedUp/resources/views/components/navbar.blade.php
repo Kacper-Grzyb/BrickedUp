@@ -14,36 +14,36 @@
                 <li>
                     <a href="/dashboard">
                         @if($currentPage === 'dashboard')
-                            <img src="{{asset('images/dashboard_icon_highlighted.svg')}}" alt="dashboard icon">
+                        <img src="{{asset('images/dashboard_icon_highlighted.svg')}}" alt="dashboard icon">
                         @else
-                            <img src="{{asset('images/dashboard_icon.svg')}}" alt="dashboard icon">
+                        <img src="{{asset('images/dashboard_icon.svg')}}" alt="dashboard icon">
                         @endif
                     </a>
                 </li>
                 <li>
                     <a href="/full-graph">
                         @if($currentPage === 'full-graph')
-                            <img src="{{asset('images/chart_icon_highlighted.svg')}}" alt="chart icon">
+                        <img src="{{asset('images/chart_icon_highlighted.svg')}}" alt="chart icon">
                         @else
-                            <img src="{{asset('images/chart_icon.svg')}}" alt="chart icon">
+                        <img src="{{asset('images/chart_icon.svg')}}" alt="chart icon">
                         @endif
                     </a>
                 </li>
                 <li>
                     <a href="/explore-view">
                         @if($currentPage === 'explore-view')
-                            <img src="{{asset('images/explore_icon_highlighted.svg')}}" alt="explore icon">
+                        <img src="{{asset('images/explore_icon_highlighted.svg')}}" alt="explore icon">
                         @else
-                            <img src="{{asset('images/explore_icon.svg')}}" alt="explore icon">
+                        <img src="{{asset('images/explore_icon.svg')}}" alt="explore icon">
                         @endif
                     </a>
                 </li>
                 <li>
                     <a href="/settings">
                         @if($currentPage === 'settings')
-                            <img src="{{asset('images/settings_icon_highlighted.svg')}}" alt="settings icon">
+                        <img src="{{asset('images/settings_icon_highlighted.svg')}}" alt="settings icon">
                         @else
-                            <img src="{{asset('images/settings_icon.svg')}}" alt="settings icon">
+                        <img src="{{asset('images/settings_icon.svg')}}" alt="settings icon">
                         @endif
                     </a>
                 </li>
@@ -57,10 +57,10 @@
                     </a>
                 </li>
                 <li>
-                    @if($currentPage === 'profile') 
-                        <img id="profile-dropdown-icon" src="{{asset('images/user_icon_highlighted.svg')}}" alt="user icon">
+                    @if($currentPage === 'profile')
+                    <img id="profile-dropdown-icon" src="{{asset('images/user_icon_highlighted.svg')}}" alt="user icon">
                     @else
-                        <img id="profile-dropdown-icon" src="{{asset('images/user_icon.svg')}}" alt="user icon">
+                    <img id="profile-dropdown-icon" src="{{asset('images/user_icon.svg')}}" alt="user icon">
                     @endif
                     <span class="arrow"></span>
                     <div class="profile-dropdown">
@@ -88,14 +88,14 @@
             </div>
 
         </ul>
-        
+
         <ul id="sidescroller" class="set-prices-sidescroller">
             @foreach ($sets as $set)
-                {{-- Change is random for now as there are no calculations of the set price records --}}
-                <x-sidescroller-box :set=$set :change='$set->price_change ?? 0'/>
+            {{-- Change is random for now as there are no calculations of the set price records --}}
+            <x-sidescroller-box :set=$set :change='$set->price_change ?? 0' />
             @endforeach
         </ul>
-   
+
     </div>
     <script>
         let dropdownIcon = document.getElementById('profile-dropdown-icon');
@@ -103,14 +103,13 @@
         let profileDropdown = document.querySelector('.profile-dropdown');
 
         function toggleProfileDropdown() {
-            if(profileDropdown.style.display === "none") {
+            if (profileDropdown.style.display === "none") {
                 profileDropdown.style.display = "flex";
-                dropdownIcon.src="{{asset('images/user_icon_highlighted.svg')}}";
+                dropdownIcon.src = "{{asset('images/user_icon_highlighted.svg')}}";
                 dropdownButton.style.transform = "rotate(225deg)";
-            }
-            else {
+            } else {
                 profileDropdown.style.display = "none";
-                dropdownIcon.src="{{asset('images/user_icon.svg')}}";
+                dropdownIcon.src = "{{asset('images/user_icon.svg')}}";
                 dropdownButton.style.transform = "rotate(45deg)";
             }
         }
@@ -120,15 +119,14 @@
         dropdownButton.addEventListener('click', () => toggleProfileDropdown());
 
         document.addEventListener('click', (e) => {
-            if(!profileDropdown.contains(e.target) && !dropdownIcon.contains(e.target) && !dropdownButton.contains(e.target)) {
+            if (!profileDropdown.contains(e.target) && !dropdownIcon.contains(e.target) && !dropdownButton.contains(e.target)) {
                 profileDropdown.style.display = "none";
-                dropdownIcon.src="{{asset('images/user_icon.svg')}}";
+                dropdownIcon.src = "{{asset('images/user_icon.svg')}}";
                 dropdownButton.style.transform = "rotate(45deg)";
             }
         });
-
     </script>
 
-<script src="//unpkg.com/alpinejs" defer></script>
-<script src="{{ asset('js/searchbar.js') }}"></script>
-<script src="{{asset('js/sidescroller.js')}}"></script>
+    <script src="//unpkg.com/alpinejs" defer></script>
+    <script src="{{ asset('js/searchbar.js') }}"></script>
+    <script src="{{asset('js/sidescroller.js')}}"></script>
