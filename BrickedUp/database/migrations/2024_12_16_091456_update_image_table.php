@@ -11,9 +11,11 @@ return new class extends Migration
      */
     public function up(): void
     {
-        Schema::create('set_links', function (Blueprint $table) {
+        Schema::dropIfExists('set_images');
+
+        Schema::create('set_images', function (Blueprint $table) {
             $table->string('set_number', length: 6)->references('set_number')->on('sets')->constrained()->onDelete('cascade');
-            $table->text('link');
+            $table->mediumText('image_data');
         });
     }
 
@@ -22,6 +24,6 @@ return new class extends Migration
      */
     public function down(): void
     {
-        Schema::dropIfExists('set_links');
+        //
     }
 };

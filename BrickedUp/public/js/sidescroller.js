@@ -27,7 +27,6 @@ function checkBoundaries(index) {
         // reset element to the left side of the screen
         let newOffsetX = (startingPositions[index] + sidescrollerElements[index].offsetWidth) * (-1);
         elementOffsetsX[index] = newOffsetX
-        console.log('element was reset');
     }
 }
 

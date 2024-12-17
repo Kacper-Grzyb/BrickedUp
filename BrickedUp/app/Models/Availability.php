@@ -7,6 +7,8 @@ use Illuminate\Database\Eloquent\Model;
 
 class Availability extends Model
 {
+    use HasFactory;
+
     protected $table = 'availability';
     public function set() 
     {

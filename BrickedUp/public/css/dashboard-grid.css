@@ -1,0 +1,215 @@
+.edit-layout-content {
+    display: flex;
+    flex-direction: row;
+    width: 100%;
+    height: 100%;
+}
+
+.toolbox {
+    flex: 1;
+    display: flex;
+    flex-direction: column;
+    padding-top: 1.5rem;
+}
+
+.toolbox h3 {
+    text-align: center;
+    color: white;
+    font-weight: normal;
+}
+
+.toolbox h4 {
+    text-align: center;;
+    font-size: 0.75rem;
+    color: rgba(255, 67, 61, 0.685);
+    font-weight: lighter;
+    margin-bottom: 0;
+}
+
+.toolbox-container {
+    margin-top: 1rem;
+    justify-content: space-around;
+    align-items: center;
+    background-color: #333;
+    padding: 1rem;
+    flex: 1 1 auto;
+    border-radius: 5px;
+    overflow: auto;
+    white-space: nowrap;
+    gap: 1rem;
+}
+
+.highlight-toolbox {
+    background-color: #444;
+}
+
+.modular-element {
+    text-align: center;
+    justify-content: center !important;
+}
+
+.modular-element-name {
+    text-align: center;
+    color: #444;
+    margin: auto;
+}
+
+.toolbox-item {
+    width: 5rem;
+    height: 5rem;
+    margin: 0.5rem auto;
+    background-color: #f1f1f1;
+    border-radius: 5px;
+    cursor:move;
+    font-size: 0.5rem;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+.toolbox-item .modular-element-name {
+    position:relative;
+}
+
+.toolbox-item .resize-up {
+    display:none;
+}
+
+.toolbox-item .resize-down {
+    display: none
+}
+
+.toolbox-item .horizontal-resize {
+    display: none;
+}
+
+
+.edit-grid {
+    flex: 7;
+    background:
+    linear-gradient(to right, rgba(255, 255, 255, 0.1) 1px, transparent 1px),
+    linear-gradient(to bottom, rgba(255, 255, 255, 0.1) 1px, transparent 1px);
+    background-size: 10% 20%; /* Density of the grid cells */
+    display: grid;
+    grid-template-columns: repeat(10, 10%);
+    grid-template-rows: repeat(5, 20%);
+    padding: 0 !important;
+}
+
+.highlighted-cell {
+    background-color: rgba(255, 255, 255, 0.3); 
+    grid-column: -1; /* This is with the intention to be set solely by the script */ 
+    grid-row: -1; /* This is with the intention to be set solely by the script */
+    z-index: 1; 
+    pointer-events: none; 
+}
+
+.grid-item {
+    width: 100%;
+    height: 100%;
+    background-color: #f1f1f1;
+    border: 1px solid #444;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+    align-items: center;
+    cursor: move;
+    font-size: 1rem;
+}
+
+.grid-item .modular-element-name{
+    position: absolute;
+}
+
+.grid-item .resize-up {
+    display:block;
+    z-index: 2;
+}
+
+.grid-item .resize-down {
+    display:block;
+    z-index: 2;
+}
+
+.grid-item .resize-right {
+    display:block;
+    z-index: 2;
+}
+
+.grid-item .resize-left {
+    display:block;
+    z-index: 2;
+}
+
+.highlight {
+    background-color: rgba(255, 255, 255, 0.4);
+}
+
+.resize-up {
+    width: 75%;
+    height: 1rem;
+    cursor: n-resize;
+    z-index: 5;
+    position:relative
+}
+
+.resize-up:active {
+    opacity: 0;
+    cursor: n-resize;
+}
+
+.resize-down {
+    width: 75%;
+    height: 1rem;
+    cursor: n-resize;
+}
+
+.resize-down:active {
+    opacity: 0;
+    cursor: n-resize;
+}
+
+.horizontal-resize {
+    display: flex;
+    flex-direction: row;
+    justify-content: space-between;
+    width: 100%;
+    height: 100%;
+}
+
+.resize-right {
+    width: 1rem;
+    height: 100%;
+    cursor: w-resize;
+}
+
+.resize-right:active {
+    opacity: 0;
+    cursor: w-resize;
+}
+
+.resize-left {
+    width: 1rem;
+    height: 100%;
+    cursor: w-resize;
+}
+
+.resize-left:active {
+    opacity: 0;
+    cursor: w-resize;
+}
+
+.resize-up:hover, .resize-down:hover, .resize-right:hover, .resize-left:hover {
+    background-color: rgba(255, 238, 0, 0.5)
+}
+
+.save-layout-form {
+    margin: 3rem 0;
+}
+
+.bottom-controls {
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    justify-content: space-around;
+}
