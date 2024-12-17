@@ -28,7 +28,7 @@
             <div class="set-details-list">
                 <div class="set-details-row">
                     <h3>Set Number</h3>
-                    <p>{{ $setdetail->set_number }}</p>
+                    <p id="set-number">{{ $setdetail->set_number }}</p>
                 </div>
                 <div class="set-details-row">
                     <h3>Name</h3>
@@ -81,14 +81,14 @@
             <div class="set-details-list">
                 <div class="set-details-row">
                     <h3>Retail</h3>
-                    <p> {{$lastPrice?->price}} </p>
+                    <p id="actual-price"> {{$lastPrice?->price}} </p>
                 </div>
 
                 <p>New / Sealed</p>
 
                 <div class="set-details-row">
                     <h3>Value</h3>
-                    <p id="actual-price">$259.99</p>
+                    <p>$259.99</p>
                 </div>
                 <div class="set-details-row">
                     <h3>Price Variation</h3>
@@ -169,7 +169,7 @@
                     element.innerText = "+" + element.innerText;
                 } else if (value < 0) element.classList.add("negative");
             
-
+            });
             // Price Alerts
             const csrfToken = document.querySelector('meta[name="csrf-token"]').getAttribute('content');
             
