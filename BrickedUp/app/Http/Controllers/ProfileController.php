@@ -70,35 +70,43 @@ class ProfileController extends Controller
     }
 
 
-    public function updateFavouriteSets(Request $request) {
-        // Remove the previous records
-        $userID = auth()->user()->id;
-        DB::table('favourite_sets')->where('user_id', '=', $userID)->delete();
+    public function addToFavorites(Request $request)
+    {
+        $userId = Auth::id(); 
+        $setNumber = $request->input('set_number');
 
-        // Get the values from the checkbox input
-        $setNumbers = $request->input('set-checkbox', []);
-        
-        // Add the records to the database
-        if(is_array($setNumbers)) 
-        {
-            foreach($setNumbers as $setNumber) 
-            {
-                DB::table('favourite_sets')->insert([
-                    'user_id' => $userID,
-                    'set_number' => $setNumber
-                ]);
-            }
-        }
-        else 
-        {
-            DB::table('favourite_sets')->insert([
-                'user_id' => $userID,
-                'set_number' => $setNumbers
-            ]);
+        Log::debug('Add to Favorites Request', ['user_id' => $userId, 'set_number' => $setNumber]);
+
+        if (!$setNumber) {
+            return response()->json(['success' => false, 'message' => 'Set number is required'], 400);
         }
 
-        return Redirect::route('settings')->with('status', 'Favourite sets updated successfully!');
+        FavouriteSet::firstOrCreate([
+            'user_id' => $userId,
+            'set_number' => $setNumber,
+        ]);
+
+        return response()->json(['success' => true, 'message' => 'Set added to favorites']);
     }
+
+    public function removeFromFavorites(Request $request)
+    {
+        $userId = Auth::id(); 
+        $setNumber = $request->input('set_number');
+
+        Log::debug('Remove from Favorites Request', ['user_id' => $userId, 'set_number' => $setNumber]);
+
+        if (!$setNumber) {
+            return response()->json(['success' => false, 'message' => 'Set number is required'], 400);
+        }
+
+        FavouriteSet::where('user_id', $userId)
+                    ->where('set_number', $setNumber)
+                    ->delete();
+
+        return response()->json(['success' => true, 'message' => 'Set removed from favorites']);
+    }
+
 
 
     public function updateFavouriteThemes(Request $request)
