@@ -25,14 +25,36 @@ To address this, \textit{Bricked Up} centralizes key information, providing inte
 
 \section{Front-End}
 
-This project's first task is to build your application's front-end side.
-This section should clearly describe the technical implementation of the work put into building the front-end:
+Before beginning to develop all of our views, as any respectable software engineer would do, we set out to create a prototype. 
+As is industry standard, we used Figma to create our prototype, which included all the views we were planning to make and a general 
+outline on how the application should look. Our intention was to use a component library both for the Figma prototype as well as 
+during development, but given our unique design language it did not come to be.
+Since we were building a platform akin to Bloomberg Terminal (but for lego), we inspired our views by it, by using that color palette
+and a similar design language: very information dense, dark-mode only and a terminal-like view. Once the Figma prototype was developed, 
+we reviewed it, and started developing the front-end.
+\\
 
-\begin{itemize}
-    \item Technically describe the use of HTML 5: which HTML tags do you use, where, and why
-    \item Technically describe the use of CSS: why and how you use CSS (including interesting selectors/declarations and how it is incorporated in the application)
-    \item Technically describe the use of JavaScript: why and how you use it in your application (including interesting behaviors and how they are incorporated into the application)
-\end{itemize}
+As our framework of choice ended being Laravel, we tried to adopt as many Laravel defaults as possible, which was reflected 
+in the way we developed our front-end. 
+As templating engine, we used blade, a simple yet effective templating engine which allows for mix-and-matching HTML with PHP, 
+dividing the application into components for a greater reusability and modularity. Blade is the default templating engine in Laravel, 
+which meant we did not had to spend any time setting the project up but could go right to develop the views of our web app. 
+We also ended up using alpine.js \cite{alpinejs} in some parts of the application, when handling graphs or to create the scrolling bar with the prices for example, where vanilla Javascript was turning out to be too complicated
+or where inline PHP simply was not enough. 
+
+Many components were divided in reusable blade components, such as the navbar, all the elements of the dashboard, as to allow customization of such, 
+the authentication components and other shared items. By making use of the components we greatly reduced repeated code, allowing us to adhere as much as possible 
+to the DRY \cite{dry} principle. As an upside it also sped up development time considerably, as each team member could work on a component of the website indipendently, 
+without needing to wait for pages to be complete yet. 
+
+The HTML we produced was heavily subdivided in with various \texttt{div} elements. That allowed again for a greater modularity and enabled to easily style 
+different components in our web app with CSS. Most \texttt{div} element had a class associated with them, which then we would separatily style with a CSS document. 
+We did not use a premade CSS stylesheet, but wrote our own, to adhere to our unique design language. All of the CSS was kept in the default \texttt{app.css}. Given the extensive use
+of \texttt{div} elements with distinct classes, no conflicts emerged between components. 
+Other HTML tags that were used are the \texttt{p} to hold text, \texttt{li} and \texttt{ul} tags to create lists and \texttt{img} tags to hold images correctly. 
+
+The appropriate use of Javascript, modern HTML and CSS together with a powerful templating engine like Blade, allowed for a visually pleasing end product,
+with what we believe to be an intuitive UI and UX. 
 
 \myparagraph{Resources} Lectures 1 to 3.
 
@@ -69,10 +91,12 @@ In the context of the Web Technologies course, the conclusion should clearly des
 \myparagraph{Length} Half a column.
 
 \begin{thebibliography}{9}
-
+    
     \bibitem{lego_market}
     Dmitry B. Krylov, "LEGO investing as an alternative asset class: Annualized returns of 11\%," 
     \textit{ScienceDirect}, 2021. Available at: \href{https://www.sciencedirect.com/science/article/abs/pii/S0275531921001604?via%3Dihub}{ScienceDirect Article}.
+    \bibitem{alpinejs} \href{https://alpinejs.dev}{Alpine.js}
+    \bibitem{dry} \href{https://en.wikipedia.org/wiki/Don%27t_repeat_yourself}{DRY principle}
     
 \end{thebibliography}
 
