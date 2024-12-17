@@ -1,4 +1,14 @@
-    <div class="nav-header">
+@php
+    $unreadNotifications = false;
+    
+    if (Auth::check()) {
+        $unreadNotifications = \App\Models\Notification::where('user_id', auth()->id())
+                                            ->where('read', false)
+                                            ->exists();
+    }
+@endphp
+
+<div class="nav-header">
         <ul class="navbar">
             <div>
                 <li>
@@ -37,7 +47,15 @@
                         @endif
                     </a>
                 </li>
-
+                <li>
+                    <a href="{{ route('notifications.index') }}">
+                        @if($unreadNotifications)
+                            <img src="{{ asset('images/bell_icon_highlighted.svg') }}" alt="notification icon">
+                        @else
+                            <img src="{{ asset('images/bell_icon.svg') }}" alt="notification icon">
+                        @endif
+                    </a>
+                </li>
                 <li>
                     @if($currentPage === 'profile')
                     <img id="profile-dropdown-icon" src="{{asset('images/user_icon_highlighted.svg')}}" alt="user icon">
@@ -95,6 +113,7 @@
                 dropdownButton.style.transform = "rotate(45deg)";
             }
         }
+
 
         dropdownIcon.addEventListener('click', () => toggleProfileDropdown());
         dropdownButton.addEventListener('click', () => toggleProfileDropdown());
