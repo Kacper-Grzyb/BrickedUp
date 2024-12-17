@@ -8,6 +8,7 @@ use App\Http\Controllers\LegoSetController;
 use App\Http\Controllers\SetsDataController;
 use App\Http\Controllers\SetController;
 use App\Http\Controllers\DashboardController;
+use App\Http\Middleware\CheckRole;
 use App\Http\Controllers\PriceAlertController;
 use App\Http\Controllers\NotificationController;
 use App\Http\Controllers\SetDetail;
@@ -29,6 +30,8 @@ Route::middleware('auth')->group(function () {
     Route::get('/dashboard', [DashboardController::class, 'index'])->middleware(['verified'])->name('home');
     Route::get('/edit-dashboard', [DashboardController::class, 'editDashboard'])->name('dashboard.edit');
     Route::post('/save-layout', [DashboardController::class, 'saveLayout'])->name('dashboard.save-layout');
+    Route::post('/reset-layout', [DashboardController::class, 'resetLayout'])->name('dashboard.reset-layout');
+    
 
     Route::get('/profile', [ProfileController::class, 'view'])->name('profile');
 
@@ -54,12 +57,14 @@ Route::middleware('auth')->group(function () {
     })->name('explore-view');
 
     Route::get('/explore-view', [SetsDataController::class, 'index'])->name('explore-view');
+});
 
+Route::middleware(CheckRole::class)->group(function () {
     Route::get('/upload-data', [FileUploadController::class, 'showUploadForm'])->name('form');
     Route::post('/receive-data', [FileUploadController::class, 'receiveData'])->name('receiveData');
     Route::post('/process-upload', [FileUploadController::class, 'uploadData'])->name('uploadData');
+    Route::post('/calculate-changes', [FileUploadController::class, 'calculatePriceChanges'])->name('calculateChanges');
     Route::post('/generate-price-data', [FileUploadController::class, 'generateSetPriceDummyData'])->name('generateSetPriceData');
-
     Route::get('/download-csv-template', [FileUploadController::class, 'downloadCsvTemplate'])->name('downloadCsvTemplate');
 
     Route::post('/price-alert', [PriceAlertController::class, 'store'])->name('price-alert.store');

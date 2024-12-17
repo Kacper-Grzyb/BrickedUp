@@ -12,7 +12,6 @@
 
 <script>
     const subthemeValues = @json($favouriteSubthemeValues);
-    console.log(subthemeValues);
 
     let stLabels = new Array();
     let stValues = new Array();
