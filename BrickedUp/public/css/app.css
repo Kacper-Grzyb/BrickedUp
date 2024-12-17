@@ -1,7 +1,7 @@
 html {
     background-color: rgb(18, 18, 18);
-    font-family:'Courier New', Courier, monospace;
-    color:white;
+    font-family: 'Courier New', Courier, monospace;
+    color: white;
 }
 
 body {
@@ -25,7 +25,7 @@ input[type="checkbox"] {
     /* Not removed via appearance */
     background-color: rgb(18, 18, 18);
     border: 1px solid rgb(173, 173, 173);
-    border-radius: 0.1em; 
+    border-radius: 0.1em;
     /* Set width and height for the intended element*/
     display: grid;
     place-content: center;
@@ -41,7 +41,7 @@ input[type="checkbox"]::before {
     transform-origin: bottom left;
     clip-path: polygon(14% 44%, 0 65%, 50% 100%, 100% 16%, 80% 0%, 43% 62%);
 }
-  
+
 input[type="checkbox"]:checked::before {
     transform: scale(1);
 }
@@ -58,12 +58,17 @@ form {
     margin: 0;
     padding: 0;
 }
-    
+
 .terminal-box {
     border: 1px solid white;
     border-radius: 0.3rem;
     padding: 2rem;
     margin: 2rem;
+}
+
+#chart {
+    width: 100%;
+    height: 100%;
 }
 
 .terminal-box h2 {
@@ -72,9 +77,9 @@ form {
 }
 
 .alert-message {
-    position:fixed;
+    position: fixed;
     z-index: 12;
-    left:50%;
+    left: 50%;
     top: 8%;
     transform: translate(-50%, -50%);
     margin: 0;
@@ -101,7 +106,7 @@ NAVBAR CONTENT START
 
 .nav-header {
     z-index: 10;
-    position:fixed;
+    position: fixed;
     width: 100%;
     top: 0;
     overflow: hidden;
@@ -125,9 +130,12 @@ NAVBAR CONTENT START
 .navbar li {
     float: left;
     padding: 0 1rem;
-    -webkit-user-select: none; /* Safari */
-    -ms-user-select: none; /* IE 10 and IE 11 */
-    user-select: none; /* Standard syntax */
+    -webkit-user-select: none;
+    /* Safari */
+    -ms-user-select: none;
+    /* IE 10 and IE 11 */
+    user-select: none;
+    /* Standard syntax */
 }
 
 .navbar img {
@@ -203,7 +211,7 @@ NAVBAR CONTENT START
 }
 
 .searchbar button {
-    border:none;
+    border: none;
     background-color: rgb(18, 18, 18);
     width: auto;
     margin: 0;
@@ -365,29 +373,29 @@ SETTINGS CONTEND START
 }
 
 .settings-row {
-    display:flex;
+    display: flex;
     flex-direction: row;
     align-items: center;
     width: auto;
 }
 
 .settings-display-favourites {
-    max-width: 65%; 
-    overflow:scroll; 
-    display:flex; 
-    flex-direction: row; 
-    padding: 0.5rem; 
+    max-width: 65%;
+    overflow: scroll;
+    display: flex;
+    flex-direction: row;
+    padding: 0.5rem;
 }
 
 .settings-display-favourites p {
-    min-width:fit-content;
+    min-width: fit-content;
     margin: 0;
 }
 
 .settings-dropdown {
     position: relative;
-    display:inline-block;
-    min-width:fit-content;
+    display: inline-block;
+    min-width: fit-content;
 
 }
 
@@ -399,14 +407,17 @@ SETTINGS CONTEND START
 }
 
 .fake-link {
-    font-family:'Courier New', Courier, monospace;
+    font-family: 'Courier New', Courier, monospace;
     color: rgb(251, 139, 30);
     text-decoration: underline;
     font-size: 1rem;
     cursor: pointer;
-    -webkit-user-select: none; /* Safari */
-    -ms-user-select: none; /* IE 10 and IE 11 */
-    user-select: none; /* Standard syntax */
+    -webkit-user-select: none;
+    /* Safari */
+    -ms-user-select: none;
+    /* IE 10 and IE 11 */
+    user-select: none;
+    /* Standard syntax */
 }
 
 .settings-dropdown p {
@@ -414,9 +425,12 @@ SETTINGS CONTEND START
     text-decoration: underline;
     font-size: 1rem;
     cursor: pointer;
-    -webkit-user-select: none; /* Safari */
-    -ms-user-select: none; /* IE 10 and IE 11 */
-    user-select: none; /* Standard syntax */
+    -webkit-user-select: none;
+    /* Safari */
+    -ms-user-select: none;
+    /* IE 10 and IE 11 */
+    user-select: none;
+    /* Standard syntax */
 }
 
 .settings-dropdown input[type="checkbox"] {
@@ -427,13 +441,14 @@ SETTINGS CONTEND START
 .settings-dropdown-content {
     z-index: 5;
     border: 1px solid rgb(118, 118, 118);
-    border-radius: 5px;;
+    border-radius: 5px;
+    ;
     background-color: rgb(18, 18, 18);
     margin-top: 0.5rem;
     padding: 0.5rem;
     width: 100%;
     display: none;
-    position:absolute; 
+    position: absolute;
     flex-direction: column;
     justify-content: flex-start;
     align-content: space-between;
@@ -457,7 +472,7 @@ SETTINGS CONTEND START
     font-size: 0.75rem;
     height: 100%;
     margin-left: .5rem;
-    overflow:hidden
+    overflow: hidden
 }
 
 .settings-dropdown-row input {
@@ -511,12 +526,12 @@ SETTINGS CONTEND START
     padding: 1rem 2rem;
     display: flex;
     flex-direction: column;
-    position:absolute;
+    position: absolute;
     align-items: center;
     justify-content: center;
     z-index: 13;
     gap: 0.5rem;
-    left:50%;
+    left: 50%;
     top: 50%;
     transform: translate(-50%, -50%);
     margin-top: 2rem;
@@ -601,7 +616,7 @@ SET DETAILS CONTENT START
 }
 
 .negative {
-    color:rgb(255, 67, 61);
+    color: rgb(255, 67, 61);
 }
 
 h3 {
@@ -617,6 +632,11 @@ h3 {
 
 .set-details-media {
     height: 20rem;
+    flex: 3;
+}
+
+.chart-to {
+    height: 29rem;
     flex: 3;
 }
 
@@ -674,7 +694,7 @@ h3 {
 }
 
 .set-details-review header p {
-    text-align: center; 
+    text-align: center;
     padding-top: 2%
 }
 
@@ -706,7 +726,7 @@ h3 {
     min-height: 20rem;
     box-sizing: border-box;
     margin-top: 0;
-}   
+}
 
 .set-details-trends h2 {
     margin: 0px;
@@ -745,7 +765,7 @@ h3 {
 .for-sale-record p {
     margin: 0.5rem 1rem;
     text-align: center;
-    align-content:center;
+    align-content: center;
 }
 
 .for-sale-price {
@@ -788,8 +808,7 @@ HOME PAGE CONTENT START
     padding: 0;
 }
 
-.home-top-ranked-container
-{
+.home-top-ranked-container {
     display: flex;
     flex-direction: row;
     justify-content: center;
@@ -827,7 +846,7 @@ HOME PAGE CONTENT START
     border: 1px solid #555;
 }
 
-.terminal-table td{
+.terminal-table td {
     border: 1px solid #555;
     padding: 0.5rem;
 }
@@ -874,7 +893,7 @@ HOME PAGE CONTENT START
     padding: 0.75rem 1rem;
 }
 
-.top-set-name{
+.top-set-name {
     width: 5rem;
 }
 
@@ -895,11 +914,10 @@ HOME PAGE CONTENT START
 
 .top-set p {
     text-align: center;
-    align-content:center;
+    align-content: center;
 }
 
-.positive-change
-{
+.positive-change {
     color: #3EA341;
 }
 
@@ -907,8 +925,7 @@ HOME PAGE CONTENT START
     color: white;
 }
 
-.negative-change
-{
+.negative-change {
     color: #FF433D;
 }
 
@@ -918,6 +935,7 @@ HOME PAGE CONTENT START
     border: 1px solid #FFA500;
     padding: 0;
 }
+
 .top-ranked-news-header {
     background-color: #FFA500;
     color: #333;
@@ -931,19 +949,22 @@ HOME PAGE CONTENT START
     color: #FFA500;
     font-weight: bold;
 }
+
 .type {
     color: red;
     text-align: center;
 }
+
 .time {
     color: #ccc;
     text-align: right;
 }
+
 .row {
     border-top: 1px solid #333;
 }
 
-.home-container{
+.home-container {
     max-width: 690px;
 }
 
