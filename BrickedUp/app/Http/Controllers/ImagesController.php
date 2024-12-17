@@ -19,7 +19,7 @@ class ImagesController extends Controller
 
     public function thumbnail()
     {
-        $sets = Set::with('setImage')->orderBy('set_number')->get();
+        $sets = Set::with('setImage')->orderBy('set_number')->paginate(10);
         return view('explore', compact('sets'));
     }
 
