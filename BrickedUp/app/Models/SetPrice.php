@@ -10,6 +10,12 @@ class SetPrice extends Model
     // Disable timestamps
     public $timestamps = false;
 
+    protected $primaryKey = 'set_number';
+
+    public $incrementing = false;
+
+    protected $keyType = 'string';
+
     // Define fillable fields if required
     protected $fillable = ['set_number', 'record_date', 'price'];
 

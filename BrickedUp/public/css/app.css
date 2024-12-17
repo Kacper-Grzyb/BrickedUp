@@ -155,6 +155,19 @@ NAVBAR CONTENT START
     cursor: pointer;
 }
 
+.notification-arrow {
+    display: inline-block;
+    margin-left: 4px;
+    margin-top: -12px;
+    width: 6px;
+    height: 6px;
+    border-right: 2px solid #333;
+    border-bottom: 2px solid #333;
+    transform: rotate(45deg);
+    vertical-align: middle;
+    cursor: pointer;
+}
+
 .profile-dropdown {
     display: none;
     flex-direction: column;
@@ -168,7 +181,59 @@ NAVBAR CONTENT START
     justify-content: space-evenly;
 }
 
+.notification-dropdown {
+    display: none; /* Ensure it's hidden by default */
+    position: absolute;
+    background-color: #fff;
+    box-shadow: 0 4px 8px rgba(0,0,0,0.1);
+    padding: 10px;
+    width: 300px;
+    max-height: 400px;
+    overflow-y: auto;
+    z-index: 1000;
+}
+
+.notification-dropdown .notification-list {
+    list-style: none;
+    padding: 0;
+    margin: 0;
+}
+
+.notification-dropdown .notification-list li {
+    padding: 10px;
+    border-bottom: 1px solid #eee;
+}
+
+.notification-dropdown .notification-list li.unread {
+    background-color: #f9f9f9;
+    font-weight: bold;
+}
+
+.notification-dropdown .notification-list li.read {
+    background-color: #fff;
+    font-weight: normal;
+}
+
+.notification-dropdown .view-all-link {
+    display: block;
+    text-align: center;
+    padding: 10px;
+    background-color: #f0f0f0;
+    text-decoration: none;
+    color: #333;
+    margin-top: 10px;
+    border-radius: 4px;
+}
+
+.notification-dropdown .view-all-link:hover {
+    background-color: #e0e0e0;
+}
+
 .profile-dropdown h3 {
+    font-size: 1rem;
+}
+
+.notification-dropdown h3{
     font-size: 1rem;
 }
 
@@ -721,15 +786,37 @@ h3 {
     min-width: 20%;
 }
 
-.set-details-trends {
+.set-details-price-alerts {
     width: 100%;
     min-height: 20rem;
     box-sizing: border-box;
     margin-top: 0;
 }
 
-.set-details-trends h2 {
+.set-details-price-alerts h2 {
     margin: 0px;
+}
+
+.button-container {
+    display: flex;
+    margin-top: 2rem;
+    gap: 1.5rem;
+    justify-content: center;
+}
+
+.box-button {
+    margin: 0.5rem 1rem;
+    border: 1px solid white;
+    border-radius: 0.3rem;
+    cursor: pointer;
+    font-size: 1.6rem;
+    padding: 1rem;
+}
+
+.box-button p{
+    color: rgb(173, 173, 173);
+    font-family:'Courier New', Courier, monospace;
+    
 }
 
 .set-details-for-sale {
@@ -771,8 +858,6 @@ h3 {
 .for-sale-price {
     color: rgb(251, 139, 30);
 }
-
-
 
 /*
 SET DETAILS CONTENT END
