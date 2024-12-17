@@ -1,41 +1,51 @@
+function getUniqueColor(str) {
+    let hash = 0;
+    for (let i = 0; i < str.length; i++) {
+        hash = str.charCodeAt(i) + ((hash << 5) - hash);
+    }
+    // Convert the hash to an RGB color
+    const r = (hash >> 16) & 0xFF;
+    const g = (hash >> 8) & 0xFF;
+    const b = hash & 0xFF;
+    // Convert RGB to HEX
+    return `#${((1 << 24) + (r << 16) + (g << 8) + b)
+        .toString(16)
+        .slice(1)
+        .toUpperCase()}`;
+}
+
+function hexToRgb(hex) {
+    hex = hex.replace(/^#/, '');
+    let bigint = parseInt(hex, 16);
+    let r = (bigint >> 16) & 255;
+    let g = (bigint >> 8) & 255;
+    let b = bigint & 255;
+    return `${r}, ${g}, ${b}`;
+}
+
 async function fetchSetData() {
-    // Access the data passed from the Laravel controller
-    const viewData = window.setsData; // Assuming the data is assigned to a global variable in the Blade view
+    const viewData = window.setsData; 
 
     viewData.forEach(element => {
         console.log(element);
     });
 
-    return viewData.map(set => ({
-        "Set Number": set.set_number,
-        "Set Name": set.set_name,
-        "Theme": set.theme.theme,
-        "Subtheme": set.subtheme_id,
-        "Market Price": parsePrice(set.retail_price),
-        "Release Date": set.release_date
-    }));
+    return viewData;
 }
 
-// Add this helper function at the top
 function parsePrice(price) {
     return typeof price === 'string' ? parseFloat(price.replace(/[^0-9.-]+/g, '')) : price;
 }
 
-// Function to transform CSV data to chart data format
+
 function transformData(set) {
-    const releaseDate = new Date(set["Release Date"]);
-    const dataPoints = [];
-    
-    // Add release date point
-    dataPoints.push({
-        time: releaseDate.toISOString().split('T')[0],
-        value: parsePrice(set["Market Price"]),
-        label: `${set["Set Name"]} (Release)`
-    });
-    return dataPoints;
+    return set.prices.map(priceRecord => ({
+        time: new Date(priceRecord.record_date).getTime() / 1000,
+        value: parsePrice(priceRecord.price),
+    }));
 }
 
-// Function to dynamically generate checkboxes
+
 function generateCheckboxes(data) {
     const form = document.getElementById('lego-sets-form');
     data.forEach(set => {
@@ -45,14 +55,14 @@ function generateCheckboxes(data) {
         const checkbox = document.createElement('input');
         checkbox.type = 'checkbox';
         checkbox.name = 'lego_set';
-        checkbox.value = set["Set Number"];
+        checkbox.value = set.set_number;
 
         const details = document.createElement('div');
         details.classList.add('option-details');
         details.innerHTML = `
-            <div><strong>Set Number:</strong> ${set["Set Number"]}</div>
-            <div><strong>Name:</strong> ${set["Set Name"]}</div>
-            <div><strong>Theme:</strong> ${set["Theme"]}</div>
+            <div><strong>Set Number:</strong> ${set.set_number}</div>
+            <div><strong>Name:</strong> ${set.set_name}</div>
+            <div><strong>Theme:</strong> ${set.theme.theme}</div>
         `;
 
         label.appendChild(checkbox);
@@ -63,14 +73,15 @@ function generateCheckboxes(data) {
 
 document.addEventListener('DOMContentLoaded', async () => {
     try {
-        const data = await fetchSetData(); // Fetch data from the server
-        generateCheckboxes(data); // Generate checkboxes based on dataset
+        const data = await fetchSetData(); 
+        const setsData = data; 
+        generateCheckboxes(setsData); 
 
         const chartContainer = document.getElementById('mountainChart');
         const placeholder = document.getElementById('placeholder');
         const loadingSpinner = document.getElementById('loading');
 
-        // Initialize the chart
+
         const chart = LightweightCharts.createChart(chartContainer, {
             layout: {
                 background: {
@@ -96,67 +107,34 @@ document.addEventListener('DOMContentLoaded', async () => {
             },
         });
 
-        // Store series references
+
         const seriesMap = {};
 
-        // Function to convert HEX color to RGB
-        function hexToRgb(hex) {
-            hex = hex.replace(/^#/, '');
-            let bigint = parseInt(hex, 16);
-            let r = (bigint >> 16) & 255;
-            let g = (bigint >> 8) & 255;
-            let b = bigint & 255;
-            return `${r}, ${g}, ${b}`;
-        }
-
-        // Function to get color based on theme ID
-        function getColor(theme) {
-            // Map theme IDs to colors
-            const themeColors = {
-                "Star Wars": "#26a69a",
-                "IDEAS": "#FFC000",
-                "Super Mario": "#FF5722",
-                "Clone Wars": "#3F51B5",
-                "Power Miners": "#9C27B0",
-                "Ninjago": "#4CAF50",
-                "Bionicle": "#E91E63",
-                "Atlantis": "#00BCD4",
-                "Brickheadz": "#FF9800",
-                "Marvel": "#F44336",
-                "DC": "#2196F3",
-                "Indiana Jones": "#795548",
-                "Harry Potter": "#673AB7",
-                "Technic": "#607D8B",
-                "Icons": "#8BC34A",
-                "Creator Expert": "#CDDC39",
-                "Art": "#FFEB3B",
-                "Jurassic World": "#009688",
-                "Architecture": "#FFC107",
-                "Stranger Things": "#FF5722",
-                "Speed Champions": "#795548",
-                "Monkie Kid": "#3F51B5",
-                "Seasonal": "#E91E63",
-            };
-
-            return themeColors[theme] || "#FFFFFF";
-        }
-
-        // Function to add a new series to the chart
         const addSeries = (setId, setData) => {
             if (seriesMap[setId]) return; // Prevent adding the same series multiple times
+
+            // Check if there are price records
+            if (!setData.prices || setData.prices.length === 0) {
+                console.warn(`No price data available for set: ${setId}`);
+                return;
+            }
 
             loadingSpinner.style.display = 'block';
 
             setTimeout(() => {
+                // Generate a unique color for the set based on its set number
+                const uniqueColor = getUniqueColor(setId);
+
                 const newSeries = chart.addAreaSeries({
-                    topColor: `rgba(${hexToRgb(getColor(setData["Theme"]))}, 0.5)`,
-                    bottomColor: `rgba(${hexToRgb(getColor(setData["Theme"]))}, 0.0)`,
-                    lineColor: getColor(setData["Theme"]),
+                    topColor: `rgba(${hexToRgb(uniqueColor)}, 0.5)`,
+                    bottomColor: `rgba(${hexToRgb(uniqueColor)}, 0.0)`,
+                    lineColor: uniqueColor,
                     lineWidth: 2,
                 });
 
-                const dataPoints = transformData(setData);
-                newSeries.setData(dataPoints);
+                // Transform historical price data
+                const historicalData = transformData(setData);
+                newSeries.setData(historicalData);
                 seriesMap[setId] = newSeries;
 
                 loadingSpinner.style.display = 'none';
@@ -165,7 +143,6 @@ document.addEventListener('DOMContentLoaded', async () => {
             }, 500);
         };
 
-        // Function to remove a series from the chart
         const removeSeries = (setId) => {
             if (!seriesMap[setId]) return;
 
@@ -179,13 +156,12 @@ document.addEventListener('DOMContentLoaded', async () => {
             updateLegend();
         };
 
-        // Function to handle checkbox changes
         const handleCheckboxChange = (event) => {
             const checkbox = event.target;
             const setId = checkbox.value;
 
             if (checkbox.checked) {
-                const setData = data.find(s => s["Set Number"] === setId);
+                const setData = setsData.find(s => s.set_number === setId);
                 if (setData) {
                     addSeries(setId, setData);
                 }
@@ -194,7 +170,6 @@ document.addEventListener('DOMContentLoaded', async () => {
             }
         };
 
-        // Attach event listeners to all checkboxes
         const form = document.getElementById('lego-sets-form');
         form.addEventListener('change', (event) => {
             if (event.target.name === 'lego_set') {
@@ -202,33 +177,34 @@ document.addEventListener('DOMContentLoaded', async () => {
             }
         });
 
-        // Function to update the legend
         const updateLegend = () => {
             const legend = document.getElementById('legend');
             legend.innerHTML = '';
 
             Object.keys(seriesMap).forEach(setId => {
-                const set = data.find(s => s["Set Number"] === setId);
+                const set = setsData.find(s => s.set_number === setId);
                 if (!set) return;
 
+                // Generate the same unique color used in the series
+                const uniqueColor = getUniqueColor(setId);
+
                 const legendItem = document.createElement('span');
-                legendItem.style.color = getColor(set["Theme"]);
+                legendItem.style.color = uniqueColor;
                 legendItem.style.marginLeft = '15px';
-                legendItem.innerHTML = `&#9679; ${set["Set Name"]}`;
+                legendItem.innerHTML = `&#9679; ${set.set_name}`;
                 legend.appendChild(legendItem);
             });
         };
 
-        // Function to handle search functionality
         function handleSearch(query) {
             const form = document.getElementById('lego-sets-form');
             const checkboxes = form.querySelectorAll('input[name="lego_set"]');
-            data.forEach((set, index) => {
+            setsData.forEach((set, index) => {
                 const label = checkboxes[index].closest('.option-container');
                 if (
-                    set["Set Number"].includes(query) ||
-                    set["Set Name"].toLowerCase().includes(query.toLowerCase()) ||
-                    set["Theme"].toString().includes(query)
+                    set.set_number.includes(query) ||
+                    set.set_name.toLowerCase().includes(query.toLowerCase()) ||
+                    set.theme.theme.toLowerCase().includes(query.toLowerCase())
                 ) {
                     label.style.display = 'flex';
                 } else {
@@ -237,7 +213,6 @@ document.addEventListener('DOMContentLoaded', async () => {
             });
         }
 
-        // Debounce function
         function debounce(func, wait) {
             let timeout;
             return function (...args) {
@@ -246,14 +221,12 @@ document.addEventListener('DOMContentLoaded', async () => {
             };
         }
 
-        // Attach the search handler
-        const searchInput = document.getElementById('search-input');
+        const searchInput = document.getElementById('search-input-chart');
         searchInput.addEventListener('input', debounce((event) => {
             const query = event.target.value.trim();
             handleSearch(query);
         }, 300));
 
-        // Function to resize the chart
         const resizeChart = () => {
             chart.applyOptions({
                 width: chartContainer.clientWidth,
@@ -264,7 +237,6 @@ document.addEventListener('DOMContentLoaded', async () => {
         window.addEventListener('resize', resizeChart);
         resizeChart();
 
-        // Load initial data for pre-selected sets
         const checkboxes = form.querySelectorAll('input[name="lego_set"]:checked');
         checkboxes.forEach(checkbox => {
             handleCheckboxChange({ target: checkbox });

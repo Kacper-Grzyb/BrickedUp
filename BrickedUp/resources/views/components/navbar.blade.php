@@ -1,4 +1,14 @@
-    <div class="nav-header">
+@php
+    $unreadNotifications = false;
+    
+    if (Auth::check()) {
+        $unreadNotifications = \App\Models\Notification::where('user_id', auth()->id())
+                                            ->where('read', false)
+                                            ->exists();
+    }
+@endphp
+
+<div class="nav-header">
         <ul class="navbar">
             <div>
                 <li>
@@ -107,6 +117,7 @@
                 dropdownButton.style.transform = "rotate(45deg)";
             }
         }
+
 
         dropdownIcon.addEventListener('click', () => toggleProfileDropdown());
         dropdownButton.addEventListener('click', () => toggleProfileDropdown());

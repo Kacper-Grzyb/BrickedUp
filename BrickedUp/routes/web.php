@@ -9,6 +9,8 @@ use App\Http\Controllers\SetsDataController;
 use App\Http\Controllers\SetController;
 use App\Http\Controllers\DashboardController;
 use App\Http\Middleware\CheckRole;
+use App\Http\Controllers\PriceAlertController;
+use App\Http\Controllers\NotificationController;
 use App\Http\Controllers\SetDetail;
 
 Route::get('/', function () {
@@ -65,5 +67,8 @@ Route::middleware(CheckRole::class)->group(function () {
     Route::post('/generate-price-data', [FileUploadController::class, 'generateSetPriceDummyData'])->name('generateSetPriceData');
     Route::get('/download-csv-template', [FileUploadController::class, 'downloadCsvTemplate'])->name('downloadCsvTemplate');
 
+    Route::post('/price-alert', [PriceAlertController::class, 'store'])->name('price-alert.store');
+
+    Route::get('/notifications', [NotificationController::class, 'index'])->name('notifications.index');
     Route::get('/set-details/{id}', [SetDetail::class, 'SetDetail']);
 });
