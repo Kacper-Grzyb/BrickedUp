@@ -42,18 +42,48 @@ This section should clearly describe the technical implementation of the work pu
 
 \section{Authentication and Authorization}
 
-This project's third and final task is to incorporate authentication and authorization capabilities.
-This section should clearly describe:
+The third task for this project was to create authentication and authorization capabilities. The idea was to have a landing page and information about the platform which was freely accessible but required user registration for the core functionality of the website. This section outlines the approaches used for user authentication, role-based access control, and session management.
 
-\begin{itemize}
-    \item Authentication: The different users of the system and how it is implemented
-    \item Authorization: Summarize the access of the different users in the system and how it is implemented
-    \item Role table: Include a role table associating actions over the system (you can think of them as use cases) and users that can perform these actions.
-\end{itemize}
+\myparagraph{Authentication}
 
-\myparagraph{Resources} Lecture 7.
+We did not steer clear of Laravel's handy features and decided to implement the pre-built Breeze authentication, as already mentioned earlier, which was later extended for added security. The system supports two primary types of users: Regular Users and Admin Users. Regular Users can access basic features such as viewing LEGO investment data and trends, while Admin Users have additional privileges, such as managing investment records, overseeing user accounts, adding favorite sets, and more. Unregistered users are restricted from accessing any features and are blocked from the page’s URL until they complete the registration process.
 
-\myparagraph{Length} 2 columns.
+To accommodate our needs, the user model and migration were extended from Laravel's default ones, with several key modifications. A role field is added to distinguish between Regular and Admin Users. Additionally, the "remember token" field is used to support the "remember me" functionality, which allows users to remain logged in across sessions.
+
+Another notable addition to improve security in the authentication process is two-factor authentication (2FA), which improves security by requiring users to enter a verification code sent via email during the login and registration processes. This step ensures that only authorized users can access the platform, adding an extra layer of protection against unauthorized access.
+
+Upon successful login, the user’s session is started, and the system applies middleware to enforce two-factor authentication, ensuring that the user has completed this step before granting full access. However, if the user fails to enter the correct code, a new unique one is sent to avoid code theft.
+
+\myparagraph{Authorization}
+
+The platform’s authorization system is based on role-based access control (RBAC), implemented through Laravel’s middleware. The user's access level is determined through this role field with the help of middleware, playing a crucial role in enforcing access control. For example, only administrators are allowed to access routes that involve managing user accounts or approving investment listings. Regular Users can access general data and make investments but cannot modify any records or perform administrative functions.
+
+Additionally, we use middleware to implement the 2FA, sessions, and inactivity logout. If a user is inactive for a specified period, they are logged out and prompted to log in again. The same is true if the user closes the browser tab or the session expires, with a message given 1 minute before being logged out. The user's activity is constantly tracked via mouse movement or changing pages.
+
+\myparagraph{Role Table}
+
+To define the actions available to different user types, the table below shows the specific actions that Regular and Admin Users can perform:
+
+\begin{table}[h!]
+\centering
+\begin{tabular}{|l|c|c|}
+\hline
+\textbf{Action} & \textbf{Regular User} & \textbf{Admin User} \\ \hline
+Register a new user & Yes & Yes \\ \hline
+Log in & Yes & Yes \\ \hline
+View LEGO investment data & Yes & Yes \\ \hline
+View and edit investment records & No & Yes \\ \hline
+Manage user accounts & No & Yes \\ \hline
+Approve/reject investment listings & No & Yes \\ \hline
+Access Admin Dashboard & No & Yes \\ \hline
+View and modify user roles & No & Yes \\ \hline
+Track session activity & Yes (via inactivity) & Yes (via inactivity) \\ \hline
+Set favorite LEGO sets & Yes & Yes \\ \hline
+Access data export features (CSV/JSON) & No & Yes \\ \hline
+View system logs (user activity, errors) & No & Yes \\ \hline
+\end{tabular}
+\caption{Role-based Action Table}
+\end{table}
 
 \section{Conclusions}
 
