@@ -59,7 +59,15 @@
                     </a>
                 </li>
                 @endif
-
+                <li>
+                    <a href="{{ route('notifications.index') }}">
+                        @if($unreadNotifications)
+                            <img src="{{ asset('images/bell_icon_highlighted.svg') }}" alt="notification icon">
+                        @else
+                            <img src="{{ asset('images/bell_icon.svg') }}" alt="notification icon">
+                        @endif
+                    </a>
+                </li>
                 <li>
                     @if($currentPage === 'profile')
                     <img id="profile-dropdown-icon" src="{{asset('images/user_icon_highlighted.svg')}}" alt="user icon">
@@ -69,7 +77,7 @@
                     <span class="arrow"></span>
                     <div class="profile-dropdown">
                         <h3>Logged in as: <span class="profile-name-span">{{auth()->user()->name}}</span></h3>
-                        <a href="/profile">Go to your profile</a>
+                        <!--<a href="/profile">Go to your profile</a>   -->
                         <form method="POST" action="{{ route('logout') }}" style="margin: 0;">
                             @csrf
                             <a href="{{ route('logout') }}"
