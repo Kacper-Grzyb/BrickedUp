@@ -9,14 +9,14 @@
 <body>
     <div class="set-details-review">
         <header>
-            <img src="{{ asset('images/lego-head-icon.png') }}" alt="User Profile Icon">
+            <img src="{{ asset('img/lego-head-icon.png') }}" alt="User Profile Icon">
             <h5> Brickipedia </h5>
             <div class="set-details-review-stars">
-                <img src="{{asset('images/full_star.svg')}}" alt="">
-                <img src="{{asset('images/full_star.svg')}}" alt="">
-                <img src="{{asset('images/full_star.svg')}}" alt="">
-                <img src="{{asset('images/full_star.svg')}}" alt="">
-                <img src="{{asset('images/empty_star.svg')}}" alt="">
+                <img src="{{asset('img/full_star.svg')}}" alt="">
+                <img src="{{asset('img/full_star.svg')}}" alt="">
+                <img src="{{asset('img/full_star.svg')}}" alt="">
+                <img src="{{asset('img/full_star.svg')}}" alt="">
+                <img src="{{asset('img/empty_star.svg')}}" alt="">
             </div>
             <p> 4/5 </p>
         </header>

@@ -19,6 +19,7 @@ return new class extends Migration
             $table->string('password');
             $table->rememberToken('remember_token');
             $table->string('role')->default('user');
+            $table->integer('two_factor_code')->nullable();
             $table->timestamp('updated_at');
             $table->timestamp('created_at');
         });
