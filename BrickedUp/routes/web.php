@@ -35,8 +35,8 @@ Route::middleware('auth')->group(function () {
     Route::post('/favorite-sets/favorites/remove', [FavoriteSetsController::class, 'removeFromFavorites'])->name('favorite-sets.favorites.remove');
 
     Route::get('/profile', [ProfileController::class, 'view'])->name('profile');
-    Route::post('/profile/favorites/add', [ProfileController::class, 'addToFavorites'])->name('profile.favorites.add');
-    Route::post('/profile/favorites/remove', [ProfileController::class, 'removeFromFavorites'])->name('profile.favorites.remove');
+    //Route::post('/profile/favorites/add', [ProfileController::class, 'addToFavorites'])->name('profile.favorites.add');
+    //Route::post('/profile/favorites/remove', [ProfileController::class, 'removeFromFavorites'])->name('profile.favorites.remove');
 
 
     Route::get('/search-legosets', [LegoSetController::class, 'search'])->name('legosets.search');

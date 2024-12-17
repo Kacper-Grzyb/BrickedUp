@@ -14,7 +14,7 @@ document.addEventListener('DOMContentLoaded', function () {
             const action = this.dataset.action; // "add" or "remove"
 
             // Make an AJAX request
-            fetch(`/profile/favorites/${action}`, {
+            fetch(`/favorite-sets/favorites/${action}`, {
                 method: 'POST',
                 headers: {
                     'X-CSRF-TOKEN': document.querySelector('meta[name="csrf-token"]').getAttribute('content'),
