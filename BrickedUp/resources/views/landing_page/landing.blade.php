@@ -81,7 +81,7 @@
     <div class="main-content">
         <h1 class="main-title">Build your wealth brick-by-brick</h1>
         <h2 class="sub-title">All the tools to grow your lego investments</h2>
-        <a href="/signup"><button class="signup-button">Sign Up</button></a>
+        <a href="{{ route('register') }}"><button class="signup-button">Sign Up</button></a>
     </div>
 
     <footer>

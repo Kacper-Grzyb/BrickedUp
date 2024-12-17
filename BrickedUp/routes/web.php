@@ -4,6 +4,7 @@ use App\Http\Controllers\ProfileController;
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\FileUploadController;
 use App\Http\Controllers\SettingsController;
+use App\Http\Controllers\HomeController;
 use App\Http\Controllers\LegoSetController;
 use App\Http\Controllers\SetsDataController;
 use App\Http\Controllers\SetController;
@@ -11,9 +12,11 @@ use App\Http\Controllers\TwoFactorController;
 use App\Http\Controllers\ImageController;
 use App\Http\Middleware\InactivityLogout;
 use App\Http\Controllers\DashboardController;
-use App\Http\Middleware\CheckRole;
+use App\Http\Controllers\ImagesController;
+use App\Http\Controllers\FavoriteSetsController;
 use App\Http\Controllers\PriceAlertController;
 use App\Http\Controllers\NotificationController;
+use App\Http\Middleware\CheckRole;
 use App\Http\Controllers\SetDetail;
 use App\Http\Controllers\ImagesController;
 
@@ -45,10 +48,17 @@ Route::middleware(['auth', 'twofactor', InactivityLogout::class])->group(functio
     Route::get('/dashboard', [DashboardController::class, 'index'])->middleware(['verified'])->name('home');
     Route::get('/edit-dashboard', [DashboardController::class, 'editDashboard'])->name('dashboard.edit');
     Route::post('/save-layout', [DashboardController::class, 'saveLayout'])->name('dashboard.save-layout');
+    
+    Route::get('/favorite-sets', [FavoriteSetsController::class, 'view'])->name('favorite-sets');
+    Route::post('/favorite-sets/favorites/add', [FavoriteSetsController::class, 'addToFavorites'])->name('favorite-sets.favorites.add');
+    Route::post('/favorite-sets/favorites/remove', [FavoriteSetsController::class, 'removeFromFavorites'])->name('favorite-sets.favorites.remove');
     Route::post('/reset-layout', [DashboardController::class, 'resetLayout'])->name('dashboard.reset-layout');
 
 
     Route::get('/profile', [ProfileController::class, 'view'])->name('profile');
+    Route::post('/profile/favorites/add', [ProfileController::class, 'addToFavorites'])->name('profile.favorites.add');
+    Route::post('/profile/favorites/remove', [ProfileController::class, 'removeFromFavorites'])->name('profile.favorites.remove');
+
 
     Route::get('/search-legosets', [LegoSetController::class, 'search'])->name('legosets.search');
 
@@ -59,9 +69,15 @@ Route::middleware(['auth', 'twofactor', InactivityLogout::class])->group(functio
 
     Route::get('/settings', [SettingsController::class, 'show'])->name('settings');
     Route::patch('/update-favourite-sets', [ProfileController::class, 'updateFavouriteSets'])->name('profile.update-favourite-sets');
-    Route::patch('/update-favourite-themes', [ProfileController::class, 'updateFavouriteThemes'])->name('profile.update-favourite-themes');
-    Route::patch('/update-favourite-subthemes', [ProfileController::class, 'updateFavouriteSubthemes'])->name('profile.update-favourite-subthemes');
 
+    Route::post('/update-favourite-themes', [ProfileController::class, 'updateFavouriteThemes'])
+        ->name('profile.update-favourite-themes');
+
+    Route::post('/update-favourite-subthemes', [ProfileController::class, 'updateFavouriteSubthemes'])
+        ->name('profile.update-favourite-subthemes');
+    //Route::patch('/update-favourite-themes', [ProfileController::class, 'updateFavouriteThemes'])->name('profile.update-favourite-themes');
+    //Route::patch('/update-favourite-subthemes', [ProfileController::class, 'updateFavouriteSubthemes'])->name('profile.update-favourite-subthemes');
+    
 
     Route::get('/edit-profile', [ProfileController::class, 'edit'])->name('profile.edit');
     Route::patch('/edit-profile', [ProfileController::class, 'update'])->name('profile.update');
