@@ -64,7 +64,7 @@ class Set extends Model
     
     public function setImage() 
     {
-        return  $this->hasMany(SetLink::class);
+        return $this->hasMany(SetImage::class, 'set_number', 'set_number');
     }
 
     public function reviews() 

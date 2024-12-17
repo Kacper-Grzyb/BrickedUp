@@ -15,6 +15,7 @@ use App\Http\Middleware\CheckRole;
 use App\Http\Controllers\PriceAlertController;
 use App\Http\Controllers\NotificationController;
 use App\Http\Controllers\SetDetail;
+use App\Http\Controllers\ImagesController;
 
 Route::get('/', function () {
     return view('landing_page/landing');
@@ -45,7 +46,7 @@ Route::middleware(['auth', 'twofactor', InactivityLogout::class])->group(functio
     Route::get('/edit-dashboard', [DashboardController::class, 'editDashboard'])->name('dashboard.edit');
     Route::post('/save-layout', [DashboardController::class, 'saveLayout'])->name('dashboard.save-layout');
     Route::post('/reset-layout', [DashboardController::class, 'resetLayout'])->name('dashboard.reset-layout');
-    
+
 
     Route::get('/profile', [ProfileController::class, 'view'])->name('profile');
 
@@ -72,7 +73,11 @@ Route::middleware(['auth', 'twofactor', InactivityLogout::class])->group(functio
         return view('explore');
     })->name('explore-view');
 
-    Route::get('/explore-view', [SetsDataController::class, 'index'])->name('explore-view');
+    Route::get('/explore-view', function () {
+        return view('explore');
+    })->name('explore-view');
+
+    Route::get('/explore-view', [ImagesController::class, 'thumbnail'])->name('explore');
 });
 
 Route::middleware(CheckRole::class)->group(function () {
